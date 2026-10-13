@@ -1,0 +1,64 @@
+# Corpus manifest. Documents are fetched by scripts/fetch_corpus.sh into data/corpus (gitignored) and indexed locally.
+# redistributable: false means we never commit or serve the file; the UI links to the original source page instead.
+version: "2026-10-13.1"
+sources:
+  - id: franks-oxygen-service
+    title: "Frank's Hospital Workshop: oxygen concentrator service manuals"
+    url: http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html
+    local_dir: data/corpus/oxygen_concentrators
+    device_class: oxygen_concentrator
+    licence: "Manufacturer copyright; mirrored for education by Frank's Hospital Workshop (imprint: non-commercial, takedown on request)"
+    redistributable: false
+  - id: franks-oxygen-user
+    title: "Frank's Hospital Workshop: oxygen concentrator user manuals (selected)"
+    url: http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_user_manuals.html
+    local_dir: data/corpus/oxygen_concentrators
+    device_class: oxygen_concentrator
+    licence: "Manufacturer copyright; mirrored for education"
+    redistributable: false
+  - id: franks-suction-service
+    title: "Frank's Hospital Workshop: suction pump service manuals"
+    url: http://www.frankshospitalworkshop.com/equipment/suction_pumps_service_manuals.html
+    local_dir: data/corpus/suction_pumps
+    device_class: suction_pump
+    licence: "Manufacturer copyright; mirrored for education"
+    redistributable: false
+  - id: franks-oximeter-service
+    title: "Frank's Hospital Workshop: pulse oximeter service manuals (selected)"
+    url: http://www.frankshospitalworkshop.com/equipment/pulse_oximeter_service_manuals.html
+    local_dir: data/corpus/pulse_oximeters
+    device_class: pulse_oximeter
+    licence: "Manufacturer copyright; mirrored for education"
+    redistributable: false
+  - id: who-o2-spec-2015
+    title: "WHO Technical specifications for oxygen concentrators (2015)"
+    url: https://apps.who.int/iris/bitstream/handle/10665/199326/9789241509886_eng.pdf
+    local_dir: data/corpus/background
+    device_class: oxygen_concentrator
+    licence: "WHO copyright; quoted with attribution"
+    redistributable: false
+  - id: ewh-flowcharts-v6
+    title: "EWH Medical Equipment Troubleshooting Flowchart Handbook v6 (2013)"
+    url: https://bmet.ewh.org/handle/20.500.12091/79
+    local_dir: data/corpus/background
+    device_class: generic
+    licence: "EWH BMET Library, fair-use disclaimer"
+    redistributable: false
+  - id: openfda-maude
+    title: "openFDA device/event: oxygen concentrator malfunction reports (647)"
+    url: https://open.fda.gov/apis/device/event
+    local_path: data/external/maude_oxygen_concentrator_malfunctions.json
+    licence: "CC0 public domain"
+    redistributable: true
+  - id: openfda-recalls
+    title: "openFDA device/recall: oxygen concentrator recalls (34)"
+    url: https://open.fda.gov/apis/device/recall/
+    local_path: data/external/recalls_oxygen_concentrator.json
+    licence: "CC0 public domain"
+    redistributable: true
+  - id: ingenzi-v1
+    title: "INGENZI_DatasetV1: 10,294 QA pairs from MRI and ultrasound service manuals (benchmark A)"
+    url: https://huggingface.co/datasets/BernesLy/INGENZI_DatasetV1
+    local_path: data/external/ingenzi_heldout_300.json
+    licence: "CC BY-NC 4.0 (attribution: BernesLy / INGENZI Tech)"
+    redistributable: true

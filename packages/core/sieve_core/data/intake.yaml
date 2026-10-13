@@ -1,0 +1,45 @@
+# Finite intake question bank. The fast model picks at most three; the UI renders each with an info button.
+version: "2026-10-13.1"
+questions:
+  - id: warmup
+    text: "Has the unit been running for at least 15 minutes?"
+    why: "Concentrators need a warm-up period before purity readings and purity alarms are meaningful."
+    type: yes_no
+    relevant_faults: [sieve-bed-exhaustion, inlet-filter-blocked]
+  - id: cannula_connected
+    text: "Is a cannula, tubing or humidifier connected to the outlet?"
+    why: "Flow alarms are usually caused by something downstream of the outlet, not inside the unit."
+    type: yes_no
+    relevant_faults: [impeded-flow]
+  - id: analyser
+    text: "Do you have an oxygen analyser available?"
+    why: "Only an analyser can confirm purity. Without one, Sieve limits itself to checks that need no measurement."
+    type: yes_no
+    relevant_faults: [sieve-bed-exhaustion, sieve-check-valve]
+  - id: in_use
+    text: "Is a patient currently connected to this unit?"
+    why: "If so, the patient must be moved to a backup supply before any servicing."
+    type: yes_no
+    relevant_faults: []
+  - id: noise
+    text: "Is the unit louder than usual, knocking, or running hot?"
+    why: "Points toward the compressor rather than filters or sieve beds."
+    type: yes_no
+    relevant_faults: [compressor-wear]
+  - id: filter_cleaned
+    text: "When was the cabinet filter last cleaned?"
+    why: "A dust-loaded filter is the cheapest and most common cause of low purity."
+    type: choice
+    options: ["this week", "this month", "longer or unknown"]
+    relevant_faults: [inlet-filter-blocked]
+  - id: power_socket
+    text: "Does another appliance work in the same socket?"
+    why: "Rules out the room before the machine."
+    type: yes_no
+    relevant_faults: [no-power]
+  - id: duration
+    text: "How long has the problem been present?"
+    why: "Sudden faults point to flow or power; gradual decline points to sieve beds or compressor."
+    type: choice
+    options: ["just started", "days", "weeks or longer"]
+    relevant_faults: [sieve-bed-exhaustion, compressor-wear, impeded-flow]

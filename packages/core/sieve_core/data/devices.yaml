@@ -1,0 +1,132 @@
+# Device registry. Every indicator entry cites the manual page it was read from (verified against the PDF text).
+# doc_title_aliases match document titles in the corpus; model_aliases and nameplate_patterns match OCR output.
+version: "2026-10-13.1"
+devices:
+  - id: philips-everflo
+    device_class: oxygen_concentrator
+    manufacturer: Philips Respironics
+    model: EverFlo
+    model_aliases: ["EverFlo", "EverFlo Q", "1020000", "1020001", "1020007", "1020008", "1039367", "1039370"]
+    nameplate_patterns: ["everflo", "respironics", "ref 10[23]"]
+    doc_title_aliases: ["Philips EverFlo"]
+    flow_lpm: [0.5, 5]
+    indicators:
+      - id: everflo-yellow-blink
+        state: "Yellow LED blinking, red LED off, audible alarm beeping periodically"
+        meaning: "High oxygen flow condition detected"
+        cite: {doc: "philips-everflo-oxygen-concentrator-service-manual", page: 31}
+      - id: everflo-yellow-solid-red-blink
+        state: "Yellow LED on continuously, red LED blinking, audible alarm beeping periodically"
+        meaning: "Impeded oxygen flow condition detected (kinked tubing, blocked cannula, closed outlet)"
+        cite: {doc: "philips-everflo-oxygen-concentrator-service-manual", page: 31}
+      - id: everflo-red-solid
+        state: "Red LED on continuously, audible alarm beeping continuously"
+        meaning: "System malfunction detected"
+        cite: {doc: "philips-everflo-oxygen-concentrator-service-manual", page: 31}
+      - id: everflo-yellow-solid-silent
+        state: "Yellow LED on continuously, red LED off, audible alarm silent"
+        meaning: "Low oxygen condition (OPI models only): purity has fallen to the 82 percent threshold"
+        cite: {doc: "philips-everflo-oxygen-concentrator-service-manual", page: 31}
+      - id: everflo-all-off-no-power
+        state: "No LEDs, unit silent, does not start"
+        meaning: "No mains power to the unit, or power loss alarm not sounding because the unit has not been on"
+        cite: {doc: "philips-everflo-oxygen-concentrator-service-manual", page: 18}
+    thresholds:
+      - {name: "Low oxygen alarm", value: "82 percent purity (OPI models)", cite: {doc: "philips-everflo-oxygen-concentrator-service-manual", page: 9}}
+      - {name: "Very low oxygen alarm", value: "below 70 percent purity", cite: {doc: "philips-everflo-oxygen-concentrator-service-manual", page: 9}}
+      - {name: "Oxygen output test", value: "run at 5.0 LPM for 10 minutes, then measure with a calibrated oxygen analyzer", cite: {doc: "philips-everflo-oxygen-concentrator-service-manual", page: 24}}
+    common_faults: [impeded-flow, inlet-filter-blocked, sieve-bed-exhaustion, compressor-wear, no-power, system-malfunction]
+    manuals: ["philips-everflo-oxygen-concentrator-service-manual"]
+
+  - id: devilbiss-525
+    device_class: oxygen_concentrator
+    manufacturer: DeVilbiss Healthcare
+    model: "525 series (525DS, 525KS)"
+    model_aliases: ["525", "525DS", "525KS", "525DS-Q", "5 Liter", "Compact 525"]
+    nameplate_patterns: ["devilbiss", "525"]
+    doc_title_aliases: ["DeVilbiss 525"]
+    flow_lpm: [0.5, 5]
+    indicators:
+      - id: dv525-green
+        state: "Green Normal Oxygen light on"
+        meaning: "Oxygen purity normal"
+        cite: {doc: "devilbiss-525-oxygen-concentrator-service-manual", page: 5}
+      - id: dv525-yellow
+        state: "Yellow Low Oxygen light on, no audible alert"
+        meaning: "Oxygen purity below normal, 84 to 75 percent; servicing required"
+        cite: {doc: "devilbiss-525-oxygen-concentrator-service-manual", page: 6}
+      - id: dv525-yellow-beep
+        state: "Yellow Low Oxygen light on and beeping audible alert"
+        meaning: "Oxygen purity 75 to 60 percent"
+        cite: {doc: "devilbiss-525-oxygen-concentrator-service-manual", page: 6}
+      - id: dv525-red-beep
+        state: "Red Service Required light on continuously and beeping audible alert"
+        meaning: "Oxygen purity below 60 percent, or low flow below 0.5 LPM"
+        cite: {doc: "devilbiss-525-oxygen-concentrator-service-manual", page: 6}
+      - id: dv525-red-blink
+        state: "Red Service Required light blinking with pulsing audible alert"
+        meaning: "Power failure"
+        cite: {doc: "devilbiss-525-oxygen-concentrator-service-manual", page: 6}
+    thresholds:
+      - {name: "Start-up self test", value: "all four indicator lights illuminate briefly and an audible signal sounds at power on", cite: {doc: "devilbiss-525-oxygen-concentrator-service-manual", page: 5}}
+      - {name: "Warm-up", value: "green Normal Oxygen light remains on for the first fifteen minutes of operation while the OSD stabilises", cite: {doc: "devilbiss-525-oxygen-concentrator-service-manual", page: 5}}
+    common_faults: [sieve-bed-exhaustion, sieve-check-valve, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+    manuals: ["devilbiss-525-oxygen-concentrator-service-manual"]
+
+  # The following models have manuals in the corpus. Their indicator tables are extracted from the PDFs during
+  # ingestion verification (same method as above) before they are shown to users. Until then they identify and
+  # retrieve, but render no registry indicator picker.
+  - id: airsep-newlife
+    device_class: oxygen_concentrator
+    manufacturer: AirSep (CAIRE)
+    model: "NewLife Elite / Intensity"
+    model_aliases: ["NewLife", "NewLife Elite", "NewLife Intensity", "Intensity 10"]
+    nameplate_patterns: ["airsep", "newlife", "caire"]
+    doc_title_aliases: ["Airsep Newlife", "Airsep NewLife", "AirSep NewLife"]
+    manuals: ["airsep-newlife-elite-service-manual", "airsep-newlife-intensity-service-manual", "airsep-newlife-intensity-10-oxygen-concentrator-service-manual"]
+    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+  - id: airsep-visionaire
+    device_class: oxygen_concentrator
+    manufacturer: AirSep (CAIRE)
+    model: VisionAire
+    model_aliases: ["VisionAire", "VisionAire 2", "VisionAire 3", "VisionAire 5"]
+    nameplate_patterns: ["visionaire", "airsep"]
+    doc_title_aliases: ["VisionAire"]
+    manuals: ["airsep-visionaire-concentrator-service-manual", "visionaire-2-3-concentrator-service-manual"]
+    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+  - id: invacare-platinum
+    device_class: oxygen_concentrator
+    manufacturer: Invacare
+    model: "Platinum 5 / 10"
+    model_aliases: ["Platinum 5", "Platinum 10", "IRC5LX", "IRC10LX", "Perfecto2"]
+    nameplate_patterns: ["invacare", "platinum", "irc5", "irc10"]
+    doc_title_aliases: ["Invacare Platinum", "Invacaire Platinum", "Perfecto 2"]
+    manuals: ["invacaire-platinum-5-oxygen-concentrator-service-manual", "invacare-platinum-5-10-concentrator-service-manual"]
+    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+  - id: nidek-nuvo
+    device_class: oxygen_concentrator
+    manufacturer: Nidek Medical
+    model: "Nuvo / Nuvo Lite / Nuvo 8 / Mark 5"
+    model_aliases: ["Nuvo", "Nuvo Lite", "Nuvo 8", "Nuvo 10", "Mark 5", "Mark5"]
+    nameplate_patterns: ["nidek", "nuvo", "mark 5"]
+    doc_title_aliases: ["Nidek"]
+    manuals: ["nidek-mark-5-nuvo-concentrator-service-manual", "nidek-nuvo-8-concentrator-service-manual", "nidek-nuvo-5-8-10-oxygen-concentrator-service-manual-2018"]
+    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+  - id: longfian-jay
+    device_class: oxygen_concentrator
+    manufacturer: Longfian Scitech
+    model: "JAY-5 / JAY-10"
+    model_aliases: ["JAY-5", "JAY-10", "JAY-3", "Jay"]
+    nameplate_patterns: ["longfian", "lonfian", "jay-"]
+    doc_title_aliases: ["Lonfian", "Longfian"]
+    manuals: ["lonfian-scitech-jay-oxygen-concentrator-service-manual", "lonfian-scitech-jay-oxygen-concentrator-user-and-service-manual"]
+    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+  - id: devilbiss-515
+    device_class: oxygen_concentrator
+    manufacturer: DeVilbiss Healthcare
+    model: "515 / 515A"
+    model_aliases: ["515", "515A", "515ADS"]
+    nameplate_patterns: ["devilbiss", "515"]
+    doc_title_aliases: ["DeVilbiss 515"]
+    manuals: ["devilbiss-515-oxygen-concentrator-service-manual", "devilbiss-515a-oxygen-concentrator-service-manual"]
+    common_faults: [sieve-bed-exhaustion, sieve-check-valve, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]

@@ -1,0 +1,69 @@
+# Fault concepts shared across concentrator brands. Generic text is grounded in the WHO 2015 specification
+# and the EWH flowchart handbook; brand-specific steps always come from the retrieved manual pages at run time.
+version: "2026-10-13.1"
+faults:
+  - id: impeded-flow
+    name: "Impeded or restricted oxygen flow"
+    symptoms: ["flow alarm", "yellow light with red blinking (EverFlo)", "patient reports weak flow", "flow meter ball drops"]
+    first_checks:
+      - "Check the cannula and tubing along the full length for kinks, water, or crushing"
+      - "Check that the humidifier bottle, if fitted, is not overfilled and its lid is sealed"
+      - "Check that the outlet is not blocked and the flow meter is set above 0.5 LPM"
+    likely_causes: ["kinked or blocked tubing", "blocked humidifier", "outlet filter blocked"]
+    tools: []
+    skill_level: user
+  - id: inlet-filter-blocked
+    name: "Blocked or dirty inlet (cabinet) filter"
+    symptoms: ["low purity after warm-up", "unit runs hot", "louder compressor"]
+    first_checks:
+      - "Remove the gross particle filter from the cabinet and inspect; wash in warm soapy water, rinse, dry fully before refitting"
+      - "Check the unit has clearance from walls and curtains for ventilation"
+    likely_causes: ["dust-loaded filter", "unit placed against a wall or in a cupboard"]
+    tools: []
+    skill_level: user
+  - id: sieve-bed-exhaustion
+    name: "Molecular sieve bed exhaustion"
+    symptoms: ["yellow low-oxygen light persists after 15 minutes of warm-up", "purity 82 to 87 percent on analyser", "purity falls over weeks"]
+    first_checks:
+      - "Run the unit at its rated flow for the warm-up period in the manual, then measure purity with a calibrated oxygen analyser"
+      - "Confirm inlet filter and tubing are clear before suspecting the sieve beds"
+    likely_causes: ["sieve material saturated with moisture (humid climate, long service)", "sieve beds past service life"]
+    tools: ["oxygen analyser"]
+    skill_level: technician
+    parts_hint: "sieve bed pair, brand-specific part number from the manual"
+  - id: sieve-check-valve
+    name: "Sieve bed check valve failure"
+    symptoms: ["purity low and erratic", "pressure cycling abnormal", "hissing on cycle switch"]
+    first_checks:
+      - "Observe pressure gauge or listen to the cycle; compare with the manual's expected cycle behaviour"
+    likely_causes: ["worn check valve allowing back-flow between beds"]
+    tools: ["pressure gauge"]
+    skill_level: technician
+  - id: compressor-wear
+    name: "Compressor wear or failure"
+    symptoms: ["low pressure", "unit very loud or knocking", "runs hot and purity drops", "compressor does not start"]
+    first_checks:
+      - "Switch off and unplug before any inspection inside the cabinet"
+      - "Check the compressor intake filter and cooling fan operation from outside first"
+    likely_causes: ["worn piston cups or seals", "failed start capacitor", "seized motor"]
+    tools: ["pressure gauge"]
+    skill_level: engineer
+    escalate: "Capacitor and compressor internals are engineer-level work; see rules capacitor-discharge"
+  - id: no-power
+    name: "Unit does not power on"
+    symptoms: ["no lights", "no sound", "no self-test at switch on"]
+    first_checks:
+      - "Confirm the wall socket works with another appliance"
+      - "Check the mains lead and plug for damage; check the unit's circuit breaker or fuse per the manual"
+    likely_causes: ["dead socket", "tripped breaker on the unit", "damaged lead"]
+    tools: []
+    skill_level: user
+  - id: system-malfunction
+    name: "System malfunction alarm"
+    symptoms: ["red light continuous with continuous alarm"]
+    first_checks:
+      - "Switch off, wait one minute, switch on and observe the self-test sequence described in the manual"
+      - "If the alarm returns, record the exact light pattern and escalate with the manual's indicator table"
+    likely_causes: ["control board fault", "sensor fault", "compressor fault"]
+    tools: []
+    skill_level: technician

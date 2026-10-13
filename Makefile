@@ -2,6 +2,10 @@
 
 setup:
 	uv sync --extra dev
+	uv run python scripts/install_paths.py
+
+fetch-corpus:
+	bash scripts/fetch_corpus.sh
 
 test:
 	uv run pytest -q

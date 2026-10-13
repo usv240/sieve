@@ -49,7 +49,7 @@ class Ledger:
             (trace_id,),
         )
         cols = ["ts", "tier", "model", "model_id", "purpose", "tokens_in", "tokens_out", "usd", "latency_ms"]
-        return [dict(zip(cols, row)) for row in cur.fetchall()]
+        return [dict(zip(cols, row, strict=True)) for row in cur.fetchall()]
 
     def totals(self) -> dict:
         cur = self._conn.execute(

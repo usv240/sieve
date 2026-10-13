@@ -34,6 +34,9 @@ package = false
 line-length = 100
 target-version = "py312"
 
+[tool.ruff.lint]
+extend-ignore = ["B008"]  # typer.Option in defaults is the documented typer pattern
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["packages/llm", "packages/core", "packages/rules", "packages/retrieval", "packages/vision", "packages/eval", "apps/api"]
