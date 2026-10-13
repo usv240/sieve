@@ -1,0 +1,22 @@
+# secrets
+.env
+.env.*
+!.env.example
+# corpus (copyright: indexed locally, never committed)
+data/corpus/
+data/index/
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+# node
+node_modules/
+.next/
+out/
+# local
+*.db
+*.lance/
+.DS_Store
+Thumbs.db

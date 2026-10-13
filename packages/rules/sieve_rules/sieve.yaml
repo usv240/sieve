@@ -1,0 +1,78 @@
+version: "2026-10-13.1"
+# Deterministic safety gates for Sieve. Every rule cites the document that justifies it.
+# Patterns are regular expressions, case-insensitive. Stage: input (user text), output (generated steps), both.
+rules:
+  - id: oxygen-oil-grease
+    action: block
+    severity: stop
+    stage: both
+    patterns:
+      - '\b(oil|grease|lubricat\w*|wd-?40|petroleum jelly|vaseline)\b'
+    message: "Never use oil, grease or any petroleum product on or near the oxygen path. Oxygen-enriched environments turn lubricants into a fire hazard."
+    citation: "WHO Technical specifications for oxygen concentrators (2015), safety section; manufacturer service manuals, warnings page"
+
+  - id: open-while-running
+    action: rewrite
+    severity: caution
+    stage: output
+    patterns:
+      - '^(?!.*\b(unplug|unplugged|switch(ed)? off|power(ed)? off|disconnect(ed)?)\b).*\b(open|remove|take off)\b.{0,60}\b(cover|cabinet|chassis|housing|panel)\b'
+    rewrite_to: "Switch the unit off and unplug it from the mains first."
+    message: "Opening the cabinet is only permitted with the unit switched off and unplugged."
+    citation: "Manufacturer service manuals, electrical safety warnings"
+
+  - id: purity-alarm-bypass
+    action: block
+    severity: stop
+    stage: both
+    patterns:
+      - '\b(bypass|disable|defeat|ignore|silence permanently|disconnect)\b[^.]{0,40}\b(purity|opi|oxygen (sensor|alarm)|low o2)\b'
+    message: "The oxygen purity alarm protects the patient. It must never be bypassed or disabled."
+    citation: "WHO Technical specifications for oxygen concentrators (2015): alarm for purity below 82 percent"
+
+  - id: patient-first
+    action: annotate
+    severity: caution
+    stage: output
+    patterns:
+      - '\b(in use|connected to (a|the) patient|patient is (on|using))\b'
+    message: "Move the patient to a backup oxygen supply before servicing a unit that is in use."
+    citation: "WHO-UNICEF Technical specifications and guidance for oxygen therapy devices (2019)"
+
+  - id: mains-live-testing
+    action: escalate
+    severity: stop
+    stage: both
+    patterns:
+      - '\b(live|energi[sz]ed|powered)\b[^.]{0,40}\b(test|measure|probe|check)\b[^.]{0,40}\b(mains|230 ?v|220 ?v|110 ?v|ac (input|voltage))\b'
+      - '\bmeasure\b[^.]{0,30}\bmains\b'
+    message: "Live mains measurements are restricted to qualified electrical staff. Escalate to a senior biomedical engineer."
+    citation: "Zambia BMET training notes, electrical safety; WHO Medical equipment maintenance programme overview (2011)"
+
+  - id: capacitor-discharge
+    action: escalate
+    severity: stop
+    stage: output
+    patterns:
+      - '\b(capacitor|start cap|run cap)\b'
+    message: "Compressor capacitors can hold a lethal charge after power-off. Discharge procedures are for trained staff only. Escalate."
+    citation: "Manufacturer service manuals, compressor section warnings"
+
+  - id: swollen-battery
+    action: escalate
+    severity: stop
+    stage: both
+    patterns:
+      - '\b(swollen|bulging|puffed|leaking|hot)\b[^.]{0,20}\b(battery|cell|pack)\b'
+      - '\b(battery|cell|pack)\b[^.]{0,30}\b(swollen|bulging|puffed|leaking|hot)\b'
+    message: "A swollen or leaking battery is a fire hazard. Do not charge, puncture or open it. Isolate and escalate."
+    citation: "EWH Troubleshooting Flowchart Handbook v6, batteries"
+
+  - id: no-manual-no-guess
+    action: annotate
+    severity: info
+    stage: output
+    patterns:
+      - '\b(part number|p/?n)\b[^.]{0,20}\b(unknown|not (found|available|indexed))\b'
+    message: "No manual is indexed for this device. Only generic checks are shown; no part numbers are guessed. Upload the manual to get device-specific steps."
+    citation: "Sieve design rule"

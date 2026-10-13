@@ -1,0 +1,23 @@
+.PHONY: setup test lint smoke ingest eval dev
+
+setup:
+	uv sync --extra dev
+
+test:
+	uv run pytest -q
+
+lint:
+	uv run ruff check .
+
+# One real Token Factory call per tier; prints model, tokens and cost. Requires NEBIUS_API_KEY in .env.
+smoke:
+	uv run python scripts/smoke.py
+
+ingest:
+	uv run python -m sieve_retrieval.ingest --manifest data/manifest.yaml --out data/index
+
+eval:
+	uv run python -m sieve_eval.run --out eval/results
+
+dev:
+	uv run uvicorn sieve_api.main:app --reload --port 8000
