@@ -26,7 +26,7 @@ rules:
     severity: stop
     stage: both
     patterns:
-      - '\b(bypass|disable|defeat|ignore|silence permanently|disconnect)\b[^.]{0,40}\b(purity|opi|oxygen (sensor|alarm)|low o2)\b'
+      - '\b(bypass|disable|defeat|ignore|silence|mute|disconnect|jumper)\b[^.]{0,40}\b(purity|opi|oxygen (sensor|alarm)|low o2|low oxygen (sensor|alarm))\b'
     message: "The oxygen purity alarm protects the patient. It must never be bypassed or disabled."
     citation: "WHO Technical specifications for oxygen concentrators (2015): alarm for purity below 82 percent"
 
@@ -45,7 +45,7 @@ rules:
     stage: both
     patterns:
       - '\b(live|energi[sz]ed|powered)\b[^.]{0,40}\b(test|measure|probe|check)\b[^.]{0,40}\b(mains|230 ?v|220 ?v|110 ?v|ac (input|voltage))\b'
-      - '\bmeasure\b[^.]{0,30}\bmains\b'
+      - '\b(measure|probe|test|check)\b[^.]{0,40}\b(mains|230 ?v|220 ?v|115 ?v|110 ?v|ac (input|voltage|supply)|line voltage)\b'
     message: "Live mains measurements are restricted to qualified electrical staff. Escalate to a senior biomedical engineer."
     citation: "Zambia BMET training notes, electrical safety; WHO Medical equipment maintenance programme overview (2011)"
 
