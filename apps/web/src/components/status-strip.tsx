@@ -20,7 +20,7 @@ export function StatusStrip() {
         {h && (
           <>
             <span className="flex items-center gap-1.5">{dot(h.token_factory)} Token Factory {h.token_factory ? "live" : "no key, replay"}</span>
-            <span className="flex items-center gap-1.5">{dot(h.vision_endpoint)} Vision {h.vision_endpoint ? "Nemotron VL endpoint" : "fallback"}</span>
+            <span className="flex items-center gap-1.5">{dot(h.vision_endpoint || h.token_factory)} Vision {h.vision_endpoint ? "Nemotron VL endpoint" : "Token Factory image model"}</span>
             <span className="flex items-center gap-1.5">{dot(h.tavily)} Tavily {h.tavily ? "on" : "off"}</span>
             {h.index && <span>{h.index.docs} manuals, {h.index.pages.toLocaleString()} pages indexed</span>}
           </>
