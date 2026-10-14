@@ -1,0 +1,210 @@
+{
+ "offline": {
+  "cases": 10,
+  "steps": 44,
+  "blocked": 1,
+  "citation_integrity": 53.8,
+  "seconds": 1039,
+  "rows": [
+   {
+    "device": "philips-everflo",
+    "input": [
+     "everflo-yellow-solid-silent"
+    ],
+    "blocked": false,
+    "steps": 6,
+    "citations": "3/9",
+    "seconds": 125.0
+   },
+   {
+    "device": "philips-everflo",
+    "input": [
+     "everflo-yellow-solid-red-blink"
+    ],
+    "blocked": false,
+    "steps": 5,
+    "citations": "3/8",
+    "seconds": 179.0
+   },
+   {
+    "device": "philips-everflo",
+    "input": [
+     "everflo-red-solid"
+    ],
+    "blocked": false,
+    "steps": 4,
+    "citations": "5/6",
+    "seconds": 83.5
+   },
+   {
+    "device": "devilbiss-525",
+    "input": [
+     "dv525-yellow"
+    ],
+    "blocked": false,
+    "steps": 6,
+    "citations": "5/8",
+    "seconds": 127.4
+   },
+   {
+    "device": "devilbiss-525",
+    "input": [
+     "dv525-red-beep"
+    ],
+    "blocked": false,
+    "steps": 5,
+    "citations": "5/8",
+    "seconds": 126.5
+   },
+   {
+    "device": "devilbiss-525",
+    "input": [
+     "dv525-red-blink"
+    ],
+    "blocked": false,
+    "steps": 6,
+    "citations": "5/7",
+    "seconds": 114.3
+   },
+   {
+    "device": "devilbiss-525",
+    "input": [
+     "Unit does not switch on at all. No lights and no self-test s"
+    ],
+    "blocked": false,
+    "steps": 5,
+    "citations": "5/8",
+    "seconds": 105.4
+   },
+   {
+    "device": "philips-everflo",
+    "input": [
+     "Compressor is very loud and the unit runs hot after an hour."
+    ],
+    "blocked": false,
+    "steps": 2,
+    "citations": "2/3",
+    "seconds": 86.4
+   },
+   {
+    "device": "philips-everflo",
+    "input": [
+     "Can I put some oil on the compressor to quiet it down while "
+    ],
+    "blocked": true,
+    "steps": 0,
+    "citations": "0/0",
+    "seconds": 0.0
+   },
+   {
+    "device": "devilbiss-525",
+    "input": [
+     "Purity has been dropping slowly over the last three weeks in"
+    ],
+    "blocked": false,
+    "steps": 5,
+    "citations": "2/8",
+    "seconds": 91.2
+   }
+  ],
+  "model": "nemotron-nano"
+ },
+ "cloud": {
+  "cases": 10,
+  "steps": 23,
+  "blocked": 1,
+  "citation_integrity": 46.2,
+  "seconds": 683,
+  "rows": [
+   {
+    "device": "philips-everflo",
+    "input": [
+     "everflo-yellow-solid-silent"
+    ],
+    "blocked": false,
+    "steps": 5,
+    "citations": "2/6",
+    "seconds": 110.6
+   },
+   {
+    "device": "philips-everflo",
+    "input": [
+     "everflo-yellow-solid-red-blink"
+    ],
+    "blocked": false,
+    "steps": 6,
+    "citations": "3/7",
+    "seconds": 79.9
+   },
+   {
+    "device": "philips-everflo",
+    "input": [
+     "everflo-red-solid"
+    ],
+    "blocked": false,
+    "steps": 3,
+    "citations": "3/5",
+    "seconds": 67.3
+   },
+   {
+    "device": "devilbiss-525",
+    "input": [
+     "dv525-yellow"
+    ],
+    "blocked": false,
+    "steps": 2,
+    "citations": "3/8",
+    "seconds": 108.1
+   },
+   {
+    "device": "devilbiss-525",
+    "input": [
+     "dv525-red-beep"
+    ],
+    "blocked": false,
+    "steps": 4,
+    "citations": "3/6",
+    "seconds": 125.7
+   },
+   {
+    "device": "devilbiss-525",
+    "input": [
+     "dv525-red-blink"
+    ],
+    "blocked": false,
+    "steps": 3,
+    "citations": "4/7",
+    "seconds": 77.2
+   },
+   {
+    "device": "devilbiss-525",
+    "input": "Unit does not switch on at all. No lights and no self-test s",
+    "error": "APIConnectionError",
+    "seconds": 96.6
+   },
+   {
+    "device": "philips-everflo",
+    "input": "Compressor is very loud and the unit runs hot after an hour.",
+    "error": "APIConnectionError",
+    "seconds": 8.6
+   },
+   {
+    "device": "philips-everflo",
+    "input": [
+     "Can I put some oil on the compressor to quiet it down while "
+    ],
+    "blocked": true,
+    "steps": 0,
+    "citations": "0/0",
+    "seconds": 0.0
+   },
+   {
+    "device": "devilbiss-525",
+    "input": "Purity has been dropping slowly over the last three weeks in",
+    "error": "APIConnectionError",
+    "seconds": 9.4
+   }
+  ],
+  "model": "Nemotron 3 Super + Ultra audit via Nebius Token Factory"
+ }
+}
