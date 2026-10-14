@@ -36,7 +36,7 @@ A real pilot with a district hospital biomedical department; the NVIDIA page-ima
 See FEEDBACK.md in the repository: onboarding times, what worked, what needs work, whether we would build with them again.
 
 ## Links
-Repository: https://github.com/usv240/sieve (Apache-2.0). Demo: (hosted URL). Video: (YouTube URL).
+Repository: https://github.com/usv240/sieve (Apache-2.0). Demo: https://sieve-kappa.vercel.app (API and OpenAPI docs: https://sieve-api.vercel.app/docs). Video: (YouTube URL).
 
 ## Built With
 nebius-token-factory, nvidia-nemotron-3-nano, nvidia-nemotron-3-super, nvidia-nemotron-3-ultra, nvidia-nemotron-3.5-lightning, nvidia-nemotron-nano-vl, tavily, hermes-agent, nvidia-openshell, mcp, fastapi, nextjs, sqlite, llama.cpp, openfda

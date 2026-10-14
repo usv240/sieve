@@ -1,29 +1,52 @@
 # Deploying the hosted demo
 
-Two free-tier services, both deploy from this repository with no code changes.
+Both halves run on Vercel's free Hobby plan. Nothing here costs money.
 
-## API on Render (Docker)
+Live: web https://sieve-kappa.vercel.app, API https://sieve-api.vercel.app (OpenAPI at https://sieve-api.vercel.app/docs).
 
-1. In Render, New, Blueprint, pick `usv240/sieve`. The `render.yaml` at the root defines the service.
-2. Add two environment variables in the dashboard: `NEBIUS_API_KEY`, `TAVILY_API_KEY`.
-3. Deploy. The image includes the 9,458-page index, the openFDA snapshots and the published eval results, so the service is self-contained. Health check at `/health`.
-4. Copy the public URL, for example `https://sieve-api.onrender.com`.
+## API as a Vercel Python function
 
-Free-tier note: Render sleeps idle services and cold-starts in about 30 seconds. The web app's status strip shows "API offline: showing replay samples only" until it wakes, then switches to live.
+The FastAPI app is served by Vercel's Python runtime (Fluid compute, 300 second max duration, 2 GB memory), which is enough for the Nemotron 3 Ultra audit step (about 15 to 25 seconds end to end).
+
+Files that make this work, all at the repo root:
+
+- `index.py`: the entrypoint Vercel looks for. It puts `apps/api` and `packages/*` on `sys.path` and exposes `app`.
+- `vercel.json`: declares the single FastAPI service and its entrypoint, and routes every path to it.
+- `requirements.txt`: the runtime-only dependency list (the full `pyproject.toml` and `uv.lock` are excluded by `.vercelignore` so the bundle stays small).
+- `.vercelignore`: keeps the web app, corpus PDFs, docs, tests and local databases out of the upload.
+- `packages/core/sieve_core/paths.py`: on Vercel the bundle is read-only, so the index and seed records are copied to `/tmp` on first request. The ledger, API keys, register rows and uploads live there for the life of the instance. Set `SIEVE_DATA_DIR` to point at persistent storage if you need durability.
+
+Deploy from the repo root:
+
+```
+vercel link --yes --project sieve-api
+grep '^NEBIUS_API_KEY=' ../.env | cut -d= -f2- | vercel env add NEBIUS_API_KEY production
+grep '^TAVILY_API_KEY=' ../.env | cut -d= -f2- | vercel env add TAVILY_API_KEY production
+echo 30 | vercel env add SIEVE_RATE_LIMIT_PER_MIN production
+vercel deploy --prod --yes
+```
+
+Set `SIEVE_REQUIRE_KEY=1` as well if you want every `/v1/*` call to carry an `X-API-Key` minted by `POST /v1/keys`.
 
 ## Web on Vercel (Next.js)
 
-1. In Vercel, Add New Project, import `usv240/sieve`, set the Root Directory to `apps/web`.
-2. Add the environment variable `NEXT_PUBLIC_API_BASE` with the Render URL from above.
-3. Deploy. Vercel builds with `npm run build`; the app is static plus client-side fetches, so it costs nothing to host.
-
-## Keeping both awake for judging
-
-Render free services sleep after 15 minutes idle. A Hermes cron job (`hermes cron create "*/10 * * * *" --no-agent --script ping_api.py`) or any uptime pinger keeps the API warm through the judging window (December 1 to 15).
-
-## Local equivalent
+The web app is its own Vercel project with Root Directory `apps/web`. Because the repo root is also linked (to the API project), the CLI must be told which project to target when deploying from `apps/web`:
 
 ```
-make dev                      # API on :8000
-cd apps/web && npm run dev    # web on :3000
+cd apps/web
+export VERCEL_ORG_ID=team_DpFHpLDAlHwwTjTMWbQ0D2CP VERCEL_PROJECT_ID=prj_OYNaGaOvqgTYySsgvi3bsXrXnDtK
+echo "https://sieve-api.vercel.app" | vercel env add NEXT_PUBLIC_API_BASE production
+vercel deploy --prod --yes
 ```
+
+Without the two variables the CLI resolves the nearest git-root link and would overwrite the API project with the web build.
+
+Locally `apps/web/.env.local` keeps `NEXT_PUBLIC_API_BASE=http://localhost:8000`.
+
+## Keeping it warm during judging
+
+Vercel functions cold-start in one to two seconds and need no keep-alive. If the API ever moves to a host that sleeps, a Hermes cron job (`hermes cron create "*/10 * * * *" --no-agent --script ping_api.py`) or any uptime monitor pointed at `/health` keeps it awake.
+
+## Alternative: Docker on Render
+
+`render.yaml` and `apps/api/Dockerfile` still describe the API as a Docker web service for Render's free tier (verified image build). Free Render services sleep after 15 minutes idle and cold-start in about 30 seconds.

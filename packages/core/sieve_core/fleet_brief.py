@@ -41,10 +41,12 @@ SYSTEM = """You are the district biomedical engineer's analyst. You receive the 
 
 
 def build_fleet_brief(client: TokenFactoryClient, *, device_class: str = "oxygen_concentrator", trace_id: str | None = None) -> dict[str, Any]:
-    records_path = ROOT / "data/records.jsonl"
+    from .paths import data_dir
+
+    records_path = data_dir() / "records.jsonl"
     records = [json.loads(line) for line in records_path.read_text(encoding="utf-8").splitlines() if line.strip()] if records_path.exists() else []
-    maude = json.loads((ROOT / "data/external/maude_oxygen_concentrator_malfunctions.json").read_text(encoding="utf-8"))["records"]
-    recalls = json.loads((ROOT / "data/external/recalls_oxygen_concentrator.json").read_text(encoding="utf-8"))["records"]
+    maude = json.loads((data_dir() / "external/maude_oxygen_concentrator_malfunctions.json").read_text(encoding="utf-8"))["records"]
+    recalls = json.loads((data_dir() / "external/recalls_oxygen_concentrator.json").read_text(encoding="utf-8"))["records"]
     maude_slim = [{"mdr": m["mdr_report_key"], "brand": m.get("brand_name"), "manufacturer": m.get("manufacturer"), "problems": m.get("product_problems"), "event": (m.get("event_description") or "")[:400], "finding": (m.get("manufacturer_narrative") or "")[:300]} for m in maude]
     recalls_slim = [{"recall": r.get("product_res_number") or r.get("res_event_number"), "firm": r.get("recalling_firm"), "product": (r.get("product_description") or "")[:200], "reason": (r.get("reason_for_recall") or "")[:300], "date": r.get("event_date_initiated")} for r in recalls]
     payload = {"fleet_work_orders": records, "fda_malfunction_reports": maude_slim, "fda_recalls": recalls_slim}

@@ -1,1 +1,13 @@
   10/300  sieve=8 rag=5 zs=1  217s
+  20/300  sieve=12 rag=9 zs=3  403s
+  30/300  sieve=20 rag=14 zs=5  571s
+  40/300  sieve=27 rag=19 zs=6  789s
+  50/300  sieve=34 rag=27 zs=7  972s
+  60/300  sieve=41 rag=33 zs=8  1112s
+  70/300  sieve=47 rag=39 zs=10  1246s
+  80/300  sieve=54 rag=46 zs=13  1413s
+  90/300  sieve=62 rag=53 zs=15  1570s
+  100/300  sieve=72 rag=61 zs=17  1717s
+  110/300  sieve=79 rag=67 zs=18  1875s
+  120/300  sieve=87 rag=75 zs=18  2063s
+  130/300  sieve=94 rag=81 zs=19  2283s

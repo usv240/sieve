@@ -8,6 +8,10 @@ Built for the Nebius x NVIDIA Global AI Hackathon on **Nebius Token Factory** wi
 >
 > 72 percent of broken hospital equipment in low-income countries was fixed without any imported parts (Malkin and Keane, 2010). Two-thirds of sub-Saharan countries have at most one biomedical engineer per million people (WHO, 2017). The gap is knowledge. Sieve puts that knowledge, the manufacturer's own service manual, in the technician's phone.
 
+## Live
+
+Web: https://sieve-kappa.vercel.app. API: https://sieve-api.vercel.app (OpenAPI docs at `/docs`). Both run on Vercel's free plan; the API is a Python function with a 300 second budget, enough for the Nemotron 3 Ultra audit.
+
 ## Status
 
 Working scaffold with a real index and a real evaluation. Model-dependent stages run once a Token Factory key is present.

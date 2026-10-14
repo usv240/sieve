@@ -249,7 +249,9 @@ class SievePipeline:
     def enrich_fda(self, dev: dict | None) -> tuple[list[dict], dict]:
         if not dev:
             return [], {}
-        ext = ROOT / "data/external"
+        from .paths import data_dir
+
+        ext = data_dir() / "external"
         if self._maude is None:
             self._maude = json.loads((ext / "maude_oxygen_concentrator_malfunctions.json").read_text(encoding="utf-8"))["records"]
             self._recalls = json.loads((ext / "recalls_oxygen_concentrator.json").read_text(encoding="utf-8"))["records"]

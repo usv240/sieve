@@ -14,6 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sieve_core import Registry
 from sieve_core.fleet_brief import build_fleet_brief
+from sieve_core.paths import data_dir
 from sieve_core.pipeline import SievePipeline
 from sieve_core.schemas import WorkOrder
 from sieve_core.twin import twin_reply
@@ -22,6 +23,7 @@ from sieve_retrieval import PageStore
 from sieve_vision import describe
 
 ROOT = Path(__file__).resolve().parents[3]
+DATA = data_dir()
 for _env in (ROOT / ".env", ROOT.parent / ".env"):  # repo root, then workspace root
     if _env.exists():
         for line in _env.read_text(encoding="utf-8").splitlines():
@@ -40,7 +42,7 @@ from collections import defaultdict, deque
 from fastapi import Request
 from fastapi.responses import JSONResponse
 
-KEYS_FILE = ROOT / "data/api_keys.json"
+KEYS_FILE = DATA / "api_keys.json"
 REQUIRE_KEY = os.environ.get("SIEVE_REQUIRE_KEY", "0") == "1"
 RATE_LIMIT_PER_MIN = int(os.environ.get("SIEVE_RATE_LIMIT_PER_MIN", "30"))
 _hits: dict[str, deque] = defaultdict(deque)
@@ -85,8 +87,8 @@ def create_key(body: KeyBody) -> dict[str, Any]:
     return {"key": key, "label": body.label, "note": "Shown once. Send as X-API-Key. Required when SIEVE_REQUIRE_KEY=1 on the server."}
 
 
-LEDGER = Ledger(ROOT / "data/ledger.db")
-STORE = PageStore(ROOT / "data/index/sieve.db")
+LEDGER = Ledger(DATA / "ledger.db")
+STORE = PageStore(DATA / "index/sieve.db")
 REGISTRY = Registry()
 CLIENT: TokenFactoryClient | None = None
 try:
@@ -94,7 +96,7 @@ try:
 except RuntimeError:
     CLIENT = None
 PIPE = SievePipeline(CLIENT, STORE, REGISTRY)
-RECORDS = ROOT / "data/records.jsonl"
+RECORDS = DATA / "records.jsonl"
 
 
 class IdentifyBody(BaseModel):
@@ -110,6 +112,13 @@ class AnalyzeBody(BaseModel):
     answers: dict[str, str] = {}
     free_text: str = ""
     audit: bool = True
+
+
+@app.get("/", include_in_schema=False)
+def root():
+    from fastapi.responses import RedirectResponse
+
+    return RedirectResponse("/docs", status_code=307)
 
 
 @app.get("/health")
@@ -271,7 +280,7 @@ async def upload_manual(file: UploadFile = File(...), device_id: str | None = No
     raw = await file.read()
     if len(raw) > 60_000_000:
         raise HTTPException(413, "PDF larger than 60 MB")
-    dest = ROOT / "data/corpus/uploads" / workspace
+    dest = DATA / "uploads" / workspace
     dest.mkdir(parents=True, exist_ok=True)
     safe = _re.sub(r"[^A-Za-z0-9._-]+", "-", file.filename)[:120]
     path = dest / safe
