@@ -23,6 +23,7 @@ type Analyze = {
   retrieved: { doc: string; title: string; page: number }[];
   recalls: { recall_number: string; reason: string; date: string }[];
   maude: { reports?: number; top_problems?: [string, number][]; source?: string };
+  tavily: { parts?: { available: boolean; for?: string; results: { title: string; url: string; snippet: string }[] }; manual?: { available: boolean; results: { title: string; url: string }[] } };
   notes: string[]; latency_ms: number;
   trace: { tier: string; model: string; purpose: string; tokens_in: number; tokens_out: number; usd: number; latency_ms: number }[];
 };
@@ -232,6 +233,14 @@ export function TryFlow() {
               {result.recalls.map((r) => <p key={r.recall_number} className="mt-1 text-fg-muted">{r.date}: {r.reason}</p>)}
               {result.maude?.reports ? <p className="mt-2 text-fg-muted">{result.maude.reports} FDA malfunction reports for this manufacturer. Top: {result.maude.top_problems?.map(([p, n]) => `${p} (${n})`).join(", ")}</p> : null}
             </div>
+            {(result.tavily?.parts || result.tavily?.manual) && (
+              <div className="card text-sm">
+                <p className="font-semibold">On the web, via Tavily</p>
+                <p className="text-xs text-fg-muted">Web-sourced, shown for convenience; never used to write steps.</p>
+                {result.tavily.parts?.results?.length ? (<><p className="mt-2 font-medium">Part: {result.tavily.parts.for}</p><ul className="mt-1 space-y-1">{result.tavily.parts.results.slice(0, 3).map((r) => <li key={r.url}><a className="text-accent underline-offset-2 hover:underline" href={r.url} target="_blank" rel="noreferrer">{r.title}</a></li>)}</ul></>) : null}
+                {result.tavily.manual?.results?.length ? (<><p className="mt-2 font-medium">Manual found online</p><ul className="mt-1 space-y-1">{result.tavily.manual.results.slice(0, 3).map((r) => <li key={r.url}><a className="text-accent underline-offset-2 hover:underline" href={r.url} target="_blank" rel="noreferrer">{r.title}</a></li>)}</ul><p className="mt-1 text-xs text-fg-muted">Upload it on the Data page to get device-specific steps.</p></>) : null}
+              </div>
+            )}
             <div className="card text-sm">
               <p className="font-semibold">Trace <Info k="trace" /></p>
               {result.trace.length === 0 && <p className="mt-1 text-fg-muted">No model calls (replay or offline-manual mode).</p>}

@@ -19,3 +19,8 @@ A running log kept from day one. The hackathon requires this section; we keep it
 ## Tavily
 
 ## NVIDIA models
+
+## Tavily (2026-10-14)
+- Signup to first successful search with `tavily-python`: under five minutes, no card. `include_domains` worked well for restricting parts searches to suppliers and manual searches to known mirrors.
+- The agent-setup SKILL.md on tavily.com pushes CLI install, browser login and global skill installation; for an application that only needs the SDK and an env var, the Path B section was the only part needed. A shorter "I just want the SDK" entry point would save time.
+- What worked: a brand-name query for a pesticide returned regulator and supplier pages with the active ingredient in the title on the first try.

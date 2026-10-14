@@ -114,6 +114,7 @@ def analyze(body: AnalyzeBody) -> dict[str, Any]:
         "retrieved": res.retrieved,
         "recalls": res.recalls,
         "maude": res.maude_summary,
+        "tavily": res.tavily,
         "notes": res.notes,
         "latency_ms": int((time.perf_counter() - t0) * 1000),
         "trace": LEDGER.trace(res.trace_id),

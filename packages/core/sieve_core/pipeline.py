@@ -19,6 +19,7 @@ from sieve_rules import RuleHit, RulesEngine, load_rules
 from .citations import verify_quote
 from .registry import Registry
 from .schemas import AuditReport, FaultTree, Step
+from .tavily_tools import find_manual, find_parts
 
 ROOT = Path(__file__).resolve().parents[3]
 RULES_PATH = ROOT / "packages/rules/sieve_rules/sieve.yaml"
@@ -102,6 +103,7 @@ class SievePipeline:
         if not self.client:
             res = AnalyzeResult(trace_id, device_id, label, None, None, in_hits, {}, retrieved, notes=notes + ["no model client (replay or offline-manual mode)"])
             res.recalls, res.maude_summary = self.enrich_fda(dev)
+            res.tavily = self._tavily(dev, None, trace_id)
             return res
 
         # synthesise
@@ -137,7 +139,20 @@ class SievePipeline:
 
         res = AnalyzeResult(trace_id, device_id, label, tree, audit_report, in_hits + out_hits, cit, retrieved, notes=notes)
         res.recalls, res.maude_summary = self.enrich_fda(dev)
+        res.tavily = self._tavily(dev, tree, trace_id)
         return res
+
+    def _tavily(self, dev: dict | None, tree: FaultTree | None, trace_id: str) -> dict[str, Any]:
+        """Live web grounding, labelled web-sourced: parts for cited part numbers; a manual when we have none."""
+        ledger = self.client.ledger if self.client else None
+        out: dict[str, Any] = {}
+        parts = [p for p in (tree.parts_candidates if tree else []) if p.part_number]
+        if parts:
+            out["parts"] = find_parts(parts[0].part_number or parts[0].name, dev["model"] if dev else None, ledger=ledger, trace_id=trace_id)
+            out["parts"]["for"] = parts[0].name
+        if dev and not self.store.doc_ids_for(dev["id"], None):
+            out["manual"] = find_manual(dev["model"], dev["manufacturer"], ledger=ledger, trace_id=trace_id)
+        return out
 
     # ---------- helpers ----------
     def _verify_tree(self, tree: FaultTree) -> dict[str, Any]:
