@@ -230,7 +230,7 @@ export function TryFlow() {
               <p className="font-semibold">Recalls and known problems <Info k="recall" /></p>
               {result.recalls.length === 0 && <p className="mt-1 text-fg-muted">No recall matched this model in the openFDA snapshot.</p>}
               {result.recalls.map((r) => <p key={r.recall_number} className="mt-1 text-fg-muted">{r.date}: {r.reason}</p>)}
-              {result.maude?.reports ? <p className="mt-2 text-fg-muted">{result.maude.reports} FDA malfunction reports for this brand. Top: {result.maude.top_problems?.map(([p, n]) => `${p} (${n})`).join(", ")}</p> : null}
+              {result.maude?.reports ? <p className="mt-2 text-fg-muted">{result.maude.reports} FDA malfunction reports for this manufacturer. Top: {result.maude.top_problems?.map(([p, n]) => `${p} (${n})`).join(", ")}</p> : null}
             </div>
             <div className="card text-sm">
               <p className="font-semibold">Trace <Info k="trace" /></p>

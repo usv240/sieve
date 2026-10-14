@@ -83,11 +83,19 @@ def benchmarks_with_model(pipe: SievePipeline, n_a: int, n_b: int) -> tuple[dict
     summary: dict = {}
     rows: list[dict] = []
     maude = json.loads((ROOT / "data/external/maude_oxygen_concentrator_malfunctions.json").read_text(encoding="utf-8"))["records"]
-    cases = [m for m in maude if m["event_description"] and m["manufacturer_narrative"]][:n_b]
+    def _dev(m: dict) -> str | None:
+        brand = (m.get("brand_name") or "").lower()
+        manu = (m.get("manufacturer") or "").lower()
+        if "everflo" in brand:
+            return "philips-everflo"
+        if "525" in brand or "devilbiss" in manu:
+            return "devilbiss-525"
+        return None
+
+    cases = [m for m in maude if m["event_description"] and m["manufacturer_narrative"] and _dev(m)][:n_b]
     integ_total = integ_ok = 0
     for m in cases:
-        brand = (m.get("brand_name") or "").lower()
-        dev = "devilbiss-525" if "525" in brand or "devilbiss" in (m.get("manufacturer") or "").lower() else "philips-everflo" if "everflo" in brand else None
+        dev = _dev(m)
         if not dev:
             continue
         try:

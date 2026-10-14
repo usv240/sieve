@@ -106,7 +106,9 @@ class SievePipeline:
 
         # synthesise
         context = self.search.pack_context(hits)
+        fault_ids = ", ".join(dev.get("common_faults", [])) if dev else ", ".join(sorted(self.registry.faults))
         user = (
+            f"Allowed fault_id values (use only these): {fault_ids}.\n"
             f"Device: {label} (device_id={device_id}).\n"
             f"Observed indicators: {'; '.join(meanings) or 'none recorded'}.\n"
             f"Technician answers: {json.dumps(answers)}.\n"
@@ -140,12 +142,14 @@ class SievePipeline:
     # ---------- helpers ----------
     def _verify_tree(self, tree: FaultTree) -> dict[str, Any]:
         total, ok, failures = 0, 0, []
+        tiers: dict[str, int] = {"verbatim": 0, "normalised": 0, "fuzzy": 0}
         for item in [*tree.hypotheses, *tree.steps, *[p for p in tree.parts_candidates if p.cite]]:
             c = item.cite
             total += 1
             v = verify_quote(c.quote, self.store.page_text(c.doc, c.page))
             if v.ok:
                 ok += 1
+                tiers[v.tier] = tiers.get(v.tier, 0) + 1
             else:
                 failures.append({"doc": c.doc, "page": c.page, "quote": c.quote[:120], "reason": v.reason})
         # unverifiable steps are demoted to "see page N"
@@ -153,7 +157,7 @@ class SievePipeline:
             if any(f["quote"] == s.cite.quote[:120] for f in failures):
                 s.action = f"See {s.cite.doc} page {s.cite.page} (quote could not be verified; page shown instead)."
                 s.safety_class = "caution" if s.safety_class == "none" else s.safety_class
-        return {"total": total, "verified": ok, "integrity": round(ok / total, 3) if total else None, "failures": failures}
+        return {"total": total, "verified": ok, "integrity": round(ok / total, 3) if total else None, "tiers": tiers, "failures": failures}
 
     def _apply_rules(self, tree: FaultTree, hits: list[RuleHit]) -> FaultTree:
         for h in hits:

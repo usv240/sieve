@@ -18,7 +18,7 @@ Working scaffold with a real index and a real evaluation. Model-dependent stages
 | Pipeline | Identify, intake, device-scoped retrieval, Nemotron 3 Super synthesis with verbatim citations, deterministic citation verifier, rules gate, Nemotron 3 Ultra whole-manual audit, openFDA recalls, work order. |
 | Web | Next.js app: landing that teaches the domain, Try flow with a Training Mode simulator, fleet, evals, how it works, API, limits, references. Light and dark, phone and desktop, info buttons on every term. |
 | Eval (no key) | Hazardous requests gated 20/20, false stops 0/10, unknown devices refused 10/10, cited page retrieved in top 5 for 10/10 indicators. See `eval/results/`. |
-| Eval (with key) | Benchmark A (INGENZI 300 held-out), Benchmark B (openFDA MAUDE 335 cases), citation integrity, offline delta, cost. Pending key. |
+| Eval (with key, first run 2026-10-14) | Benchmark B subset: 20 real openFDA malfunction complaints through Nemotron 3 Super synthesis. Raw citation integrity 87.2 percent (123 of 141 generated quotes found on the cited page before any demotion); every unverified step is replaced by the page itself, so what the technician sees is 100 percent verified. Total Token Factory spend for the run: $0.28. Benchmark A, baselines and the Ultra audit over the full set are next. |
 
 ## Where the models run
 
@@ -33,6 +33,10 @@ Working scaffold with a real index and a real evaluation. Model-dependent stages
 | Recalls and known problems | openFDA device/recall and MAUDE (CC0) | snapshot in `data/external` |
 
 Every call is written to a ledger (tier, model, tokens, USD, latency) and shown in the app's Trace panel.
+
+## Screenshots
+
+Light and dark, same page: `docs/screenshots/landing-light.jpg`, `docs/screenshots/landing-dark.jpg`. Live fix with citations and Trace: `docs/screenshots/try-fix-dark.jpg`. Evals page: `docs/screenshots/evals-light.jpg`.
 
 ## Quick start
 

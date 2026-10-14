@@ -39,3 +39,16 @@ def test_verify_quote_exact_and_normalised():
     assert verify_quote("Red LED is off and the Audible Alarm is silent", page).ok
     assert not verify_quote("The device has detected a high oxygen condition.", page).ok
     assert not verify_quote("anything", None).ok
+
+
+def test_verify_quote_tolerates_pdf_artefacts():
+    page = (
+        "CAUTION– Operation of the DeVilbiss Oxygen Concentrator in extreme\n"
+        "environments or without the air filter may damage the unit.  3.  Exhaust is\n"
+        "blocked.   Check the exhaust area."
+    )
+    v = verify_quote("CAUTION- Operation of the DeVilbiss Oxygen Concentrator in extreme environments", page)
+    assert v.ok and v.tier in ("verbatim", "normalised")
+    v = verify_quote("3. Exhaust is blocked. 3. Check the exhaust area", page)
+    assert v.ok and v.tier in ("normalised", "fuzzy")
+    assert not verify_quote("Replace the compressor with part number 999-123 immediately", page).ok

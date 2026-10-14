@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-13T23:42:49.231498+00:00",
+ "generated_at": "2026-10-14T04:33:03.796712+00:00",
  "command": "make eval",
  "index": {
   "docs": 165,
@@ -19,7 +19,7 @@
    }
   }
  },
- "model_key_present": false,
+ "model_key_present": true,
  "summary": {
   "hazard_gated": {
    "value": 100.0,
@@ -45,10 +45,17 @@
    "label": "Cited page in top 5",
    "note": "10 of 10 registry indicators retrieve their own manual page"
   },
-  "benchmarks": {
-   "value": null,
-   "label": "Benchmarks A and B",
-   "note": "need NEBIUS_API_KEY; not run"
+  "citation_integrity": {
+   "value": 87.2,
+   "unit": "%",
+   "label": "Citation integrity",
+   "note": "123 of 141 quotes found verbatim on the cited page (benchmark B subset, n=20)"
+  },
+  "cost_usd": {
+   "value": 0.2793,
+   "unit": "",
+   "label": "Ledger total (USD)",
+   "note": "all Token Factory calls recorded in data/ledger.db"
   }
  },
  "sections": [
@@ -386,7 +393,160 @@
      "pages": "6,5,11,7,12"
     }
    ]
+  },
+  {
+   "name": "Benchmark B: openFDA MAUDE (subset)",
+   "description": "Real malfunction complaints to Sieve hypotheses, alongside the manufacturer's own finding. Scoring rubric and LLM judge to follow; citation integrity is deterministic.",
+   "columns": [
+    "mdr",
+    "device",
+    "hypotheses",
+    "manufacturer_finding",
+    "citations_verified"
+   ],
+   "rows": [
+    {
+     "mdr": "12678326",
+     "device": "devilbiss-525",
+     "hypotheses": "compressor-wear;impeded-flow",
+     "manufacturer_finding": "THE DEVICE WAS EVALUATED BY US UNDER RETURN ORDER (B)(4). THE DEVICE WAS NOT RETURNED COMPLETE. WHEN THE UNIT WAS TURNED ON ALL SUB SYSTEMS WERE FOUND TO BE OPE",
+     "citations_verified": "4/6"
+    },
+    {
+     "mdr": "13010719",
+     "device": "devilbiss-525",
+     "hypotheses": "inlet-filter-blocked",
+     "manufacturer_finding": "ROOT CAUSE ANALYSIS SUMMARY NOTED THAT BASED ON THE EXTERNAL THERMAL DAMAGE PROFILE AND LOCATION, AS WELL AS NO PHYSICAL OR SOFTWARE EVIDENCE TO INDICATE THE OC",
+     "citations_verified": "5/5"
+    },
+    {
+     "mdr": "14359593",
+     "device": "devilbiss-525",
+     "hypotheses": "inlet-filter-blocked;sieve-bed-exhaustion;compressor-wear",
+     "manufacturer_finding": "ALTHOUGH INOGEN, INC. IS NOT THE MANUFACTURER, AN INTERNAL INVESTIGATION WAS INITIATED TO DETERMINE THE CAUSE OF THE MALFUNCTION. INOGEN'S INVESTIGATION OF THE ",
+     "citations_verified": "8/9"
+    },
+    {
+     "mdr": "14364083",
+     "device": "devilbiss-525",
+     "hypotheses": "impeded-flow;inlet-filter-blocked",
+     "manufacturer_finding": "DEVILBISS HEALTHCARE PREVIOUSLY INCORRECLY REPORTED MDR 2518572-2022-00045. THE CORRECT MDR IS MDR 2515872-2022-00045.",
+     "citations_verified": "5/6"
+    },
+    {
+     "mdr": "15159750",
+     "device": "devilbiss-525",
+     "hypotheses": "compressor-wear",
+     "manufacturer_finding": "DEVILBISS HEALTHCARE PREVIOUSLY REPORTED AN OXYGEN CONCENTRATOR THAT THE PATIENT STATED \"SHOT FIRE OUT OF THE HOSE.\" THE SUPPLIER NOTED THAT THE PATIENT WAS TAK",
+     "citations_verified": "6/6"
+    },
+    {
+     "mdr": "15160109",
+     "device": "devilbiss-525",
+     "hypotheses": "no-power",
+     "manufacturer_finding": "DRIVE DEVILBISS EVALUATED THE DEVICE AND FOUND THERMAL DAMAGE IN THE CONNECTORS BETWEEN THE LINE CORD AND WIRE HARNESS AS WELL AS THE WIRES ADJACENT TO THE CONN",
+     "citations_verified": "8/10"
+    },
+    {
+     "mdr": "15495487",
+     "device": "devilbiss-525",
+     "hypotheses": "inlet-filter-blocked",
+     "manufacturer_finding": "DEVILBISS HEALTHCARE PREVIOUSLY REPORTED A COMPLAINT INVOLVING AN OXYGEN CONCENTRATOR BY A HOME OXYGEN PROVIDER. THE OXYGEN PROVIDER STATED, \"THERE WAS NO REPOR",
+     "citations_verified": "7/7"
+    },
+    {
+     "mdr": "16543358",
+     "device": "philips-everflo",
+     "hypotheses": "no-power",
+     "manufacturer_finding": "THE MANUFACTURER PREVIOUSLY DID NOT INCLUDE THE COUNTRY OF OCCURRENCE. THE COUNTRY OF OCCURRENCE IS INDIA AND WAS UPDATED IN BOX F.",
+     "citations_verified": "5/5"
+    },
+    {
+     "mdr": "16543399",
+     "device": "philips-everflo",
+     "hypotheses": "no-power",
+     "manufacturer_finding": "THE MANUFACTURER PREVIOUSLY RECEIVED INFORMATION ALLEGING AN EVERFLO OXYGEN CONCENTRATOR POWER CORD MELTED. THERE WAS NO REPORT OF PATIENT HARM OR INJURY. THE D",
+     "citations_verified": "4/4"
+    },
+    {
+     "mdr": "17397293",
+     "device": "devilbiss-525",
+     "hypotheses": "no-power",
+     "manufacturer_finding": "DRIVE DEVILBISS EVALUATED THE DEVICE AND DETERMINED THE THERMAL DAMAGE WAS NOT CAUSED BY A SYSTEM INDUCED FAILURE AND THE THERMAL EVENT WAS MAINLY LIMITED TO TH",
+     "citations_verified": "5/6"
+    },
+    {
+     "mdr": "17398523",
+     "device": "devilbiss-525",
+     "hypotheses": "no-power;compressor-wear",
+     "manufacturer_finding": "DEVILBISS HEALTHCARE PREVIOUSLY REPORTED AN OXYGEN CONCENTRATOR THAT WAS NOTED BY AN AUTHORIZED SERVICE CENTER TO EXHIBIT \"BURNT PC [POWER CORD].\" THERE WAS NO ",
+     "citations_verified": "15/15"
+    },
+    {
+     "mdr": "17701954",
+     "device": "philips-everflo",
+     "hypotheses": "compressor-wear;inlet-filter-blocked",
+     "manufacturer_finding": "THE MANUFACTURER PREVIOUSLY REPORTED AN ALLEGATION OF A THERMAL EVENT TO AN EVERFLO INTERNATIONAL OXYGEN CONCENTRATOR. THE PATIENT REPORTED THAT FIRE HAD COME O",
+     "citations_verified": "7/7"
+    },
+    {
+     "mdr": "17851963",
+     "device": "devilbiss-525",
+     "hypotheses": "no-power",
+     "manufacturer_finding": "UDI RELATED DATA QUALITY UPDATES ONLY. THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUMBER",
+     "citations_verified": "3/3"
+    },
+    {
+     "mdr": "17877059",
+     "device": "devilbiss-525",
+     "hypotheses": "impeded-flow",
+     "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUM",
+     "citations_verified": "5/6"
+    },
+    {
+     "mdr": "17878040",
+     "device": "devilbiss-525",
+     "hypotheses": "sieve-bed-exhaustion;sieve-check-valve;compressor-wear;inlet-filter-blocked;impeded-flow;no-power",
+     "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** . THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG N",
+     "citations_verified": "2/12"
+    },
+    {
+     "mdr": "17878303",
+     "device": "devilbiss-525",
+     "hypotheses": "compressor-wear",
+     "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUM",
+     "citations_verified": "6/6"
+    },
+    {
+     "mdr": "17878843",
+     "device": "devilbiss-525",
+     "hypotheses": "compressor-wear",
+     "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** THE PREVIOUS SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUMBE",
+     "citations_verified": "4/4"
+    },
+    {
+     "mdr": "17894644",
+     "device": "devilbiss-525",
+     "hypotheses": "no-power",
+     "manufacturer_finding": "UDI RELATED DATA QUALITY UPDATES ONLY. THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUMBER",
+     "citations_verified": "5/5"
+    },
+    {
+     "mdr": "17946480",
+     "device": "philips-everflo",
+     "hypotheses": "no-power;system-malfunction",
+     "manufacturer_finding": "UPDATED: SECTION D: DEVICE IDENTIFIER (GTIN) UPDATED. THE UDI IN SECTION D4 WAS PREVIOUSLY REPORTED IN THE INCORRECT FORMAT. THE UDI INFORMATION HAS BEEN UPDATE",
+     "citations_verified": "8/8"
+    },
+    {
+     "mdr": "17953757",
+     "device": "philips-everflo",
+     "hypotheses": "impeded-flow;compressor-wear;sieve-bed-exhaustion",
+     "manufacturer_finding": "H3 OTHER TEXT : DEVICE EVALUATED BY THIRD PARTY SERVICE CENTER UPDATED: SECTION D: DEVICE IDENTIFIER (GTIN) UPDATED. THE UDI IN SECTION D4 WAS PREVIOUSLY REPORT",
+     "citations_verified": "11/11"
+    }
+   ]
   }
  ],
- "seconds": 0.4
+ "seconds": 126.2
 }
