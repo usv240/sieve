@@ -61,7 +61,7 @@ def _parse(raw: str) -> NameplateFields:
     return NameplateFields(confidence=0.0)
 
 
-def _openai_vision_call(base_url: str, api_key: str, model: str, image_bytes: bytes, timeout: float = 90) -> str:
+def _openai_vision_call(base_url: str, api_key: str, model: str, image_bytes: bytes, timeout: float = 60) -> str:
     payload: dict[str, Any] = {
         "model": model,
         "max_tokens": 600,
@@ -90,8 +90,12 @@ def _tf_image_model(api_key: str, base_url: str) -> str | None:
         r = httpx.get(f"{base_url.rstrip('/')}/models", headers={"Authorization": f"Bearer {api_key}"}, timeout=20)
         r.raise_for_status()
         ids = [m["id"] for m in r.json().get("data", [])]
-        preferred = [i for i in ids if any(k in i.lower() for k in ("vl", "vision", "minicpm-v", "kimi", "glm-5.3-flash", "qwen3.8"))]
-        pick = preferred[0] if preferred else None
+        # Preference order: fast, cheap, vision-tagged models first (verified in the live catalog on 2026-10-14).
+        order = ["openbmb/MiniCPM-V-4_5", "Qwen/Qwen3.8-27B", "deepseek-ai/DeepSeek-V4.1-Flash", "zai-org/GLM-5.3-Flash"]
+        pick = next((m for m in order if m in ids), None)
+        if not pick:
+            preferred = [i for i in ids if any(k in i.lower() for k in ("vl", "vision", "minicpm-v", "kimi", "glm", "qwen3.8"))]
+            pick = preferred[0] if preferred else None
         if pick:
             os.environ["_TF_IMG_MODEL"] = pick
         return pick

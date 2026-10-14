@@ -7,6 +7,7 @@ what is allowed to reach the technician.
 from __future__ import annotations
 
 import json
+import os
 import uuid
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -17,6 +18,7 @@ from sieve_retrieval import Hit, PageStore, Searcher
 from sieve_rules import RuleHit, RulesEngine, load_rules
 
 from .citations import verify_quote
+from .manual_finder import find_and_ingest_manual
 from .registry import Registry
 from .schemas import AuditReport, FaultTree, Step
 from .tavily_tools import find_manual, find_parts
@@ -96,6 +98,12 @@ class SievePipeline:
         states = [i["state"] for i in inds]
         q_parts = states + meanings + [f"{k}: {v}" for k, v in answers.items()] + ([free_text] if free_text else [])
         query = " ".join(q_parts) or "troubleshooting alarms indicators low oxygen purity"
+        manual_fetch: dict[str, Any] = {}
+        if dev and not self.store.doc_ids_for(dev["id"], None) and os.environ.get("TAVILY_API_KEY"):
+            # Closed loop: no manual indexed for a known device -> Tavily finds and extracts one -> ingest -> retrieve.
+            manual_fetch = find_and_ingest_manual(self.store, manufacturer=dev["manufacturer"], model=dev["model"], device_id=dev["id"], device_class=device_class, ledger=self.client.ledger if self.client else None, trace_id=trace_id)
+            if manual_fetch.get("ingested"):
+                notes.append(f"no manual was indexed; Tavily found and ingested {len(manual_fetch['ingested'])} web-sourced document(s)")
         hits = self.search.search(query, device_id=device_id, device_class=device_class, k=8)
         retrieved = [{"doc": h.doc_id, "title": h.title, "page": h.page, "score": round(h.score, 2), "source_url": h.source_url} for h in hits]
         if not hits:
@@ -104,6 +112,8 @@ class SievePipeline:
             res = AnalyzeResult(trace_id, device_id, label, None, None, in_hits, {}, retrieved, notes=notes + ["no model client (replay or offline-manual mode)"])
             res.recalls, res.maude_summary = self.enrich_fda(dev)
             res.tavily = self._tavily(dev, None, trace_id)
+            if manual_fetch:
+                res.tavily["manual_fetch"] = manual_fetch
             return res
 
         # synthesise
@@ -140,6 +150,8 @@ class SievePipeline:
         res = AnalyzeResult(trace_id, device_id, label, tree, audit_report, in_hits + out_hits, cit, retrieved, notes=notes)
         res.recalls, res.maude_summary = self.enrich_fda(dev)
         res.tavily = self._tavily(dev, tree, trace_id)
+        if manual_fetch:
+            res.tavily["manual_fetch"] = manual_fetch
         return res
 
     def _tavily(self, dev: dict | None, tree: FaultTree | None, trace_id: str) -> dict[str, Any]:

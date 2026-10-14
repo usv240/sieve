@@ -130,3 +130,12 @@ devices:
     doc_title_aliases: ["DeVilbiss 515"]
     manuals: ["devilbiss-515-oxygen-concentrator-service-manual", "devilbiss-515a-oxygen-concentrator-service-manual"]
     common_faults: [sieve-bed-exhaustion, sieve-check-valve, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+  - id: yuwell-7f5
+    device_class: oxygen_concentrator
+    manufacturer: Yuwell
+    model: "7F-5 / 7F-5A"
+    model_aliases: ["7F-5", "7F-5A", "7F-10", "7F-3"]
+    nameplate_patterns: ["yuwell", "7f-"]
+    doc_title_aliases: ["Yuwell", "AMG 7F-5"]
+    manuals: []
+    common_faults: [inlet-filter-blocked, impeded-flow, sieve-bed-exhaustion, compressor-wear, no-power]
