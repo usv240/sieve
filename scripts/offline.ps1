@@ -9,4 +9,4 @@ $bin   = Join-Path (Split-Path -Parent $root) "tools\llama.cpp\llama-server.exe"
 $model = if ($env:SIEVE_OFFLINE_MODEL) { $env:SIEVE_OFFLINE_MODEL } else { Join-Path (Split-Path -Parent $root) "models\nvidia_NVIDIA-Nemotron-Nano-9B-v2-Q4_K_M.gguf" }
 if (-not (Test-Path $bin))   { Write-Error "llama-server not found at $bin (download a llama.cpp CUDA build into tools\llama.cpp)"; exit 1 }
 if (-not (Test-Path $model)) { Write-Error "model not found at $model (download from bartowski/nvidia_NVIDIA-Nemotron-Nano-9B-v2-GGUF)"; exit 1 }
-& $bin --model $model --alias nemotron-nano --host 127.0.0.1 --port 8080 --ctx-size 32768 --n-gpu-layers 99 --threads 8 --jinja --reasoning-format none
+& $bin --model $model --alias nemotron-nano --host 127.0.0.1 --port 8080 --ctx-size 16384 --parallel 1 --n-gpu-layers 99 --threads 8 --jinja --reasoning-format none
