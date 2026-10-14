@@ -1,24 +1,33 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { apiUrl } from "@/lib/api";
 import { Info } from "@/components/info";
+import { cacheLife } from "next/cache";
+import { API_BASE } from "@/lib/api";
 
-type Section = { name: string; description: string; rows: Record<string, string | number | null>[]; columns: string[] };
+export const metadata = { title: "Evaluation" };
+
+type Section = { name: string; description: string; rows: Record<string, string | number | boolean | null>[]; columns: string[] };
 type Evals = { status?: string; generated_at?: string; command?: string; summary?: Record<string, { value: number | string | null; unit?: string; label: string; note?: string }>; sections?: Section[] };
 
-export default function EvalsPage() {
-  const [e, setE] = useState<Evals | null>(null);
-  useEffect(() => { fetch(apiUrl("/v1/evals/latest")).then((r) => r.json()).then(setE).catch(() => setE({ status: "API unreachable" })); }, []);
+async function load(): Promise<Evals> {
+  "use cache";
+  cacheLife("minutes");
+  try {
+    const r = await fetch(`${API_BASE}/v1/evals/latest`);
+    return (await r.json()) as Evals;
+  } catch {
+    return { status: "API unreachable when this page was built; it refreshes every five minutes" };
+  }
+}
+
+export default async function EvalsPage() {
+  const e = await load();
   return (
     <div className="space-y-8 pt-8">
       <div>
         <h1 className="text-3xl font-semibold">Evaluation <Info k="benchmark" /></h1>
-        <p className="mt-2 max-w-2xl text-fg-muted">Two external benchmarks nobody on the team authored, two named baselines, three negative controls, citation integrity, offline delta and cost. Everything on this page is read from <code>eval/results/latest.json</code> in the repository.</p>
+        <p className="mt-2 max-w-2xl text-fg-muted">Two external benchmarks nobody on the team authored: the closest prior work's own question set and real openFDA malfunction reports, both scored by two independent judges against named baselines. Also negative controls, citation integrity, the offline comparison and cost. Everything on this page is read from <code>eval/results/latest.json</code> in the repository.</p>
       </div>
-      {!e && <p className="text-fg-muted">Loading…</p>}
-      {e && !e.summary && <div className="card text-fg-muted">No published run yet. Status: {e.status}. Reproduce with <code>make eval</code>.</div>}
-      {e?.summary && (
+      {!e.summary && <div className="card text-fg-muted">No published run yet. Status: {e.status}. Reproduce with <code>make eval</code>.</div>}
+      {e.summary && (
         <>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {Object.entries(e.summary).map(([k, v]) => (

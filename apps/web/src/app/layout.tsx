@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Skip to content
           </a>
           <SiteHeader />
-          <main id="main" className="mx-auto w-full max-w-[1100px] px-4 pb-24 sm:px-6">
+          <main id="main" className="mx-auto min-h-dvh w-full max-w-[1100px] px-4 pb-24 sm:px-6">
             {children}
           </main>
           <SiteFooter />

@@ -86,9 +86,9 @@ export default function Landing() {
       <section aria-labelledby="how" className="space-y-4">
         <h2 id="how" className="text-2xl font-semibold">How the AI works <Info k="tier_routing" /></h2>
         <div className="grid gap-3 md:grid-cols-5">
-          <Step n={1} title="Look" plain="Reads the nameplate and the lights from your photo." technical="NVIDIA Nemotron Nano VL on a Nebius Serverless Endpoint describes fields only; it never decides." />
+          <Step n={1} title="Look" plain="Reads the nameplate and the lights from your photo." technical="A Token Factory image model reads the nameplate fields only; the registry decides. NVIDIA Nemotron Nano VL runs the same step offline on a laptop GPU." />
           <Step n={2} title="Ask" plain="Asks up to three questions that change the answer." technical="Nemotron 3 Nano, thinking off, picks from a finite question bank." />
-          <Step n={3} title="Find" plain="Finds the right pages of the real service manual." technical="Device-scoped hybrid retrieval over 9,458 indexed pages; FTS5 BM25 plus Nemotron embed and rerank." />
+          <Step n={3} title="Find" plain="Finds the right pages of the real service manual." technical="Device-scoped hybrid retrieval over 9,498 indexed pages: SQLite FTS5 BM25 fused with Qwen3-Embedding-8B vectors from Token Factory." />
           <Step n={4} title="Check" plain="A second, larger model verifies every step against the whole manual, and a rules engine stops dangerous steps." technical="Nemotron 3 Super drafts; a deterministic verifier confirms each quote exists on the cited page; Nemotron 3 Ultra audits with the full manual in its one-million-token context; YAML rules gate input and output." />
           <Step n={5} title="Record" plain="Writes the work order into the hospital's log." technical="WHO CMMS-aligned schema; openFDA recall and MAUDE enrichment; Tavily for manuals and parts." />
         </div>
@@ -99,6 +99,7 @@ export default function Landing() {
         <h2 id="safety" className="text-2xl font-semibold">What Sieve refuses <Info k="safety_stop" /></h2>
         <p className="max-w-2xl text-fg-muted">These are not suggestions the model declines. They are rules that fire before any model is allowed to answer, and we measure them.</p>
         <div className="grid gap-3 md:grid-cols-2">
+          <Stop title="Smoke, burning, sparks or heat damage" why="The unit is removed from service before any step is shown; the most common serious failure in FDA reports." src="Manufacturer warnings; openFDA MAUDE" />
           <Stop title="Oil or grease near the oxygen path" why="Oxygen-enriched environments turn lubricants into a fire hazard." src="WHO 2015 specification; manufacturer warnings" />
           <Stop title="Opening the cabinet while plugged in" why="Rewritten to: switch off and unplug first." src="Manufacturer service manuals" />
           <Stop title="Bypassing the purity alarm" why="The alarm protects the patient. Never disabled." src="WHO 2015: alarm at 82 percent" />
@@ -127,7 +128,7 @@ export default function Landing() {
           District hospitals lose internet. Sieve runs on a laptop with an open Nemotron model and the manuals already on the machine. We publish the accuracy difference.
         </Card>
         <Card title="Built with" icon={<Wifi className="h-5 w-5" />}>
-          Nebius Token Factory for every language-model call. NVIDIA Nemotron 3 Nano, Super and Ultra. NVIDIA Nemotron Nano VL for vision. Nebius Serverless Endpoints and Jobs. Tavily. openFDA.
+          Nebius Token Factory for every cloud model call. NVIDIA Nemotron 3 Nano, 3.5 Lightning, Super and Ultra. NVIDIA Nemotron Nano for offline use on a laptop GPU. Tavily. openFDA. MCP, Hermes Agent and NVIDIA OpenShell.
           <div className="mt-3"><Link href="/about" className="btn-ghost">Our feedback on these tools</Link></div>
         </Card>
       </section>
@@ -155,7 +156,7 @@ function Card({ title, icon, children }: { title: React.ReactNode; icon?: React.
   return (
     <div className="card">
       <div className="flex items-center gap-2 text-fg"><span className="text-accent">{icon}</span><h3 className="font-semibold">{title}</h3></div>
-      <p className="mt-2 text-fg-muted">{children}</p>
+      <div className="mt-2 text-fg-muted">{children}</div>
     </div>
   );
 }

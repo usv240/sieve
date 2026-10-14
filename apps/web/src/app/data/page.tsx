@@ -9,7 +9,7 @@ export default function DataPage() {
       <h1 className="text-3xl font-semibold">Data <Info k="byo" /></h1>
       <section className="card space-y-2">
         <h2 className="font-semibold">What is indexed</h2>
-        <p className="text-sm text-fg-muted">165 manuals, 9,458 pages: oxygen concentrators (73 documents), pulse oximeters (68), suction pumps (24), plus WHO specifications. Manufacturer manuals are copyrighted; we index them locally for retrieval and quote short spans with the page number. We never redistribute the PDFs, and every citation links to the original source page.</p>
+        <p className="text-sm text-fg-muted">168 manuals, 9,498 pages: oxygen concentrators (76 documents), pulse oximeters (68), suction pumps (24), plus WHO specifications. Manufacturer manuals are copyrighted; we index them locally for retrieval and quote short spans with the page number. We never redistribute the PDFs, and every citation links to the original source page.</p>
       </section>
       <section className="card space-y-2">
         <h2 className="font-semibold">Open data we ship</h2>
