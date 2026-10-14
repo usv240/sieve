@@ -44,7 +44,7 @@ THINKING_BUDGET = {Tier.FAST: 0, Tier.MID: 2_048, Tier.DEEP: 8_192}
 def route(tier: Tier, context_tokens: int = 0) -> ModelSpec:
     """Pure routing function. Fast tier escalates to Lightning for long contexts."""
     if tier is Tier.FAST:
-        return MODELS["lightning"] if context_tokens > 200_000 else MODELS["nano"]
+        return MODELS["lightning"] if context_tokens > 100_000 else MODELS["nano"]
     if tier is Tier.MID:
         return MODELS["super"]
     return MODELS["ultra"]

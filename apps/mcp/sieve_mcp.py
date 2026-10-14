@@ -102,6 +102,22 @@ def file_work_order(device_id: str, model_label: str, reported_fault: str, outco
     return rec
 
 
+@mcp.tool()
+def ask_the_machine(device_id: str, action: str, hidden_fault: str | None = None) -> dict[str, Any]:
+    """Training Mode digital twin: describe an action and the device answers as its manual says it would (lights, alarm, timing), with a verified citation."""
+    if not CLIENT:
+        return {"error": "model key required"}
+    return twin_reply(CLIENT, STORE, REGISTRY, device_id=device_id, action=action, hidden_fault=hidden_fault)
+
+
+@mcp.tool()
+def fleet_brief() -> dict[str, Any]:
+    """Weekly district brief from the entire fleet log plus all public FDA malfunction reports and recalls, in one long-context call."""
+    if not CLIENT:
+        return {"error": "model key required"}
+    return build_fleet_brief(CLIENT)
+
+
 if __name__ == "__main__":
     transport = os.environ.get("SIEVE_MCP_TRANSPORT", "stdio")
     if transport == "streamable-http":

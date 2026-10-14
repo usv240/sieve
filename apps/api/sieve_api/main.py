@@ -13,8 +13,10 @@ from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sieve_core import Registry
+from sieve_core.fleet_brief import build_fleet_brief
 from sieve_core.pipeline import SievePipeline
 from sieve_core.schemas import WorkOrder
+from sieve_core.twin import twin_reply
 from sieve_llm import Ledger, TokenFactoryClient
 from sieve_retrieval import PageStore
 from sieve_vision import describe
@@ -176,3 +178,28 @@ def evals_latest() -> dict[str, Any]:
 @app.get("/v1/costs")
 def costs() -> dict[str, Any]:
     return LEDGER.totals()
+
+
+class TwinBody(BaseModel):
+    device_id: str
+    action: str
+    hidden_fault: str | None = None
+
+
+@app.post("/v1/twin")
+def twin(body: TwinBody) -> dict[str, Any]:
+    """Training Mode: the manual talks back. Nemotron 3 Nano role-plays the device from its manual with a verified citation."""
+    if not CLIENT:
+        raise HTTPException(503, "model key required for the digital twin")
+    return twin_reply(CLIENT, STORE, REGISTRY, device_id=body.device_id, action=body.action, hidden_fault=body.hidden_fault)
+
+
+@app.post("/v1/fleet/brief")
+def fleet_brief() -> dict[str, Any]:
+    """Weekly brief: the whole fleet log plus all FDA reports and recalls in one long-context Nemotron call."""
+    if not CLIENT:
+        raise HTTPException(503, "model key required for the fleet brief")
+    tid = str(uuid.uuid4())
+    out = build_fleet_brief(CLIENT, trace_id=tid)
+    out["trace"] = LEDGER.trace(tid)
+    return out

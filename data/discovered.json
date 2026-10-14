@@ -1,0 +1,43 @@
+{
+ "oxygen_concentrators": {
+  "mapped_pdfs": 2,
+  "already_have": 2,
+  "new": []
+ },
+ "suction_pumps": {
+  "mapped_pdfs": 12,
+  "already_have": 12,
+  "new": []
+ },
+ "pulse_oximeters": {
+  "mapped_pdfs": 61,
+  "already_have": 36,
+  "new": [
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Datex_Ohmeda_3770_3775_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Datex_Ohmeda_S-5_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/FAN_CO2_Breath_Test_Analyser_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Graseby_BCI_8400__Capnograph_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_101_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_2001_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_509_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_511_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_512-513_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_515_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_515_Pulse_Oximeter_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_520A_Pulse_Oximeter_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_520_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_610_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_615_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_710-715_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_7300_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_8100_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Novametrix_860_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Ohmeda_3700_Pulse_Oximeter_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Ohmeda_Biox_3700_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Ohmeda_Respiratory_Gas_Monitor_5250_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Palco__300_Pulse_Oximeter_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/Respironics_950_Pulse_Oximeter_-_Service_manual.pdf",
+   "http://www.frankshospitalworkshop.com/equipment/documents/pulse_oximeter/service_manuals/WelchAllyn_Micropaq_Pulse_Oximeter_-_Service_manual.pdf"
+  ]
+ }
+}

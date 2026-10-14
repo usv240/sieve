@@ -1,38 +1,40 @@
-# OpenShell sandbox policy for the Sieve agent. Deny by default; allow exactly what the pipeline needs.
-version: 1
-name: sieve
-filesystem:
-  read_only:
-    - /workspace            # the Sieve repository
-  read_write:
-    - /workspace/data/records.jsonl
-    - /workspace/data/ledger.db
-    - /workspace/data/index
-  deny:
-    - /home
-    - /root
-    - /etc/ssh
-process:
-  allow_exec:
-    - /workspace/.venv/bin/python
+# OpenShell network policy for the Sieve agent sandbox (schema per the OpenShell "first network policy" tutorial).
+# Baseline is deny-all; each rule allow-lists host:port for a named binary. Credentials are brokered by the
+# provider profile, so the sandboxed process holds only placeholders.
 network_policies:
-  default: deny
-  egress:
-    - host: api.tokenfactory.nebius.com
-      ports: [443]
-      purpose: "Nemotron 3 Nano and 3.5 Lightning (EU)"
-    - host: api.tokenfactory.us-central1.nebius.com
-      ports: [443]
-      purpose: "Nemotron 3 Super and Ultra (US)"
-    - host: api.tavily.com
-      ports: [443]
-      purpose: "manual discovery and parts lookup"
-    - host: api.fda.gov
-      ports: [443]
-      purpose: "recall and malfunction refresh (snapshots are also committed)"
-credentials:
-  broker:
-    - name: NEBIUS_API_KEY
-      inject_for_hosts: [api.tokenfactory.nebius.com, api.tokenfactory.us-central1.nebius.com]
-    - name: TAVILY_API_KEY
-      inject_for_hosts: [api.tavily.com]
+  nebius_token_factory_eu:
+    endpoints:
+      - host: api.tokenfactory.nebius.com
+        port: 443
+        protocol: rest
+        enforcement: enforce
+        access: read-write
+    binaries:
+      - path: /workspace/.venv/bin/python
+  nebius_token_factory_us:
+    endpoints:
+      - host: api.tokenfactory.us-central1.nebius.com
+        port: 443
+        protocol: rest
+        enforcement: enforce
+        access: read-write
+    binaries:
+      - path: /workspace/.venv/bin/python
+  tavily:
+    endpoints:
+      - host: api.tavily.com
+        port: 443
+        protocol: rest
+        enforcement: enforce
+        access: read-write
+    binaries:
+      - path: /workspace/.venv/bin/python
+  openfda:
+    endpoints:
+      - host: api.fda.gov
+        port: 443
+        protocol: rest
+        enforcement: enforce
+        access: read-only
+    binaries:
+      - path: /workspace/.venv/bin/python

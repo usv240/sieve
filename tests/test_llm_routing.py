@@ -6,7 +6,7 @@ def test_fast_tier_routes_to_nano_by_default():
 
 
 def test_fast_tier_escalates_to_lightning_for_long_context():
-    assert route(Tier.FAST, context_tokens=250_000).id == MODELS["lightning"].id
+    assert route(Tier.FAST, context_tokens=150_000).id == MODELS["lightning"].id
 
 
 def test_mid_and_deep_tiers():

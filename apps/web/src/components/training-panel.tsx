@@ -15,6 +15,17 @@ export function TrainingPanel({ onPick }: { onPick: (deviceId: string, indicator
   const [devId, setDevId] = useState<string>("philips-everflo");
   const [indId, setIndId] = useState<string | null>(null);
   const [tick, setTick] = useState(false);
+  const [ask, setAsk] = useState("");
+  const [twin, setTwin] = useState<{ reply: { lights: { colour: string; state: string }[]; alarm: string; after_minutes: number; explanation: string; cite: { doc: string; page: number; quote: string } }; citation_verified: boolean } | null>(null);
+  const [asking, setAsking] = useState(false);
+  async function askMachine() {
+    if (!ask.trim()) return;
+    setAsking(true);
+    try {
+      const r = await fetch(apiUrl("/v1/twin"), { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ device_id: devId, action: ask, hidden_fault: null }) });
+      setTwin(await r.json());
+    } finally { setAsking(false); }
+  }
   useEffect(() => { fetch(apiUrl("/v1/devices")).then((r) => r.json()).then((ds: Device[]) => setDevices(ds.filter((d) => d.indicators.length))).catch(() => {}); }, []);
   useEffect(() => { const t = setInterval(() => setTick((v) => !v), 600); return () => clearInterval(t); }, []);
   const dev = devices.find((d) => d.id === devId);
@@ -56,6 +67,21 @@ export function TrainingPanel({ onPick }: { onPick: (deviceId: string, indicator
             <span className="block text-xs text-fg-muted">Manual p{i.cite.page}</span>
           </button>
         ))}
+      </div>
+      <div className="mt-4 rounded-xl border border-border p-3">
+        <p className="text-sm font-semibold">Ask the machine</p>
+        <p className="text-xs text-fg-muted">The manual talks back: describe what you do to the unit and it answers as its manual says it would, with the page. Nemotron 3 Nano on Nebius Token Factory.</p>
+        <div className="mt-2 flex gap-2">
+          <input className="inp" placeholder="I kink the cannula tubing tightly" value={ask} onChange={(e) => setAsk(e.target.value)} onKeyDown={(e) => e.key === "Enter" && askMachine()} />
+          <button className="btn-primary min-h-0 px-3 py-1.5 text-sm" onClick={askMachine} disabled={asking}>{asking ? "Thinking…" : "Ask"}</button>
+        </div>
+        {twin?.reply && (
+          <div className="mt-2 text-sm">
+            <p><b>Lights:</b> {twin.reply.lights.map((l) => `${l.colour} ${l.state}`).join(", ")} · <b>Alarm:</b> {twin.reply.alarm} · after {twin.reply.after_minutes} min</p>
+            <p className="mt-1 text-fg-muted">{twin.reply.explanation}</p>
+            <blockquote className="quote mt-1 text-xs">“{twin.reply.cite.quote}”<footer className="text-fg-muted">{twin.reply.cite.doc}, page {twin.reply.cite.page} · {twin.citation_verified ? "quote verified on page" : "quote not verified"}</footer></blockquote>
+          </div>
+        )}
       </div>
       {ind && (
         <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-sm">
