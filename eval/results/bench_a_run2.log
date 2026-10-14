@@ -11,3 +11,22 @@
   110/300  sieve=79 rag=67 zs=18  1875s
   120/300  sieve=87 rag=75 zs=18  2063s
   130/300  sieve=94 rag=81 zs=19  2283s
+  140/300  sieve=102 rag=89 zs=20  2506s
+  150/300  sieve=109 rag=92 zs=21  2715s
+  160/300  sieve=112 rag=98 zs=23  2857s
+  170/300  sieve=118 rag=103 zs=26  3007s
+  180/300  sieve=123 rag=107 zs=26  3145s
+  190/300  sieve=130 rag=113 zs=29  3330s
+  200/300  sieve=136 rag=120 zs=32  3466s
+  210/300  sieve=143 rag=127 zs=36  3583s
+  220/300  sieve=149 rag=134 zs=38  3700s
+  230/300  sieve=158 rag=143 zs=39  3850s
+  240/300  sieve=164 rag=149 zs=41  3977s
+  250/300  sieve=173 rag=157 zs=41  4085s
+  260/300  sieve=179 rag=164 zs=42  4185s
+  270/300  sieve=186 rag=167 zs=44  4327s
+  280/300  sieve=195 rag=174 zs=46  4437s
+  290/300  sieve=202 rag=180 zs=50  4546s
+  300/300  sieve=209 rag=186 zs=51  4676s
+FINAL {'sieve': 69.7, 'chunk-rag': 62.0, 'nano-zero-shot': 17.0} J2 {'sieve': 66.0, 'chunk-rag': 52.4, 'nano-zero-shot': 2.5} kappa {'sieve': 0.939, 'chunk-rag': 0.986, 'nano-zero-shot': 1.0} cit 80.7 s 4676
+cost 0.653
