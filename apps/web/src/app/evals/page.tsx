@@ -40,7 +40,7 @@ export default async function EvalsPage() {
               <p className="text-fg-muted">{s.description}</p>
               <div className="card overflow-x-auto p-0"><table className="w-full text-sm"><thead className="text-left text-fg-muted"><tr>{s.columns.map((c) => <th key={c} className="p-3">{c}</th>)}</tr></thead>
                 <tbody>{s.rows.slice(0, 20).map((r, i) => <tr key={i} className="border-t border-border">{s.columns.map((c) => <td key={c} className="p-3">{String(r[c] ?? "")}</td>)}</tr>)}</tbody></table></div>
-              {s.rows.length > 20 && <p className="text-sm text-fg-muted">Showing 20 of {s.rows.length} rows. Every row is in <a className="text-accent underline-offset-2 hover:underline" href="https://github.com/usv240/sieve/blob/main/eval/results/latest.json">eval/results/latest.json</a> and at <a className="text-accent underline-offset-2 hover:underline" href={`${API_BASE}/v1/evals/latest`}>/v1/evals/latest</a>.</p>}
+              {s.rows.length > 20 && <p className="text-sm text-fg-muted">Showing 20 of {s.rows.length} rows. Every row is in <a className="text-accent underline underline-offset-2" href="https://github.com/usv240/sieve/blob/main/eval/results/latest.json">eval/results/latest.json</a> and at <a className="text-accent underline underline-offset-2" href={`${API_BASE}/v1/evals/latest`}>/v1/evals/latest</a>.</p>}
             </section>
           ))}
           <div className="card text-sm"><p className="font-semibold">Reproduce</p><pre className="mt-2 overflow-x-auto rounded-xl bg-bg p-3">{e.command ?? "make eval"}</pre><p className="mt-2 text-fg-muted">Generated {e.generated_at}. Negative controls <Info k="negative_control" /> run without any model key; benchmarks need a Token Factory key.</p></div>
