@@ -107,14 +107,14 @@
     "seconds": 91.2
    }
   ],
-  "model": "nemotron-nano"
+  "model": "Nemotron 3 Nano 9B v2 Q4_K_M via llama.cpp on the laptop GPU (no Ultra audit, no Tavily)"
  },
  "cloud": {
   "cases": 10,
-  "steps": 23,
+  "steps": 43,
   "blocked": 1,
-  "citation_integrity": 46.2,
-  "seconds": 683,
+  "citation_integrity": 89.6,
+  "seconds": 275,
   "rows": [
    {
     "device": "philips-everflo",
@@ -122,9 +122,9 @@
      "everflo-yellow-solid-silent"
     ],
     "blocked": false,
-    "steps": 5,
-    "citations": "2/6",
-    "seconds": 110.6
+    "steps": 4,
+    "citations": "11/11",
+    "seconds": 32.6
    },
    {
     "device": "philips-everflo",
@@ -132,9 +132,9 @@
      "everflo-yellow-solid-red-blink"
     ],
     "blocked": false,
-    "steps": 6,
-    "citations": "3/7",
-    "seconds": 79.9
+    "steps": 4,
+    "citations": "6/6",
+    "seconds": 33.2
    },
    {
     "device": "philips-everflo",
@@ -142,9 +142,9 @@
      "everflo-red-solid"
     ],
     "blocked": false,
-    "steps": 3,
-    "citations": "3/5",
-    "seconds": 67.3
+    "steps": 4,
+    "citations": "4/5",
+    "seconds": 28.9
    },
    {
     "device": "devilbiss-525",
@@ -152,9 +152,9 @@
      "dv525-yellow"
     ],
     "blocked": false,
-    "steps": 2,
-    "citations": "3/8",
-    "seconds": 108.1
+    "steps": 4,
+    "citations": "5/7",
+    "seconds": 32.2
    },
    {
     "device": "devilbiss-525",
@@ -163,8 +163,8 @@
     ],
     "blocked": false,
     "steps": 4,
-    "citations": "3/6",
-    "seconds": 125.7
+    "citations": "6/7",
+    "seconds": 20.9
    },
    {
     "device": "devilbiss-525",
@@ -172,21 +172,29 @@
      "dv525-red-blink"
     ],
     "blocked": false,
-    "steps": 3,
-    "citations": "4/7",
-    "seconds": 77.2
+    "steps": 6,
+    "citations": "6/7",
+    "seconds": 31.7
    },
    {
     "device": "devilbiss-525",
-    "input": "Unit does not switch on at all. No lights and no self-test s",
-    "error": "APIConnectionError",
-    "seconds": 96.6
+    "input": [
+     "Unit does not switch on at all. No lights and no self-test s"
+    ],
+    "blocked": false,
+    "steps": 8,
+    "citations": "9/9",
+    "seconds": 37.4
    },
    {
     "device": "philips-everflo",
-    "input": "Compressor is very loud and the unit runs hot after an hour.",
-    "error": "APIConnectionError",
-    "seconds": 8.6
+    "input": [
+     "Compressor is very loud and the unit runs hot after an hour."
+    ],
+    "blocked": false,
+    "steps": 6,
+    "citations": "8/9",
+    "seconds": 21.5
    },
    {
     "device": "philips-everflo",
@@ -200,11 +208,16 @@
    },
    {
     "device": "devilbiss-525",
-    "input": "Purity has been dropping slowly over the last three weeks in",
-    "error": "APIConnectionError",
-    "seconds": 9.4
+    "input": [
+     "Purity has been dropping slowly over the last three weeks in"
+    ],
+    "blocked": false,
+    "steps": 3,
+    "citations": "5/6",
+    "seconds": 36.6
    }
   ],
   "model": "Nemotron 3 Super + Ultra audit via Nebius Token Factory"
- }
+ },
+ "note": "Cloud column rerun 2026-10-14 with the API key loaded after an earlier run had three connection errors; offline column unchanged. n=10, treat as directional."
 }

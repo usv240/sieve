@@ -34,12 +34,11 @@ The web app is its own Vercel project with Root Directory `apps/web`. Because th
 
 ```
 cd apps/web
-export VERCEL_ORG_ID=team_DpFHpLDAlHwwTjTMWbQ0D2CP VERCEL_PROJECT_ID=prj_OYNaGaOvqgTYySsgvi3bsXrXnDtK
-echo "https://sieve-api.vercel.app" | vercel env add NEXT_PUBLIC_API_BASE production
-vercel deploy --prod --yes
+VERCEL_ORG_ID=team_DpFHpLDAlHwwTjTMWbQ0D2CP VERCEL_PROJECT_ID=prj_OYNaGaOvqgTYySsgvi3bsXrXnDtK vercel env add NEXT_PUBLIC_API_BASE production   # paste https://sieve-api.vercel.app
+VERCEL_ORG_ID=team_DpFHpLDAlHwwTjTMWbQ0D2CP VERCEL_PROJECT_ID=prj_OYNaGaOvqgTYySsgvi3bsXrXnDtK vercel deploy --prod --yes
 ```
 
-Without the two variables the CLI resolves the nearest git-root link and would overwrite the API project with the web build.
+Put the two variables inline on each command rather than exporting them. Without them the CLI resolves the nearest git-root link and overwrites the API project with the web build; if they stay exported, the next API deploy from the repo root lands on the web project instead. After any deploy, check both hosts: `curl -I https://sieve-api.vercel.app/health` and the web root should both return 200.
 
 Locally `apps/web/.env.local` keeps `NEXT_PUBLIC_API_BASE=http://localhost:8000`.
 
