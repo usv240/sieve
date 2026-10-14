@@ -1,0 +1,232 @@
+{
+ "n": 20,
+ "accuracy": {
+  "sieve": 60.0,
+  "chunk-rag": 55.0,
+  "nano-zero-shot": 20.0
+ },
+ "citation_integrity_sieve": 80.0,
+ "seconds": 172,
+ "rows": [
+  {
+   "id": 4820,
+   "question": "Describe the function and usage of the \"Keep Surrounding (Box)\" and \"Keep Inside (Box)\" tools in the 4D SONO-SCAN Ultrasound Workspace. How ",
+   "sieve_cite_verified": true,
+   "nano-zero-shot_reason": "Candidate accurately describes both tools' functions and differences matching the reference without contradiction.",
+   "nano-zero-shot": "correct",
+   "sieve_reason": "Candidate accurately describes both tools' functions and usage matching the reference without contradiction.",
+   "sieve": "correct",
+   "chunk-rag_reason": "Candidate incorrectly swaps the functions: Keep Surrounding should remove inside, not outside; Keep Inside should remove",
+   "chunk-rag": "incorrect"
+  },
+  {
+   "id": 2053,
+   "question": "Based on the information provided, what is the significance of the scanhead orientation markers, and how are they positioned in relation to ",
+   "sieve_cite_verified": true,
+   "sieve_reason": "The candidate correctly describes the significance of the scanhead orientation markers as indicating reference direction",
+   "sieve": "correct",
+   "chunk-rag_reason": "The candidate correctly states that the scanhead orientation markers are positioned at approximately 70 degrees from the",
+   "chunk-rag": "correct",
+   "nano-zero-shot_reason": "The candidate does not mention the specific approximate 70-degree positioning of the markers from the 0-degree deflectio",
+   "nano-zero-shot": "incorrect"
+  },
+  {
+   "id": 1515,
+   "question": "Describe the differences between the STIR technique and spectral fat saturation in terms of robustness for fat suppression, especially in ar",
+   "sieve_cite_verified": true,
+   "nano-zero-shot_reason": "The candidate accurately describes that STIR provides more robust fat suppression than spectral fat saturation in region",
+   "nano-zero-shot": "correct",
+   "sieve_reason": "The candidate correctly states that STIR provides more robust fat suppression than spectral fat saturation in high B0 in",
+   "sieve": "correct",
+   "chunk-rag_reason": "The candidate accurately describes STIR being more robust to B0 inhomogeneity due to reliance on T1 rather than exact re",
+   "chunk-rag": "correct"
+  },
+  {
+   "id": 4176,
+   "question": "Describe the function and pin configuration of the OEM Power Cable Assembly for a 230 VAC system as outlined in the HDI 5000 Service Manual.",
+   "sieve_cite_verified": true,
+   "nano-zero-shot_reason": "Candidate response contains an error message and does not describe the function or pin configuration of the OEM Power Ca",
+   "nano-zero-shot": "incorrect",
+   "sieve_reason": "Candidate correctly describes the pin configuration and functions matching the reference: Pin 1 ground green/yellow, Pin",
+   "sieve": "correct",
+   "chunk-rag_reason": "Candidate accurately describes the pin configuration and functions matching the reference: Pin 1 ground (green/yellow), ",
+   "chunk-rag": "correct"
+  },
+  {
+   "id": 3816,
+   "question": "Describe the steps required to map a non-DICOM network folder on the scanner console, including any necessary credentials and precautions to",
+   "sieve_cite_verified": true,
+   "chunk-rag_reason": "The candidate response contains only an error message and does not describe any steps for mapping a non-DICOM network fo",
+   "chunk-rag": "incorrect",
+   "sieve_reason": "Candidate omits key steps such as enabling Advanced User Mode and disconnecting existing drives, and provides differing ",
+   "sieve": "incorrect",
+   "nano-zero-shot_reason": "The candidate omits several required steps such as enabling Advanced User Mode, using Ctrl+Esc to access computer settin",
+   "nano-zero-shot": "incorrect"
+  },
+  {
+   "id": 2422,
+   "question": "Explain the importance of connecting the ultrasound system to a dedicated circuit with an isolated ground, and specify the required amperage",
+   "sieve_cite_verified": true,
+   "chunk-rag_reason": "The candidate correctly explains the importance of a dedicated circuit with isolated ground (safety, preventing interfer",
+   "chunk-rag": "correct",
+   "sieve_reason": "The candidate correctly states the purpose (optimal performance, preventing interference/electrical issues) matching the",
+   "sieve": "correct",
+   "nano-zero-shot_reason": "The candidate provides a range of amperage values (15-20A for 100/120V and 10-15A for 220/240V) rather than the specific",
+   "nano-zero-shot": "incorrect"
+  },
+  {
+   "id": 3798,
+   "question": "What contact information is available for technical support or emergency assistance when troubleshooting a malfunction on the MRI machine?",
+   "sieve_cite_verified": true,
+   "chunk-rag_reason": "The candidate provides contact details for Philips Ultrasound Technical Publications and unrelated phone numbers, which ",
+   "chunk-rag": "incorrect",
+   "nano-zero-shot_reason": "The candidate provides generic support contacts and procedures, while the reference specifies exact email, phone numbers",
+   "nano-zero-shot": "incorrect",
+   "sieve_reason": "The candidate provides contact details for Philips Ultrasound Technical Publications, which are unrelated to the MRI mac",
+   "sieve": "incorrect"
+  },
+  {
+   "id": 1326,
+   "question": "What changes were made to the control panel and menu settings in the 195.XX software releases for the Philips HDI 5000, as described in the ",
+   "sieve_cite_verified": true,
+   "chunk-rag_reason": "The candidate includes additional changes (cursor and VCR control movements) not mentioned in the reference and potentia",
+   "chunk-rag": "incorrect",
+   "sieve_reason": "The candidate omits the renaming of COMP IMAG to SonoCT, which is a key fact in the reference answer.",
+   "sieve": "incorrect",
+   "nano-zero-shot_reason": "The candidate claims the manual does not provide specific details, whereas the reference clearly states specific changes",
+   "nano-zero-shot": "incorrect"
+  },
+  {
+   "id": 5120,
+   "question": "Describe the steps required to configure the Calc List settings in the Q-Station software. What is the purpose of the Master List menu in th",
+   "sieve_cite_verified": true,
+   "chunk-rag_reason": "Candidate accurately describes the steps to configure Calc List settings and explains the purpose of the Master List men",
+   "chunk-rag": "correct",
+   "nano-zero-shot_reason": "Candidate did not describe the steps or purpose; stated inability to answer, thus fails to convey key facts.",
+   "nano-zero-shot": "incorrect",
+   "sieve_reason": "Candidate accurately describes the steps to configure Calc List settings and correctly explains the purpose of the Maste",
+   "sieve": "correct"
+  },
+  {
+   "id": 4951,
+   "question": "Describe the issue associated with error code \"0046\" and suggest a possible solution. What component is primarily involved, and what additio",
+   "sieve_cite_verified": true,
+   "nano-zero-shot_reason": "The candidate describes a generic authentication/session error unrelated to the DDEA board initialization issue describe",
+   "nano-zero-shot": "incorrect",
+   "chunk-rag_reason": "The candidate correctly identifies the issue (DDEA board initialization failure), the primary component (DDEA board), su",
+   "chunk-rag": "correct",
+   "sieve_reason": "The candidate correctly identifies the issue (DDEA board initialization failure), suggests replacing the board, and note",
+   "sieve": "correct"
+  },
+  {
+   "id": 4555,
+   "question": "Explain the ventilation requirements for the Philips HDI-5000 system as specified in the service manual. Why are these requirements importan",
+   "sieve_cite_verified": false,
+   "nano-zero-shot_reason": "The candidate correctly states that the Philips HDI-5000 requires adequate ventilation to prevent overheating, explains ",
+   "nano-zero-shot": "correct",
+   "sieve_reason": "The candidate states that the manual does not specify ventilation requirements, whereas the reference indicates there ar",
+   "sieve": "incorrect",
+   "chunk-rag_reason": "The candidate claims there are no ventilation requirements in the service manual, whereas the reference indicates that v",
+   "chunk-rag": "incorrect"
+  },
+  {
+   "id": 2174,
+   "question": "How do I position the liver dome navigator correctly when performing examinations with navigator triggering on the MRI machine?",
+   "sieve_cite_verified": true,
+   "chunk-rag_reason": "The candidate provides additional practical steps for positioning the liver dome navigator that are consistent with the ",
+   "chunk-rag": "correct",
+   "nano-zero-shot_reason": "The candidate provides procedural details for positioning the liver dome navigator but fails to mention the key fact fro",
+   "nano-zero-shot": "incorrect",
+   "sieve_reason": "The candidate provides additional practical details on positioning the liver dome navigator that are consistent with the",
+   "sieve": "correct"
+  },
+  {
+   "id": 2264,
+   "question": "Explain the steps involved in tracking the navigator asymmetrically to the edge of the diaphragm and adjusting it upward. Why is it importan",
+   "sieve_cite_verified": true,
+   "chunk-rag_reason": "Candidate provides the same two-step procedure and explains why asymmetry matters, matching the reference content withou",
+   "chunk-rag": "correct",
+   "sieve_reason": "Candidate captures both steps (asymmetric tracking then upward shift) and explains purpose aligns with reference.",
+   "sieve": "correct",
+   "nano-zero-shot_reason": "Candidate captures the core steps: positioning navigator asymmetrically and adjusting upward, and explains why asymmetry",
+   "nano-zero-shot": "correct"
+  },
+  {
+   "id": 4410,
+   "question": "Based on the HDI 5000 Service Manual, identify the different types of video monitors mentioned and describe their significance in the contex",
+   "sieve_cite_verified": false,
+   "nano-zero-shot_reason": "Candidate lists generic monitor types (CRT, LCD, touchscreen, high-resolution graphic) rather than the specific Electroh",
+   "nano-zero-shot": "incorrect",
+   "chunk-rag_reason": "The candidate fails to mention the specific video monitor types (Electrohome, Data Ray, FIMI) identified in the referenc",
+   "chunk-rag": "incorrect",
+   "sieve_reason": "The candidate claims there is no mention of specific video monitors, while the reference identifies Electrohome, Data Ra",
+   "sieve": "incorrect"
+  },
+  {
+   "id": 2920,
+   "question": "How do I ensure the 8 Channel wrist coil is correctly positioned and functioning properly during a quality assurance check?",
+   "sieve_cite_verified": true,
+   "sieve_reason": "The candidate accurately describes all key steps: inserting the phantom, closing the upper part until audible lock, alig",
+   "sieve": "correct",
+   "nano-zero-shot_reason": "The candidate describes general positioning and functionality checks but omits the specific steps from the reference: us",
+   "nano-zero-shot": "incorrect",
+   "chunk-rag_reason": "The candidate accurately restates all key steps from the reference: positioning the phantom, closing the coil with audib",
+   "chunk-rag": "correct"
+  },
+  {
+   "id": 791,
+   "question": "What steps should be taken to safely rescue a patient from the MRI machine in the event of an emergency situation, such as a power failure o",
+   "sieve_cite_verified": false,
+   "sieve_reason": "The candidate deviates from the reference by instructing to press the Table Stop button instead of the Home Position but",
+   "sieve": "incorrect",
+   "chunk-rag_reason": "The candidate covers the essential steps: attempting to move table via Home Position or emergency release, then manually",
+   "chunk-rag": "correct",
+   "nano-zero-shot_reason": "The candidate response contains no relevant information about the rescue steps; it merely reports an error, thus failing",
+   "nano-zero-shot": "incorrect"
+  },
+  {
+   "id": 1992,
+   "question": "Describe the components of the In-Room syngo Acquisition Workplace (In-Room syngo Acq WP) for the MAGNETOM Aera, Skyra MR System and explain",
+   "sieve_cite_verified": true,
+   "sieve_reason": "The candidate accurately lists the components (LCD monitor, tray with trackball and keys, optional foot switch) and corr",
+   "sieve": "correct",
+   "chunk-rag_reason": "The candidate accurately lists all components (LCD monitor, tray with trackball and keys, optional foot switch) and corr",
+   "chunk-rag": "correct",
+   "nano-zero-shot_reason": "The candidate describes components not mentioned in the reference (console, software, patient coil, standalone workstati",
+   "nano-zero-shot": "incorrect"
+  },
+  {
+   "id": 4164,
+   "question": "Based on the provided context from the Philips HDI-5000 Field Service Manual, identify the function of the connection labeled P1-20 J1-20.",
+   "sieve_cite_verified": true,
+   "sieve_reason": "The candidate incorrectly identifies the connection as carrying L_SENSE_14 signal, whereas the reference states its func",
+   "sieve": "incorrect",
+   "chunk-rag_reason": "The candidate describes the connection as a shield/drain return for green video signal, which contradicts the reference ",
+   "chunk-rag": "incorrect",
+   "nano-zero-shot_reason": "The candidate describes a video output interface, while the reference states the connection is SPEAKER LS1. This contrad",
+   "nano-zero-shot": "incorrect"
+  },
+  {
+   "id": 3863,
+   "question": "Explain the significance of the \"Filtered HV to PSM\" and how it integrates with the external VCR and audio components in the HDI 5000 system",
+   "sieve_cite_verified": true,
+   "sieve_reason": "Candidate accurately describes filtered HV to PSM providing stable high\u2011voltage power to the Power Supply Module and not",
+   "sieve": "correct",
+   "nano-zero-shot_reason": "Candidate introduces concepts not present in reference (Voltage Controlled Rectifier, laser systems, RF amplifiers) and ",
+   "nano-zero-shot": "incorrect",
+   "chunk-rag_reason": "The candidate incorrectly states that the filtered high voltage is routed directly to the external VCR and audio modules",
+   "chunk-rag": "incorrect"
+  },
+  {
+   "id": 4089,
+   "question": "What steps should I follow to properly turn on and off the BOLDScreen LCD when setting up the Siemens Prisma 3T MRI scanner, and what precau",
+   "sieve_cite_verified": false,
+   "sieve_reason": "The candidate describes unrelated steps involving the scanner control box and shutdown sequence, which are not part of t",
+   "sieve": "incorrect",
+   "nano-zero-shot_reason": "The candidate did not provide any steps or precautions, failing to convey the key facts from the reference answer.",
+   "nano-zero-shot": "incorrect",
+   "chunk-rag_reason": "The candidate response contains no relevant information about turning on/off the BOLDScreen LCD or precautions; it merel",
+   "chunk-rag": "incorrect"
+  }
+ ]
+}

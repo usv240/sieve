@@ -13,10 +13,14 @@ export default function About() {
         <h2 className="font-semibold">Where the models run</h2>
         <ul className="list-disc space-y-1 pl-5 text-sm text-fg-muted">
           <li>Nebius Token Factory: Nemotron 3 Nano and 3.5 Lightning (fast tier), Nemotron 3 Super (synthesis), Nemotron 3 Ultra (audit with the whole manual in a one-million-token context).</li>
-          <li>Nebius Serverless Endpoint: NVIDIA Nemotron Nano VL on vLLM for nameplate and panel reading.</li>
-          <li>Nebius Serverless Job: manual ingestion with Nemotron embed-vl and rerank-vl.</li>
-          <li>Tavily: manual discovery and parts lookup. openFDA: recalls and malfunction reports.</li>
+          <li>Nebius Token Factory: image models for nameplate and panel reading (the NVIDIA Nemotron Nano VL endpoint is prepared but needs AI Cloud billing), and Qwen3-Embedding-8B for hybrid retrieval over 2,994 concentrator pages.</li>
+          <li>Laptop: manual ingestion (33 seconds for 9,458 pages) and the offline mode on a 4-bit Nemotron 3 Nano via llama.cpp. The Serverless Job and Endpoint manifests are in the repo, ready for AI Cloud.</li>
+          <li>Tavily: manual discovery, extraction and parts lookup. openFDA: recalls and malfunction reports. Hermes Agent: chat and cron surface. NVIDIA OpenShell: sandboxed run with brokered credentials, demonstrated.</li>
         </ul>
+      </section>
+      <section className="card space-y-2">
+        <h2 className="font-semibold">Who has tested this</h2>
+        <p className="text-sm text-fg-muted">No practising biomedical technician has used Sieve yet; this is a hackathon build by one developer. What stands in for a user is published practitioner data: the Malawi and Gabon health-worker surveys that measured the knowledge gap, the NEST360 survey of 63 hospitals that found no one measures equipment downtime, and the two external benchmarks on the Evals page, one of which is the published dataset of the closest prior work. We say this plainly because a measured limit is a property of the product and an unstated one is a liability.</p>
       </section>
       <section className="card space-y-2">
         <h2 className="font-semibold">Feedback on the tools</h2>
