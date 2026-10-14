@@ -1,0 +1,26 @@
+{
+ "note": "Lighthouse 12, mobile emulation, against the local dev server (unoptimised); production build scores higher on performance",
+ "rows": [
+  {
+   "page": "evals",
+   "performance": 53,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100
+  },
+  {
+   "page": "home",
+   "performance": 73,
+   "accessibility": 100,
+   "best-practices": 96,
+   "seo": 100
+  },
+  {
+   "page": "try sample everflo-yellow",
+   "performance": 70,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100
+  }
+ ]
+}
