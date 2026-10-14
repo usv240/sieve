@@ -8,4 +8,4 @@ $model = Join-Path (Split-Path -Parent $root) "models\Nemotron-3-Nano-30B-A3B-Q4
 if (-not (Test-Path $bin))   { Write-Error "llama-server not found at $bin (download a llama.cpp CUDA build into tools\llama.cpp)"; exit 1 }
 if (-not (Test-Path $model)) { Write-Error "model not found at $model (download Nemotron-3-Nano-30B-A3B-Q4_K_M.gguf from unsloth/Nemotron-3-Nano-30B-A3B-GGUF)"; exit 1 }
 # 30B total, 3.5B active: offload as many layers as the 8 GB GPU holds, the rest stays on CPU RAM.
-& $bin --model $model --alias nemotron-3-nano --host 127.0.0.1 --port 8080 --ctx-size 32768 --n-gpu-layers 20 --threads 8 --jinja --reasoning-format none
+& $bin --model $model --alias nemotron-3-nano --host 127.0.0.1 --port 8080 --ctx-size 32768 --threads 8 --jinja --reasoning-format none
