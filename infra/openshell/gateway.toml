@@ -1,0 +1,10 @@
+[openshell]
+version = 2
+
+[openshell.gateway]
+compute_driver = "docker"
+
+[openshell.drivers.docker]
+# The gateway runs in WSL Ubuntu while Docker Desktop runs containers in its own VM, so the sandbox
+# supervisor must dial the Windows host alias; port 17670 is forwarded from Windows to WSL.
+grpc_endpoint = "https://host.docker.internal:17670"

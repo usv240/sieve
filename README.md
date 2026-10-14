@@ -31,7 +31,7 @@ Working scaffold with a real index and a real evaluation. Model-dependent stages
 | Hybrid retrieval | `Qwen/Qwen3-Embedding-8B` embeddings over 2,994 concentrator pages, fused with BM25 | Nebius Token Factory; embedded in 352 s |
 | Corpus ingestion | PyMuPDF plus Tavily extract for web-sourced manuals | Laptop (33 s). Serverless Job manifest in `infra/job-ingest` ready for AI Cloud |
 | Live lookups and manual discovery | Tavily search, extract, map | Tavily API. When a known device has no manual, Sieve finds one, extracts it, indexes it and retrieves from it in the same request |
-| Agent surfaces | MCP server with 6 tools (`apps/mcp`); Hermes Agent on Nemotron 3 Super via Token Factory (`infra/hermes`); OpenShell sandbox policy (`infra/openshell`) | Verified: MCP over stdio, Hermes calling Sieve tools end to end. OpenShell run prepared, not yet executed |
+| Agent surfaces | MCP server with 6 tools (`apps/mcp`); Hermes Agent on Nemotron 3 Super via Token Factory (`infra/hermes`); OpenShell sandbox with brokered credentials (`infra/openshell`) | All verified: MCP over stdio; Hermes calling Sieve tools; a full diagnosis (Super, Ultra audit, Tavily) executed inside an OpenShell sandbox that holds only credential placeholders and can reach nothing but four hosts |
 | Recalls and known problems | openFDA device/recall and MAUDE (CC0) | snapshot in `data/external` |
 
 Every call is written to a ledger (tier, model, tokens, USD, latency) and shown in the app's Trace panel.
@@ -44,7 +44,7 @@ Light and dark, same page: `docs/screenshots/landing-light.jpg`, `docs/screensho
 
 - **MCP**: `apps/mcp/sieve_mcp.py` exposes list_devices, identify_device, identify_from_photo, analyze_fault, read_manual_page, file_work_order. Any MCP client can drive a full diagnosis.
 - **Hermes Agent**: with the config in `infra/hermes`, `hermes -z "DeVilbiss 525, red light beeping. Use the sieve tools."` makes Nemotron 3 Super on Nebius call identify_device and analyze_fault and answer with the cited page. Hermes also bridges WhatsApp and Telegram, which is how field staff actually communicate.
-- **OpenShell / NemoClaw**: `infra/openshell/policy.yaml` restricts the agent to four egress hosts with brokered credentials. Prepared, pending a Linux or WSL2 run.
+- **OpenShell**: demonstrated on WSL2 plus Docker Desktop. Deny-by-default proven (EACCES at the kernel), four hosts allowed by policy, Nebius and Tavily credentials brokered so the sandbox only ever sees placeholders, and a full diagnosis run inside. Transcript and lessons in `infra/openshell/DEMONSTRATED.md`; reproduce with `infra/openshell/run.sh`.
 - **Tavily**: search, extract and map are runtime calls, logged in the Trace next to the model calls.
 
 ## Quick start

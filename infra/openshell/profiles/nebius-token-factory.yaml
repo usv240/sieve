@@ -1,0 +1,37 @@
+# OpenShell provider profile: Nebius Token Factory (OpenAI-compatible).
+# The sandboxed process only ever sees a placeholder in NEBIUS_API_KEY; OpenShell substitutes the real key in the
+# Authorization header, and only for requests to these two hosts on port 443.
+id: nebius-token-factory
+display_name: Nebius Token Factory
+description: NVIDIA Nemotron 3 Nano, Lightning, Super and Ultra served by Nebius Token Factory (EU and US endpoints)
+category: inference
+inference_capable: true
+
+credentials:
+  - name: api_key
+    description: Token Factory API key
+    env_vars: [NEBIUS_API_KEY]
+    required: true
+    auth_style: bearer
+    header_name: authorization
+
+discovery:
+  credentials: [api_key]
+
+endpoints:
+  - host: api.tokenfactory.nebius.com
+    port: 443
+    path: /v1/**
+    protocol: rest
+    access: full
+    enforcement: enforce
+  - host: api.tokenfactory.us-central1.nebius.com
+    port: 443
+    path: /v1/**
+    protocol: rest
+    access: full
+    enforcement: enforce
+
+binaries:
+  - /usr/local/bin/python3.12
+  - /workspace/.venv/bin/python
