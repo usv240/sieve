@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { apiUrl } from "@/lib/api";
+import { UPLOAD_LIMIT_BYTES, UPLOAD_LIMIT_NOTE } from "@/lib/image";
 
 type Device = { id: string; manufacturer: string; model: string };
 
@@ -13,6 +14,7 @@ export function UploadManual() {
   const [result, setResult] = useState<{ doc_id?: string; pages?: number; low_text_pages?: number; note?: string; error?: string } | null>(null);
   useEffect(() => { fetch(apiUrl("/v1/devices")).then((r) => r.json()).then(setDevices).catch(() => {}); }, []);
   async function upload(file: File) {
+    if (file.size > UPLOAD_LIMIT_BYTES) { setResult({ error: UPLOAD_LIMIT_NOTE }); return; }
     setBusy(true); setResult(null);
     const fd = new FormData(); fd.append("file", file);
     const q = new URLSearchParams({ workspace, ...(deviceId ? { device_id: deviceId } : {}) });
