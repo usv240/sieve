@@ -15,6 +15,7 @@ which system produced the answer. A 30-item human-checked subset is reported sep
 from __future__ import annotations
 
 import json
+import os
 import random
 import re
 import time
@@ -71,7 +72,7 @@ def build_index() -> PageStore:
     return store
 
 
-def run(client: TokenFactoryClient, n: int = 300, seed: int = 20261013, out: Path | None = None) -> dict[str, Any]:
+def run(client: TokenFactoryClient, n: int = 300, seed: int = 20261013, out: Path | None = None, second_judge: bool = True) -> dict[str, Any]:
     items = json.loads(DATA.read_text(encoding="utf-8"))["items"]
     random.seed(seed)
     items = items[:n]
@@ -79,6 +80,9 @@ def run(client: TokenFactoryClient, n: int = 300, seed: int = 20261013, out: Pat
     s = Searcher(store)
     rows: list[dict[str, Any]] = []
     tally = {"sieve": 0, "chunk-rag": 0, "nano-zero-shot": 0}
+    tally2 = {"sieve": 0, "chunk-rag": 0, "nano-zero-shot": 0}
+    agree: dict[str, list[tuple[bool, bool]]] = {k: [] for k in tally}
+    second_key = os.environ.get("NEBIUS_API_KEY") if second_judge else None
     cit_ok = cit_total = 0
     t0 = time.time()
     for i, it in enumerate(items, start=1):
@@ -110,6 +114,8 @@ def run(client: TokenFactoryClient, n: int = 300, seed: int = 20261013, out: Pat
             zs_ans = f"error {type(e).__name__}"
         # Judge, blind to system, shuffled order
         cands = [("sieve", sieve_ans), ("chunk-rag", rag_ans), ("nano-zero-shot", zs_ans)]
+        for name, ans in cands:
+            row[f"{name}_answer"] = ans
         random.shuffle(cands)
         for name, ans in cands:
             try:
@@ -121,15 +127,29 @@ def run(client: TokenFactoryClient, n: int = 300, seed: int = 20261013, out: Pat
                 row[f"{name}_reason"] = f"judge error {type(e).__name__}"
             row[name] = "correct" if ok else "incorrect"
             tally[name] += ok
+            if second_key:
+                from .cross_judge import _judge
+
+                v2 = _judge(second_key, q, ref, ans)
+                row[f"{name}_judge2"] = "correct" if v2 else ("incorrect" if v2 is False else "error")
+                if v2 is not None:
+                    tally2[name] += v2
+                    agree[name].append((ok, bool(v2)))
         rows.append(row)
         if i % 10 == 0:
             print(f"  {i}/{len(items)}  sieve={tally['sieve']} rag={tally['chunk-rag']} zs={tally['nano-zero-shot']}  {time.time() - t0:.0f}s", flush=True)
             if out:
                 out.write_text(json.dumps({"partial": True, "n": i, "tally": tally, "rows": rows}, indent=1), encoding="utf-8")
     n_done = len(rows)
+    from .cross_judge import SECOND_JUDGE, kappa
+
     result = {
         "n": n_done,
+        "judge": "nvidia/nemotron-3-super-120b-a12b (blind, shuffled order)",
         "accuracy": {k: round(100 * v / n_done, 1) for k, v in tally.items()},
+        "second_judge": SECOND_JUDGE if second_key else None,
+        "accuracy_second_judge": {k: round(100 * v / len(agree[k]), 1) for k, v in tally2.items() if agree[k]} if second_key else None,
+        "judge_agreement_kappa": {k: kappa([a for a, _ in v], [b for _, b in v]) for k, v in agree.items() if v} if second_key else None,
         "citation_integrity_sieve": round(100 * cit_ok / cit_total, 1) if cit_total else None,
         "seconds": round(time.time() - t0),
         "rows": rows,

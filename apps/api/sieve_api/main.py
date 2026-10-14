@@ -32,6 +32,59 @@ for _env in (ROOT / ".env", ROOT.parent / ".env"):  # repo root, then workspace 
 app = FastAPI(title="Sieve API", version="0.1.0", description="Photograph a dead oxygen concentrator; get a manual-grounded, safety-gated troubleshooting tree and a filed work order.")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
+# --- API keys and rate limiting (simple, file-backed; enough for a hosted demo) ---
+import hashlib
+import secrets
+from collections import defaultdict, deque
+
+from fastapi import Request
+from fastapi.responses import JSONResponse
+
+KEYS_FILE = ROOT / "data/api_keys.json"
+REQUIRE_KEY = os.environ.get("SIEVE_REQUIRE_KEY", "0") == "1"
+RATE_LIMIT_PER_MIN = int(os.environ.get("SIEVE_RATE_LIMIT_PER_MIN", "30"))
+_hits: dict[str, deque] = defaultdict(deque)
+
+
+def _key_hashes() -> set[str]:
+    if not KEYS_FILE.exists():
+        return set()
+    return {k["hash"] for k in json.loads(KEYS_FILE.read_text(encoding="utf-8"))}
+
+
+@app.middleware("http")
+async def keys_and_limits(request: Request, call_next):
+    path = request.url.path
+    if path.startswith("/v1/"):
+        ident = request.headers.get("x-api-key") or (request.client.host if request.client else "anon")
+        if REQUIRE_KEY and path not in ("/v1/keys",):
+            key = request.headers.get("x-api-key", "")
+            if hashlib.sha256(key.encode()).hexdigest() not in _key_hashes():
+                return JSONResponse({"error": "API key required: POST /v1/keys to create one, then send X-API-Key"}, status_code=401)
+        now = time.time()
+        q = _hits[ident]
+        while q and q[0] < now - 60:
+            q.popleft()
+        if len(q) >= RATE_LIMIT_PER_MIN:
+            return JSONResponse({"error": f"rate limit: {RATE_LIMIT_PER_MIN} requests per minute"}, status_code=429)
+        q.append(now)
+    return await call_next(request)
+
+
+class KeyBody(BaseModel):
+    label: str = "demo"
+
+
+@app.post("/v1/keys")
+def create_key(body: KeyBody) -> dict[str, Any]:
+    """Issue an API key. Only the SHA-256 hash is stored; the key is shown once."""
+    key = "sieve_" + secrets.token_urlsafe(24)
+    keys = json.loads(KEYS_FILE.read_text(encoding="utf-8")) if KEYS_FILE.exists() else []
+    keys.append({"label": body.label, "hash": hashlib.sha256(key.encode()).hexdigest(), "created_at": time.time()})
+    KEYS_FILE.write_text(json.dumps(keys, indent=1), encoding="utf-8")
+    return {"key": key, "label": body.label, "note": "Shown once. Send as X-API-Key. Required when SIEVE_REQUIRE_KEY=1 on the server."}
+
+
 LEDGER = Ledger(ROOT / "data/ledger.db")
 STORE = PageStore(ROOT / "data/index/sieve.db")
 REGISTRY = Registry()
@@ -203,3 +256,32 @@ def fleet_brief() -> dict[str, Any]:
     out = build_fleet_brief(CLIENT, trace_id=tid)
     out["trace"] = LEDGER.trace(tid)
     return out
+
+
+@app.post("/v1/upload-manual")
+async def upload_manual(file: UploadFile = File(...), device_id: str | None = None, device_class: str = "oxygen_concentrator", workspace: str = "demo") -> dict[str, Any]:
+    """Bring your own manual: a PDF is indexed into the workspace index and, if device_id is given, tagged to that device so the next analysis cites it."""
+    import hashlib as _h
+    import re as _re
+
+    import fitz
+
+    if not file.filename or not file.filename.lower().endswith(".pdf"):
+        raise HTTPException(400, "upload a PDF")
+    raw = await file.read()
+    if len(raw) > 60_000_000:
+        raise HTTPException(413, "PDF larger than 60 MB")
+    dest = ROOT / "data/corpus/uploads" / workspace
+    dest.mkdir(parents=True, exist_ok=True)
+    safe = _re.sub(r"[^A-Za-z0-9._-]+", "-", file.filename)[:120]
+    path = dest / safe
+    path.write_bytes(raw)
+    pages: list[tuple[int, str]] = []
+    with fitz.open(path) as doc:
+        for i, pg in enumerate(doc, start=1):
+            txt = _re.sub(r"[ 	]+", " ", pg.get_text("text") or "").strip()
+            pages.append((i, txt))
+    doc_id = f"upload-{workspace}-" + _re.sub(r"[^a-z0-9]+", "-", safe.lower().rsplit(".", 1)[0])[:60]
+    STORE.add_doc(doc_id=doc_id, title=f"{safe} (uploaded, workspace {workspace})", path=str(path), device_class=device_class, device_ids=[device_id] if device_id else [], licence="Uploaded by the workspace owner; indexed locally only", source_url="", sha256=_h.sha256(raw).hexdigest(), pages=pages, ingested_at=time.time())
+    low = sum(1 for _, t in pages if len(t) < 40)
+    return {"doc_id": doc_id, "pages": len(pages), "low_text_pages": low, "device_id": device_id, "workspace": workspace, "note": "Indexed for lexical retrieval now; run `make embed` to add vectors." if low < len(pages) else "This PDF has no extractable text (scanned); OCR enrichment is needed before it can be cited."}

@@ -23,7 +23,7 @@ export default function Landing() {
         </div>
         <div className="flex flex-wrap gap-3">
           <Link href="/try?sample=everflo-yellow" className="btn-primary">Try it on a sample photo</Link>
-          <a href="https://youtube.com" className="btn-ghost" target="_blank" rel="noreferrer">Watch the 3-minute video</a>
+          {process.env.NEXT_PUBLIC_VIDEO_URL ? <a href={process.env.NEXT_PUBLIC_VIDEO_URL} className="btn-ghost" target="_blank" rel="noreferrer">Watch the 3-minute video</a> : null}
         </div>
       </section>
 

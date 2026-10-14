@@ -3,10 +3,16 @@
 A running log kept from day one. The hackathon requires this section; we keep it honest and specific.
 
 ## Onboarding
-- 2026-10-13: Credits: promo code route and Builders Program route both documented on Devpost resources; balance confirmation pending.
-- Time from zero to first successful Token Factory call: (fill in after `make smoke`).
+- 2026-10-13: Credits: promo code route and Builders Program route both documented on Devpost resources. The $25 promo arrived by email and applied cleanly through Top up, With promo code.
+- Time from a fresh API key to the first successful Nemotron call across all three tiers: under five minutes, using the OpenAI SDK with the two documented base URLs.
 
 ## What worked
+- One OpenAI-compatible client covers four Nemotron models; swapping tiers is one string. Tool calling worked first time on Nano, Super and Ultra.
+- Ultra with a 60 to 200 page manual in context as an auditor was the single most useful capability we touched: the whole-document check is what made the citation integrity number possible. 44,000 input tokens for about five cents.
+- Nemotron 3.5 Lightning read 140,000 tokens of fleet log plus FDA reports in one call for under a cent.
+- Qwen3-Embedding-8B embedded 2,994 pages in six minutes with no rate-limit trouble.
+- The image models in the catalog (MiniCPM-V-4_5 in 2.6 s) made photo identification possible without GPU hosting.
+- Rate limits (60 RPM) were never hit during a 300-question benchmark with three systems and two judges.
 
 ## What needs work
 - Model catalog metadata shows 0 parameters for Super and Ultra in the markdown catalog; NVIDIA figures used instead.
@@ -15,10 +21,14 @@ A running log kept from day one. The hackathon requires this section; we keep it
 - Vision Nemotron (Nano Omni, Nano VL) is not on shared serverless endpoints since the Aug 31 2026 deprecation; teams must self-host on a Serverless Endpoint or use a non-NVIDIA image2text model.
 
 ## Would we build with it again
-
-## Tavily
+Yes. Token Factory was the fastest path from idea to a measured result we have used: open weights, one API, a model for every tier, and prices low enough to run a 300-question benchmark three times for about a dollar each. Two things would make the next team faster: a documented Nemotron reasoning toggle, and one NVIDIA vision model on the shared endpoints.
 
 ## NVIDIA models
+- Nemotron 3 Nano: reliable structured extraction with thinking off; occasionally ignores an enumerated allowed-values list (fault ids) until the list is repeated in the user message.
+- Nemotron 3 Super: good step-by-step synthesis under a strict schema; quotes are usually verbatim but PDF artefacts (dashes, table cells) cost 10 to 15 percent of exact matches, hence our tiered verifier.
+- Nemotron 3 Ultra: excellent as an auditor; strict, specific reasons, and it catches wrong-page citations. Its cost dominates a session (about 90 percent), so we audit once, not per step.
+- Nemotron Nano 12B v2 VL via llama.cpp on an RTX 4070 laptop: correct nameplate reading at 59 seconds per image; fine for a technician, too slow for a live demo, so Token Factory image models carry the demo.
+- Nemotron Nano 9B v2 Q4 as the offline model: 32 tokens per second fully on an 8 GB GPU; the 30B-A3B at Q4 spilled to CPU and was impractical there.
 
 ## Tavily (2026-10-14)
 - Signup to first successful search with `tavily-python`: under five minutes, no card. `include_domains` worked well for restricting parts searches to suppliers and manual searches to known mirrors.

@@ -1,4 +1,5 @@
 import { Info } from "@/components/info";
+import { UploadManual } from "@/components/upload-manual";
 
 export const metadata = { title: "Data and bring your own manual" };
 
@@ -20,8 +21,8 @@ export default function DataPage() {
       </section>
       <section className="card space-y-3">
         <h2 className="font-semibold">Bring your own manual</h2>
-        <p className="text-sm text-fg-muted">Upload a PDF for a device we do not cover. It is ingested through the same pipeline into your own workspace, never merged into the shared index, and you can export or delete it any time. Available once accounts are enabled on the hosted demo; locally, drop the PDF into <code>data/corpus/&lt;class&gt;/</code> and run <code>make ingest</code>.</p>
-        <button className="btn-ghost" disabled aria-disabled>Upload a manual (hosted accounts coming)</button>
+        <p className="text-sm text-fg-muted">Upload a PDF for a device we do not cover. It is indexed into your workspace through the same pipeline, tagged to the device you choose, and cited from the very next analysis. Workspace data is never merged into the shared index.</p>
+        <UploadManual />
       </section>
     </div>
   );
