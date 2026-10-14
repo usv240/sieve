@@ -22,5 +22,31 @@
    "best-practices": 100,
    "seo": 100
   }
- ]
+ ],
+ "production_build": {
+  "note": "Lighthouse 12, mobile emulation, production build served with next start",
+  "rows": [
+   {
+    "page": "evals",
+    "performance": 68,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100
+   },
+   {
+    "page": "home",
+    "performance": 90,
+    "accessibility": 100,
+    "best-practices": 96,
+    "seo": 100
+   },
+   {
+    "page": "try sample everflo-yellow",
+    "performance": 80,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100
+   }
+  ]
+ }
 }
