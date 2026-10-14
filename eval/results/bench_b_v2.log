@@ -1,0 +1,16 @@
+  5/74  93s
+  10/74  210s
+  15/74  281s
+  20/74  376s
+  25/74  461s
+  30/74  544s
+  35/74  630s
+  40/74  714s
+  45/74  806s
+  50/74  923s
+  55/74  994s
+  60/74  1124s
+  65/74  1194s
+  70/74  1282s
+  74/74  1349s
+FINAL {'version': 2, 'prereg': 'eval/PREREG-benchmark-b.md', 'n': 74, 'judge': 'nvidia/nemotron-3-super-120b-a12b', 'second_judge': 'deepseek-ai/DeepSeek-V4.1-Flash', 'agreement': {'sieve': 20.3, 'baseline_nano_zero_shot': 24.3}, 'agreement_second_judge': {'sieve': 19.4, 'baseline_nano_zero_shot': 22.1}, 'kappa': {'sieve': 0.951, 'baseline_nano_zero_shot': 0.956}, 'fire_reports': 62, 'fire_stop_shown': 62, 'citation_integrity_sieve': 94.7, 'usd': 0.2997, 'seconds': 1349}

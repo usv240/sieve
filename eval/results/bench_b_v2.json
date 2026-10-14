@@ -1,0 +1,1716 @@
+{
+ "version": 2,
+ "prereg": "eval/PREREG-benchmark-b.md",
+ "n": 74,
+ "judge": "nvidia/nemotron-3-super-120b-a12b",
+ "second_judge": "deepseek-ai/DeepSeek-V4.1-Flash",
+ "agreement": {
+  "sieve": 20.3,
+  "baseline_nano_zero_shot": 24.3
+ },
+ "agreement_second_judge": {
+  "sieve": 19.4,
+  "baseline_nano_zero_shot": 22.1
+ },
+ "kappa": {
+  "sieve": 0.951,
+  "baseline_nano_zero_shot": 0.956
+ },
+ "fire_reports": 62,
+ "fire_stop_shown": 62,
+ "citation_integrity_sieve": 94.7,
+ "usd": 0.2997,
+ "seconds": 1349,
+ "rows": [
+  {
+   "mdr": "10885720",
+   "device": "nidek-nuvo",
+   "complaint": "DISTRIBUTOR IN (B)(4) RECEIVED NOTIFICATION OF A DEVICE WITH THERMAL DAMAGE. DEVICE WAS PICKED UP BY DISTRIBUTOR, PHOTOGRAPHED AND THEN DISCARDED. THERE IS NO MENTION OF HARM TO PATIENT OR THEIR HOME.",
+   "manufacturer_finding": "THE MANUFACTURER RECEIVED INFORMATION ALLEGING AN OXYGEN CONCENTRATOR HAD EVIDENCE OF THERMAL DAMAGE. THE SERIAL NUMBER OF THE DEVICE WAS INCLUDED IN A PREVIOUSLY CLOSED FIELD CORRECTION. RECORDS SHOW SENDING REPLACEMENT PART TO DISTRIBUTOR, HOWEVER THERE IS NO CONFIRMATION THAT THE PART WAS ACTUALLY REPLACED. BASED ON INFORMATION PROVIDED, THE EVENT WAS LIKELY CAUSED BY THE DEFECTIVE COMPONENT. N",
+   "sieve": [
+    "power-cord-thermal"
+   ],
+   "baseline": [
+    "internal-overheat",
+    "power-cord-thermal",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": true,
+   "sieve_j2": null,
+   "baseline_j2": true,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "3/3"
+  },
+  {
+   "mdr": "13010719",
+   "device": "devilbiss-525",
+   "complaint": "THIS COMPLAINT INVOLVES TWO (2) DEVILBISS 5252DS OXYGEN CONCENTRATORS THAT WERE DELIVERED TO AN INDIVIDUAL (1) PATIENT'S HOME. DEVILBISS WAS INFORMED BY THE HOME OXYGEN PROVIDER THAT BOTH DEVICES (DEVICE-1 AND DEVICE-2) WERE BOTH REMOVED FR",
+   "manufacturer_finding": "ROOT CAUSE ANALYSIS SUMMARY NOTED THAT BASED ON THE EXTERNAL THERMAL DAMAGE PROFILE AND LOCATION, AS WELL AS NO PHYSICAL OR SOFTWARE EVIDENCE TO INDICATE THE OCCURRENCE OF AN ELECTRICAL FAULT, IT CAN BE CONCLUDED THAT THE THERMAL EVENT/FIRE ORIGINATED FROM AN EXTERNAL SOURCE.  THE LIMITED DAMAGE TO THE INTERIOR OF THE DEVICE WAS CAUSED WHEN THE THERMAL SOURCE.  THE LIMITED DAMAGE TO THE INTERIOR O",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "inlet-filter-blocked",
+    "compressor-wear"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "7/7"
+  },
+  {
+   "mdr": "14359593",
+   "device": "devilbiss-525",
+   "complaint": "IT WAS REPORTED THE PATIENT EXPERIENCED FLUID ON HER LUNGS. IN TURN, THE PATIENT WAS HOSPITALIZED FOR FOUR DAYS IN (B)(6). AS A RESULT, THE PATIENT WAS INSTRUCTED BY THE MANUFACTURER TO REMOVE THE HUMIDIFIER FROM THE UNIT AND USE THE DEVICE",
+   "manufacturer_finding": "ALTHOUGH INOGEN, INC. IS NOT THE MANUFACTURER, AN INTERNAL INVESTIGATION WAS INITIATED TO DETERMINE THE CAUSE OF THE MALFUNCTION. INOGEN'S INVESTIGATION OF THE DEVICE IS COMPLETE. INOGEN WILL WRITE A SUPPLEMENTAL FILING WITH ANY ADDITIONAL INFORMATION GATHERED.",
+   "sieve": [
+    "impeded-flow"
+   ],
+   "baseline": [
+    "sieve-bed-exhaustion",
+    "impeded-flow",
+    "oxygen-sensor-fault"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "7/8"
+  },
+  {
+   "mdr": "14364083",
+   "device": "devilbiss-525",
+   "complaint": "DURING A RETROSPECTIVE COMPLAINT REVIEW, DEVILBISS HEALTHCARE IDENTIFIED A THERMAL RELATED COMPLAINT INVOLVING A DEVILBISS MODEL 525DS OXYGEN CONCENTRATOR. THE COMPLAINT WAS REPORTED AS \"UNIT WAS ALARMING.\" THE COMPLAINT WAS RECEIVED IN SEP",
+   "manufacturer_finding": "DEVILBISS HEALTHCARE PREVIOUSLY INCORRECLY REPORTED MDR 2518572-2022-00045. THE CORRECT MDR IS MDR 2515872-2022-00045.",
+   "sieve": [
+    "internal-overheat"
+   ],
+   "baseline": [
+    "internal-overheat",
+    "compressor-wear",
+    "inlet-filter-blocked"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "4/4"
+  },
+  {
+   "mdr": "14845148",
+   "device": "nidek-nuvo",
+   "complaint": "CUSTOMER RECEIVED DEVICE FOR SERVICING AND UPON INSPECTION FOUND THE CAPACITOR HAD FAILED. CUSTOMER THEN NOTIFIED NIDEK OF THE FAILURE, SENT PICTURES OF CAPACITOR AND REQUESTED SAFETY AND RISK INFORMATION.",
+   "manufacturer_finding": "BASED ON PICTURES PROVIDED AND HISTORICAL DATA, IT WAS DETERMINED THAT THE CAPACITOR FAILED AS INTENDED. ALSO DETERMINED THAT WHILE THE DEVICE HAD BEEN A PART OF A CLOSED FIELD CORRECTION, THE CORRECTION HAD BEEN IMPLEMENTED AND THEREFORE THE CAPACITOR INVOLVED MEETS ALL CURRENT SAFETY STANDARDS. PROVIDED INFORMATION TO DISTRIBUTOR REGARDING CAPACITOR SPECIFICATIONS THAT INCLUDED SAFETY FEATURES A",
+   "sieve": [
+    "no-power"
+   ],
+   "baseline": [
+    "internal-overheat",
+    "compressor-wear",
+    "sieve-bed-exhaustion"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "6/6"
+  },
+  {
+   "mdr": "15160109",
+   "device": "devilbiss-525",
+   "complaint": "DEVILBISS HEALTHCARE RECEIVED A COMPLAINT FROM AN OXYGEN SUPPLIER INVOLVING AN OXYGEN CONCENTRATOR STATING, \"ELECTRICAL SHORT AND BURNT WIRES.\" THERE WAS NO REPORT OR EVIDENCE OF ILLNESS, INJURY OR MEDICAL TREATMENT ASSOCIATED TO THE COMPLA",
+   "manufacturer_finding": "DRIVE DEVILBISS EVALUATED THE DEVICE AND FOUND THERMAL DAMAGE IN THE CONNECTORS BETWEEN THE LINE CORD AND WIRE HARNESS AS WELL AS THE WIRES ADJACENT TO THE CONNECTORS. THERE WAS NO OBSERVED THERMAL DAMAGE TO ANY OTHER INTERNAL COMPONENTS. ALL INTERNAL COMPONENTS IN THE GAS PATH WERE FOUND TO BE UNDAMAGED. DAMAGE BY A CONTAMINANT THAT ENTERED THE UNIT WAS OBSERVED IN THE BASE OF THE UNIT. CORROSION",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "10/10"
+  },
+  {
+   "mdr": "1659436",
+   "device": "airsep-newlife",
+   "complaint": "DEVICE AT SERVICE CENTER FOR REPAIR, TURNED ON AND RAN FOR FEW HOURS UNATTENDED, CONTINUOUS ALARM, CIRCUIT BOARD NOT OPERATING. DEVICE TURNED OFF, ON/OFF SWITCH AREA BEGAN TO BURN.",
+   "manufacturer_finding": "DEVICE HAS BEEN RETURNED AND IS BEING EVALUATED. A FOLLOW-UP REPORT WILL BE SUBMITTED AFTER THE EVAL HAS BEEN COMPLETED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "control-board-fault"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "6/6"
+  },
+  {
+   "mdr": "17152198",
+   "device": "nidek-nuvo",
+   "complaint": "INCIDENT DESCRIPTION PER DISTRIBUTOR \"THE FATHER REPORTED TODAY THAT THE CONCENTRATOR WAS SMOKING FROM THE VENTS AT APPROXIMATELY 2 AM TONIGHT, CAUSING THE SMOKE DETECTOR IN THE PATIENT'S ROOM TO ALARM.  THE CONCENTRATOR DID NOT SOUND AN AL",
+   "manufacturer_finding": "WE ARE REPORTING THIS OUT OF AN ABUNDANCE OF CAUTION.  RECEIVED NOTIFICATION THAT PATIENT'S CAREGIVER BELIEVED DEVICE CAUSED SMOKE DETECTOR TO ALARM, BUT THAT NO PATIENT HARM OR ENVIRONMENTAL DAMAGE OCCURRED.  SINCE DEVICE WAS LOCATED IN GERMANY, IT WAS SENT TO OUR AUTHORIZED SERVICE CENTER IN GREECE.  THEIR INVESTIGATION REPORTED AS FOLLOWS: 'THE NUVO LITE DEVICE, SN (B)(6)  HAS 9,307 HOURS.  AFT",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "internal-overheat",
+    "compressor-wear",
+    "inlet-filter-blocked"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": true,
+   "sieve_j2": false,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "5/5"
+  },
+  {
+   "mdr": "17397293",
+   "device": "devilbiss-525",
+   "complaint": "DEVILBISS HEALTHCARE WAS NOTIFIED OF A COMPLAINT ASSOCIATED WITH A DEVILBISS OXYGEN CONCENTRATOR FROM AN AUTHORIZED SERVICE CENTER. THE SERVICE TECHNICIAN REPORTED THE \"POWER CORD WAS DAMAGED, OBSERVED MELTING AND WARPING OF THE BASE AND A ",
+   "manufacturer_finding": "DRIVE DEVILBISS EVALUATED THE DEVICE AND DETERMINED THE THERMAL DAMAGE WAS NOT CAUSED BY A SYSTEM INDUCED FAILURE AND THE THERMAL EVENT WAS MAINLY LIMITED TO THE OUTSIDE OF THE UNIT AND THE LINE CORD WITH SLIGHT DAMAGE TO THE COMPRESSOR BOX. THE ROOT CAUSE OF THE THERMAL EVENT CANNOT BE DETERMINED WITH CERTAINTY WITH THE INFORMATION AND EVIDENCE PROVIDED. HOWEVER, IT CAN BE CONCLUDED THAT, DUE TO ",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "sieve-bed-exhaustion"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": null,
+   "baseline_j2": null,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "8/8"
+  },
+  {
+   "mdr": "1762961",
+   "device": "airsep-visionaire",
+   "complaint": "PT USING OXYGEN CONCENTRATOR SAW SMOKE COMING FROM IT AND UNPLUGGED DEVICE. FIRE WAS EXTINGUISHED BY A FIRE EXTINGUISHER. THERE WAS NO PT INJURY OR PROPERTY DAMAGE.",
+   "manufacturer_finding": "DEVICE IS RETURNING TO AIRSEP CORP FOR EVAL. A FOLLOW-UP REPORT WILL BE SUBMITTED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "8/8"
+  },
+  {
+   "mdr": "17851963",
+   "device": "devilbiss-525",
+   "complaint": "DEVILBISS HEALTHCARE WAS NOTIFIED OF A COMPLAINT INVOLVING AN OXYGEN CONCENTRATOR BY A PROVIDER STATING THAT \"A SPARK CAME FROM UNDERNEATH MACHINE.\" THERE WAS NO REPORT OR EVIDENCE OF ILLNESS, INJURY OR MEDICAL TREATMENT ASSOCIATED WITH THE",
+   "manufacturer_finding": "UDI RELATED DATA QUALITY UPDATES ONLY. THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUMBER AND H4 DEVICE MANUFACTURE DATE. THESE SECTIONS HAVE BEEN UPDATED WITH CORRECTED INFORMATION.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "sieve-bed-exhaustion"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "10/10"
+  },
+  {
+   "mdr": "17877059",
+   "device": "devilbiss-525",
+   "complaint": "DEVILBISS HEALTHCARE WAS NOTIFIED OF A COMPLAINT INVOLVING AN OXYGEN CONCENTRATOR BY A PROVIDER WHO STATED THAT THE \"CASING/PLASTIC MELTED FROM HEAT.\" THERE WAS NO REPORT OR EVIDENCE OF ILLNESS, INJURY OR MEDICAL TREATMENT ASSOCIATED WITH T",
+   "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUMBER AND H4 DEVICE MANUFACTURE DATE. THESE SECTIONS HAVE BEEN UPDATED WITH CORRECTED INFORMATION.",
+   "sieve": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "6/6"
+  },
+  {
+   "mdr": "17878040",
+   "device": "devilbiss-525",
+   "complaint": "DEVILBISS HEALTHCARE WAS NOTIFIED OF A COMPLAINT INVOLVING AN OXYGEN CONCENTRATOR BY A PROVIDER WHO STATED THAT \"BLOWN SIEVE BEDS. CONFIRMED SEVERE MELTING ON THE FRONT COVER AT THE O2 PORT. ALSO, COULD SEE SOME CHAR MARKS ON THE BOARD, ALT",
+   "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** . THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUMBER AND H4 DEVICE MANUFACTURE DATE. THESE SECTIONS HAVE BEEN UPDATED WITH CORRECTED INFORMATION.",
+   "sieve": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "inlet-filter-blocked",
+    "impeded-flow"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "7/10"
+  },
+  {
+   "mdr": "17878303",
+   "device": "devilbiss-525",
+   "complaint": "DEVILBISS HEALTHCARE WAS NOTIFIED OF A COMPLAINT INVOLVING AN OXYGEN CONCENTRATOR BY AN END USER'S SON, WHO STATED THERE WAS AN \"EXPLOSION AND BLACK SMOKE.\" THERE WAS NO REPORT OR EVIDENCE OF ILLNESS, INJURY OR MEDICAL TREATMENT ASSOCIATED ",
+   "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUMBER AND H4 DEVICE MANUFACTURE DATE. THESE SECTIONS HAVE BEEN UPDATED WITH CORRECTED INFORMATION.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "6/6"
+  },
+  {
+   "mdr": "17878843",
+   "device": "devilbiss-525",
+   "complaint": "DEVILBISS HEALTHCARE WAS NOTIFIED OF A COMPLAINT INVOLVING AN OXYGEN CONCENTRATOR BY A PROVIDER STATING THAT THE UNIT IS \"OVERHEATING, AND FAN IS NOT WORKING.\" THE UNIT WAS RETURNED TO DEVILBISS FOR INVESTIGATION, WHICH REVEALED EVIDENCE OF",
+   "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** THE PREVIOUS SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUMBER, AND H4 DEVICE MANUFACTURER DATE.THESE FIELDS HAVE BEEN UPDATED WITH THE CORRECT INFORMATION.",
+   "sieve": [
+    "internal-overheat",
+    "power-cord-thermal",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "internal-overheat",
+    "compressor-wear",
+    "power-cord-thermal"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "8/10"
+  },
+  {
+   "mdr": "1814688",
+   "device": "airsep-visionaire",
+   "complaint": "BURNING SMELL COMING FROM AN OXYGEN CONCENTRATOR. ON/OFF SWITCH WOULDN'T SWITCH OFF AND HAD TO UNPLUG DEVICE TO SHUT OFF.",
+   "manufacturer_finding": "DEVICE EVALUATION IS IN-PROCESS AND A FOLLOW-UP REPORT WILL BE SUBMITTED.",
+   "sieve": [
+    "internal-overheat",
+    "power-cord-thermal",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "13/13"
+  },
+  {
+   "mdr": "1829428",
+   "device": "airsep-visionaire",
+   "complaint": "MAINTENANCE MANAGER REPORTED AN OXYGEN CONCENTRATOR WAS SMOKING.",
+   "manufacturer_finding": "WAITING FOR THE DEVICE TO RETURN FROM PRIMUS MEDICAL LLC, TO EVALUATE. A FOLLOW-UP REPORT WILL BE SUBMITTED AFTER THE EVAL IS COMPLETED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "inlet-filter-blocked",
+    "compressor-wear",
+    "internal-overheat"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "9/10"
+  },
+  {
+   "mdr": "1829431",
+   "device": "airsep-newlife",
+   "complaint": "PROPERTY WAS DAMAGED BY A FIRE WHICH MAY HAVE ORIGINATED IN THE AIRSEP OXYGEN CONCENTRATOR.",
+   "manufacturer_finding": "THE OXYGEN CONCENTRATOR IS IN THE CUSTODY OF (B)(6). AN INSPECTION IS BEING SCHEDULED FOR (B)(4). A FOLLOW-UP REPORT WILL BE SUBMITTED AFTER THE EVAL IS COMPLETED.",
+   "sieve": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "internal-overheat"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "7/7"
+  },
+  {
+   "mdr": "18440937",
+   "device": "philips-everflo",
+   "complaint": "THE MANUFACTURER RECEIVED INFORMATION REGARDING AN EVERFLO DEVICE. THE DEVICE WAS RETURNED TO A THIRD PARTY SERVICE CENTER. AS PER THE WORK ORDER RECEIVED, THE DEVICE HAD ALARMS THAT WERE CONFIRMED. THE EVERFLO SIEVE INTEGRATED VALVE WAS DU",
+   "manufacturer_finding": "H3 OTHER TEXT : DEVICE NOT RECEIVED BY MANUFACTURER.",
+   "sieve": [
+    "inlet-filter-blocked",
+    "impeded-flow",
+    "oxygen-sensor-fault"
+   ],
+   "baseline": [
+    "inlet-filter-blocked",
+    "system-malfunction",
+    "oxygen-sensor-fault"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "12/12"
+  },
+  {
+   "mdr": "1859268",
+   "device": "airsep-newlife",
+   "complaint": "AS NOTED IN MEDWATCH 3500 FORM RECEIVED: \"NEWLIFE 8.4 LITER OXYGEN CONCENTRATOR STARTED ON FIRE IN A PATIENT'S HOME. THE PATIENT WAS NOT HARMED. THE PATIENT WAS NOT CONNECTED TO THE OXYGEN TUBING AT THE TIME AND WAS LOCATED IN ANOTHER ROOM ",
+   "manufacturer_finding": "WAITING THE DEVICE TO RETURN TO BE EVALUATED. FOLLOW UP REPORT WILL BE SUBMITTED AFTER THE EVALUATION IS COMPLETED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "internal-overheat"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "10/12"
+  },
+  {
+   "mdr": "18922014",
+   "device": "philips-everflo",
+   "complaint": "THE MANUFACTURER WAS CONTACTED IN REFERENCE TO THE EVERFLO INTL DEVICE. THE PATIENT ALLEGES WHITE POWDER AND SMOKE COMING FROM THE EQUIPMENT DURING FUNCTIONING. THERE WAS NO ALLEGATION OF PATIENT HARM OR INJURY. THE MANUFACTURER'S INVESTIGA",
+   "manufacturer_finding": "H3 OTHER TEXT : DEVICE NOT YET RETURNED TO THE MANUFACTURER.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "inlet-filter-blocked",
+    "internal-overheat",
+    "system-malfunction"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "8/8"
+  },
+  {
+   "mdr": "18960089",
+   "device": "nidek-nuvo",
+   "complaint": "INCIDENT DESCRIPTION FROM DISTRIBUTOR: \"ACCORDING TO THE PATIENT, THERE WAS A BANG ON (B)(6) 2024 AT AROUND 10.30 PM AND THIS WAS FOLLOWED BY A SHORT CIRCUIT. THE CABLE BURNT OUT/SCORCHED DIRECTLY AT THE END TO THE PLUG AT THE SOCKET. THE P",
+   "manufacturer_finding": "WE ARE REPORTING THIS OUT OF AN ABUNDANCE OF CAUTION AS THIS IS A DEVICE MODEL NOT SOLD IN THE UNITED STATES, IT WAS A PRIVATE LABEL DEVICE FOR A DISTRIBUTOR IN GERMANY.  WE HAVE REQUESTED THE DEVICE BE RETURNED TO OUR FACILITY FOR EVALUATION AND THE DEVICE IS EN ROUTE.  IF NECESSARY, A FOLLOW-UP REPORT WILL BE SUBMITTED WHEN THE MANUFACTURER'S INVESTIGATION IS COMPLETED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "sieve-bed-exhaustion"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "4/6"
+  },
+  {
+   "mdr": "1900104",
+   "device": "airsep-visionaire",
+   "complaint": "VISIONAIRE OXYGEN CONCENTRATOR CAUGHT FIRE. FIRE EXTINGUISHED WITHOUT INJURY OR PROPERTY DAMAGE.",
+   "manufacturer_finding": "THE VISIONAIRE OXYGEN CONCENTRATOR IS BEING RETURNED TO AIRSEP CORPORATION FOR EVAL. A FOLLOW-UP REPORT WILL BE SUBMITTED AFTER THE EVAL IS COMPLETED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "5/5"
+  },
+  {
+   "mdr": "1900124",
+   "device": "airsep-newlife",
+   "complaint": "NEWLIFE OXYGEN CONCENTRATOR WAS INVOLVED IN A HOUSE FIRE. THE FIRE SCENE AND OXYGEN CONCENTRATOR WILL BE EXAMINED.",
+   "manufacturer_finding": "AN EVAL OF THE FIRE SCENE AND OXYGEN CONCENTRATOR IS BEING SCHEDULED FOR THE NEAR FUTURE. A FOLLOW-UP REPORT WILL BE SUBMITTED AFTER THE EVAL IS COMPLETED.",
+   "sieve": [
+    "external-ignition-fire",
+    "internal-overheat",
+    "power-cord-thermal"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "8/8"
+  },
+  {
+   "mdr": "1930152",
+   "device": "airsep-visionaire",
+   "complaint": "BURNT VISIONAIRE OXYGEN CONCENTRATOR.",
+   "manufacturer_finding": "PRESENTLY WAITING FOR DEVICE TO RETURN FROM SPAIN FOR EVAL. A F/U REPORT WILL BE SUBMITTED AFTER EVAL IS COMPLETED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "11/11"
+  },
+  {
+   "mdr": "1930154",
+   "device": "airsep-visionaire",
+   "complaint": "BURNT VISIONAIRE OXYGEN CONCENTRATOR.",
+   "manufacturer_finding": "PRESENTLY WAITING FOR DEVICE TO RETURN FROM SPAIN FOR EVAL. A F/U REPORT WILL BE SUBMITTED AFTER EVAL IS COMPLETED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "9/9"
+  },
+  {
+   "mdr": "2002461",
+   "device": "airsep-newlife",
+   "complaint": "FIRE ALLEGEDLY INVOLVING AN OXYGEN CONCENTRATOR MFG BY AIRSEP. FIRE DAMAGED IN AREA OF OXYGEN CONCENTRATOR.",
+   "manufacturer_finding": "OXYGEN CONCENTRATOR IS BEING HELD IN EVIDENCE FOR EXAMINATION. A FOLLOW-UP REPORT WILL BE SUBMITTED ONCE THE EVAL IS COMPLETED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "internal-overheat",
+    "power-cord-thermal",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "9/9"
+  },
+  {
+   "mdr": "2018980",
+   "device": "airsep-visionaire",
+   "complaint": "TURNED ON VISIONAIRE OXYGEN CONCENTRATOR AND IT MADE A STRANGE POPPING SOUND AND SHUT DOWN. NOTICING SMOKE, THE OXYGEN CONCENTRATOR WAS PLACED OUTSIDE. A SHORT TIME LATER, THE MACHINE WAS IN FLAMES AND PUT OUT WITH FIRE EXTINGUISHER. NO INJ",
+   "manufacturer_finding": "DEVICE WILL BE EVALUATED, AND A FOLLOW-UP REPORT WILL BE SENT.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "9/9"
+  },
+  {
+   "mdr": "20196893",
+   "device": "nidek-nuvo",
+   "complaint": "ON AUGUST 20, 2024, NIDEK MEDICAL PRODUCTS WAS CONTACTED BY THE SON OF AN END USER OF A NUVO 10 OXYGEN CONCENTRATOR. THE SON REPORTED THAT THE END USER, WHILE ON THE FRONT PORCH, HAD A NEIGHBOR WHO SMELLED BURNING RUBBER AND SUBSEQUENTLY DI",
+   "manufacturer_finding": "NIDEK MEDICAL PRODUCTS RECEIVED A REPORT FROM THE SON OF AN END USER OF THE NUVO 10 OXYGEN CONCENTRATOR. THE END USER WAS REPORTEDLY SMOKING WHILE USING THE DEVICE, WHICH LED TO A FIRE INVOLVING THE OXYGEN TUBING AND THE CONCENTRATOR ITSELF. ACCORDING TO THE DISTRIBUTOR'S INVESTIGATION, SUPPORTED BY PHOTOS AND AN INCIDENT REPORT, THE FIRE WAS MOST LIKELY CAUSED BY IGNITION OF THE OXYGEN TUBING DUE",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "internal-overheat"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": false,
+   "sieve_j2": true,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "6/7"
+  },
+  {
+   "mdr": "20454330",
+   "device": "philips-everflo",
+   "complaint": "THE MANUFACTURER RECEIVED INFORMATION REGARDING A EVERFLO INTL OPI. THE MANUFACTURER RECEIVED INFORMATION ALLEGING DEVICE CAUSED SHORT CIRCUIT AND THE EQUIPMENT IS DAMAGED. AT THIS TIME MEDICAL INTERVENTION WAS NOT SPECIFIED. THE MANUFACTUR",
+   "manufacturer_finding": "THE MANUFACTURER RECEIVED NEW AND RELEVANT INFORMATION ON 08/29/2025. THE DEVICE WAS RETURNED TO THE SERVICE CENTER FOR EVALUATION. DURING THE EVALUATION OF THE DEVICE, THE SERVICE CENTER INTERNALLY/ EXTERNALLY INSPECTED THE DEVICE COMPRESSOR IS DEFECTIVE (BURNT),OPI CONCENTRATOR TUBING ARE OUT OF USE IS YELLOWED AND FISSURE AND IS LOSING AIR, FLOWMETER IS BROKEN. THE DEVICE WAS RETURNED TO THE MA",
+   "sieve": [
+    "power-cord-thermal",
+    "system-malfunction"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "system-malfunction"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": null,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "5/5"
+  },
+  {
+   "mdr": "2093422",
+   "device": "airsep-newlife",
+   "complaint": "RECEIVED FAX OF A POTENTIAL CLAIM FOR PROPERTY DAMAGE ARISING OUT OF A FIRE INVOLVING AN (B)(4) OXYGEN CONCENTRATOR. THE FIRE SCENE IS BEING HELD FOR EXAMINATION.",
+   "manufacturer_finding": "AN EXAMINATION OF THE FIRE SCENE AND DEVICE IS BEING SCHEDULED. A F/U REPORT WILL BE SUBMITTED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "internal-overheat",
+    "sieve-bed-exhaustion"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "8/9"
+  },
+  {
+   "mdr": "2097015",
+   "device": "airsep-visionaire",
+   "complaint": "DEVICE CAUGHT ON FIRE - MELTED BACK PANEL.",
+   "manufacturer_finding": "WAIT FOR RETURN OF DEVICE TO PERFORM EVAL. A F/U REPORT WILL BE SUBMITTED AFTER THE DEVICE EVAL HAS BEEN COMPLETED.",
+   "sieve": [
+    "external-ignition-fire",
+    "internal-overheat",
+    "power-cord-thermal"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "internal-overheat",
+    "power-cord-thermal"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "10/10"
+  },
+  {
+   "mdr": "21201026",
+   "device": "philips-everflo",
+   "complaint": "THE MANUFACTURER RECEIVED INFORMATION ALLEGING NOT COMPLIANCE PRESSURE. DURING THE EVALUATION OF THE DEVICE AT THE THIRD-PARTY SERVICE CENTER, THE DEVICE WAS VISUALLY INSPECTED AND FOUND COMPRESSOR BURN. ADDITIONALLY, FLOWMETER IS CRACK, SI",
+   "manufacturer_finding": "THE MANUFACTURER PREVIOUSLY RECEIVED INFORMATION ALLEGING NOT COMPLIANCE PRESSURE. DURING THE EVALUATION OF THE DEVICE AT THE THIRD-PARTY SERVICE CENTER, THE DEVICE WAS VISUALLY INSPECTED AND FOUND COMPRESSOR BURN. ADDITIONALLY, FLOWMETER IS CRACK, SIEVES IS CLOGGED, O2 BODY AND VALVES IS DEFECTIVE. THE CUSTOMER COMPLAINT WAS REPRODUCED. THERE WAS NO ALLEGATION OF SERIOUS OR PERMANENT HARM OR INJU",
+   "sieve": [
+    "internal-overheat",
+    "power-cord-thermal",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "compressor-wear",
+    "inlet-filter-blocked",
+    "oxygen-sensor-fault"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "10/11"
+  },
+  {
+   "mdr": "21458059",
+   "device": "philips-everflo",
+   "complaint": "THE MANUFACTURER RECEIVED INFORMATION ALLEGING AN ISSUE RELATED TO A EVERFLO INTL DEVICE. THE MANUFACTURER RECEIVED INFORMATION ALLEGING THAT THE DEVICE HAS LOW OXYGEN CONCENTRATION. DURING THE EXTERNAL AND INTERNAL EVALUATION OF THE DEVICE",
+   "manufacturer_finding": "UPDATED B5 WILL BE: THE MANUFACTURER RECEIVED INFORMATION ALLEGING AN ISSUE RELATED TO A EVERFLO INTL DEVICE. THE MANUFACTURER RECEIVED INFORMATION ALLEGING THAT THE DEVICE HAS LOW OXYGEN CONCENTRATION. DURING THE EXTERNAL AND INTERNAL EVALUATION OF THE DEVICE AT THE THIRD-PARTY SERVICE CENTER, THE CUSTOMERS COMPLAINT WAS CONFIRMED. THE DEVICE WAS VISUALLY INSPECTED AND FOUND THE SIEVES, O2 PILOT ",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "impeded-flow",
+    "compressor-wear",
+    "system-malfunction"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "5/6"
+  },
+  {
+   "mdr": "22024136",
+   "device": "philips-everflo",
+   "complaint": "THE MANUFACTURER RECEIVED INFORMATION ALLEGING FAULTY PCA, FAULTY COMPRESSOR OVERHEATING/SHORT CIRCUIT, LOW O2 PURITY, REPLACED FILTER AND ALL FAULTY PARTS. THERE IS NO ALLEGATION OF SERIOUS OR PERMANENT HARM OR INJURY. NO MEDICAL INTERVENT",
+   "manufacturer_finding": "CORRECTION TO THE PREVIOUS REPORT: THE DEVICE WAS SERVICED BY A SERVICE CENTER. DURING THE EVALUATION AT THE SERVICE CENTER, IT WAS FOUND THAT FAULTY PCA, FAULTY COMPRESSOR OVERHEATING/SHORT CIRCUIT, LOW O2 PURITY. REPLACED FILTER AND ALL FAULTY PARTS. THERE IS NO ALLEGATION OF SERIOUS OR PERMANENT HARM OR INJURY. NO MEDICAL INTERVENTION WAS REQUIRED BY THE PATIENT. MANDATORY SECTIONS AND CODE GRI",
+   "sieve": [
+    "internal-overheat",
+    "power-cord-thermal",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "oxygen-sensor-fault",
+    "compressor-wear",
+    "internal-overheat"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "13/13"
+  },
+  {
+   "mdr": "22061974",
+   "device": "philips-everflo",
+   "complaint": "THE MANUFACTURER RECEIVED INFORMATION ALLEGING COVERS MELTED DUE TO OVERHEATING. THERE IS NO ALLEGATION OF SERIOUS OR PERMANENT HARM OR INJURY. NO MEDICAL INTERVENTION WAS REQUIRED BY THE PATIENT. THE MANUFACTURER'S INVESTIGATION IS ONGOING",
+   "manufacturer_finding": "CORRECTION TO THE PREVIOUS REPORT: THE DEVICE WAS SERVICED BY A SERVICE CENTER. DURING THE EVALUATION OF THE DEVICE AT THE SERVICE CENTER, IT WAS FOUND THAT COVERS MELTED DUE TO OVERHEATING. THERE IS NO ALLEGATION OF SERIOUS OR PERMANENT HARM OR INJURY. NO MEDICAL INTERVENTION WAS REQUIRED BY THE PATIENT. THE MANUFACTURER'S INVESTIGATION IS ONGOING. A FOLLOW-UP REPORT WILL BE SUBMITTED WHEN THE MA",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": null,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "7/7"
+  },
+  {
+   "mdr": "22092252",
+   "device": "nidek-nuvo",
+   "complaint": "ON MAY 13, 2025, NIDEK MEDICAL PRODUCTS WAS CONTACTED BY A DISTRIBUTOR IN GERMANY THAT A POTENTIAL INCIDENT INVOLVING ONE OF OUR CONCENTRATORS AND AN OPEN FLAME PROVIDED BY THE PATIENT OCCURRED AND THAT INCIDENT RESULTED IN A MINOR INJURY T",
+   "manufacturer_finding": "ON MAY 13, 2025, NIDEK MEDICAL PRODUCTS WAS CONTACTED BY A DISTRIBUTOR IN GERMANY THAT A POTENTIAL INCIDENT INVOLVING ONE OF OUR CONCENTRATORS AND AN OPEN FLAME PROVIDED BY THE PATIENT OCCURRED AND THAT INCIDENT RESULTED IN A MINOR INJURY TO THE PATIENT. ACCORDING TO THE DISTRIBUTOR THE PATIENT HELD AN OPEN FLAME TO THE END OF THE OXYGEN TUBING. THE PATIENT SUFFERED FIRST DEGREE BURNS TO BOTH HAND",
+   "sieve": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "impeded-flow",
+    "sieve-bed-exhaustion"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "8/8"
+  },
+  {
+   "mdr": "2223978",
+   "device": "airsep-visionaire",
+   "complaint": "OXYGEN CONCENTRATOR CAUGHT FIRE. THERE WAS NO DAMAGE OR INJURY, LOOKED LIKE THE ON/OFF SWITCH HAD SHORTED OUT AND CAUGHT FIRE. SMOKE WAS COMING FROM UNIT AND THE ON/OFF SWITCH WAS GLOWING ORANGE.",
+   "manufacturer_finding": "EXAMINATION SHOW MELTING IN THE AREA OF THE ON/OFF POWER SWITCH INDICATING THE HEATING/BURNING MUST HAVE ORIGINATED THERE. THERE WAS NO ARCING OR FAILURE OF THE SWITCH COMPONENTS. THE BURNING IS NEAR THE BOTTOM OUTSIDE OF THE SWITCH, WHICH CAN ONLY BE DUPLICATED WHEN THE SWITCH IS EXPOSED TO FLUID, MOST LIKELY WHILE CLEANING THE DEVICE. THE MANUAL WARNS AGAINST USING LIQUIDS DIRECTLY ON THE DEVICE",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "control-board-fault"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "7/8"
+  },
+  {
+   "mdr": "22379507",
+   "device": "philips-everflo",
+   "complaint": "THE MANUFACTURER RECEIVED INFORMATION ALLEGING WON'T TURN ON RELATED TO THE DEVICE EVERFLO INTL OXYGEN CONCENTRATOR. THERE WAS NO REPORT OF PATIENT HARM OR INJURY. NO MEDICAL INTERVENTION WAS SPECIFIED. THE DEVICE WAS SENT TO A THIRD-PARTY ",
+   "manufacturer_finding": "THE MANUFACTURER RECEIVED NEW AND RELEVANT INFORMATION ON 07/03/2024. THE DEVICE WAS RETURNED TO THE SERVICE CENTER FOR EVALUATION. DURING EVALUATION, CLOGGED INTEGRATET CANISTER, MELTED POWER CABLE, REPLACED INLET FILTER DUE TO PREVENTIVE MAINTENANCE WERE FOUND. THE CUSTOMER COMPLAINT WAS REPRODUCED. THE DEVICE PASSED ALL TEST RESULTS. SECTION G3 AND H6 HAVE BEEN UPDATED IN THIS FOLLOW UP REPORT.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "inlet-filter-blocked",
+    "impeded-flow"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "10/10"
+  },
+  {
+   "mdr": "2243837",
+   "device": "airsep-newlife",
+   "complaint": "OXYGEN CONCENTRATOR CAUGHT FIRE. THERE WAS NO DAMAGE OR INJURY, LOOKED LIKE THE ON/OFF SWITCH HAD SHORTED OUT AND CAUGHT FIRE. SMOKE WAS COMING FROM UNIT AND THE ON/OFF SWITCH WAS GLOWING ORANGE.",
+   "manufacturer_finding": "AN EXAMINATION IS SCHEDULED FOR (B)(6), 2011, IN (B)(6). A FOLLOW-UP REPORT WILL BE SENT.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "control-board-fault"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "11/11"
+  },
+  {
+   "mdr": "22742804",
+   "device": "nidek-nuvo",
+   "complaint": "ON JULY 18, 2025, NIDEK MEDICAL PRODUCTS WAS CONTACTED BY A DISTRIBUTOR IN SINGAPORE THAT A DEVICE EXPERIENCED OVERHEATING AND HAD SMOKE COMING FROM THE MACHINE. ACCORDING TO THE INITIAL REPORTER, THERE WERE NO INJURIES OR HEALTH EFFECTS TO",
+   "manufacturer_finding": "DEVICE WAS RETURNED TO NIDEK MEDICAL PRODUCTS ON JULY 28, 2025. DURING THE FUNCTIONAL CHECK OF THE DEVICE, THE UNIT MAINTAINED FUNCTIONALITY AND PURITY UNTIL THE COMPRESSOR OVERHEATED, TRIGGERING A SAFETY SHUTDOWN OF THE COMPRESSOR AND CAUSING THE UNIT TO ALARM BOTH VISUALLY AND AUDIBLY. THE DEVICE WAS ASSESSED AND IT WAS FOUND THAT THE INTERNAL COOLING FAN WAS NOT OPERATING. WITHIN THE TIME IT TO",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "internal-overheat",
+    "power-cord-thermal",
+    "compressor-wear"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "12/12"
+  },
+  {
+   "mdr": "23008071",
+   "device": "philips-everflo",
+   "complaint": "A EVERFLO INTL OPI DEVICE WAS RETURNED TO A THIRD-PARTY SERVICE CENTER. DURING THE EVALUATION OF THE DEVICE AT THE THIRD-PARTY SERVICE CENTER, THE DEVICE WAS VISUALLY INSPECTED AND PCA BURN, PWR CORD DAMAGED. ADDITIONALLY, THE DEVICE WAS RE",
+   "manufacturer_finding": "IN BOX H PROBLEM CODE GRID, EVALUATION METHOD CODE GRID AND COMPONENT CODE GRID ARE UPDATED/CORRECTED. THE FOLLOWING CORRECTION HAS BEEN UPDATED IN THIS REPORT. SECTION \"DUE DATE\". SECTION \"EVENT DATE\" IN BOX B HAS BEEN UPDATED/CORRECTED. SECTION G3 DATE RECEIVED BY MFG HAS BEEN CORRECTED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "system-malfunction",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "5/10"
+  },
+  {
+   "mdr": "23009499",
+   "device": "philips-everflo",
+   "complaint": "A EVERFLO INTL OPI WAS RETURNED TO A THIRD-PARTY SERVICE CENTER. DURING THE EVALUATION OF THE DEVICE AT THE THIRD PARTY SERVICE CENTER, THE DEVICE WAS VISUALLY INSPECTED AND PCA IS DEFECTIVE BUTTON DOES NOT WORK AND THE OPERATING HOURS CANN",
+   "manufacturer_finding": "ON PREVIOUSLY SUBMITTED REPORT (DEVICE) PROBLEM CODE GRID WAS INCORRECT. IN THIS REPORT SECTION (DEVICE) PROBLEM CODE GRID HAS BEEN UPDATED/CORRECTED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "control-board-fault",
+    "system-malfunction"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "10/10"
+  },
+  {
+   "mdr": "23199602",
+   "device": "nidek-nuvo",
+   "complaint": "ON SEPTEMBER 11, 2025, NIDEK MEDICAL PRODUCTS WAS CONTACTED BY A DISTRIBUTOR IN (B)(6) THAT A DEVICE EXPERIENCED OVERHEATING AND HAD SMOKE COMING FROM THE MACHINE. ACCORDING TO THE INITIAL REPORTER, THERE WERE NO INJURIES OR HEALTH EFFECTS ",
+   "manufacturer_finding": "DEVICE WAS RETURNED TO NIDEK MEDICAL PRODUCTS ON SEPTEMBER 15, 2025. DURING THE FUNCTIONAL CHECK OF THE DEVICE, THE UNIT MAINTAINED FUNCTIONALITY AND PURITY UNTIL THE COMPRESSOR OVERHEATED, TRIGGERING A SAFETY SHUTDOWN OF THE COMPRESSOR AND CAUSING THE UNIT TO ALARM BOTH VISUALLY AND AUDIBLY. THE DEVICE WAS ASSESSED AND IT WAS FOUND THAT ONE OF THE THREE INTERNAL COOLING FANS WAS NOT OPERATING. WI",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "internal-overheat",
+    "power-cord-thermal",
+    "compressor-wear"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "10/10"
+  },
+  {
+   "mdr": "2324744",
+   "device": "airsep-visionaire",
+   "complaint": "OXYGEN CONCENTRATOR SHUTDOWN AND PT WENT TO HOSPITAL FOR LACK OF OXYGEN.",
+   "manufacturer_finding": "COMPRESSION FITTING (WITH FERRULE) CONNECTING TUBE TO MANIFOLD WAS LEAKING CAUSING THE OXYGEN CONCENTRATOR TO ALARM. WHEN THE OXYGEN CONCENTRATOR ALARMS, THE PT IS TO SWITCH OVER TO AN ALTERNATE SOURCE OF OXYGEN AND CONTACT THEIR OXYGEN HOMECARE PROVIDER, AS INSTRUCTED IN THE PT MANUAL WITH EVERY DEVICE. THE PT CONTACTED A NEIGHBOR, WHO CONNECTED THE PT TO AN OXYGEN CYLINDER AND WENT TO THE HOSPIT",
+   "sieve": [
+    "no-power",
+    "inlet-filter-blocked",
+    "sieve-bed-exhaustion"
+   ],
+   "baseline": [
+    "impeded-flow",
+    "sieve-bed-exhaustion",
+    "oxygen-sensor-fault"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "12/14"
+  },
+  {
+   "mdr": "2335601",
+   "device": "airsep-newlife",
+   "complaint": "THE NEWLIFE ELITE OXYGEN CONCENTRATOR WAS ON, NOT BEING USED WITH THE CANNULA TUBING HANGING ON THE BED POST. PT CLAIMS TO SEE FIRE AT THE OUTLET OF THE DEVICE AND PUT THE DEVICE OUTSIDE. THE CANNULA TUBING IS BURNT AND MELTED INTO THE CARP",
+   "manufacturer_finding": "FIRE INVESTIGATOR IS SENDING PHOTOGRAPHS AND WILL BE COORDINATING AN EXAMINATION.",
+   "sieve": [
+    "external-ignition-fire",
+    "internal-overheat",
+    "power-cord-thermal"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "9/9"
+  },
+  {
+   "mdr": "2380381",
+   "device": "airsep-newlife",
+   "complaint": "PUT ON NOTICE BY INSURANCE COMPANY FOR PROPERTY LOSS FROM FIRE. THEIR INITIAL INVESTIGATION INDICATES AN O2 OXYGEN EQUIPMENT BOTTLE RUPTURED RESULTING IN FIRE TO THE PREMISES. THEY CLAIM THE MODEL IS A NEWLIFE, (B)(4) AND WANT TO DO A DESTR",
+   "manufacturer_finding": "PRESENTLY TRYING TO GET MORE INFORMATION AND SCHEDULE AN EXAMINATION OF THE OXYGEN CONCENTRATOR.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "internal-overheat",
+    "power-cord-thermal"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "10/10"
+  },
+  {
+   "mdr": "24757766",
+   "device": "philips-everflo",
+   "complaint": "A EVERFLO INTL DEVICE WAS RETURNED TO A SERVICE CENTER FOR SERVICE. THERE WAS NO REPORT OF PATIENT HARM OR INJURY. THERE WAS NO REPORT OF MEDICAL INTERVENTION. DURING THE EVALUATION OF THE DEVICE AT THE SERVICE CENTER, THE DEVICE COMPRESSOR",
+   "manufacturer_finding": "SECTION \"EVENT DATE\" IN BOX B, EVALUATION METHOD CODE GRID IN BOX H6, AND \"DATE RECEIVED BY MFG\" IN BOX G HAS BEEN UPDATED/CORRECTED IN THIS REPORT. THE REPORTED FAILURE OF THERMAL ISSUE IS ACCOMMODATED IN THE PRODUCT RISK MANAGEMENT FILE AS BEING LINKED TO HAZARD WITH DESCRIPTION FIRE, FLAME, SMOKE. COMPLAINTS FOR THIS FAILURE ARE REVIEWED VIA THE POST MARKET COMPLAINT TRENDING AND ESCALATION PRO",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "compressor-wear",
+    "internal-overheat",
+    "power-cord-thermal"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": true,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "6/6"
+  },
+  {
+   "mdr": "2485642",
+   "device": "airsep-visionaire",
+   "complaint": "EVIDENCE OF PLASTIC DAMAGE TO THE UPPER CONTROL PANEL NEAR THE ON/OFF SWITCH OF A VISONAIRE OXYGEN CONCENTRATOR. FIRE EXTINGUISHER WAS USED TO PUT OUT FIRE. NO INJURIES OF DAMAGE.",
+   "manufacturer_finding": "EXAMINATION SHOWS MELTING IN THE AREA OF THE ON/OFF POWER SWITCH INDICATING THE HEAT/BURNING MUST HAVE ORIGINATED THERE. THERE WAS NO ARCING OR FAILURE OF THE SWITCH COMPONENTS. THE BURNING IS NEAR THE BOTTOM OUTSIDE OF THE SWITCH, WHICH CAN ONLY BE DUPLICATED WHEN THE SWITCH IS EXPOSED TO FLUID, MOST LIKELY WHILE CLEANING THE DEVICE. AIRSEP WAS TOLD BY THE HOMECARE PROVIDER THAT THE OXYGEN CONCEN",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "7/7"
+  },
+  {
+   "mdr": "2485667",
+   "device": "airsep-visionaire",
+   "complaint": "AIRSEP OXYGEN CONCENTRATOR WAS INVOLVED IN A FIRE CAUSING PROPERTY DAMAGE TO PATIENT'S RESIDENCE. THE OXYGEN CONCENTRATOR WAS LOCATED IN A BASEMENT BEDROOM WHEN THE INCIDENT OCCURRED. NO INJURY OR DEATH.",
+   "manufacturer_finding": "THE CAUSE OF THE HOUSE FIRE IS PRESENTLY UNKNOWN. THE OXYGEN CONCENTRATOR WAS LOCATED IN THE BEDROOM, THE ROOM OF ORIGIN. THE OXYGEN CONCENTRATOR HAS BEEN REMOVED FROM THE FIRE SCENE AND BEING HELD AT A LAB FOR FURTHER EXAMINATION, YET TO BE SCHEDULED. A FOLLOW-UP REPORT WILL BE SENT AFTER COMPLETION OF THE EXAMINATION.",
+   "sieve": [
+    "external-ignition-fire",
+    "internal-overheat",
+    "power-cord-thermal"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "11/11"
+  },
+  {
+   "mdr": "2591367",
+   "device": "airsep-newlife",
+   "complaint": "PT CLAIMS HE AWOKE TO SMOKE IN THE HOME AND THE CONCENTRATOR WAS ON FIRE, BLANKET THROWN OVER THE CONCENTRATOR TO SUFFOCATE THE FLAMES.",
+   "manufacturer_finding": "PRESENTLY GATHERING MORE INFO ON INCIDENT AND TRYING TO GET THE DEVICE RETURN TO AIRSEP FOR EVALUATION. A FOLLOW-UP REPORT WILL BE SUBMITTED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "6/6"
+  },
+  {
+   "mdr": "2613035",
+   "device": "airsep-visionaire",
+   "complaint": "DEVICE WAS PLUGGED IN AND STARTED TO SPARK. TOOK IT OUTSIDE, WHERE IT WAS SMOKING AND ON FIRE. TOP OF DEVICE WAS MELTED.",
+   "manufacturer_finding": "INITIAL REPORT, A FOLLOW-UP REPORT WILL BE SENT AFTER THE DEVICE EVAL IS COMPLETE.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "internal-overheat"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "8/8"
+  },
+  {
+   "mdr": "2619789",
+   "device": "airsep-newlife",
+   "complaint": "OXYGEN CONCENTRATOR INVOLVED IN A FIRE THAT THE CANNULA TUBING CAUGHT FIRE AND BURNED BACK TO THE DEVICE. NO PT INJURY OCCURRED.",
+   "manufacturer_finding": "AIRSEP IS WAITING FOR THE RETURN OF THE OXYGEN CONCENTRATOR TO EVALUATE. A F/U REPORT WILL BE SENT.",
+   "sieve": [
+    "external-ignition-fire",
+    "power-cord-thermal"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "8/8"
+  },
+  {
+   "mdr": "2824642",
+   "device": "airsep-visionaire",
+   "complaint": "POWER OUTAGE, AND WHEN POWER CAME BACK ON, THE BREAKER IN THE HOME POPPED, WAS RESET, THEN THE OXYGEN CONCENTRATOR BREAKER KEEP POPPING IT'S BREAKER. PATIENT ENDED UP BEING RUSHED TO THE HOSPITAL.",
+   "manufacturer_finding": "THE CIRCUIT BREAKER ON THE OXYGEN CONCENTRATOR WAS ACTIVATED WHEN RECEIVED FOR EVALUATION. THE CIRCUIT BREAKER WAS RESET AND DEVICE POWERED UP. THE 5 SECOND AUDIBLE ALARM SOUNDED ON START-UP AND THEN STOPPED AS DESIGNED. THEN THE LOW PRESSURE ALARM SOUNDED INDICATING A PROBLEM TO THE USER AND THAT THEY SHOULD SWITCH TO USING THEIR BACK UP CYLINDERS AS DESCRIBED IN THE PATIENT MANUAL. FURTHER INVES",
+   "sieve": [
+    "no-power",
+    "power-cord-thermal"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": true,
+   "sieve_j2": false,
+   "baseline_j2": true,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "5/5"
+  },
+  {
+   "mdr": "2844343",
+   "device": "airsep-visionaire",
+   "complaint": "SMOKE WAS COMING FROM DEVICE (OXYGEN CONCENTRATOR) AND IT WAS MOVED OUT OF HOUSE ONTO BALCONY WERE FIRE BROKE OUT. THE FIRE WAS PUT OUT WITH WATER.",
+   "manufacturer_finding": "DEVICE IS BEING RETURNED FROM (B)(6) TO AIRSEP CORPORATION IN THE USA FOR EVALUATION. A FOLLOW UP REPORT WILL BE SENT AFTER THE DEVICE HAS BEEN EVALUATED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "internal-overheat"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "6/6"
+  },
+  {
+   "mdr": "2844344",
+   "device": "airsep-visionaire",
+   "complaint": "CONSUMER PURCHASED A VISIONAIRE OXYGEN CONCENTRATOR VIA THE INTER-NET AND USED IT TO GENERATE OZONE. HIS HOME SUSTAINED FIRE DAMAGE AND THE OXYGEN CONCENTRATOR WAS IN THE AREA OF ORIGIN.",
+   "manufacturer_finding": "THE INTENDED USE OF THIS DEVICE IS NOT TO BE USED WITH AN OZONE GENERATOR TO PRODUCE OZONE. AN INVESTIGATION IS BEING DONE TO DETERMINE HOW THIS PERSON PURCHASED A PRESCRIPTION DEVICE ON THE INTER-NET. AN EXAMINATION OF THE DEVICE IS BEING SCHEDULED AND A FOLLOW-UP REPORT WILL BE SUBMITTED.",
+   "sieve": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "baseline": [
+    "internal-overheat",
+    "power-cord-thermal",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "10/10"
+  },
+  {
+   "mdr": "2854561",
+   "device": "airsep-visionaire",
+   "complaint": "VISIONAIRE OXYGEN CONCENTRATOR STARTING BURNING AROUND ON/OFF SWITCH AREA, POWER WAS DISCONNECTED, AND WATER POURED OVER SWITCH AREA. NO PATIENT INJURY OR PROPERTY DAMAGE.",
+   "manufacturer_finding": "DEVICE HAS MELTING IN THE AREA OF THE ON/OFF POWER SWITCH INDICATING THE HEAT/BURNING ORIGINATED THERE. THE BURNING IS NEAR THE BOTTOM OUTSIDE OF THE SWITCH IS EXPOSED TO FLUID, MOST LIKELY WHILE CLEANING THE DEVICE. THE MANUAL WARNS AGAINST USING LIQUIDS DIRECTLY ON THE DEVICE.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "inlet-filter-blocked"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": null,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "7/10"
+  },
+  {
+   "mdr": "2999172",
+   "device": "airsep-newlife",
+   "complaint": "A NEWLIFE OXYGEN CONCENTRATOR WAS IN A ROOM DAMAGED BY FIRE. THERE WERE NO INJURIES REPORTED.",
+   "manufacturer_finding": "DEVICE BEING HELD BY INSURANCE COMPANY AND AN EXAMINATION IS BEING COORDINATED. A F/U REPORT WILL BE SUBMITTED AFTER THE EXAM IS COMPLETED.",
+   "sieve": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "internal-overheat",
+    "power-cord-thermal"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "4/6"
+  },
+  {
+   "mdr": "3130221",
+   "device": "airsep-visionaire",
+   "complaint": "OXYGEN CONCENTRATOR STARTED SMOKING AND WENT ON FIRE. FIRE EXTINGUISHER WAS USED TO EXTINGUISH FIRE. THERE WERE NO INJURIES OR PROPERTY DAMAGE.",
+   "manufacturer_finding": "DAMAGE WAS LIMITED TO THE ON/OFF SWITCH AND MINIMAL DAMAGE TO THE COMPONENTS IN CLOSE PROXIMITY. BURNING OF THE ON/OFF SWITCH CAN ONLY BE DUPLICATED WHEN THE SWITCH IS EXPOSED TO FLUID, MOST LIKELY WHILE CLEANING THE DEVICE. THE INSTRUCTIONS FOR USE MANUAL WARNS AGAINST USING LIQUIDS DIRECTLY ON THE DEVICE.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "7/7"
+  },
+  {
+   "mdr": "3810682",
+   "device": "airsep-visionaire",
+   "complaint": "VISIONAIRE OXYGEN CONCENTRATOR WAS RUNNING AT 3 LPM, BUT NO FLOW. MACHINE APPEARED NORMAL WITH NO ALARMS. PATIENT HAD RECENTLY BEEN ADMITTED TO THE HOSPITAL IN DISTRESS AND CYANOTIC. WIFE NOTICED THERE WAS NO FLOW IN PREPARING TO BRING HER ",
+   "manufacturer_finding": "DEVICE IS BEING RETURNED TO AIRSEP CORPORATION FOR EVALUATION. A FOLLOW-UP REPORT WILL BE SUBMITTED AFTER THE EVALUATION IS COMPLETED.",
+   "sieve": [
+    "inlet-filter-blocked",
+    "impeded-flow",
+    "sieve-bed-exhaustion"
+   ],
+   "baseline": [
+    "impeded-flow",
+    "sieve-bed-exhaustion",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "13/13"
+  },
+  {
+   "mdr": "3820511",
+   "device": "airsep-newlife",
+   "complaint": "NEWLIFE ELITE OXYGEN CONCENTRATOR PLUGGED IN AND IT WAS NOTICED THAT SMOKE WAS NEAR WHERE THE POWER CORD CONNECTS TO THE DEVICE AND A SMALL FLAME. THE FLAME WAS BLOWN OUT AND THE DEVICE WAS TAKEN OUTSIDE WERE IT STARTED BURNING AND EVENTUAL",
+   "manufacturer_finding": "DEVICE IS BEING RETURNED FOR EVALUATION. A FOLLOW-UP REPORT WILL BE SUBMITTED AFTER THE DEVICE HAS BEEN EVALUATED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "9/9"
+  },
+  {
+   "mdr": "4001240",
+   "device": "airsep-newlife",
+   "complaint": "PT USING A NEWLIFE INTENSITY 10 OXYGEN CONCENTRATOR WHEN IT BEGAN TO SMOKING, STOPPED USING, AND CALLED THE HOMECARE PROVIDER.",
+   "manufacturer_finding": "PRESENTLY COORDINATING AN EVAL OF THE DEVICE. A F/U REPORT WILL BE SENT AFTER THE EVAL HAS BEEN COMPLETED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "inlet-filter-blocked"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "3/5"
+  },
+  {
+   "mdr": "4121135",
+   "device": "airsep-newlife",
+   "complaint": "PT A SLEEP AND WAS USING AN OXYGEN CONCENTRATOR PLUGGED INTO A WALL OUTLET IN HER LIVING ROOM ALONG WITH A LAMP. SHE WAS AWAKENED ABOUT 3:00 AM BY AN ALARM ON THE OXYGEN CONCENTRATOR AND IMMEDIATELY CALLED 911. HER APARTMENT SMOKE ALARM ALS",
+   "manufacturer_finding": "INSPECTION OF THE FIRE SCENE AND OXYGEN CONCENTRATOR BEING COORDINATED. A FOLLOW-UP REPORT WILL BE SUBMITTED AFTER THE EVAL IS COMPLETED.",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "external-ignition-fire",
+    "sieve-bed-exhaustion"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "5/5"
+  },
+  {
+   "mdr": "4457135",
+   "device": "airsep-visionaire",
+   "complaint": "FIRE INVOLVING A VISIONAIRE OXYGEN CONCENTRATOR IN A PT'S HOME. ONLY THE PT WAS PRESENT, WIFE WAS OUT OF THE HOUSE AT THE TIME. SVC TECH FROM (B)(4) PT AT THE PT'S RESIDENCE NOTICED EXTENSIVE FIRE DAMAGE TO THE FRONT CASE AND EVIDENCE OF A ",
+   "manufacturer_finding": "PT WAS SMOKING WHILE USING OXYGEN.",
+   "sieve": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "internal-overheat",
+    "power-cord-thermal"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "5/5"
+  },
+  {
+   "mdr": "4744826",
+   "device": "airsep-newlife",
+   "complaint": "PATIENT CLAIMS THEIR HOUSE HAD MOLECULAR SIEVE ALL OVER IT AND THERE WAS A PILE OF IT LOCATED BEHIND THE CONCENTRATOR. PATIENT WOKE UP WITH ITCHY THROAT AND EYES WERE BURNING.",
+   "manufacturer_finding": "PRESENTLY WAITING FOR THE DEVICE TO RETURN FOR EVALUATION. A FOLLOW-UP REPORT WILL BE SUBMITTED AFTER THE EVALUATION IS COMPLETED.",
+   "sieve": [
+    "sieve-bed-exhaustion",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "baseline": [
+    "inlet-filter-blocked",
+    "impeded-flow",
+    "sieve-bed-exhaustion"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "10/10"
+  },
+  {
+   "mdr": "4877705",
+   "device": "airsep-visionaire",
+   "complaint": "RECEIVED LETTER THAT AIRSTEP MAYBE RESPONSIBLE FOR PROPERTY DAMAGE. PATIENT USING AN AIRSEP OXYGEN CONCENTRATOR HAD A HOUSE FIRE. THE DEVICE MODEL IS UNKNOWN AT THIS TIME. AN INSPECTION OF THE FIRE SCENE IS BEING SCHEDULED.",
+   "manufacturer_finding": "AN INSPECTION OF THE FIRE SCENE WAS STARTED AND STOPPED ON (B)(4) 2015, BECAUSE A MEDICAL BED WAS UNCOVERED WITH EVIDENCE OF ARCING WAS FOUND IN THE WIRING AND ELECTRICAL APPARATUS OF THE BED. THE BED MANUFACTURER IS BEING NOTIFIED AND THE INSPECTION WILL CONTINUE ONCE THE BED MANUFACTURER IS INVOLVED. THE MODEL OF THE OXYGEN CONCENTRATOR IS STILL UNKNOWN AT THIS TIME. THE MODEL OF CONCENTRATOR WA",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "sieve_j1": true,
+   "baseline_j1": true,
+   "sieve_j2": null,
+   "baseline_j2": null,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "11/11"
+  },
+  {
+   "mdr": "4934787",
+   "device": "airsep-newlife",
+   "complaint": "PATIENT WAS USING THE CONCENTRATOR DURING SLEEP AND CLAIMS HE WOKE UP AND HEARD HISSING SOUNDS COMING FROM THE CONCENTRATOR. HE LOOKED AND SAW FLAMES COMING UP THE HOSE FROM OUT OF THE MACHINE. THE FIRE DEPARTMENT WAS CALLED AND THEY EXTING",
+   "manufacturer_finding": "PRESENTLY ARRANGING AN INSPECTION OF THE FIRE SCENE AND DEVICE. A FOLLOW UP REPORT WILL BE SUBMITTED AFTER THE EVALUATION HAS BEEN COMPLETED.",
+   "sieve": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "9/10"
+  },
+  {
+   "mdr": "5974030",
+   "device": "nidek-nuvo",
+   "complaint": "\"OXYGEN HAD STOPPED FLOWING THROUGH THE CONCENTRATOR. THE CONCENTRATOR DID NOT ALARM TO MAKE THE PATIENT AWARE. THE PATIENT WAS AWARE THAT HE WAS NOT WELL. HIS WIFE REPORTED THAT HE HAD COLD EXTREMITIES, CHEST PAIN AND WAS GREY IN COLOUR. T",
+   "manufacturer_finding": "UPON INSPECTION, IT WAS DETERMINED THE DEVICE WAS DAMAGED DUE TO ABNORMAL USE (I.E. BROKEN REGULATOR).",
+   "sieve": [
+    "impeded-flow",
+    "inlet-filter-blocked",
+    "sieve-bed-exhaustion"
+   ],
+   "baseline": [
+    "impeded-flow",
+    "oxygen-sensor-fault",
+    "control-board-fault"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "9/9"
+  },
+  {
+   "mdr": "6020468",
+   "device": "airsep-visionaire",
+   "complaint": "THE COMPANY WAS INFORMED ON SEPTEMBER 13, 2016 OF AN ADVERSE EVENT THAT OCCURRED ON (B)(6) 2016 INVOLVING A VISIONAIRE OXYGEN CONCENTRATOR. THE INCIDENT WAS DESCRIBED TO THE COMPANY AS THE PATIENT LIT A CIGARETTE WHILE WEARING A NASAL CANNU",
+   "manufacturer_finding": "THE UNIT HAS BEEN REQUESTED TO BE RETURNED, BUT THE REQUEST HAS BEEN DENIED. THE COMPANY WILL CONTINUE TO REQUEST THE UNIT FOR RETURN AND INSPECTION. IF FURTHER INFORMATION IS GATHERED REGARDING THIS CASE, A FOLLOWUP REPORT WILL BE SUBMITTED. USER FACILITY WILL NOT RETURN.",
+   "sieve": [
+    "external-ignition-fire",
+    "power-cord-thermal",
+    "internal-overheat"
+   ],
+   "baseline": [
+    "external-ignition-fire",
+    "impeded-flow",
+    "sieve-bed-exhaustion"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "8/9"
+  },
+  {
+   "mdr": "7052892",
+   "device": "airsep-visionaire",
+   "complaint": "PATIENT CLAIMED THAT THE UNIT WAS LOUD. UNIT BROUGHT TO SHOP. ONCE OPENED UP THE CUSTOMER SAW THAT THE WIRES WERE MELTED THROUGH AND HAD MADE CONTACT WITH THE COMPRESSOR. THE CUSTOMER STATED THAT  THE UNIT PRODUCED O2 @ 95%. THE ONLY ISSUE ",
+   "manufacturer_finding": "DEVICE WAS RETURNED FOR EVALUATION. THE USER COMPLAINT REGARDING LOUD SOUNDS EMANATING FROM THE UNIT AND THE DAMAGE FOUND ON THE COMPRESSOR BY THE COSTUMER CAN BE EXPLAINED BY THE MISSING MOUNTING SPRING ON THE COMPRESSOR BASE. AN UNSTABLE COMPRESSOR COULD VIBRATE AGAINST THE CONCENTRATOR'S CASING, CAUSING LOUD NOISES, AND IT COULD ALSO VIBRATE AGAINST THE COMPRESSOR LEADS, CAUSING THE ABRASIVE DA",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": null,
+   "baseline_j2": null,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "6/6"
+  },
+  {
+   "mdr": "7068228",
+   "device": "airsep-visionaire",
+   "complaint": "UNIT WAS SENT IN FOR REPAIR FOR \"NOT WORKING- NO SPECIFICS PROVIDED\". ONCE RECEIVED IN, HEAT DAMAGE WAS NOTICED AND CASE WAS CHANGED FROM RFR TO MDR. NO SIGNS OF FIRE, BUT SIGNS OF HEAT.",
+   "manufacturer_finding": "THE UNIT WAS RETURNED FOR EVALUATION. HEAT DAMAGE WAS OBSERVED ON THE COMPRESSOR CHAMBER. NO FAILED COMPONENTS SUCH AS THE FAN WERE OBSERVED THAT COULD HAVE CAUSED THIS DAMAGE. NO BLOCKED COOLING DUCTS OR OPENINGS WERE OBSERVED. NO INDICATIONS OF FIRE WERE OBSERVED. A LEAK IN THE MIXING TANK TEST PORT TUBE WAS OBSERVED. THIS IS EXPECTED TO BE THE CAUSE OF THE FAILING PURITY READINGS OBSERVED DURIN",
+   "sieve": [
+    "internal-overheat",
+    "power-cord-thermal",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "internal-overheat",
+    "compressor-wear",
+    "inlet-filter-blocked"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": true,
+   "sieve_j2": true,
+   "baseline_j2": null,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "6/7"
+  },
+  {
+   "mdr": "7138044",
+   "device": "airsep-visionaire",
+   "complaint": "DOES NOT RUN WELL, \"SOUNDS LIKE IT'S ABOUT TO BEAT ITSELF TO DEATH\". PLUGGED UNIT IN AND RAN, AFTER A FEW SECONDS GOT A \"BURNING WIRE SMELL\". UNIT HAS 4514 HOURS.",
+   "manufacturer_finding": "THE UNIT HAS BEEN RETURNED FOR EVALUATION. IF ANY NEW INFORMATION IS DISCOVERED, A FOLLOWUP REPORT WILL BE SUBMITTED. THE UNIT WAS RETURNED FOR EVALUATION. BASED ON THE RESULTS OF THIS TESTING, THE INITIAL COMPLAINT APPEARS TO HAVE BEEN CAUSED BY A FAULTY POWER SWITCH. AN INTERNAL SHORT IN THIS COMPONENT CAUSED THE RAPID POWER CYCLING THAT WAS ORIGINALLY OBSERVED. THIS ALSO CAUSED EXCESSIVE HEAT T",
+   "sieve": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "external-ignition-fire"
+   ],
+   "baseline": [
+    "power-cord-thermal",
+    "internal-overheat",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": true,
+   "sieve_stop_shown": true,
+   "sieve_citations": "8/8"
+  },
+  {
+   "mdr": "7470398",
+   "device": "airsep-visionaire",
+   "complaint": "CUSTOMER REPORT SIEVE DUSTING WHILE USING THE MACHINE.  MADE HIM FEEL REALLY BAD AND COUGHING A LOT.",
+   "manufacturer_finding": "THE UNIT HAS BEEN RETURNED FOR EVALUATION. IF ANY NEW INFORMATION IS DISCOVERED, A FOLLOWUP REPORT WILL BE SUBMITTED. UNIT WAS RETURNED FOR EVALUATION. THE DUSTING DESCRIBED BY THE ADVERSE EVENT FORM COULD NOT BE DETECTED WHILE TESTING THE VISIONAIRE OXYGEN CONCENTRATOR IN QUESTION. VISUAL INSPECTIONS OF THE OUTSIDE AND INSIDE OF THE UNIT DID NOT FIND ANY DAMAGE OR ANY ACCUMULATIONS OF DUST. ADDIT",
+   "sieve": [
+    "sieve-bed-exhaustion",
+    "inlet-filter-blocked"
+   ],
+   "baseline": [
+    "inlet-filter-blocked",
+    "sieve-bed-exhaustion",
+    "impeded-flow"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": false,
+   "baseline_j2": false,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "10/10"
+  },
+  {
+   "mdr": "7635708",
+   "device": "nidek-nuvo",
+   "complaint": "\"THE PATIENT WAS HOSPITALIZED AS IT WAS INDICATED THAT THE STATIONARY NIDEK WAS NOT PUTTING OUT OXYGEN. PER THE PATIENT, THE UNIT DID NOT ALARM.\"",
+   "manufacturer_finding": "DEVICE SERVICED BY NIDEK MEDICAL ON 9/28/16 AT 9,679.7 OPERATIONAL HOURS. AFTER SERVICING, DEVICE WAS RETURNED TO INOGEN MEETING ALL REQUIRED SPECIFICATIONS. AFTER REPORTED EVENT, THE DEVICE WAS RETURNED WITH 23,296 OPERATIONAL HOURS. NIDEK REQUESTED SERVICING INFORMATION FROM INOGEN AND WAS INFORMED \"WE (INOGEN) ACTUALLY DO NOT PROVIDE ANY SERVICE TO THESE TYPES OF UNITS - WE SIMPLY DO OXYGEN PUR",
+   "sieve": [
+    "inlet-filter-blocked",
+    "sieve-bed-exhaustion",
+    "oxygen-sensor-fault"
+   ],
+   "baseline": [
+    "impeded-flow",
+    "oxygen-sensor-fault",
+    "compressor-wear"
+   ],
+   "sieve_j1": false,
+   "baseline_j1": false,
+   "sieve_j2": null,
+   "baseline_j2": null,
+   "fire_in_complaint": false,
+   "sieve_stop_shown": false,
+   "sieve_citations": "10/10"
+  }
+ ]
+}

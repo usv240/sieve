@@ -94,21 +94,6 @@ def benchmarks_with_model(pipe: SievePipeline, n_a: int, n_b: int) -> tuple[dict
 
     cases = [m for m in maude if m["event_description"] and m["manufacturer_narrative"] and _dev(m)][:n_b]
     integ_total = integ_ok = 0
-    agree_n = agree_ok = 0
-
-    def _agrees(hyps: list[str], finding: str) -> bool | None:
-        """Blind Nemotron 3 Super judge: does any Sieve hypothesis name the same failure the manufacturer found?"""
-        from sieve_llm import Tier
-
-        try:
-            r = pipe.client.chat(Tier.MID, [
-                {"role": "system", "content": "You grade a repair assistant. Answer with exactly one word: YES if any candidate hypothesis names the same failing component or failure mode as the manufacturer's finding (synonyms count), otherwise NO. Answer NO if the manufacturer found no fault or could not determine one."},
-                {"role": "user", "content": f"MANUFACTURER FINDING: {finding[:1200]}\n\nCANDIDATE HYPOTHESES: {', '.join(hyps) or '(none)'}"},
-            ], purpose="eval:bench_b_judge", max_tokens=5, temperature=0.0)
-            txt = (r.choices[0].message.content or "").strip().upper()
-            return txt.startswith("YES") if txt else None
-        except Exception:  # noqa: BLE001
-            return None
     for m in cases:
         dev = _dev(m)
         if not dev:
@@ -122,13 +107,8 @@ def benchmarks_with_model(pipe: SievePipeline, n_a: int, n_b: int) -> tuple[dict
         integ_total += c.get("total", 0)
         integ_ok += c.get("verified", 0)
         hyps = [h.fault_id for h in (res.tree.hypotheses if res.tree else [])]
-        verdict = _agrees(hyps, m["manufacturer_narrative"])
-        if verdict is not None:
-            agree_n += 1
-            agree_ok += verdict
-        rows.append({"mdr": m["mdr_report_key"], "device": dev, "hypotheses": ";".join(hyps), "manufacturer_finding": m["manufacturer_narrative"][:160], "judge_agrees": {True: "yes", False: "no", None: "n/a"}[verdict], "citations_verified": f"{c.get('verified')}/{c.get('total')}"})
+        rows.append({"mdr": m["mdr_report_key"], "device": dev, "hypotheses": ";".join(hyps), "manufacturer_finding": m["manufacturer_narrative"][:160], "citations_verified": f"{c.get('verified')}/{c.get('total')}"})
     summary["citation_integrity"] = {"value": _pct(integ_ok, integ_total), "unit": "%", "label": "Citation integrity", "note": f"{integ_ok} of {integ_total} quotes found verbatim on the cited page (benchmark B subset, n={len(rows)})"}
-    summary["bench_b_agreement"] = {"value": _pct(agree_ok, agree_n), "unit": "%", "label": "Benchmark B: hypothesis matches manufacturer finding", "note": f"{agree_ok} of {agree_n} real openFDA complaints where a blind Nemotron 3 Super judge found a Sieve hypothesis naming the manufacturer's own finding; many MAUDE narratives report no fault found, which counts as a miss"}
     return summary, rows
 
 
@@ -163,7 +143,7 @@ def run(out: Path = typer.Option(ROOT / "eval/results"), n_b: int = typer.Option
         pipe = SievePipeline(client, store)
         s, rows = benchmarks_with_model(pipe, 0, n_b)
         summary |= s
-        sections.append({"name": "Benchmark B: openFDA MAUDE (subset)", "description": "Real malfunction complaints to Sieve hypotheses, alongside the manufacturer's own finding. A blind Nemotron 3 Super judge marks whether any hypothesis names the manufacturer's finding; citation integrity is deterministic.", "columns": ["mdr", "device", "hypotheses", "manufacturer_finding", "judge_agrees", "citations_verified"], "rows": rows})
+        sections.append({"name": "Citation integrity on 20 openFDA complaints (live in every make eval)", "description": "The first 20 MAUDE complaints for two brands, run through Sieve on every eval. Only citation integrity is scored here; hypothesis accuracy is measured by the pre-registered Benchmark B below.", "columns": ["mdr", "device", "hypotheses", "manufacturer_finding", "citations_verified"], "rows": rows})
         summary["cost_usd"] = {"value": round(sum(v["usd"] for v in client.ledger.totals().values()), 4), "unit": "", "label": "Ledger total (USD)", "note": "all Token Factory calls recorded in data/ledger.db"}
     else:
         summary["benchmarks"] = {"value": None, "label": "Benchmarks A and B", "note": "need NEBIUS_API_KEY; not run"}
@@ -181,6 +161,24 @@ def run(out: Path = typer.Option(ROOT / "eval/results"), n_b: int = typer.Option
                 a2, kp = a["accuracy_second_judge"], a.get("judge_agreement_kappa") or {}
                 summary["bench_a_second_judge"] = {"value": a2.get("sieve"), "unit": "%", "label": "Benchmark A: Sieve, second judge", "note": f"{a.get('second_judge')} grading the same stored answers: chunk-RAG {a2.get('chunk-rag')}%, zero-shot {a2.get('nano-zero-shot')}%; Cohen's kappa between judges on Sieve answers {kp.get('sieve')}"}
             sections.append({"name": "Benchmark A: INGENZI held-out (competitor's own dataset)", "description": "Three systems answer the same 300 questions from the closest prior work's published dataset (CC BY-NC 4.0). A blind Nemotron 3 Super judge grades each against the reference. Sieve is the only system whose answers carry a verified citation.", "columns": ["id", "question", "sieve", "chunk-rag", "nano-zero-shot", "sieve_cite_verified"], "rows": [{k: r.get(k) for k in ("id", "question", "sieve", "chunk-rag", "nano-zero-shot", "sieve_cite_verified")} for r in a["rows"]]})
+    bb = out / "bench_b_v2.json"
+    if bb.exists():
+        b = json.loads(bb.read_text(encoding="utf-8"))
+        if not b.get("partial") and b.get("agreement"):
+            ag, ag2, kp = b["agreement"], b.get("agreement_second_judge") or {}, b.get("kappa") or {}
+            import re as _re
+
+            nofind = _re.compile(r"BEING EVALUATED|FOLLOW-UP REPORT WILL BE|WILL BE SUBMITTED|UDI RELATED DATA QUALITY|INCORREC|SUPPLEMENTAL (FILING|REPORT)|RETURNING TO|INVESTIGATION (IS )?(ONGOING|IN PROGRESS|COMPLETE\. INOGEN WILL)|EVALUATION (IS )?(ONGOING|IN PROGRESS|PENDING)|NOT YET", _re.IGNORECASE)
+            real = [r for r in b["rows"] if not nofind.search(r["manufacturer_finding"])]
+
+            def _p(rs: list[dict], k: str) -> float | None:
+                v = [r[k] for r in rs if r[k] is not None]
+                return round(100 * sum(v) / len(v), 1) if v else None
+
+            summary["bench_b_fire_stop"] = {"value": f"{b['fire_stop_shown']}/{b['fire_reports']}", "unit": "", "label": "Benchmark B: fire reports removed from service", "note": f"real openFDA reports describing smoke, fire, burning or heat where Sieve showed the remove-from-service stop before any step (n={b['n']} pre-registered records)"}
+            summary["bench_b_sieve"] = {"value": ag.get("sieve"), "unit": "%", "label": "Benchmark B: root cause matches manufacturer", "note": f"pre-registered, n={b['n']}. Nano zero-shot baseline {ag.get('baseline_nano_zero_shot')}%. Second judge: Sieve {ag2.get('sieve')}%, baseline {ag2.get('baseline_nano_zero_shot')}%; kappa {kp.get('sieve')}. Post hoc, on the {len(real)} records whose narrative names a finding: Sieve {_p(real, 'sieve_j1')}%, baseline {_p(real, 'baseline_j1')}%"}
+            summary["bench_b_citation"] = {"value": b.get("citation_integrity_sieve"), "unit": "%", "label": "Benchmark B citation integrity", "note": f"quotes found on the cited manual page across all {b['n']} pre-registered records"}
+            sections.append({"name": "Benchmark B v2: openFDA malfunction reports (pre-registered)", "description": "Selection, systems and scoring were committed in eval/PREREG-benchmark-b.md before the run. Both systems name faults from the same list; a blind Nemotron 3 Super judge and a DeepSeek judge mark whether any named fault matches the manufacturer's investigation. Root cause from the complaint text alone is hard for both: manufacturers find capacitors and connectors by teardown. What Sieve must do with a fire report is stop, and it did on every one.", "columns": ["mdr", "device", "sieve", "baseline", "sieve_j1", "baseline_j1", "sieve_j2", "baseline_j2", "fire_in_complaint", "sieve_stop_shown", "manufacturer_finding"], "rows": [{**{k: r.get(k) for k in ("mdr", "device", "sieve_j1", "baseline_j1", "sieve_j2", "baseline_j2", "fire_in_complaint", "sieve_stop_shown")}, "sieve": ", ".join(r["sieve"]), "baseline": ", ".join(r["baseline"]), "manufacturer_finding": r["manufacturer_finding"][:160]} for r in b["rows"]]})
     od = out / "offline_delta.json"
     if od.exists():
         d = json.loads(od.read_text(encoding="utf-8"))

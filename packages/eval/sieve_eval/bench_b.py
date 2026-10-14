@@ -86,7 +86,7 @@ def judge_primary(client: TokenFactoryClient, finding: str, cands: str) -> bool 
 def judge_second(key: str, finding: str, cands: str) -> bool | None:
     try:
         r = httpx.post(f"{SECOND_BASE}chat/completions", headers={"Authorization": f"Bearer {key}"}, timeout=120, json={
-            "model": SECOND_JUDGE, "temperature": 0, "max_tokens": 400,
+            "model": SECOND_JUDGE, "temperature": 0, "max_tokens": 2500,
             "messages": [{"role": "system", "content": JUDGE}, {"role": "user", "content": f"MANUFACTURER FINDING: {finding[:1500]}\n\nCANDIDATES: {cands}"}],
         })
         txt = (r.json()["choices"][0]["message"]["content"] or "").strip().upper()
