@@ -30,15 +30,15 @@ Set `SIEVE_REQUIRE_KEY=1` as well if you want every `/v1/*` call to carry an `X-
 
 ## Web on Vercel (Next.js)
 
-The web app is its own Vercel project with Root Directory `apps/web`. Because the repo root is also linked (to the API project), the CLI must be told which project to target when deploying from `apps/web`:
+The web app is its own Vercel project (`sieve`, Root Directory `apps/web`, env `NEXT_PUBLIC_API_BASE=https://sieve-api.vercel.app`).
 
-```
-cd apps/web
-VERCEL_ORG_ID=team_DpFHpLDAlHwwTjTMWbQ0D2CP VERCEL_PROJECT_ID=prj_OYNaGaOvqgTYySsgvi3bsXrXnDtK vercel env add NEXT_PUBLIC_API_BASE production   # paste https://sieve-api.vercel.app
-VERCEL_ORG_ID=team_DpFHpLDAlHwwTjTMWbQ0D2CP VERCEL_PROJECT_ID=prj_OYNaGaOvqgTYySsgvi3bsXrXnDtK vercel deploy --prod --yes
-```
+## How deploys happen
 
-Put the two variables inline on each command rather than exporting them. Without them the CLI resolves the nearest git-root link and overwrites the API project with the web build; if they stay exported, the next API deploy from the repo root lands on the web project instead. After any deploy, check both hosts: `curl -I https://sieve-api.vercel.app/health` and the web root should both return 200.
+All four projects are connected to GitHub, so `git push origin main` deploys everything: the `sieve` project builds `apps/web`, the `sieve-api` project builds the FastAPI service from the repo root. No CLI step is needed.
+
+If you deploy by CLI, run it only from the repo root with the API project linked there (`.vercel/project.json` names `sieve-api`). Do not run `vercel deploy` from `apps/web` and do not change the web project's Root Directory back to `.`: with Root Directory `.` a git push built the API onto the web domain (this happened on 2026-10-14 and was fixed by setting Root Directory to `apps/web`).
+
+After any deploy, check both hosts: `curl -I https://sieve-api.vercel.app/health` should be 200 and `https://sieve-kappa.vercel.app/` should return the landing page.
 
 Locally `apps/web/.env.local` keeps `NEXT_PUBLIC_API_BASE=http://localhost:8000`.
 
