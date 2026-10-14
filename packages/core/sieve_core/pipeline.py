@@ -150,6 +150,14 @@ class SievePipeline:
         if parts:
             out["parts"] = find_parts(parts[0].part_number or parts[0].name, dev["model"] if dev else None, ledger=ledger, trace_id=trace_id)
             out["parts"]["for"] = parts[0].name
+        elif tree and tree.hypotheses:
+            # No part number from the manual pages: fall back to the registry's parts hint for the top hypothesis.
+            top = self.registry.faults.get(tree.hypotheses[0].fault_id, {})
+            hint = top.get("parts_hint")
+            if hint and dev:
+                part = hint.split(",")[0]
+                out["parts"] = find_parts(part, f"{dev['manufacturer']} {dev['model']}", ledger=ledger, trace_id=trace_id)
+                out["parts"]["for"] = f"{part} ({top.get('name', tree.hypotheses[0].fault_id)})"
         if dev and not self.store.doc_ids_for(dev["id"], None):
             out["manual"] = find_manual(dev["model"], dev["manufacturer"], ledger=ledger, trace_id=trace_id)
         return out
