@@ -24,7 +24,7 @@ export function SiteHeader() {
           </Link>
           <nav aria-label="Primary" className="order-last flex w-full gap-1 overflow-x-auto sm:order-none sm:w-auto">
             {nav.map((n) => (
-              <Link key={n.href} href={n.href} className="rounded-lg px-3 py-2 text-sm text-fg-muted hover:bg-bg-elev hover:text-fg">
+              <Link key={n.href} href={n.href} className="shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-sm text-fg-muted hover:bg-bg-elev hover:text-fg">
                 {n.label}
               </Link>
             ))}

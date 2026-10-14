@@ -94,6 +94,21 @@ def benchmarks_with_model(pipe: SievePipeline, n_a: int, n_b: int) -> tuple[dict
 
     cases = [m for m in maude if m["event_description"] and m["manufacturer_narrative"] and _dev(m)][:n_b]
     integ_total = integ_ok = 0
+    agree_n = agree_ok = 0
+
+    def _agrees(hyps: list[str], finding: str) -> bool | None:
+        """Blind Nemotron 3 Super judge: does any Sieve hypothesis name the same failure the manufacturer found?"""
+        from sieve_llm import Tier
+
+        try:
+            r = pipe.client.chat(Tier.MID, [
+                {"role": "system", "content": "You grade a repair assistant. Answer with exactly one word: YES if any candidate hypothesis names the same failing component or failure mode as the manufacturer's finding (synonyms count), otherwise NO. Answer NO if the manufacturer found no fault or could not determine one."},
+                {"role": "user", "content": f"MANUFACTURER FINDING: {finding[:1200]}\n\nCANDIDATE HYPOTHESES: {', '.join(hyps) or '(none)'}"},
+            ], purpose="eval:bench_b_judge", max_tokens=5, temperature=0.0)
+            txt = (r.choices[0].message.content or "").strip().upper()
+            return txt.startswith("YES") if txt else None
+        except Exception:  # noqa: BLE001
+            return None
     for m in cases:
         dev = _dev(m)
         if not dev:
@@ -106,8 +121,14 @@ def benchmarks_with_model(pipe: SievePipeline, n_a: int, n_b: int) -> tuple[dict
         c = res.citation_report or {}
         integ_total += c.get("total", 0)
         integ_ok += c.get("verified", 0)
-        rows.append({"mdr": m["mdr_report_key"], "device": dev, "hypotheses": ";".join(h.fault_id for h in (res.tree.hypotheses if res.tree else [])), "manufacturer_finding": m["manufacturer_narrative"][:160], "citations_verified": f"{c.get('verified')}/{c.get('total')}"})
+        hyps = [h.fault_id for h in (res.tree.hypotheses if res.tree else [])]
+        verdict = _agrees(hyps, m["manufacturer_narrative"])
+        if verdict is not None:
+            agree_n += 1
+            agree_ok += verdict
+        rows.append({"mdr": m["mdr_report_key"], "device": dev, "hypotheses": ";".join(hyps), "manufacturer_finding": m["manufacturer_narrative"][:160], "judge_agrees": {True: "yes", False: "no", None: "n/a"}[verdict], "citations_verified": f"{c.get('verified')}/{c.get('total')}"})
     summary["citation_integrity"] = {"value": _pct(integ_ok, integ_total), "unit": "%", "label": "Citation integrity", "note": f"{integ_ok} of {integ_total} quotes found verbatim on the cited page (benchmark B subset, n={len(rows)})"}
+    summary["bench_b_agreement"] = {"value": _pct(agree_ok, agree_n), "unit": "%", "label": "Benchmark B: hypothesis matches manufacturer finding", "note": f"{agree_ok} of {agree_n} real openFDA complaints where a blind Nemotron 3 Super judge found a Sieve hypothesis naming the manufacturer's own finding; many MAUDE narratives report no fault found, which counts as a miss"}
     return summary, rows
 
 
@@ -142,7 +163,7 @@ def run(out: Path = typer.Option(ROOT / "eval/results"), n_b: int = typer.Option
         pipe = SievePipeline(client, store)
         s, rows = benchmarks_with_model(pipe, 0, n_b)
         summary |= s
-        sections.append({"name": "Benchmark B: openFDA MAUDE (subset)", "description": "Real malfunction complaints to Sieve hypotheses, alongside the manufacturer's own finding. Scoring rubric and LLM judge to follow; citation integrity is deterministic.", "columns": ["mdr", "device", "hypotheses", "manufacturer_finding", "citations_verified"], "rows": rows})
+        sections.append({"name": "Benchmark B: openFDA MAUDE (subset)", "description": "Real malfunction complaints to Sieve hypotheses, alongside the manufacturer's own finding. A blind Nemotron 3 Super judge marks whether any hypothesis names the manufacturer's finding; citation integrity is deterministic.", "columns": ["mdr", "device", "hypotheses", "manufacturer_finding", "judge_agrees", "citations_verified"], "rows": rows})
         summary["cost_usd"] = {"value": round(sum(v["usd"] for v in client.ledger.totals().values()), 4), "unit": "", "label": "Ledger total (USD)", "note": "all Token Factory calls recorded in data/ledger.db"}
     else:
         summary["benchmarks"] = {"value": None, "label": "Benchmarks A and B", "note": "need NEBIUS_API_KEY; not run"}

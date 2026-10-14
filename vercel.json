@@ -5,8 +5,20 @@
       "root": ".",
       "framework": "fastapi",
       "entrypoint": "index:app",
-      "functions": { "index.py": { "maxDuration": 300 } }
+      "functions": {
+        "index.py": {
+          "maxDuration": 300,
+          "includeFiles": "{data/index,data/external,data/samples,eval/results}/**"
+        }
+      }
     }
   },
-  "rewrites": [{ "source": "/(.*)", "destination": { "service": "api" } }]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "api"
+      }
+    }
+  ]
 }

@@ -8,3 +8,4 @@ pymupdf>=1.24
 rapidfuzz>=3.10
 rich>=13.9
 typer>=0.12
+tavily-python>=0.5
