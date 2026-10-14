@@ -27,9 +27,11 @@ Working scaffold with a real index and a real evaluation. Model-dependent stages
 | Extraction, intake, drafting | `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B`, `nvidia/Nemotron-3_5-Lightning` | Nebius Token Factory (EU) |
 | Fault-tree synthesis | `nvidia/nemotron-3-super-120b-a12b` | Nebius Token Factory (US) |
 | Whole-manual audit | `nvidia/Nemotron-3-Ultra-550b-a55b` (1M context) | Nebius Token Factory (US) |
-| Nameplate and panel reading | `nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL` on vLLM | Nebius Serverless Endpoint (`infra/endpoint-vl`), fallback to Token Factory image2text |
-| Corpus ingestion | PyMuPDF, Nemotron embed-vl and rerank-vl | Nebius Serverless Job (`infra/job-ingest`) or laptop |
-| Live lookups | Tavily search and extract | Tavily API |
+| Nameplate and panel reading | Token Factory image models, `openbmb/MiniCPM-V-4_5` first (2.6 s measured on a nameplate) | Nebius Token Factory. The NVIDIA Nemotron Nano VL endpoint (`infra/endpoint-vl`) is ready but needs AI Cloud billing, so it is not used in the demo. |
+| Hybrid retrieval | `Qwen/Qwen3-Embedding-8B` embeddings over 2,994 concentrator pages, fused with BM25 | Nebius Token Factory; embedded in 352 s |
+| Corpus ingestion | PyMuPDF plus Tavily extract for web-sourced manuals | Laptop (33 s). Serverless Job manifest in `infra/job-ingest` ready for AI Cloud |
+| Live lookups and manual discovery | Tavily search, extract, map | Tavily API. When a known device has no manual, Sieve finds one, extracts it, indexes it and retrieves from it in the same request |
+| Agent surfaces | MCP server with 6 tools (`apps/mcp`); Hermes Agent on Nemotron 3 Super via Token Factory (`infra/hermes`); OpenShell sandbox policy (`infra/openshell`) | Verified: MCP over stdio, Hermes calling Sieve tools end to end. OpenShell run prepared, not yet executed |
 | Recalls and known problems | openFDA device/recall and MAUDE (CC0) | snapshot in `data/external` |
 
 Every call is written to a ledger (tier, model, tokens, USD, latency) and shown in the app's Trace panel.
@@ -37,6 +39,13 @@ Every call is written to a ledger (tier, model, tokens, USD, latency) and shown 
 ## Screenshots
 
 Light and dark, same page: `docs/screenshots/landing-light.jpg`, `docs/screenshots/landing-dark.jpg`. Live fix with citations and Trace: `docs/screenshots/try-fix-dark.jpg`. Evals page: `docs/screenshots/evals-light.jpg`.
+
+## Ecosystem, verified
+
+- **MCP**: `apps/mcp/sieve_mcp.py` exposes list_devices, identify_device, identify_from_photo, analyze_fault, read_manual_page, file_work_order. Any MCP client can drive a full diagnosis.
+- **Hermes Agent**: with the config in `infra/hermes`, `hermes -z "DeVilbiss 525, red light beeping. Use the sieve tools."` makes Nemotron 3 Super on Nebius call identify_device and analyze_fault and answer with the cited page. Hermes also bridges WhatsApp and Telegram, which is how field staff actually communicate.
+- **OpenShell / NemoClaw**: `infra/openshell/policy.yaml` restricts the agent to four egress hosts with brokered credentials. Prepared, pending a Linux or WSL2 run.
+- **Tavily**: search, extract and map are runtime calls, logged in the Trace next to the model calls.
 
 ## Quick start
 

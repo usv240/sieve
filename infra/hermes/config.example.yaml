@@ -1,0 +1,18 @@
+# Hermes Agent config for the Sieve demo.
+# Hermes 0.19 predates the built-in nebius-token-factory provider, so Token Factory is wired as a custom
+# OpenAI-compatible endpoint. Super and Ultra are served from the US base URL.
+model:
+  provider: custom
+  base_url: https://api.tokenfactory.us-central1.nebius.com/v1
+  key_env: NEBIUS_API_KEY
+  default: nvidia/nemotron-3-super-120b-a12b
+  context_length: 131072
+
+mcp_servers:
+  sieve:
+    command: "<path-to-sieve>/.venv/Scripts/python.exe"
+    args: ["<path-to-sieve>/apps/mcp/sieve_mcp.py"]
+    env:
+      NEBIUS_API_KEY: "${NEBIUS_API_KEY}"
+      TAVILY_API_KEY: "${TAVILY_API_KEY}"
+      PYTHONIOENCODING: "utf-8"
