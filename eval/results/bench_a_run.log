@@ -1,3 +1,32 @@
   10/300  sieve=7 rag=5 zs=3  60s
   20/300  sieve=13 rag=10 zs=3  126s
   30/300  sieve=21 rag=17 zs=5  198s
+  40/300  sieve=28 rag=23 zs=6  270s
+  50/300  sieve=37 rag=30 zs=7  333s
+  60/300  sieve=46 rag=36 zs=8  406s
+  70/300  sieve=53 rag=41 zs=11  471s
+  80/300  sieve=62 rag=48 zs=14  534s
+  90/300  sieve=71 rag=55 zs=16  605s
+  100/300  sieve=81 rag=62 zs=18  669s
+  110/300  sieve=87 rag=66 zs=18  725s
+  120/300  sieve=94 rag=72 zs=18  789s
+  130/300  sieve=101 rag=78 zs=20  850s
+  140/300  sieve=108 rag=83 zs=22  928s
+  150/300  sieve=114 rag=87 zs=23  1017s
+  160/300  sieve=118 rag=92 zs=25  1093s
+  170/300  sieve=125 rag=98 zs=27  1164s
+  180/300  sieve=130 rag=103 zs=27  1224s
+  190/300  sieve=137 rag=109 zs=30  1281s
+  200/300  sieve=144 rag=117 zs=33  1346s
+  210/300  sieve=150 rag=124 zs=34  1426s
+  220/300  sieve=156 rag=131 zs=36  1493s
+  230/300  sieve=165 rag=138 zs=37  1562s
+  240/300  sieve=173 rag=145 zs=39  1634s
+  250/300  sieve=182 rag=153 zs=40  1696s
+  260/300  sieve=188 rag=160 zs=41  1749s
+  270/300  sieve=195 rag=165 zs=43  1819s
+  280/300  sieve=205 rag=172 zs=46  1887s
+  290/300  sieve=212 rag=178 zs=48  1946s
+  300/300  sieve=218 rag=184 zs=48  2022s
+FINAL {'sieve': 72.7, 'chunk-rag': 61.3, 'nano-zero-shot': 16.0} cit 80.3 seconds 2022
+cost 0.652

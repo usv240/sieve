@@ -1,0 +1,62 @@
+{
+ "hazard_gated": {
+  "value": 100.0,
+  "unit": "%",
+  "label": "Hazardous requests gated",
+  "note": "20 of 20 blocked, rewritten or escalated by rules, no model involved"
+ },
+ "false_stops": {
+  "value": 0.0,
+  "unit": "%",
+  "label": "False stops on benign steps",
+  "note": "0 of 10; target 0"
+ },
+ "out_of_corpus": {
+  "value": 100.0,
+  "unit": "%",
+  "label": "Unknown devices refused",
+  "note": "10 of 10 not matched to a registry device; no steps invented"
+ },
+ "retrieval_top5": {
+  "value": 100.0,
+  "unit": "%",
+  "label": "Cited page in top 5",
+  "note": "10 of 10 registry indicators retrieve their own manual page"
+ },
+ "citation_integrity": {
+  "value": 87.7,
+  "unit": "%",
+  "label": "Citation integrity",
+  "note": "114 of 130 quotes found verbatim on the cited page (benchmark B subset, n=20)"
+ },
+ "cost_usd": {
+  "value": 0.4085,
+  "unit": "",
+  "label": "Ledger total (USD)",
+  "note": "all Token Factory calls recorded in data/ledger.db"
+ },
+ "bench_a_sieve": {
+  "value": 72.7,
+  "unit": "%",
+  "label": "Benchmark A: Sieve",
+  "note": "INGENZI held-out n=300, blind Nemotron 3 Super judge; cited and verified answers"
+ },
+ "bench_a_chunk_rag": {
+  "value": 61.3,
+  "unit": "%",
+  "label": "Baseline: plain retrieval + Nano",
+  "note": "same questions, same retrieved pages, no citation constraint, no verifier"
+ },
+ "bench_a_zero_shot": {
+  "value": 16.0,
+  "unit": "%",
+  "label": "Baseline: Nano zero-shot",
+  "note": "no retrieval"
+ },
+ "bench_a_citation": {
+  "value": 80.3,
+  "unit": "%",
+  "label": "Benchmark A citation integrity",
+  "note": "share of Sieve answers whose quote was found on the cited page"
+ }
+}

@@ -146,6 +146,24 @@ def run(out: Path = typer.Option(ROOT / "eval/results"), n_b: int = typer.Option
         summary["cost_usd"] = {"value": round(sum(v["usd"] for v in client.ledger.totals().values()), 4), "unit": "", "label": "Ledger total (USD)", "note": "all Token Factory calls recorded in data/ledger.db"}
     else:
         summary["benchmarks"] = {"value": None, "label": "Benchmarks A and B", "note": "need NEBIUS_API_KEY; not run"}
+    # Benchmark A (INGENZI, three systems, blind judge) is run separately because it takes ~35 minutes; fold in the latest result.
+    ba = out / "bench_a_300.json"
+    if ba.exists():
+        a = json.loads(ba.read_text(encoding="utf-8"))
+        if not a.get("partial") and a.get("accuracy"):
+            acc = a["accuracy"]
+            summary["bench_a_sieve"] = {"value": acc.get("sieve"), "unit": "%", "label": "Benchmark A: Sieve", "note": f"INGENZI held-out n={a['n']}, blind Nemotron 3 Super judge; cited and verified answers"}
+            summary["bench_a_chunk_rag"] = {"value": acc.get("chunk-rag"), "unit": "%", "label": "Baseline: plain retrieval + Nano", "note": "same questions, same retrieved pages, no citation constraint, no verifier"}
+            summary["bench_a_zero_shot"] = {"value": acc.get("nano-zero-shot"), "unit": "%", "label": "Baseline: Nano zero-shot", "note": "no retrieval"}
+            summary["bench_a_citation"] = {"value": a.get("citation_integrity_sieve"), "unit": "%", "label": "Benchmark A citation integrity", "note": "share of Sieve answers whose quote was found on the cited page"}
+            sections.append({"name": "Benchmark A: INGENZI held-out (competitor's own dataset)", "description": "Three systems answer the same 300 questions from the closest prior work's published dataset (CC BY-NC 4.0). A blind Nemotron 3 Super judge grades each against the reference. Sieve is the only system whose answers carry a verified citation.", "columns": ["id", "question", "sieve", "chunk-rag", "nano-zero-shot", "sieve_cite_verified"], "rows": [{k: r.get(k) for k in ("id", "question", "sieve", "chunk-rag", "nano-zero-shot", "sieve_cite_verified")} for r in a["rows"]]})
+    od = out / "offline_delta.json"
+    if od.exists():
+        d = json.loads(od.read_text(encoding="utf-8"))
+        off, cl = d.get("offline", {}), d.get("cloud", {})
+        if off.get("citation_integrity") is not None:
+            summary["offline_citation"] = {"value": off["citation_integrity"], "unit": "%", "label": "Offline citation integrity", "note": f"{off.get('model')} on the laptop GPU; cloud pipeline on the same ten cases: {cl.get('citation_integrity')}%"}
+            sections.append({"name": "Offline versus cloud", "description": "Ten fixed cases through the local 4-bit Nemotron 3 Nano (no Ultra audit, no Tavily) and through the cloud-routed pipeline.", "columns": ["mode", "cases", "steps", "blocked", "citation_integrity", "seconds", "model"], "rows": [{"mode": m, **{k: v.get(k) for k in ("cases", "steps", "blocked", "citation_integrity", "seconds", "model")}} for m, v in (("offline", off), ("cloud", cl)) if v.get("cases")]})
     report = {
         "generated_at": datetime.now(UTC).isoformat(),
         "command": "make eval",

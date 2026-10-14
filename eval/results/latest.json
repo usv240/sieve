@@ -1,13 +1,13 @@
 {
- "generated_at": "2026-10-14T04:33:03.796712+00:00",
+ "generated_at": "2026-10-14T16:56:51.345895+00:00",
  "command": "make eval",
  "index": {
-  "docs": 165,
-  "pages": 9458,
+  "docs": 167,
+  "pages": 9462,
   "by_class": {
    "oxygen_concentrator": {
-    "docs": 73,
-    "pages": 3470
+    "docs": 75,
+    "pages": 3474
    },
    "pulse_oximeter": {
     "docs": 68,
@@ -46,16 +46,40 @@
    "note": "10 of 10 registry indicators retrieve their own manual page"
   },
   "citation_integrity": {
-   "value": 87.2,
+   "value": 87.7,
    "unit": "%",
    "label": "Citation integrity",
-   "note": "123 of 141 quotes found verbatim on the cited page (benchmark B subset, n=20)"
+   "note": "114 of 130 quotes found verbatim on the cited page (benchmark B subset, n=20)"
   },
   "cost_usd": {
-   "value": 0.2793,
+   "value": 0.4085,
    "unit": "",
    "label": "Ledger total (USD)",
    "note": "all Token Factory calls recorded in data/ledger.db"
+  },
+  "bench_a_sieve": {
+   "value": 72.7,
+   "unit": "%",
+   "label": "Benchmark A: Sieve",
+   "note": "INGENZI held-out n=300, blind Nemotron 3 Super judge; cited and verified answers"
+  },
+  "bench_a_chunk_rag": {
+   "value": 61.3,
+   "unit": "%",
+   "label": "Baseline: plain retrieval + Nano",
+   "note": "same questions, same retrieved pages, no citation constraint, no verifier"
+  },
+  "bench_a_zero_shot": {
+   "value": 16.0,
+   "unit": "%",
+   "label": "Baseline: Nano zero-shot",
+   "note": "no retrieval"
+  },
+  "bench_a_citation": {
+   "value": 80.3,
+   "unit": "%",
+   "label": "Benchmark A citation integrity",
+   "note": "share of Sieve answers whose quote was found on the cited page"
   }
  },
  "sections": [
@@ -327,70 +351,70 @@
      "indicator": "everflo-yellow-blink",
      "cited_page": 31,
      "top5": "hit",
-     "pages": "31,24,18,103,104"
+     "pages": "31,24,103,18,15"
     },
     {
      "device": "philips-everflo",
      "indicator": "everflo-yellow-solid-red-blink",
      "cited_page": 31,
      "top5": "hit",
-     "pages": "31,18,24,91,33"
+     "pages": "31,18,24,15,91"
     },
     {
      "device": "philips-everflo",
      "indicator": "everflo-red-solid",
      "cited_page": 31,
      "top5": "hit",
-     "pages": "31,18,33,36,35"
+     "pages": "31,18,35,33,103"
     },
     {
      "device": "philips-everflo",
      "indicator": "everflo-yellow-solid-silent",
      "cited_page": 31,
      "top5": "hit",
-     "pages": "31,103,24,91,36"
+     "pages": "31,103,24,36,91"
     },
     {
      "device": "philips-everflo",
      "indicator": "everflo-all-off-no-power",
      "cited_page": 18,
      "top5": "hit",
-     "pages": "18,31,35,24,91"
+     "pages": "18,35,31,103,24"
     },
     {
      "device": "devilbiss-525",
      "indicator": "dv525-green",
      "cited_page": 5,
      "top5": "hit",
-     "pages": "5,5,12,4,20"
+     "pages": "20,12,20,5,5"
     },
     {
      "device": "devilbiss-525",
      "indicator": "dv525-yellow",
      "cited_page": 6,
      "top5": "hit",
-     "pages": "6,5,12,5,7"
+     "pages": "6,12,5,7,5"
     },
     {
      "device": "devilbiss-525",
      "indicator": "dv525-yellow-beep",
      "cited_page": 6,
      "top5": "hit",
-     "pages": "6,5,12,5,6"
+     "pages": "6,12,5,7,5"
     },
     {
      "device": "devilbiss-525",
      "indicator": "dv525-red-beep",
      "cited_page": 6,
      "top5": "hit",
-     "pages": "5,6,12,5,7"
+     "pages": "12,6,7,5,5"
     },
     {
      "device": "devilbiss-525",
      "indicator": "dv525-red-blink",
      "cited_page": 6,
      "top5": "hit",
-     "pages": "6,5,11,7,12"
+     "pages": "6,11,23,12,5"
     }
    ]
   },
@@ -408,58 +432,58 @@
     {
      "mdr": "12678326",
      "device": "devilbiss-525",
-     "hypotheses": "compressor-wear;impeded-flow",
+     "hypotheses": "compressor-wear",
      "manufacturer_finding": "THE DEVICE WAS EVALUATED BY US UNDER RETURN ORDER (B)(4). THE DEVICE WAS NOT RETURNED COMPLETE. WHEN THE UNIT WAS TURNED ON ALL SUB SYSTEMS WERE FOUND TO BE OPE",
-     "citations_verified": "4/6"
+     "citations_verified": "5/5"
     },
     {
      "mdr": "13010719",
      "device": "devilbiss-525",
      "hypotheses": "inlet-filter-blocked",
      "manufacturer_finding": "ROOT CAUSE ANALYSIS SUMMARY NOTED THAT BASED ON THE EXTERNAL THERMAL DAMAGE PROFILE AND LOCATION, AS WELL AS NO PHYSICAL OR SOFTWARE EVIDENCE TO INDICATE THE OC",
-     "citations_verified": "5/5"
+     "citations_verified": "4/8"
     },
     {
      "mdr": "14359593",
      "device": "devilbiss-525",
-     "hypotheses": "inlet-filter-blocked;sieve-bed-exhaustion;compressor-wear",
+     "hypotheses": "inlet-filter-blocked;impeded-flow;sieve-bed-exhaustion",
      "manufacturer_finding": "ALTHOUGH INOGEN, INC. IS NOT THE MANUFACTURER, AN INTERNAL INVESTIGATION WAS INITIATED TO DETERMINE THE CAUSE OF THE MALFUNCTION. INOGEN'S INVESTIGATION OF THE ",
-     "citations_verified": "8/9"
+     "citations_verified": "7/9"
     },
     {
      "mdr": "14364083",
      "device": "devilbiss-525",
-     "hypotheses": "impeded-flow;inlet-filter-blocked",
+     "hypotheses": "impeded-flow",
      "manufacturer_finding": "DEVILBISS HEALTHCARE PREVIOUSLY INCORRECLY REPORTED MDR 2518572-2022-00045. THE CORRECT MDR IS MDR 2515872-2022-00045.",
-     "citations_verified": "5/6"
+     "citations_verified": "8/8"
     },
     {
      "mdr": "15159750",
      "device": "devilbiss-525",
-     "hypotheses": "compressor-wear",
+     "hypotheses": "inlet-filter-blocked;impeded-flow;sieve-bed-exhaustion",
      "manufacturer_finding": "DEVILBISS HEALTHCARE PREVIOUSLY REPORTED AN OXYGEN CONCENTRATOR THAT THE PATIENT STATED \"SHOT FIRE OUT OF THE HOSE.\" THE SUPPLIER NOTED THAT THE PATIENT WAS TAK",
-     "citations_verified": "6/6"
+     "citations_verified": "8/8"
     },
     {
      "mdr": "15160109",
      "device": "devilbiss-525",
      "hypotheses": "no-power",
      "manufacturer_finding": "DRIVE DEVILBISS EVALUATED THE DEVICE AND FOUND THERMAL DAMAGE IN THE CONNECTORS BETWEEN THE LINE CORD AND WIRE HARNESS AS WELL AS THE WIRES ADJACENT TO THE CONN",
-     "citations_verified": "8/10"
+     "citations_verified": "10/11"
     },
     {
      "mdr": "15495487",
      "device": "devilbiss-525",
      "hypotheses": "inlet-filter-blocked",
      "manufacturer_finding": "DEVILBISS HEALTHCARE PREVIOUSLY REPORTED A COMPLAINT INVOLVING AN OXYGEN CONCENTRATOR BY A HOME OXYGEN PROVIDER. THE OXYGEN PROVIDER STATED, \"THERE WAS NO REPOR",
-     "citations_verified": "7/7"
+     "citations_verified": "4/5"
     },
     {
      "mdr": "16543358",
      "device": "philips-everflo",
-     "hypotheses": "no-power",
+     "hypotheses": "no-power;system-malfunction",
      "manufacturer_finding": "THE MANUFACTURER PREVIOUSLY DID NOT INCLUDE THE COUNTRY OF OCCURRENCE. THE COUNTRY OF OCCURRENCE IS INDIA AND WAS UPDATED IN BOX F.",
-     "citations_verified": "5/5"
+     "citations_verified": "4/4"
     },
     {
      "mdr": "16543399",
@@ -473,80 +497,2494 @@
      "device": "devilbiss-525",
      "hypotheses": "no-power",
      "manufacturer_finding": "DRIVE DEVILBISS EVALUATED THE DEVICE AND DETERMINED THE THERMAL DAMAGE WAS NOT CAUSED BY A SYSTEM INDUCED FAILURE AND THE THERMAL EVENT WAS MAINLY LIMITED TO TH",
-     "citations_verified": "5/6"
+     "citations_verified": "2/6"
     },
     {
      "mdr": "17398523",
      "device": "devilbiss-525",
-     "hypotheses": "no-power;compressor-wear",
+     "hypotheses": "no-power",
      "manufacturer_finding": "DEVILBISS HEALTHCARE PREVIOUSLY REPORTED AN OXYGEN CONCENTRATOR THAT WAS NOTED BY AN AUTHORIZED SERVICE CENTER TO EXHIBIT \"BURNT PC [POWER CORD].\" THERE WAS NO ",
-     "citations_verified": "15/15"
+     "citations_verified": "6/6"
     },
     {
      "mdr": "17701954",
      "device": "philips-everflo",
-     "hypotheses": "compressor-wear;inlet-filter-blocked",
+     "hypotheses": "inlet-filter-blocked;compressor-wear",
      "manufacturer_finding": "THE MANUFACTURER PREVIOUSLY REPORTED AN ALLEGATION OF A THERMAL EVENT TO AN EVERFLO INTERNATIONAL OXYGEN CONCENTRATOR. THE PATIENT REPORTED THAT FIRE HAD COME O",
-     "citations_verified": "7/7"
+     "citations_verified": "5/5"
     },
     {
      "mdr": "17851963",
      "device": "devilbiss-525",
      "hypotheses": "no-power",
      "manufacturer_finding": "UDI RELATED DATA QUALITY UPDATES ONLY. THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUMBER",
-     "citations_verified": "3/3"
+     "citations_verified": "5/5"
     },
     {
      "mdr": "17877059",
      "device": "devilbiss-525",
-     "hypotheses": "impeded-flow",
+     "hypotheses": "inlet-filter-blocked",
      "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUM",
-     "citations_verified": "5/6"
+     "citations_verified": "3/3"
     },
     {
      "mdr": "17878040",
      "device": "devilbiss-525",
      "hypotheses": "sieve-bed-exhaustion;sieve-check-valve;compressor-wear;inlet-filter-blocked;impeded-flow;no-power",
      "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** . THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG N",
-     "citations_verified": "2/12"
+     "citations_verified": "10/10"
     },
     {
      "mdr": "17878303",
      "device": "devilbiss-525",
-     "hypotheses": "compressor-wear",
+     "hypotheses": "inlet-filter-blocked;compressor-wear",
      "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUM",
-     "citations_verified": "6/6"
+     "citations_verified": "7/7"
     },
     {
      "mdr": "17878843",
      "device": "devilbiss-525",
-     "hypotheses": "compressor-wear",
+     "hypotheses": "impeded-flow",
      "manufacturer_finding": "**UDI RELATED DATA QUALITY UPDATES ONLY** THE PREVIOUS SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUMBE",
-     "citations_verified": "4/4"
+     "citations_verified": "7/8"
     },
     {
      "mdr": "17894644",
      "device": "devilbiss-525",
      "hypotheses": "no-power",
      "manufacturer_finding": "UDI RELATED DATA QUALITY UPDATES ONLY. THE PREVIOUSLY SUBMITTED REPORT HAD LACKING OR INCORRECT INFORMATION IN SECTIONS D1 BRAND NAME, D4 UDI AND CATALOG NUMBER",
-     "citations_verified": "5/5"
+     "citations_verified": "6/6"
     },
     {
      "mdr": "17946480",
      "device": "philips-everflo",
-     "hypotheses": "no-power;system-malfunction",
+     "hypotheses": "no-power",
      "manufacturer_finding": "UPDATED: SECTION D: DEVICE IDENTIFIER (GTIN) UPDATED. THE UDI IN SECTION D4 WAS PREVIOUSLY REPORTED IN THE INCORRECT FORMAT. THE UDI INFORMATION HAS BEEN UPDATE",
-     "citations_verified": "8/8"
+     "citations_verified": "4/5"
     },
     {
      "mdr": "17953757",
      "device": "philips-everflo",
-     "hypotheses": "impeded-flow;compressor-wear;sieve-bed-exhaustion",
+     "hypotheses": "sieve-bed-exhaustion;compressor-wear;inlet-filter-blocked",
      "manufacturer_finding": "H3 OTHER TEXT : DEVICE EVALUATED BY THIRD PARTY SERVICE CENTER UPDATED: SECTION D: DEVICE IDENTIFIER (GTIN) UPDATED. THE UDI IN SECTION D4 WAS PREVIOUSLY REPORT",
-     "citations_verified": "11/11"
+     "citations_verified": "5/7"
+    }
+   ]
+  },
+  {
+   "name": "Benchmark A: INGENZI held-out (competitor's own dataset)",
+   "description": "Three systems answer the same 300 questions from the closest prior work's published dataset (CC BY-NC 4.0). A blind Nemotron 3 Super judge grades each against the reference. Sieve is the only system whose answers carry a verified citation.",
+   "columns": [
+    "id",
+    "question",
+    "sieve",
+    "chunk-rag",
+    "nano-zero-shot",
+    "sieve_cite_verified"
+   ],
+   "rows": [
+    {
+     "id": 4820,
+     "question": "Describe the function and usage of the \"Keep Surrounding (Box)\" and \"Keep Inside (Box)\" tools in the 4D SONO-SCAN Ultrasound Workspace. How ",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2053,
+     "question": "Based on the information provided, what is the significance of the scanhead orientation markers, and how are they positioned in relation to ",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1515,
+     "question": "Describe the differences between the STIR technique and spectral fat saturation in terms of robustness for fat suppression, especially in ar",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4176,
+     "question": "Describe the function and pin configuration of the OEM Power Cable Assembly for a 230 VAC system as outlined in the HDI 5000 Service Manual.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3816,
+     "question": "Describe the steps required to map a non-DICOM network folder on the scanner console, including any necessary credentials and precautions to",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2422,
+     "question": "Explain the importance of connecting the ultrasound system to a dedicated circuit with an isolated ground, and specify the required amperage",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3798,
+     "question": "What contact information is available for technical support or emergency assistance when troubleshooting a malfunction on the MRI machine?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1326,
+     "question": "What changes were made to the control panel and menu settings in the 195.XX software releases for the Philips HDI 5000, as described in the ",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 5120,
+     "question": "Describe the steps required to configure the Calc List settings in the Q-Station software. What is the purpose of the Master List menu in th",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4951,
+     "question": "Describe the issue associated with error code \"0046\" and suggest a possible solution. What component is primarily involved, and what additio",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4555,
+     "question": "Explain the ventilation requirements for the Philips HDI-5000 system as specified in the service manual. Why are these requirements importan",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 2174,
+     "question": "How do I position the liver dome navigator correctly when performing examinations with navigator triggering on the MRI machine?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2264,
+     "question": "Explain the steps involved in tracking the navigator asymmetrically to the edge of the diaphragm and adjusting it upward. Why is it importan",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4410,
+     "question": "Based on the HDI 5000 Service Manual, identify the different types of video monitors mentioned and describe their significance in the contex",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 2920,
+     "question": "How do I ensure the 8 Channel wrist coil is correctly positioned and functioning properly during a quality assurance check?",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 791,
+     "question": "What steps should be taken to safely rescue a patient from the MRI machine in the event of an emergency situation, such as a power failure o",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1992,
+     "question": "Describe the components of the In-Room syngo Acquisition Workplace (In-Room syngo Acq WP) for the MAGNETOM Aera, Skyra MR System and explain",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4164,
+     "question": "Based on the provided context from the Philips HDI-5000 Field Service Manual, identify the function of the connection labeled P1-20 J1-20.",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3863,
+     "question": "Explain the significance of the \"Filtered HV to PSM\" and how it integrates with the external VCR and audio components in the HDI 5000 system",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4089,
+     "question": "What steps should I follow to properly turn on and off the BOLDScreen LCD when setting up the Siemens Prisma 3T MRI scanner, and what precau",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2486,
+     "question": "Describe the steps involved in positioning a patient's head for an MRI scan using the Head/Neck 16 coil, as outlined in the operator manual ",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4650,
+     "question": "Describe the steps involved in performing TAVI/TAVR measurements using the Philips Ultrasound Workspace, specifically focusing on the measur",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 424,
+     "question": "Describe the customizable features available in the entertainment content sections provided by Innovere Medical Inc. during a scan, and expl",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1642,
+     "question": "Describe the process of performing a measurement in the Feet First position using two Body 18 coils, as outlined in the document. Include de",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1959,
+     "question": "Explain the role and significance of the part numbers mentioned in the DVS Power Interconnect Diagram, specifically focusing on the power su",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 2685,
+     "question": "Explain the procedure for setting up the ISEM system, including the necessary steps to verify the system's video display and the role of the",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 835,
+     "question": "Describe the implications of the system automatically switching to Standby mode within 60 seconds and how it affects the operation of the pa",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1912,
+     "question": "What should I refer to for detailed information on the description, handling, and quality measurements of RF coils for the MAGNETOM Aera, Sk",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 600,
+     "question": "Describe the steps involved in preparing the fixation unit for a biopsy examination using the MAGNETOM Avanto or MAGNETOM Verio systems.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2043,
+     "question": "Describe the steps and considerations involved in preparing a patient for ECG triggering in an MRI examination, particularly focusing on ele",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1295,
+     "question": "Explain the purpose of the jogwheel and buttons on the control units of the MR system. How do these features enhance user guidance and patie",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 4375,
+     "question": "How many screws and nuts are required for the assembly of the components listed in Table 14-11 of the HDI 5000 Service Manual, and what are ",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 4791,
+     "question": "Explain the significance of the limits of agreement (LoA) in the context of the 3D Auto TV software study. How do the lower and upper LoA va",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3771,
+     "question": "Given a user-defined diffusion vector with a specific b-value in the user interface (UI), describe the process to calculate the actual b-val",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1027,
+     "question": "Compare and contrast the cable assemblies with part numbers 3500-3466-01 and 3500-3571-01. Discuss their specific applications within the Ph",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1365,
+     "question": "According to Table 12-3, what are the minimum hardware requirements for playing Cineloop images from a CD on a PC, and how do they compare t",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4008,
+     "question": "Describe the steps involved in performing a full shutdown of the Siemens MRI scanner, and explain why this process might be necessary.",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2361,
+     "question": "Explain the significance of the Scanhead Software Compatibility Matrix as mentioned in the Philips HDI 5000 Service Manual, and discuss how ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4504,
+     "question": "What precaution should be taken when using the CAPTURE softkey during 3D rendering on the HDI 5000 Ultrasound System, and what should be don",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3945,
+     "question": "What safety precautions are emphasized in the service manual when performing the initial setup of the Philips HDI 5000 system, and why are t",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2444,
+     "question": "Describe the role and components of the Control Subsystem as depicted in the Control Subsystem Block Diagram on page 71 of the Philips HDI 5",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2450,
+     "question": "Describe the role of the Regulator Module in the Acquisition Subsystem of the Philips HDI 5000 ultrasound system, and explain how its functi",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1611,
+     "question": "Describe the significance of the \"System View\" and \"Parent View\" as mentioned in the context of the Philips HDI 5000 Field Service Manual, a",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2068,
+     "question": "Explain the procedure for inserting a needle into the biopsy guide as described in the Philips HDI 5000 ScanHeads and Safety User Manual. In",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1004,
+     "question": "Describe the procedure for replacing a hubcap on older systems as outlined in the HDI 5000 Field Service Manual. Include the steps necessary",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2380,
+     "question": "Explain the process of analyzing parametric data of pharmacokinetic modeling in the context of MRI imaging, as described in the manual. Incl",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3440,
+     "question": "Describe the process of connecting the squeeze ball and the headset to the patient table in the MR system. Include details on the specific c",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 446,
+     "question": "What safety precautions should I take when handling the storage cart associated with the Innovision system during maintenance or servicing?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 753,
+     "question": "In the event of a Magnet Stop error, what immediate actions should be taken to ensure safety in the examination room?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1388,
+     "question": "Based on the configuration table provided, what is the part number for the upgrade disk with system software for software level 10.0.3?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 2236,
+     "question": "Explain the role of the TWIST technique in achieving high temporal resolution for multiple measurements. What parameters can be defined for ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4013,
+     "question": "What steps should I follow to reboot the chiller if I encounter cooling errors while scanning with the Siemens Prisma 3T MRI scanner?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4687,
+     "question": "Describe the process and options available for editing and finalizing a report in the Philips Ultrasound Workspace 6.0. What steps can be ta",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1888,
+     "question": "What should I do if the Magnet Stop switch is pressed and the alarm is triggered on the MR system?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1893,
+     "question": "In the Frequency/Voltage Control Setting, what is the CPU FSB Clock speed, and how does it relate to the CPU:DRAM Clock Ratio and DRAM Frequ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2811,
+     "question": "What are the steps to properly position the spherical phantoms and align the laser localizer during the quality assurance process for the MA",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2390,
+     "question": "Explain the significance of the \"High Q \u00ae Automatic Doppler Results Display\" in the context of Color and Tissue Doppler Imaging as described",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3643,
+     "question": "Identify the document code associated with the Philips HDI-5000 Field Service Manual.",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1954,
+     "question": "Describe the configuration and components of the drive assembly as shown in the Internal DVS Signal Interconnect Diagram from the HDI 5000 F",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 636,
+     "question": "What is the purpose of the biopsy accessories provided by Siemens, and what additional items need to be ordered separately for examination p",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3362,
+     "question": "Explain the procedure to safely power down the Philips HDI 5000 system and the precautions that should be taken to prevent electrical damage",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1051,
+     "question": "What is the typical boil-off rate of helium for the Siemens Magnetom Skyra 3 Tesla MRI machine, and what is the maximum helium capacity?",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1525,
+     "question": "Identify the part number associated with the Power Switch as mentioned in the HDI 5000 Field Service Manual and discuss its relevance in the",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1063,
+     "question": "What precautions should I take regarding electromagnetic compatibility (EMC) when installing or servicing the Siemens AG Healthcare Sector's",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1423,
+     "question": "Explain the significance of the checksum CRC values listed in the A11B Signal Processing Module (SPM) PROMs table and how they relate to the",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1696,
+     "question": "What are the available sizes of the Flex coil mentioned in the document, and how is it used in medical imaging?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 638,
+     "question": "Explain the role of the Signal Processing Module (SPM) in the processing subsystem block diagram of the Philips HDI 5000 ultrasound system a",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1580,
+     "question": "Describe the process of setting up the phantom holders and plastic bottles for quality measurement between coil elements SP7 and SP8 in the ",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2171,
+     "question": "Based on the context provided from the Operator Manual for syngo MR E11, what could be the potential consequences of not avoiding a hazardou",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1588,
+     "question": "How should I perform quality measurements for the MAGNETOM Aera, Skyra coils in different orientations?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2516,
+     "question": "Explain the role of the PIM (Peripheral Interface Module) in the internal and external VCR signal paths as depicted in Figures 4-25 and 4-26",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2836,
+     "question": "How can I stabilize the connection cables when using the Body Matrix coil for an MRI examination?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3284,
+     "question": "Explain the potential impact of spatial non-linearity of the gradient field and inhomogeneity of the static magnetic field on stereotactic p",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1598,
+     "question": "What are the steps and precautions for positioning the coil when preparing a patient for an MRI scan of the upper body and organs?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1927,
+     "question": "What function does the \"Examination task card\" serve in the context of the syngo MR D13 system, and how is it related to node 1?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3251,
+     "question": "Discuss the effects of gradient fields on a patient's body during an MRI scan and outline the safety instructions that should be followed to",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 868,
+     "question": "Describe the process of connecting the source of the external trigger signal to the MRI system as outlined in the document. What specific co",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2881,
+     "question": "Based on the information provided in the Philips HDI 5000 Service Manual, what additional figures should be referenced for understanding the",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2114,
+     "question": "Explain the criteria for selecting the appropriate thermal index (TI) for different ultrasound imaging applications as described in the docu",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 710,
+     "question": "What are the potential risks associated with using RF blankets or conductive sheets within the magnet bore during an MR examination, and wha",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3795,
+     "question": "Explain the various external connection options provided in the Philips HDI-5000 ultrasound system for video and hardcopy output. Include th",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 338,
+     "question": "Based on the Philips HDI 5000 Field Service Manual, identify the part number and describe the purpose of the RCA-RCA, Stereo Cable Assembly ",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1134,
+     "question": "Based on the cabling information provided in the Philips HDI 5000 Field Service Manual, describe the function of the connection between P1-1",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 696,
+     "question": "What are some common causes of accidents associated with MR systems, and what measures can be taken to prevent these accidents according to ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3494,
+     "question": "What safety precautions should I take before servicing the syngo MR E11 MRI machine to avoid hazardous situations?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3541,
+     "question": "Explain how to obtain a Doppler trace and perform volume flow calculations using the Philips HDI 5000 ultrasound system. Include the steps f",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3610,
+     "question": "Describe the steps required to select a different measurement or investigator for the OB Graphs display on the Philips HDI 5000 ultrasound s",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 4963,
+     "question": "In the context of the Philips HDI 5000 error code \"0090,\" what components or connections might be involved in the communication failure with",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 388,
+     "question": "What safety precautions should I take when handling the personalized patient display (PPD) on the patient table of the MRI system?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1900,
+     "question": "Explain the process of copying User-Defined Protocols to the DVS internal MO drive as described in the Philips HDI 5000 Field Service Manual",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1487,
+     "question": "Describe the first aid measures that should be taken if someone comes into contact with phantom fluid, specifically addressing skin contamin",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 4430,
+     "question": "What is the part number for the Microphone Module Assembly used for the FIMI monitor in the HDI 5000 Service Manual?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2111,
+     "question": "Describe the steps involved in applying the ALARA principle during an ultrasound scan of a patient's liver, including the role of scanhead f",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2696,
+     "question": "What accessories are required for setting up the TxRx CP Head coil on the MRI machine, and how should they be arranged?",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3489,
+     "question": "Explain the function of the CALCS control in the context of area measurements on the Philips HDI 5000 ultrasound system. What happens if the",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4513,
+     "question": "Explain the potential issues that may arise when measuring across a dual image obtained using harmonics on one side and fundamental ultrasou",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 939,
+     "question": "Explain the significance of Cyclic Redundancy Checks (CRCs) in the Comprehensive Test for installed software, and discuss the potential impl",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 238,
+     "question": "Explain the difference between prospective triggering and retrospective gating in MR imaging procedures, and describe how prospective trigge",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1888,
+     "question": "Explain the significance of the PCI Slot IRQ settings in the DVS/APM Supplement: Diagnostics section of the Philips HDI 5000 Field Service M",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4409,
+     "question": "Explain the significance of the part labeled \"1065-4676-01\" in the context of the Philips HDI-5000 Field Service Manual and describe its int",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3812,
+     "question": "Describe the steps you would take to restart the Coldhead in the event of a power surge or other problem, as outlined in the provided docume",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3036,
+     "question": "What precautions should be taken to ensure accurate diagnosis when using the LCD monitor for MR imaging, and what specific issues should be ",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2938,
+     "question": "Based on the cabling information provided in the Philips HDI 5000 Service Manual, describe the function of the spade lugs in the On/Standby ",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4128,
+     "question": "Based on the VCR Signal Cable Assembly information provided, identify the function of the connection from P1-7 to P6-Center OUT_L in the HDI",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4110,
+     "question": "Where can hard copies of equipment manuals for the Siemens Prisma 3T MRI scanner be found according to the user guide?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2204,
+     "question": "Based on the service manual, what are the specific page numbers where you can find the setup instructions for the Mitsubishi CP700 and CP800",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 2592,
+     "question": "Based on the setup instructions for the Sony UP860/870 video printers used in upgraded HDI 3000 systems, what are the required settings for ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 784,
+     "question": "Describe the procedure for verifying the lateral measurement accuracy in the 2D performance tests of the Philips HDI 5000 ultrasound system.",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1884,
+     "question": "What are the emergency switches available on the MAGNETOM Aera, Skyra MR System, and what are their specific functions?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 2958,
+     "question": "Describe the composition of the fluid used in the 8 Ch Foot Ankle phantom and the 8 Ch Wrist phantom, including the specific solutes and the",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1934,
+     "question": "Explain the different functions of the small jog wheel on the syngo MR D13 system and provide examples of when each function might be used.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1988,
+     "question": "Describe the process of initiating automatic voice output for transmitting commands in the examination room using the MR system. What softwa",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 361,
+     "question": "Identify the section number and title that discusses the \"Maximum Number of DiskLink/NetLink Frames per Short Loop\" as mentioned in the tabl",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3107,
+     "question": "Describe the correct position of the tabletop required for using the emergency undocking handle, and explain the consequences of using the h",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 4626,
+     "question": "Explain the two methods available for exporting studies to a hard disk in the Philips Ultrasound Workspace 6.0, and discuss the importance o",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 2900,
+     "question": "Describe the specific uses and examination configuration for the Endorectal Coil as mentioned in the operator manual. Include details about ",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3630,
+     "question": "Describe the steps required to play back a VCR recording using an externally connected VCR on the Philips HDI 5000 system. Include details a",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2677,
+     "question": "What are the standard accessories mentioned for the Special Purpose 4 coil, and where can additional information about these accessories be ",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1140,
+     "question": "What are the minimum transport dimensions required for the Magnet 3 Tesla AS, including the gradient coil, body coil, Tim table, and covers,",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4036,
+     "question": "Describe the procedure for cleaning the fan filter in the HDI 5000 system as part of the preventive maintenance process. Include any additio",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 276,
+     "question": "Explain the different simultaneous modes mentioned in the Philips HDI 5000 Field Service Manual and describe how they are set up.",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 4466,
+     "question": "Based on the HDI 5000 Service Manual, what is the significance of Figure 14-33, and how does it relate to the DVS Module Assembly (Chassis C",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4092,
+     "question": "Describe the process of removing the monitor from the HDI 5000 system as outlined in the service manual. Include the steps involving the ret",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2796,
+     "question": "Explain the recommended positioning for patients who suffer from claustrophobia during an MRI examination, and discuss why this positioning ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1560,
+     "question": "Describe the steps involved in setting up the Head 32 coil for a quality measurement on the MAGNETOM Aera or Skyra MRI systems.",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2151,
+     "question": "Explain the safety information related to low-frequency fields and their physiological effects as mentioned in the syngo MR D13 operator man",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4734,
+     "question": "Explain the purpose of the Segmental Wall Motion feature in the Philips Ultrasound Workspace and describe how it assists clinicians during a",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4489,
+     "question": "Identify the part numbers for the ACIM Voltage labels that are suitable for systems operating at 230V. Include the frequency and current spe",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3814,
+     "question": "Describe the steps involved in rebooting the chiller when encountering cooling errors during scanning, as outlined in the provided document.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1571,
+     "question": "According to the document, what is the significance of combining the Spine 32 with other coils during examinations?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1763,
+     "question": "Identify the different types of vacuum cushions listed in the document and specify the areas of application for each type.",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2125,
+     "question": "Describe the role of the Look Ahead monitoring function in the MAGNETOM Aera, Skyra MR System and explain how it ensures patient safety duri",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 842,
+     "question": "What components are involved in the physiological imaging system of the MRI machine, and how are they connected to the patient?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 334,
+     "question": "Explain the safety instructions related to electromagnetic fields and potential hazards as outlined in the Magnetom Avanto Operator manual. ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3894,
+     "question": "Describe the steps involved in the general inspection of the Philips HDI 5000 system as outlined in the service manual. Include any warnings",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3262,
+     "question": "What safety precautions should be taken to prevent injuries when performing maintenance activities on the MAGNETOM ESSENZA MRI system?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3012,
+     "question": "What are the potential risks associated with using RF blankets or conductive sheets within the MR system, and what precaution should be take",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1945,
+     "question": "Describe the importance of using the correct DVS software with the corresponding hardware option in the HDI 5000 system. How can one referen",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 914,
+     "question": "Explain the function of ACIM LED 6 and ACIM LED 7 in the context of the HDI 5000 Field Service Manual. How do these LEDs contribute to the t",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 591,
+     "question": "Describe the function of the power monitor and beamformer software watchdog in ensuring the safety and proper operation of the Philips HDI 5",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3649,
+     "question": "Where can customers find the contact information for technical assistance regarding the ultrasound system, and what should they do if they n",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1834,
+     "question": "Describe the steps involved in checking the DVS/APM boot sequence as outlined in the HDI 5000 Field Service Manual. What should be noted abo",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1107,
+     "question": "Explain the differences in applications between the Flex Large and Flex Small RF coils according to the Siemens AG Healthcare Sector technic",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 128,
+     "question": "Based on the provided table, identify which disinfectant type is associated with the active ingredient \"Glutaraldehyde\" and list the systems",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 213,
+     "question": "Explain the function of the Acquisition Subsystem in the Philips HDI 5000 ultrasound system. Refer to Figure 4-5 and Figure 4-6 to discuss t",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4547,
+     "question": "Explain the process and key components involved in the installation of video printers as outlined in the Philips HDI-5000 Field Service Manu",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 589,
+     "question": "What are the requirements and accessories needed for performing a quality measurement of the 16 Ch AI Breast using the MAGNETOM Avanto and M",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3686,
+     "question": "Explain the process of generating perfusion-weighted images (PWI) and describe how the color map is used to represent signal values in these",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3872,
+     "question": "Describe the steps involved in setting up the Optoacoustics headphone and microphone system for a participant in an MRI environment. Include",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1280,
+     "question": "Describe the improvements made in the 170.XX software release to address issues related to scanhead usage and image quality in the Philips H",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 625,
+     "question": "What safety precautions should be taken before moving the patient table after placing the core needle device in the MAGNETOM Avanto MRI mach",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4522,
+     "question": "Explain the steps you would take to resolve a \"power supply warning banner\" issue when attempting to unfreeze the HDI 5000 Ultrasound System",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4743,
+     "question": "Explain the requirements and conditions necessary for applying Segmental Wall Motion in the Philips Ultrasound Workspace 6.0. What happens i",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3901,
+     "question": "From the movie list, which film is associated with a famous science fiction franchise and features a storyline involving a young wizard?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 5161,
+     "question": "Identify the file path where the Technical Specification document for the Ultrasound Workspace is located on Ahmed Issah Tahiru's computer.",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1614,
+     "question": "Describe the correct positioning of a patient for an MRI scan of the shoulder using the shoulder coil cup, as outlined in the provided manua",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3204,
+     "question": "What safety precautions should be taken before disassembling the MR system for maintenance or repair?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 756,
+     "question": "Describe the initial setup procedure for the Philips HDI 5000 system as outlined in the service manual, and explain the importance of verify",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3324,
+     "question": "Based on the information provided in the scanhead compatibility matrix, identify which scanhead models support biopsy guides and specify the",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 520,
+     "question": "Describe the features and functionalities of the monitor specified in the HDI 5000 Field Service Manual. Include details about its physical ",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1017,
+     "question": "What protocols should I use to test the functionality of non-Siemens MR products on the Siemens Magnetom Skyra MRI system, and what should I",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3062,
+     "question": "What safety precautions should be taken before connecting devices to the optical trigger signal output of the MRI machine?",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1314,
+     "question": "What issue does the 190.XX software release address regarding the display of text on high contrast images, and how does it manifest?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2700,
+     "question": "What accessories are available for the Endorectal coil setup in the MRI machine, and what are their specific uses?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3162,
+     "question": "Describe the components and their respective part numbers involved in the \"Printer-to-Tray\" hardware setup for the Mitsubishi CP700/800 as i",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3806,
+     "question": "What are the recommended precautions to take when handling the scanhead or pencil probe cable of the HDI 5000 ultrasound system to prevent s",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1719,
+     "question": "Explain the role of the Flex Coil Interface in the setup process for imaging with the MAGNETOM systems. How is it connected, and what is its",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4061,
+     "question": "Based on the page label provided, what can you infer about the organization or structure of the Siemens Prisma 3T MRI Scanner User Guide?",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 850,
+     "question": "Explain the potential impact of the knocking sounds during an MRI measurement on a patient's heart rate and the subsequent effect on image q",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3960,
+     "question": "Describe the process and expected outcomes when adjusting the Persistence setting on the Philips HDI-5000 ultrasound system. How does this a",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1752,
+     "question": "What accessories are available for the MAGNETOM Aera and Skyra MRI machines, and what are their specific uses?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 723,
+     "question": "In the context of setting up the Mitsubishi CP800 Color Video Printer, what is the designated input type, and what additional settings are s",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 2270,
+     "question": "How should I set the acquisition window to minimize motion artifacts during an MRI scan, and what factors should I consider in a resource-co",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4038,
+     "question": "Describe the steps involved in setting up and running the SNR_Map sequence on the Siemens Prisma 3T MRI scanner, as outlined in the user gui",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 777,
+     "question": "How do I operate the Dot display on the MRI system when performing routine maintenance?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3108,
+     "question": "Describe the procedure for undocking and repositioning the table in the MR system as outlined in the operator manual.",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3469,
+     "question": "Explain how the Text keys function once an annotation list has been created and assigned to them on the Philips HDI 5000 ultrasound machine.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3587,
+     "question": "Explain how the CALCS control is used in the process of entering a breast lesion measurement into the protocol on the Philips HDI 5000 ultra",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2480,
+     "question": "Describe the steps involved in preparing a patient for a head and neck MRI scan using the Head/Neck 20 coil, as outlined in the operator man",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2050,
+     "question": "Explain the process of pulse triggering as described in the document, including the role of the pulse sensor and the significance of the \"pr",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1353,
+     "question": "In the context of prospective triggering for MR imaging, what is the significance of the acquisition window, and how is it determined for EC",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1552,
+     "question": "Based on the illustration of the DVS/APM Module Assembly (Chassis Cover) in the HDI 5000 Field Service Manual, identify the part number asso",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4467,
+     "question": "Referencing Table 14-32 in the HDI 5000 Service Manual, identify and describe the components labeled with numbers 2, 3, 4, 6, 7, 9, 8, 10, 1",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 17,
+     "question": "Identify the page label where the \"Contour 24 Coil | Operator Manual\" is mentioned in the document.",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4043,
+     "question": "How can I ensure proper head positioning within the magnet when setting up a scan on the Siemens Prisma 3T MRI scanner?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4843,
+     "question": "Describe the customization options available for the detection sensitivity and region limitation when using the Single Click Volume function",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2995,
+     "question": "Referencing the information from the HDI 5000 Service Manual, explain the significance of the Shield in the Monitor Power Cable Assembly and",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1248,
+     "question": "What are some of the issues that the 127.X software release fixes in the HDI 5000 system, as mentioned in the field service manual?",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1104,
+     "question": "Based on the provided context, describe the purpose and components of the On/Standby Switch Cable Assembly as illustrated in Figure 11-24 of",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3876,
+     "question": "What steps should be taken if the active noise cancellation system displays an \"out of range\" error during operation?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2631,
+     "question": "How can the coil be adjusted to ensure optimal image quality during an examination, and why is this adjustment important?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1091,
+     "question": "Describe the magnet cooling system used in the Siemens AG Healthcare Sector's MRI system. Include details about the refill interval, boil-of",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 486,
+     "question": "Compare the physical dimensions of the Classic HDI 5000 and the Philips HDI 5000 ultrasound systems. How do their width, height, depth, and ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2317,
+     "question": "Explain the significance of the Evaluation method selected in the Patient View during the liver evaluation process. How does the multi-echo ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1327,
+     "question": "Explain the function and importance of the laser light localizer in the MR system. What precautions should be taken when using the laser lig",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3060,
+     "question": "According to the Philips HDI 5000 Service Manual, what information is included in the \"Part Description\" column of the Parts Table, and how ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4059,
+     "question": "What should I do if I encounter a registration error where I cannot confirm the registration due to active sequences in the Exam Card on the",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2250,
+     "question": "What section of the Philips HDI 5000 Service Manual, February 2003, contains information about monitor adjustments?",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3633,
+     "question": "Explain the process of searching for a specific frame on a VCR tape using the Philips HDI 5000 system. Include the steps involved in setting",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2851,
+     "question": "Outline the steps involved in positioning the Breast Matrix on the patient table, as described in the MAGNETOM ESSENZA operator manual.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1230,
+     "question": "What safety precautions should I take when performing an MRI scan on a patient with implants or inclusions, and how do I determine if an imp",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3509,
+     "question": "Explain the process of calculating the mean Arterial Input Function (AIF) during neuro perfusion evaluation. What are the key steps involved",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 614,
+     "question": "What steps should I follow to plan access to a lesion during a breast biopsy using the MRI machine, and are there any specific precautions I",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1343,
+     "question": "Are there any new features or compatibility issues introduced in the 198.XX software release according to the field service manual?",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 521,
+     "question": "List the languages available for both the system software and user interface assemblies as mentioned in the HDI 5000 Field Service Manual. H",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1340,
+     "question": "How do I adjust the monitor height on the MAGNETOM Skyra Fit MRI machine?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2364,
+     "question": "Explain the process of manually scaling the Y-axis in the evaluation of grayscale values, and describe how the scaling parameters such as Fa",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2522,
+     "question": "What precautions should be taken when positioning the coil on the patient table to avoid damaging the coil during an MRI procedure?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1880,
+     "question": "Explain the significance of the \"Parallel Port Mode ECP\" setting in the context of the MSI MS-6547 Motherboard AMI Bios Settings as describe",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3410,
+     "question": "What are the steps involved in starting up and shutting down the MR system as outlined in the MAGNETOM ESSENZA operator manual?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1000,
+     "question": "What is the purpose of the shock indicators affixed to the packaging and sensitive components, such as RF coils, in the syngo MR D13 system?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3304,
+     "question": "Based on the HDI 5000 Service Manual, identify the part numbers and descriptions for the peripherals listed in the Parts List. How do these ",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2535,
+     "question": "Describe the environmental conditions required for the operational and storage phases of the Philips HDI 5000 system, including temperature,",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 2743,
+     "question": "Describe the function of the DS2 LED on the FEC A4F card. What conditions trigger this LED to light up, and what do these conditions imply a",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3448,
+     "question": "Explain the relationship between the strength of the electrical field and the change of magnetic flux during an MRI measurement. How does th",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3026,
+     "question": "What safety precautions should be taken to ensure patient safety during an MR examination, and how can patients be monitored effectively?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2554,
+     "question": "What steps should I follow to perform the pressure test on the Prostate 2 coil to ensure its functionality before use?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 2620,
+     "question": "How do I perform a quality measurement for coil element pair PA1 on the MRI machine, and what are the specific steps involved in setting up ",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1319,
+     "question": "What steps should I follow to ensure the MRI table is correctly docked and ready for operation, and how do I troubleshoot if the table canno",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3427,
+     "question": "Based on the context provided, what options are available in the trackball menu after pressing select when using the HD Zoom feature on the ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4821,
+     "question": "Explain the process and limitations of performing measurements in the 4D SONO-SCAN Ultrasound Workspace. What are the requirements for datas",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4660,
+     "question": "Explain the process of starting the AutoStrain tool in the Philips Ultrasound Workspace, including the steps required to prepare the workspa",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3917,
+     "question": "How do I import patient data from the Medsystem to the MRI machine's Patient Browser during routine maintenance?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1407,
+     "question": "What safety precautions should be taken regarding patient body temperature when operating the MRI machine, and what are the specific tempera",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1708,
+     "question": "How should I position the Spine 32 coil and Flex Coil Interface on the patient table for an MRI scan, and what are the steps to ensure prope",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1091,
+     "question": "What is the maximum patient weight that the Tim Dockable Table can support for both vertical and horizontal table movement during an MRI sca",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2086,
+     "question": "Describe the process of preparing a laparoscopic scanhead with sterile covers as outlined in the Philips HDI 5000 ScanHeads and Safety User ",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4075,
+     "question": "What should a technician do if there is a discrepancy between the customer ordered features and the installed options on the Philips HDI-500",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 12,
+     "question": "What is the print number associated with the \"Contour 24 Coil | Operator Manual\" as mentioned in the document?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3294,
+     "question": "What are the different types of emergency switches available on the MR system, and what specific situations are they designed to address?",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2282,
+     "question": "Describe the process of installing a transceiver support bracket as outlined in the Philips HDI 5000 Service Manual. Include references to a",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 391,
+     "question": "Explain the role of the A12B/A13B Advanced IF Output Module (AIFOM) PROMs and discuss their locations as depicted in Figure 13-10 of the man",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3660,
+     "question": "What are the steps involved in editing and saving a post-processing protocol in the Perf MR task card, and who is advised to perform these e",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 440,
+     "question": "Explain the charging process and time required for the Innovision battery components, including the standard and head coil pillow, audio bri",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3752,
+     "question": "Identify the different language options available for the Upper and Lower User Interface Assembly (Control Panel) as mentioned in the docume",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4019,
+     "question": "Explain the process of importing DICOM data into the Patient Browser on the Siemens Prisma 3T MRI scanner. What are the necessary steps to e",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2807,
+     "question": "Explain the purpose and visual characteristics of Test Pattern Number 3 as listed in Table 8-5 of the HDI 5000 Service Manual.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 53,
+     "question": "Explain the importance of using the connector pin protective cover for TEE transducers during decontamination processes, as outlined in the ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1744,
+     "question": "Explain the primary functions and differences between the Digital Video Streaming (DVS) module and the Advanced Processing Module (APM) in t",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3018,
+     "question": "What safety precautions should I take when transporting a patient using the dockable patient table on the MAGNETOM Aera or MAGNETOM Skyra MR",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 683,
+     "question": "What precautions should be taken when handling the monitor latches during the installation process to ensure the safety and security of the ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1043,
+     "question": "Based on the provided data, discuss the accuracy of the iso-magnetic contour lines and the potential impact of small geometric deviations on",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2664,
+     "question": "Describe the steps required to set up and verify the simultaneous operation of 2D, PW Doppler, and Color modes using the L12-5 scanhead on t",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4297,
+     "question": "Identify the checksums and CRCs for the PROM part numbers 4201-1693 and 4201-1582 as listed in the HDI 5000 Service Manual.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3048,
+     "question": "Describe the function and appropriate scenarios for using the \"Magnet Stop\" and \"Emergency Shutdown\" switches on the MR system as outlined i",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3237,
+     "question": "Referencing Figure 12-87 in the Philips HDI 5000 Service Manual, describe the additional components that are included with the caster assemb",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4398,
+     "question": "Identify the part number and description for the caster assembly used in the front of the HDI 5000 system, and specify the quantity required",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2762,
+     "question": "Describe the steps required to format a blank optical disk using the Philips HDI 5000 system, and explain the importance of ensuring that Di",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2470,
+     "question": "Describe the process for updating the coil selection list before starting the quality assurance measurement for the MAGNETOM Aera and MAGNET",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3179,
+     "question": "Explain how to set the conditions in the magnet tunnel using the small control unit, including the functions of the buttons and jog wheel.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1005,
+     "question": "Why is it strongly recommended that only authorized personnel perform maintenance procedures on the MR system, and what should be done if th",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1348,
+     "question": "What immediate actions should be taken when a gradient malfunction is detected and an alarm message appears at the syngo Acquisition Workpla",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2505,
+     "question": "Explain the different head positioning requirements for MRI examinations of the base of the skull versus the cerebrum, according to the oper",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2658,
+     "question": "Describe the steps involved in connecting the Flex Coil Interface to the patient table and securing it properly.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1984,
+     "question": "What are the main components included in the manual set for the Philips HDI 5000, and what specific information does each component provide?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3794,
+     "question": "What is the revision date of the Siemens Prisma 3T MRI Scanner User Guide as mentioned in the document?",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 349,
+     "question": "According to the Siemens Magnetom Avanto Operator manual, what is the significance of the CE mark on the device, and what are the implicatio",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1748,
+     "question": "What accessories are available for the MAGNETOM Aera and Skyra MRI machines, and how can they be used to enhance patient comfort during imag",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3299,
+     "question": "Describe the safety precautions that must be observed during a quench to prevent personal injury and fire hazards.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1492,
+     "question": "Based on the provided context, identify the figure number and name associated with the OEM Power Transformer as mentioned in the HDI 5000 Fi",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 4331,
+     "question": "Identify the part number and description of the component that serves as the attaching part for the front bumper caps in the HDI 5000 Servic",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2791,
+     "question": "Explain the significance of the \"Machine Options/Software Build Compatibility Matrix\" as mentioned in the document, and discuss how it might",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 33,
+     "question": "Based on the document \"Disinfectants and Cleaning Solutions for Ultrasound Systems and Transducers,\" what can be inferred about the importan",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1532,
+     "question": "What steps should be taken if the quality measurement during the use of MAGNETOM Aera, Skyra coils does not provide satisfactory results?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 898,
+     "question": "Based on the troubleshooting section of the Philips HDI 5000 Field Service Manual, describe the significance of the LED indicators on the A1",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3732,
+     "question": "Describe the steps involved in calculating results with standard settings for patient data in the Neuro Operator Manual. Include details on ",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4773,
+     "question": "List and describe the different types of annulus and shape results that can be obtained from the 3D Auto MV Ultrasound Workspace. How do the",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 974,
+     "question": "What safety precautions should be taken before servicing the MRI machine, particularly in the event of a quench?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 564,
+     "question": "Explain the role of the Front End Controller (FEC) in the operation of the ultrasound system as described in the Philips HDI 5000 Field Serv",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3425,
+     "question": "What is the purpose of selecting \"System > End session\" at the syngo Acquisition Workplace, and what is displayed as a result of this action",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1995,
+     "question": "Explain the role of the keys in the In-Room syngo Acquisition Workplace. How do their functions compare to those of a standard mouse?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1952,
+     "question": "Based on the DVS/APM parts information provided, what are the switch/jumper positions for the SCSI drive model MCF3064SS, and how do they di",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 965,
+     "question": "Why is it important to inform both regular and non-regular personnel about the special conditions in the MR examination room, and what are s",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4268,
+     "question": "Explain the procedure and precautions that should be taken when ordering and handling replacement hard drives for the Philips HDI 5000 syste",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1070,
+     "question": "Explain the function of the AAM Input Cable Assembly as described in the Philips HDI 5000 Field Service Manual, and identify the specific pi",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1118,
+     "question": "Explain the function of the Mitsubishi RGB Printer Cable Assembly as described in the HDI 5000 Field Service Manual, and identify the role o",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 2508,
+     "question": "Explain the role of the Regulator Module in the data path of the Philips HDI 5000 ultrasound system as described in the service manual. How ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1029,
+     "question": "Analyze the graph provided in the MR compatibility data sheet, which shows the relationship between the Z Axis and the Vertical Axis in term",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3637,
+     "question": "What is the purpose of the \"Adjust All\" function in the protocol adjustments, and what information is displayed in the information window du",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2859,
+     "question": "Explain the procedure for positioning a patient on the MRI table, specifically focusing on the use of heel and knee pads, and the adjustment",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1538,
+     "question": "Based on the provided context, identify the figure number associated with the Networking Transceiver illustration in the HDI 5000 Field Serv",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 288,
+     "question": "Describe the steps required to shut down the syngo MR Workplace in the System On mode. What precautions should be taken before initiating th",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3165,
+     "question": "Identify the part numbers associated with the front and rear caster assemblies for the Philips HDI 5000 system. Additionally, specify the co",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2485,
+     "question": "Identify and explain the function of the components labeled (1) through (4) in the context of the coil setup on the patient table.",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 771,
+     "question": "Describe the effects of adjusting the FOCUS and DEPTH controls on the Philips HDI 5000 ultrasound system. How do these adjustments impact th",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2853,
+     "question": "What are the components of the PA Matrix coil, and how should it be stored when not in use?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3377,
+     "question": "Describe the process and significance of using the Quick Save key in the context of Tissue Specific preset setups on the Philips HDI 5000 ul",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2363,
+     "question": "Explain the significance of the glossary and abbreviations sections in the context of the Philips HDI 5000 Service Manual.",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "correct",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1743,
+     "question": "Discuss the importance of using EMC scanheads for Europe as mentioned in the document, and describe the implications of ordering non-EMC sca",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 2284,
+     "question": "How can I modify the parameters of a measured protocol to rerun it as pending in the MRI machine's measurement queue?",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 1876,
+     "question": "What safety precautions should I be aware of before servicing the MAGNETOM Aera or Skyra MR System?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3746,
+     "question": "Describe the steps involved in generating a metabolite image using the syngo MR E11 system. What should be done to ensure the accuracy of th",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 628,
+     "question": "How can I manually determine the grid opening for a breast biopsy procedure using the grid method on the MAGNETOM Avanto MRI machine, given ",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 1556,
+     "question": "How do I perform a quality measurement on the Head 32 coil of the MAGNETOM Aera or Skyra MRI machine?",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 265,
+     "question": "Explain the criteria for evaluating the signal intensity of ECG channels during an MRI examination, and describe the significance of the sta",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": false
+    },
+    {
+     "id": 3537,
+     "question": "In spine imaging with iPAT, what is the maximum iPAT factor possible when using the ISO matrix with phase-encoding direction H>>F or L>>R, a",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4502,
+     "question": "Explain the process and importance of using the END EXAM control when storing images to the optical disk in the HDI 5000 system. What potent",
+     "sieve": "correct",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3020,
+     "question": "What precautions should be taken to ensure the safety of patients and prevent damage to the patient table during vertical and horizontal mov",
+     "sieve": "incorrect",
+     "chunk-rag": "correct",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 3923,
+     "question": "In the Signal Set1 and Signal Set2 parameters of the Mitsubishi CP800 Color Video Printer, what are the default settings for the \"Sync\" and ",
+     "sieve": "incorrect",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
+    },
+    {
+     "id": 4714,
+     "question": "Explain the process and significance of calculating the Ejection Fraction (EF) using the Biplane (BP), A4C, and A2C methods as described in ",
+     "sieve": "correct",
+     "chunk-rag": "incorrect",
+     "nano-zero-shot": "incorrect",
+     "sieve_cite_verified": true
     }
    ]
   }
  ],
- "seconds": 126.2
+ "seconds": 164.9
 }
