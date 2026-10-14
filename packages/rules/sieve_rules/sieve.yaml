@@ -1,7 +1,17 @@
-version: "2026-10-13.1"
+version: "2026-10-15.1"
 # Deterministic safety gates for Sieve. Every rule cites the document that justifies it.
 # Patterns are regular expressions, case-insensitive. Stage: input (user text), output (generated steps), both.
 rules:
+  - id: smoke-fire-heat
+    action: escalate
+    severity: stop
+    stage: input
+    patterns:
+      - '\b(smoke|smoking|smoked|smouldering|burn(ing|t|ed|s)?|fire|flames?|melt(ed|ing)?|scorch(ed|ing)?|charred|sparks?|sparking|arcing|overheat(ed|ing|s)?)\b'
+      - '\b(too|very|extremely) hot\b|\bhot to (the )?touch\b'
+    message: "Smoke, burning, sparks or heat damage: remove the unit from service now. Move the patient to a backup oxygen supply, switch off at the wall only if it is safe to reach, do not reuse the unit or its cord, keep the parts, and report the event to the manufacturer and the national device-safety reporting system."
+    citation: "Manufacturer service manuals, warnings pages (oxygen promotes rapid burning; improper use of power cords can cause burns and fire); WHO Technical specifications for oxygen concentrators (2015)"
+
   - id: oxygen-oil-grease
     action: block
     severity: stop

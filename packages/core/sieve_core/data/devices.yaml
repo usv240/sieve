@@ -35,7 +35,7 @@ devices:
       - {name: "Low oxygen alarm", value: "82 percent purity (OPI models)", cite: {doc: "philips-everflo-oxygen-concentrator-service-manual", page: 9}}
       - {name: "Very low oxygen alarm", value: "below 70 percent purity", cite: {doc: "philips-everflo-oxygen-concentrator-service-manual", page: 9}}
       - {name: "Oxygen output test", value: "run at 5.0 LPM for 10 minutes, then measure with a calibrated oxygen analyzer", cite: {doc: "philips-everflo-oxygen-concentrator-service-manual", page: 24}}
-    common_faults: [impeded-flow, inlet-filter-blocked, sieve-bed-exhaustion, compressor-wear, no-power, system-malfunction]
+    common_faults: [impeded-flow, inlet-filter-blocked, sieve-bed-exhaustion, compressor-wear, no-power, system-malfunction, power-cord-thermal, internal-overheat, external-ignition-fire, oxygen-sensor-fault, control-board-fault]
     manuals: ["philips-everflo-oxygen-concentrator-service-manual"]
 
   - id: devilbiss-525
@@ -70,7 +70,7 @@ devices:
     thresholds:
       - {name: "Start-up self test", value: "all four indicator lights illuminate briefly and an audible signal sounds at power on", cite: {doc: "devilbiss-525-oxygen-concentrator-service-manual", page: 5}}
       - {name: "Warm-up", value: "green Normal Oxygen light remains on for the first fifteen minutes of operation while the OSD stabilises", cite: {doc: "devilbiss-525-oxygen-concentrator-service-manual", page: 5}}
-    common_faults: [sieve-bed-exhaustion, sieve-check-valve, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+    common_faults: [sieve-bed-exhaustion, sieve-check-valve, compressor-wear, inlet-filter-blocked, impeded-flow, no-power, power-cord-thermal, internal-overheat, external-ignition-fire, oxygen-sensor-fault, control-board-fault]
     manuals: ["devilbiss-525-oxygen-concentrator-service-manual"]
 
   # The following models have manuals in the corpus. Their indicator tables are extracted from the PDFs during
@@ -84,7 +84,7 @@ devices:
     nameplate_patterns: ["airsep", "newlife", "caire"]
     doc_title_aliases: ["Airsep Newlife", "Airsep NewLife", "AirSep NewLife"]
     manuals: ["airsep-newlife-elite-service-manual", "airsep-newlife-intensity-service-manual", "airsep-newlife-intensity-10-oxygen-concentrator-service-manual"]
-    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power, power-cord-thermal, internal-overheat, external-ignition-fire, oxygen-sensor-fault, control-board-fault]
   - id: airsep-visionaire
     device_class: oxygen_concentrator
     manufacturer: AirSep (CAIRE)
@@ -93,7 +93,7 @@ devices:
     nameplate_patterns: ["visionaire", "airsep"]
     doc_title_aliases: ["VisionAire"]
     manuals: ["airsep-visionaire-concentrator-service-manual", "visionaire-2-3-concentrator-service-manual"]
-    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power, power-cord-thermal, internal-overheat, external-ignition-fire, oxygen-sensor-fault, control-board-fault]
   - id: invacare-platinum
     device_class: oxygen_concentrator
     manufacturer: Invacare
@@ -102,7 +102,7 @@ devices:
     nameplate_patterns: ["invacare", "platinum", "irc5", "irc10"]
     doc_title_aliases: ["Invacare Platinum", "Invacaire Platinum", "Perfecto 2"]
     manuals: ["invacaire-platinum-5-oxygen-concentrator-service-manual", "invacare-platinum-5-10-concentrator-service-manual"]
-    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power, power-cord-thermal, internal-overheat, external-ignition-fire, oxygen-sensor-fault, control-board-fault]
   - id: nidek-nuvo
     device_class: oxygen_concentrator
     manufacturer: Nidek Medical
@@ -111,7 +111,7 @@ devices:
     nameplate_patterns: ["nidek", "nuvo", "mark 5"]
     doc_title_aliases: ["Nidek"]
     manuals: ["nidek-mark-5-nuvo-concentrator-service-manual", "nidek-nuvo-8-concentrator-service-manual", "nidek-nuvo-5-8-10-oxygen-concentrator-service-manual-2018"]
-    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power, power-cord-thermal, internal-overheat, external-ignition-fire, oxygen-sensor-fault, control-board-fault]
   - id: longfian-jay
     device_class: oxygen_concentrator
     manufacturer: Longfian Scitech
@@ -120,7 +120,7 @@ devices:
     nameplate_patterns: ["longfian", "lonfian", "jay-"]
     doc_title_aliases: ["Lonfian", "Longfian"]
     manuals: ["lonfian-scitech-jay-oxygen-concentrator-service-manual", "lonfian-scitech-jay-oxygen-concentrator-user-and-service-manual"]
-    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+    common_faults: [sieve-bed-exhaustion, compressor-wear, inlet-filter-blocked, impeded-flow, no-power, power-cord-thermal, internal-overheat, external-ignition-fire, oxygen-sensor-fault, control-board-fault]
   - id: devilbiss-515
     device_class: oxygen_concentrator
     manufacturer: DeVilbiss Healthcare
@@ -129,7 +129,7 @@ devices:
     nameplate_patterns: ["devilbiss", "515"]
     doc_title_aliases: ["DeVilbiss 515"]
     manuals: ["devilbiss-515-oxygen-concentrator-service-manual", "devilbiss-515a-oxygen-concentrator-service-manual"]
-    common_faults: [sieve-bed-exhaustion, sieve-check-valve, compressor-wear, inlet-filter-blocked, impeded-flow, no-power]
+    common_faults: [sieve-bed-exhaustion, sieve-check-valve, compressor-wear, inlet-filter-blocked, impeded-flow, no-power, power-cord-thermal, internal-overheat, external-ignition-fire, oxygen-sensor-fault, control-board-fault]
   - id: yuwell-7f5
     device_class: oxygen_concentrator
     manufacturer: Yuwell
@@ -138,4 +138,4 @@ devices:
     nameplate_patterns: ["yuwell", "7f-"]
     doc_title_aliases: ["Yuwell", "AMG 7F-5"]
     manuals: []
-    common_faults: [inlet-filter-blocked, impeded-flow, sieve-bed-exhaustion, compressor-wear, no-power]
+    common_faults: [inlet-filter-blocked, impeded-flow, sieve-bed-exhaustion, compressor-wear, no-power, power-cord-thermal, internal-overheat, external-ignition-fire, oxygen-sensor-fault, control-board-fault]

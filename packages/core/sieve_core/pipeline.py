@@ -89,6 +89,9 @@ class SievePipeline:
 
         # input gate
         in_hits = self.rules.check(free_text, "input") if free_text else []
+        if str(answers.get("heat_smoke", "")).lower() == "yes" and not any(h.rule_id == "smoke-fire-heat" for h in in_hits):
+            in_hits += self.rules.check("smoke or heat damage reported", "input")
+        heat_event = any(h.rule_id == "smoke-fire-heat" for h in in_hits)
         if self.rules.blocks(in_hits):
             return AnalyzeResult(trace_id, device_id, label, None, None, in_hits, {}, [], blocked=True, notes=["blocked at input gate"])
 
@@ -126,6 +129,12 @@ class SievePipeline:
             f"Technician answers: {json.dumps(answers)}.\n"
             f"Free text: {free_text or 'none'}.\n\nManual pages:\n{context}\n\nProduce the FaultTree tool call."
         )
+        if heat_event:
+            user = (
+                "SAFETY CONTEXT: the report describes smoke, fire, burning, sparks or heat damage. Step 1 must remove the unit "
+                "from service and protect the patient, quoting the manual's warning text. Consider power-cord-thermal, "
+                "internal-overheat and external-ignition-fire among the hypotheses.\n\n" + user
+            )
         tree = call_structured(
             self.client, Tier.MID, FaultTree,
             [{"role": "system", "content": SYNTH_SYSTEM}, {"role": "user", "content": user}],

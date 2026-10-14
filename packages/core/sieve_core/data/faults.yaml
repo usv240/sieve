@@ -1,6 +1,6 @@
 # Fault concepts shared across concentrator brands. Generic text is grounded in the WHO 2015 specification
 # and the EWH flowchart handbook; brand-specific steps always come from the retrieved manual pages at run time.
-version: "2026-10-13.1"
+version: "2026-10-15.1"
 faults:
   - id: impeded-flow
     name: "Impeded or restricted oxygen flow"
@@ -67,3 +67,63 @@ faults:
     likely_causes: ["control board fault", "sensor fault", "compressor fault"]
     tools: []
     skill_level: technician
+  - id: power-cord-thermal
+    name: "Overheated or burnt power cord, plug, inlet connector or wiring"
+    symptoms: ["burning smell near the plug or the back of the unit", "scorched, melted or discoloured plug, cord or IEC inlet", "unit cuts out when the cord is moved", "extension lead or multi-plug adapter in use"]
+    first_checks:
+      - "Remove the unit from service and move the patient to a backup oxygen supply"
+      - "Switch off and unplug at the wall only if the plug can be reached safely"
+      - "With the unit unplugged, inspect the cord, plug and the IEC inlet on the back for scorching or melting; never reuse a damaged cord"
+      - "Confirm the unit is plugged directly into a wall socket, not an extension lead or adapter"
+    likely_causes: ["loose or worn plug or inlet connector making a high-resistance joint", "overloaded extension lead or adapter", "damaged line cord"]
+    tools: []
+    skill_level: technician
+    escalate: "Internal wiring and connector repairs are engineer-level. Keep the damaged parts and report the event to the manufacturer and the national device-safety reporting system."
+    parts_hint: "power cord, IEC inlet connector, wire harness"
+  - id: internal-overheat
+    name: "Internal overheating or heat damage (compressor, cooling fan, circuit board)"
+    symptoms: ["unit switches itself off after running for a while", "cabinet hot to the touch", "smell of hot plastic", "cooling fan not running", "high-temperature alarm"]
+    first_checks:
+      - "Remove the unit from service if there is any smell of burning or visible heat damage"
+      - "Check that cabinet and intake filters are clean and the unit has the minimum clearance from walls and curtains given in the manual"
+      - "With the unit switched off and unplugged, check that the cooling fan turns freely"
+      - "Do not keep resetting a thermal protector; a unit that trips again must be escalated"
+    likely_causes: ["blocked filters or poor ventilation", "failed cooling fan", "compressor drawing excess current", "failed component on the control board"]
+    tools: []
+    skill_level: engineer
+    escalate: "Heat damage inside the cabinet is engineer-level work and a reportable event."
+    parts_hint: "cooling fan, compressor, control board"
+  - id: external-ignition-fire
+    name: "Fire at the cannula or tubing from an outside ignition source"
+    symptoms: ["flame or flash at the nasal cannula or tubing", "melted cannula or tubing", "burns to the face or hands", "smoking, candle, stove or heater near the patient"]
+    first_checks:
+      - "Treat the patient first: stop the oxygen flow and get medical help for any burn"
+      - "Remove the concentrator, tubing and cannula from service and keep them for the investigation"
+      - "Record which ignition source was near the patient"
+      - "Before any unit returns to use, brief the family that oxygen makes things burn fast and that nobody may smoke or use a flame nearby"
+    likely_causes: ["smoking while using oxygen", "open flame or heat source near the oxygen outlet"]
+    tools: []
+    skill_level: user
+    escalate: "Any fire involving oxygen therapy is a reportable event."
+  - id: oxygen-sensor-fault
+    name: "Oxygen sensor fault or false purity alarm"
+    symptoms: ["low-oxygen light or alarm while a calibrated analyser reads normal purity", "purity alarm at start-up that clears and returns", "erratic purity readings"]
+    first_checks:
+      - "After the warm-up period, measure purity at the outlet with a calibrated oxygen analyser"
+      - "If the analyser reads normal but the unit still alarms, suspect the oxygen sensor before the sieve beds"
+      - "Follow the sensor test in the manual before replacing sieve beds"
+    likely_causes: ["oxygen sensor drift or failure", "loose sensor connection"]
+    tools: ["oxygen analyser"]
+    skill_level: technician
+    parts_hint: "oxygen sensor"
+  - id: control-board-fault
+    name: "Control (PC) board fault"
+    symptoms: ["red system-fault light with no other cause found", "unit powers on but the valves do not cycle", "erratic lights or alarms", "no response to the power switch while mains is present"]
+    first_checks:
+      - "Confirm the mains supply and the unit's own breaker first"
+      - "Record the exact light and alarm pattern and match it to the indicator table in the manual"
+      - "With the unit unplugged, look for heat discoloration at board connectors"
+    likely_causes: ["failed component on the control board", "loose board connector", "power surge damage"]
+    tools: []
+    skill_level: engineer
+    parts_hint: "control PC board"

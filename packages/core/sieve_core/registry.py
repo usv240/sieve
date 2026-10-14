@@ -68,9 +68,10 @@ class Registry:
         d = self.get(device_id) if device_id else None
         wanted_faults: list[str] = list(d.get("common_faults", [])) if d else [f for f in self.faults]
         by_id = {q["id"]: q for q in self.questions}
-        chosen: list[dict] = [by_id["in_use"]] if "in_use" in by_id else []
+        always = [i for i in ("in_use", "heat_smoke") if i in by_id]
+        chosen: list[dict] = [by_id[i] for i in always]
         for q in self.questions:
-            if q["id"] == "in_use":
+            if q["id"] in always:
                 continue
             if any(f in wanted_faults for f in q.get("relevant_faults", [])):
                 chosen.append(q)

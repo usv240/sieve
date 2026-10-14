@@ -1,6 +1,11 @@
 # Finite intake question bank. The fast model picks at most three; the UI renders each with an info button.
-version: "2026-10-13.1"
+version: "2026-10-15.1"
 questions:
+  - id: heat_smoke
+    text: "Is there smoke, a burning smell, sparks or heat damage on the unit, plug or tubing?"
+    why: "Fire and heat damage are the most common serious failures in FDA reports for oxygen concentrators. A yes removes the unit from service before anything else."
+    type: yes_no
+    relevant_faults: [power-cord-thermal, internal-overheat, external-ignition-fire]
   - id: warmup
     text: "Has the unit been running for at least 15 minutes?"
     why: "Concentrators need a warm-up period before purity readings and purity alarms are meaningful."
