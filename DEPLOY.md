@@ -10,7 +10,7 @@ The FastAPI app is served by Vercel's Python runtime (Fluid compute, 300 second 
 
 Files that make this work, all at the repo root:
 
-- `index.py`: the entrypoint Vercel looks for. It puts `apps/api` and `packages/*` on `sys.path` and exposes `app`.
+- `index.py`: the entrypoint Vercel looks for. The function must ship with the index; `GET /health` reports how many pages it has, so check that number after every API deploy. It puts `apps/api` and `packages/*` on `sys.path` and exposes `app`.
 - `vercel.json`: declares the single FastAPI service and its entrypoint, and routes every path to it.
 - `requirements.txt`: the runtime-only dependency list (the full `pyproject.toml` and `uv.lock` are excluded by `.vercelignore` so the bundle stays small).
 - `.vercelignore`: keeps the web app, corpus PDFs, docs, tests and local databases out of the upload.
@@ -34,9 +34,10 @@ The web app is its own Vercel project (`sieve`, Root Directory `apps/web`, env `
 
 ## How deploys happen
 
-All four projects are connected to GitHub, so `git push origin main` deploys everything: the `sieve` project builds `apps/web`, the `sieve-api` project builds the FastAPI service from the repo root. No CLI step is needed.
+- **Web**: `git push origin main` deploys the `sieve` project, which builds `apps/web`.
+- **API**: deploy only from the CLI at the repo root: `vercel deploy --prod --yes`. The search index in `data/index/` is gitignored because it is built from copyrighted manuals, so a git build would ship an API with an empty index. The `sieve-api` project therefore has an Ignored Build Step of `exit 0`, which skips every git-triggered build, and the CLI upload carries the local index through `includeFiles` in `vercel.json`.
 
-If you deploy by CLI, run it only from the repo root with the API project linked there (`.vercel/project.json` names `sieve-api`). Do not run `vercel deploy` from `apps/web` and do not change the web project's Root Directory back to `.`: with Root Directory `.` a git push built the API onto the web domain (this happened on 2026-10-14 and was fixed by setting Root Directory to `apps/web`).
+Do not run `vercel deploy` from `apps/web`, and keep the web project's Root Directory at `apps/web`.
 
 After any deploy, check both hosts: `curl -I https://sieve-api.vercel.app/health` should be 200 and `https://sieve-kappa.vercel.app/` should return the landing page.
 
