@@ -15,13 +15,13 @@ lint:
 
 # One real Token Factory call per tier; prints model, tokens and cost. Requires NEBIUS_API_KEY in .env.
 smoke:
-	uv run python scripts/smoke.py
+	PYTHONIOENCODING=utf-8 PYTHONUTF8=1 uv run python scripts/smoke.py
 
 ingest:
 	uv run python -m sieve_retrieval.ingest --manifest data/manifest.yaml --out data/index
 
 eval:
-	uv run python -m sieve_eval.run --out eval/results
+	PYTHONIOENCODING=utf-8 PYTHONUTF8=1 uv run python -m sieve_eval.run --out eval/results
 
 dev:
 	uv run uvicorn sieve_api.main:app --reload --port 8000

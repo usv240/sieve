@@ -103,8 +103,18 @@ def benchmarks_with_model(pipe: SievePipeline, n_a: int, n_b: int) -> tuple[dict
     return summary, rows
 
 
+def _load_env() -> None:
+    for env in (ROOT / ".env", ROOT.parent / ".env"):
+        if env.exists():
+            for line in env.read_text(encoding="utf-8").splitlines():
+                if "=" in line and not line.strip().startswith("#"):
+                    k, v = line.split("=", 1)
+                    os.environ.setdefault(k.strip(), v.strip())
+
+
 @app.command()
 def run(out: Path = typer.Option(ROOT / "eval/results"), n_b: int = typer.Option(20, help="MAUDE cases to run when a key is present")) -> None:
+    _load_env()
     out.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
     store = PageStore(ROOT / "data/index/sieve.db")

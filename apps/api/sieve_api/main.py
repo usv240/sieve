@@ -20,12 +20,12 @@ from sieve_retrieval import PageStore
 from sieve_vision import describe
 
 ROOT = Path(__file__).resolve().parents[3]
-_env = ROOT / ".env"
-if _env.exists():
-    for line in _env.read_text(encoding="utf-8").splitlines():
-        if "=" in line and not line.strip().startswith("#"):
-            k, v = line.split("=", 1)
-            os.environ.setdefault(k.strip(), v.strip())
+for _env in (ROOT / ".env", ROOT.parent / ".env"):  # repo root, then workspace root
+    if _env.exists():
+        for line in _env.read_text(encoding="utf-8").splitlines():
+            if "=" in line and not line.strip().startswith("#"):
+                k, v = line.split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip())
 
 app = FastAPI(title="Sieve API", version="0.1.0", description="Photograph a dead oxygen concentrator; get a manual-grounded, safety-gated troubleshooting tree and a filed work order.")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
