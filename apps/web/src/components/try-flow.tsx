@@ -13,7 +13,7 @@ type Indicator = { id: string; state: string; meaning: string; cite: { doc: stri
 type Device = { id: string; manufacturer: string; model: string; indicators: Indicator[]; has_manual: boolean };
 type Question = { id: string; text: string; why: string; type: string; options?: string[] };
 type Cite = { doc: string; page: number; quote: string };
-type StepT = { id: number; action: string; expected: string; if_yes: number | null; if_no: number | null; tools_needed: string[]; duration_min: number; safety_class: "none" | "caution" | "stop"; cite: Cite };
+type StepT = { id: number; action: string; expected: string; if_yes: number | null; if_no: number | null; tools_needed: string[]; duration_min: number; safety_class: "none" | "caution" | "stop"; cite: Cite; support?: "manual" | "general" | "unchecked" };
 type Analyze = {
   trace_id: string; device_id: string | null; device_label: string; blocked: boolean;
   tree: { summary: string; hypotheses: { fault_id: string; likelihood: string; why: string; cite: Cite }[]; steps: StepT[]; parts_candidates: { name: string; part_number?: string }[]; escalate_if: string[] } | null;
@@ -195,6 +195,8 @@ export function TryFlow() {
                     </p>
                     <p className="mt-2 text-fg-muted">Expect: {current.expected}</p>
                     <p className="mt-2 text-xs text-fg-muted">Tools: {current.tools_needed.join(", ") || "none"} · about {current.duration_min} min</p>
+                    {current.support === "manual" && <p className="mt-3 inline-flex rounded-full border border-ok px-2 py-0.5 text-xs font-medium text-ok">The manual states this step <Info k="support_label" /></p>}
+                    {current.support === "general" && <p className="mt-3 inline-flex rounded-full border border-caution px-2 py-0.5 text-xs font-medium text-caution">General practice, not stated on the cited page <Info k="support_label" /></p>}
                     <blockquote className="quote mt-3 text-sm">“{current.cite.quote}”<footer className="mt-1 text-xs text-fg-muted">{current.cite.doc}, page {current.cite.page} · <a className="text-accent" href={apiUrl(`/v1/page/${current.cite.doc}/${current.cite.page}`)} target="_blank" rel="noreferrer">Show page</a></footer></blockquote>
                     <div className="mt-3 flex gap-2">
                       <button className="btn-primary" onClick={() => go(current.if_yes)}>Yes, as expected <ChevronRight className="h-4 w-4" /></button>

@@ -8,9 +8,10 @@ from pydantic import BaseModel, Field
 
 
 class Cite(BaseModel):
-    doc: str
-    page: int
-    quote: str = Field(description="Verbatim span copied from the cited page. Never paraphrase.")
+    sid: str = Field(default="", description="The [S#] id of the numbered sentence that supports this item, for example S12; up to three ids from the same page if the instruction spans them, for example S12, S13.")
+    doc: str = Field(default="", description="doc_id of the page holding that sentence")
+    page: int = Field(default=0, description="page number of that sentence")
+    quote: str = Field(default="", description="Leave empty when sid is given; the exact sentence is copied in by code.")
 
 
 class Hypothesis(BaseModel):
@@ -30,6 +31,7 @@ class Step(BaseModel):
     duration_min: int = 5
     safety_class: Literal["none", "caution", "stop"] = "none"
     cite: Cite
+    support: Literal["manual", "general", "unchecked"] = Field(default="unchecked", description="Set by code after a check against the cited text; leave as unchecked.")
 
 
 class PartCandidate(BaseModel):

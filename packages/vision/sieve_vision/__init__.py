@@ -41,7 +41,7 @@ class VisionResult:
 
 PROMPT = (
     "You are reading a photo of a medical device for a technician. Return ONLY a JSON object with keys: "
-    "manufacturer, model, ref, serial, device_type_guess, visible_text (list of strings exactly as printed), "
+    "manufacturer, model, ref, serial, device_type_guess, visible_text (at most 15 short strings exactly as printed, words only; skip scale numbers and repeated symbols), "
     "indicators (list of {colour, state, label} for any lights or displays you can see), confidence (0 to 1). "
     "Do not guess values that are not visible; use null."
 )
@@ -51,20 +51,41 @@ def _data_url(image_bytes: bytes, mime: str = "image/jpeg") -> str:
     return f"data:{mime};base64,{base64.b64encode(image_bytes).decode()}"
 
 
+def _salvage(raw: str) -> dict[str, Any]:
+    """Recover string fields and the text list from a reply that was cut off mid-JSON."""
+    import re
+
+    out: dict[str, Any] = {}
+    for k in ("manufacturer", "model", "ref", "serial", "device_type_guess"):
+        m = re.search(rf'"{k}"\s*:\s*"([^"]*)"', raw)
+        if m:
+            out[k] = m.group(1)
+    m = re.search(r'"visible_text"\s*:\s*\[(.*?)(\]|$)', raw, re.DOTALL)
+    if m:
+        out["visible_text"] = re.findall(r'"([^"]{2,80})"', m.group(1))[:20]
+    return out
+
+
 def _parse(raw: str) -> NameplateFields:
     start, end = raw.find("{"), raw.rfind("}")
     if start >= 0 and end > start:
         try:
             return NameplateFields.model_validate(json.loads(raw[start : end + 1]))
-        except Exception as e:  # noqa: BLE001
-            return NameplateFields(confidence=0.0, visible_text=[f"parse_error: {type(e).__name__}"])
-    return NameplateFields(confidence=0.0)
+        except Exception:  # noqa: BLE001, S110 - fall through to salvage below
+            pass
+    salvaged = _salvage(raw)
+    if salvaged:
+        try:
+            return NameplateFields.model_validate({**salvaged, "confidence": 0.5})
+        except Exception:  # noqa: BLE001
+            return NameplateFields(confidence=0.0, visible_text=["parse_error"])
+    return NameplateFields(confidence=0.0, visible_text=["parse_error"] if raw else [])
 
 
 def _openai_vision_call(base_url: str, api_key: str, model: str, image_bytes: bytes, timeout: float = 60) -> str:
     payload: dict[str, Any] = {
         "model": model,
-        "max_tokens": 600,
+        "max_tokens": 1500,
         "temperature": 0.0,
         "messages": [
             {

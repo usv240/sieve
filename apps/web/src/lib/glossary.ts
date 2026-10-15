@@ -19,6 +19,11 @@ export const GLOSSARY = {
     plain: "The manufacturer's repair book for one model: what each light means, how to test it, which part to replace. Hospitals rarely have it when the machine arrives.",
     technical: "Sieve indexes service manuals page by page. Every step it shows quotes a span that the citation verifier confirmed exists verbatim on that page. Manuals are indexed locally and never redistributed.",
   },
+  support_label: {
+    term: "Manual states this, or general practice",
+    plain: "After the steps are written, a second fast model reads each step next to the manual sentence it cites. If the sentence says the same thing, the step is marked as stated by the manual. If the step goes further than the sentence, it is marked as general practice so you know the manual itself does not say it.",
+    technical: "Nemotron 3 Nano, thinking off, one parallel call per step: YES if the cited sentences state the action. On ten fixed cases an independent Nemotron 3 Super judge agreed with 62.5 percent of steps labelled manual and 5 percent of steps labelled general. Citations point at numbered sentences, so every quote shown is the exact manual text.",
+  },
   grounded: {
     term: "Grounded",
     plain: "Every instruction comes from a real page of the manual, and we show you the page. Nothing is made up.",

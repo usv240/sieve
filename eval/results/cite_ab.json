@@ -1,0 +1,1155 @@
+{
+ "cloud": {
+  "model": "Nemotron 3 Super via Token Factory",
+  "cases": 10,
+  "judge": "nvidia/nemotron-3-super-120b-a12b",
+  "quote": {
+   "labelled_manual": {
+    "n": 16,
+    "judge_support": 56.2
+   },
+   "labelled_general": {
+    "n": 31,
+    "judge_support": 6.5
+   },
+   "citation_integrity": 88.8,
+   "citations": 98,
+   "support": 24.6,
+   "steps_judged": 57,
+   "seconds": 153,
+   "rows": [
+    {
+     "device": "philips-everflo",
+     "input": [
+      "everflo-yellow-solid-silent"
+     ],
+     "citations": "14/16",
+     "tiers": {
+      "id": 0,
+      "verbatim": 14,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 10
+    },
+    {
+     "device": "philips-everflo",
+     "input": [
+      "everflo-yellow-solid-red-blink"
+     ],
+     "citations": "7/7",
+     "tiers": {
+      "id": 0,
+      "verbatim": 7,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 6
+    },
+    {
+     "device": "philips-everflo",
+     "input": [
+      "everflo-red-solid"
+     ],
+     "citations": "6/7",
+     "tiers": {
+      "id": 0,
+      "verbatim": 6,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 6
+    },
+    {
+     "device": "devilbiss-525",
+     "input": [
+      "dv525-yellow"
+     ],
+     "citations": "13/14",
+     "tiers": {
+      "id": 0,
+      "verbatim": 11,
+      "normalised": 1,
+      "fuzzy": 1
+     },
+     "steps": 10
+    },
+    {
+     "device": "devilbiss-525",
+     "input": [
+      "dv525-red-beep"
+     ],
+     "citations": "9/10",
+     "tiers": {
+      "id": 0,
+      "verbatim": 8,
+      "normalised": 1,
+      "fuzzy": 0
+     },
+     "steps": 5
+    },
+    {
+     "device": "devilbiss-525",
+     "input": [
+      "dv525-red-blink"
+     ],
+     "citations": "10/14",
+     "tiers": {
+      "id": 0,
+      "verbatim": 10,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 9
+    },
+    {
+     "device": "devilbiss-525",
+     "input": [
+      "Unit does not switch on at all. No lights and no self-test s"
+     ],
+     "citations": "10/12",
+     "tiers": {
+      "id": 0,
+      "verbatim": 2,
+      "normalised": 8,
+      "fuzzy": 0
+     },
+     "steps": 6
+    },
+    {
+     "device": "philips-everflo",
+     "input": [
+      "Compressor is very loud and the unit runs hot after an hour."
+     ],
+     "citations": "9/9",
+     "tiers": {
+      "id": 0,
+      "verbatim": 9,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 7
+    },
+    {
+     "device": "philips-everflo",
+     "input": [
+      "Can I put some oil on the compressor to quiet it down while "
+     ],
+     "citations": "0/0",
+     "tiers": null,
+     "steps": 0
+    },
+    {
+     "device": "devilbiss-525",
+     "input": [
+      "Purity has been dropping slowly over the last three weeks in"
+     ],
+     "citations": "9/9",
+     "tiers": {
+      "id": 0,
+      "verbatim": 7,
+      "normalised": 1,
+      "fuzzy": 1
+     },
+     "steps": 5
+    }
+   ],
+   "pairs": [
+    {
+     "device": "philips-everflo",
+     "step": "Inspect the inlet filter for visible dirt or blockage.",
+     "cited": "Adjust the flow to the proper setting by turning the knob on the top of the flow meter until the ball is centered on the line marking the specific flow rate.",
+     "page": 15,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Check for leaks in the oxygen outlet tubing and connections by listening for hiss or using soapy water.",
+     "cited": "Verify that there are no leaks",
+     "page": 36,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Replace or clean the inlet filter according to manufacturer instructions.",
+     "cited": "Adjust the flow to the proper setting by turning the knob on the top of the flow meter until the ball is centered on the line marking the specific flow rate.",
+     "page": 15,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Measure oxygen purity with a calibrated analyzer at 5 LPM after 10 minutes warm\u2011up.",
+     "cited": "If the device is alarming and the oxygen concentration is measured at 82% or higher, check the device for leaks. If no leaks are found then replace the Main PCA.",
+     "page": 24,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Repair any leaks found in the tubing or connections.",
+     "cited": "Verify that there are no leaks",
+     "page": 36,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Verify compressor operation by checking outlet pressure (should be 5\u20117 psi).",
+     "cited": "Measure the outlet pressure. The outlet pressure should be within 5.0- 7.0 psig.",
+     "page": 91,
+     "supports": true,
+     "label": "unchecked"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "If compressor pressure is low or abnormal, replace the compressor.",
+     "cited": "Replace the Compressor",
+     "page": 36,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "If compressor is OK but O2 still low, replace the sieve canister (sieve beds).",
+     "cited": "Replace the Sieve Canister",
+     "page": 36,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Confirm normal operation: green LED on, no alarms, O2 purity within spec.",
+     "cited": "Green LED illuminates continuously. The other LEDs are off and the Audible Alarm is silent. The device is turned on and working properly.",
+     "page": 31,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Visually inspect the oxygen tubing for kinks, twists, or crushing.",
+     "cited": "Yellow LED illuminates continuously, the Red LED is blinking and the Audible alarm is beeping periodically. The device has detected an impeded oxygen flow condition.",
+     "page": 31,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Check the cannula for blockage by disconnecting it and blowing through gently.",
+     "cited": "Yellow LED illuminates continuously, the Red LED is blinking and the Audible alarm is beeping periodically. The device has detected an impeded oxygen flow condition.",
+     "page": 31,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "If tubing is kinked, straighten or replace the tubing segment.",
+     "cited": "Yellow LED illuminates continuously, the Red LED is blinking and the Audible alarm is beeping periodically. The device has detected an impeded oxygen flow condition.",
+     "page": 31,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Reconnect the cannula and observe if the alarm stops and green LED returns.",
+     "cited": "Yellow LED illuminates continuously, the Red LED is blinking and the Audible alarm is beeping periodically. The device has detected an impeded oxygen flow condition.",
+     "page": 31,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "If cannula is blocked, clean or replace it.",
+     "cited": "Yellow LED illuminates continuously, the Red LED is blinking and the Audible alarm is beeping periodically. The device has detected an impeded oxygen flow condition.",
+     "page": 31,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Verify that the outlet flow meter ball rises when flow is set; if not, check for closed outlet valve or obstruction.",
+     "cited": "Yellow LED illuminates continuously, the Red LED is blinking and the Audible alarm is beeping periodically. The device has detected an impeded oxygen flow condition.",
+     "page": 31,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Ensure the power cord is firmly plugged into the concentrator and the wall outlet.",
+     "cited": "Verify the power cord is plugged in",
+     "page": 35,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Verify that the wall outlet is supplying voltage by plugging in a known working device.",
+     "cited": "Verify power in wall outlet",
+     "page": 35,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Inspect the internal fuse on the Main PCA for continuity.",
+     "cited": "Verify the condition of the fuse on PCA",
+     "page": 35,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Check that all wiring harnesses connected to the Main PCA are seated and undamaged.",
+     "cited": "Verify the wiring harnesses are connected",
+     "page": 35,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "If the fault persists, replace the Main PCA.",
+     "cited": "Replace the Main PCA",
+     "page": 35,
+     "supports": false,
+     "label": "unchecked"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Verify the oxygen analyzer reading confirms purity between 84% and 75%.",
+     "cited": "If the oxygen purity falls below the acceptable level, the green Normal Oxygen light will shut off and the yellow Low Oxygen light will illuminate.",
+     "page": 5,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Inspect the air filter for dirt or blockage.",
+     "cited": "The air filter and connector should be cleaned at least once a week. To clean, follow these steps: 1. Remove the air filter ...",
+     "page": 5,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Check the exhaust outlet for any obstruction.",
+     "cited": "Check the exhaust area; make sure there is nothing restricting the unit exhaust.",
+     "page": 7,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Confirm flow meter is set to the prescribed flow rate.",
+     "cited": "Check the flow meter to make sure that the flow meter ball is centered on the line next to the prescribed number of your flow rate.",
+     "page": 5,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Adjust the flow meter to the prescribed setting.",
+     "cited": "If the knob is turned clockwise, the flow decreases (and eventually will shut off the oxygen flow). If the knob is turned counterclockwise, the flow increases.",
+     "page": 5,
+     "supports": false,
+     "label": "unchecked"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Inspect all hoses and fittings for leaks.",
+     "cited": "1. Check for leaks in all hoses and fittings",
+     "page": 12,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Repair or replace any leaking hose or fitting.",
+     "cited": "Replace compressor",
+     "page": 12,
+     "supports": false,
+     "label": "unchecked"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Run the concentrator for 5\u201110 minutes and re\u2011measure oxygen purity.",
+     "cited": "Allow 20 minutes for oxygen concentrator to reach stated performance.",
+     "page": 5,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "If purity remains low, suspect sieve\u2011bed exhaustion and arrange for service.",
+     "cited": "If the concentration is low, refer to low oxygen concentration symptom in Troubleshooting Chart A.",
+     "page": 12,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Verify the flow meter knob is set to the prescribed flow rate; ensure the ball is centered on the line for the set flow.",
+     "cited": "Check the flow meter to make sure that the flow meter ball is centered on the line next to the prescribed number of your flow rate.",
+     "page": 5,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Inspect the air filter for dirt or blockage; remove it and visually examine.",
+     "cited": "Remove the air filter located on the back of the unit. Remove the oxygen outlet connector (if used).",
+     "page": 5,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Check the exhaust area at the rear of the unit for any obstruction.",
+     "cited": "Check the exhaust area; make sure there is nothing restricting the unit exhaust.",
+     "page": 7,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Examine the power cord and plug for damage and ensure it is firmly inserted into the outlet.",
+     "cited": "Improper use of the power cord and plugs can cause a burn, fire, or other electric shock hazards. Do not use the unit if the power cord is damaged.",
+     "page": 5,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Verify that the power cord is firmly plugged into the concentrator's IEC connector and the wall outlet.",
+     "cited": "Insert plug in receptacle or replace line cord. On 220/240  Volt units, check that the IEC connector on the back of  the unit is attached.",
+     "page": 11,
+     "supports": true,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Check that the wall outlet has power by plugging in a known working device (e.g., a lamp).",
+     "cited": "No power at receptacle  Check building circuit breaker or fuse, or have\n house wiring checked by qualified electrician",
+     "page": 11,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "If outlet has no power, check the building circuit breaker or fuse for the circuit and reset if tripped.",
+     "cited": "Check building circuit breaker or fuse, or have\n house wiring checked by qualified electrician",
+     "page": 11,
+     "supports": true,
+     "label": "unchecked"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Reconnect or replace the power cord if any damage is found or if the quick\u2011connect terminal is loose.",
+     "cited": "Insert plug in receptacle or replace line cord. On 220/240  Volt units, check that the IEC connector on the back of  the unit is attached.",
+     "page": 11,
+     "supports": true,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Replace the power cord with a known good cord and retest the unit.",
+     "cited": "Replace line cord.",
+     "page": 11,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "If the breaker trips again, stop and have qualified personnel inspect internal wiring.",
+     "cited": "If unit circuit breaker opens again, check internal wiring",
+     "page": 11,
+     "supports": false,
+     "label": "unchecked"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "After securing power, turn the unit on and observe whether the Service Required light stops blinking and the audible alert ceases.",
+     "cited": "Power Failure (Blinking red \u201cService Required\u201d light and pulsing audible alert)",
+     "page": 6,
+     "supports": false,
+     "label": "unchecked"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Verify that the power cord is plugged into a known\u2011good electrical outlet and that the outlet has voltage (e.g., by plugging in a lamp or using a tester).",
+     "cited": "No power at receptacle \u2013 Check building circuit breaker or fuse, or have house wiring checked by qualified electrician",
+     "page": 11,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Ensure the power cord is firmly inserted into the concentrator\u2019s inlet and inspect the cord for cuts, kinks, or heat damage.",
+     "cited": "Fan off \u2013 Line cord not properly installed or defective \u2013 Insert plug in receptacle or replace line cord.",
+     "page": 11,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Locate the concentrator\u2019s circuit breaker reset button (usually on the rear panel) and press it to reset.",
+     "cited": "Oxygen concentrator circuit breaker activated \u2013 Press the circuit breaker reset button",
+     "page": 11,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Toggle the power switch on the front panel and listen for a definite click; observe if the unit powers on.",
+     "cited": "Defective power switch \u2013 Replace power switch",
+     "page": 11,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Caution: Inspect the PC board fuse; if it appears blown, replace it with the correct rating.",
+     "cited": "Blown fuse on PC board \u2013 Replace fuse",
+     "page": 11,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Visually inspect the inlet filter for dirt or blockage without removing it.",
+     "cited": "Respironics recommends checking and replacing the Inlet Filter every two (2) years.",
+     "page": 16,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Check that the concentrator has at least 6 inches of clearance on all sides and that the inlet filter door holes are unobstructed.",
+     "cited": "Verify that air flow around concentrator is not blocked",
+     "page": 38,
+     "supports": false,
+     "label": "unchecked"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Switch the unit off and unplug it from the mains first. Remove the filter cover and inspect the inlet filter; replace it if dirty.",
+     "cited": "Respironics recommends checking and replacing the Inlet Filter every two (2) years.",
+     "page": 16,
+     "supports": false,
+     "label": "unchecked"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Power on the unit and listen for compressor noise after it has run for 5 minutes.",
+     "cited": "Noisy at the compressor\nCompressor\nReplace the compressor",
+     "page": 38,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Reposition the concentrator to an open area with adequate airflow.",
+     "cited": "Reposition the concentrator to an open area",
+     "page": 38,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Replace the compressor according to the compressor replacement procedure.",
+     "cited": "Noisy at the compressor\nCompressor\nReplace the compressor",
+     "page": 38,
+     "supports": true,
+     "label": "unchecked"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Verify that the unit runs normally and temperature remains within limits after one hour of operation.",
+     "cited": "The compressor may require replacement when: \u2022 The system pressure is not within specifications and there are no leaks detected. \u2022 The compressor bearings have worn to a point that make the compressor noticeably louder.",
+     "page": 16,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Remove and inspect the air filter located in the door on the back of the unit.",
+     "cited": "The air filter and oxygen outlet connector should be cleaned at least once a week by the patient.",
+     "page": 6,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "If the filter is dirty or damp, wash it in warm water and dishwashing detergent, rinse thoroughly, and towel dry before reinstalling.",
+     "cited": "Wash in a solution of warm water and dishwashing detergent.\n\nRinse thoroughly with warm tap water and towel dry. The filter should be completely dry before reinstalling.",
+     "page": 6,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Inspect the humidifier bottle for occlusion; clean or replace if necessary.",
+     "cited": "Occluded humidifier",
+     "page": 10,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Check for oxygen leaks using a certified leak detection solution (e.g., Snoop) on all fittings and hose connections while the unit is running.",
+     "cited": "Check for oxygen leaks at:\n\u2022 sieve beds\n\u2022 flow meter\n\u2022 accumulator tank\n\u2022 final bacteria filter\n\u2022 pressure regulator\n\u2022 final check valve\n\u2022 outlet port\nNOTE\u2013\u2060Check for leaks using a certified leak detection solution such as Snoop\u00ae or equivalent (must not contain ethylene glycol). Apply leak test solu",
+     "page": 9,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Test accumulator tank pressure with a gauge; compare to normal system pressure from specifications.",
+     "cited": "Test accumulator tank pressure. If pressure is lower than normal, then sieve bed check valves are defective.",
+     "page": 9,
+     "supports": false,
+     "label": "general"
+    }
+   ]
+  },
+  "sid": {
+   "labelled_manual": {
+    "n": 24,
+    "judge_support": 62.5
+   },
+   "labelled_general": {
+    "n": 20,
+    "judge_support": 5.0
+   },
+   "citation_integrity": 100.0,
+   "citations": 70,
+   "support": 35.4,
+   "steps_judged": 48,
+   "seconds": 136,
+   "rows": [
+    {
+     "device": "philips-everflo",
+     "input": [
+      "everflo-yellow-solid-silent"
+     ],
+     "citations": "13/13",
+     "tiers": {
+      "id": 13,
+      "verbatim": 0,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 8
+    },
+    {
+     "device": "philips-everflo",
+     "input": [
+      "everflo-yellow-solid-red-blink"
+     ],
+     "citations": "2/2",
+     "tiers": {
+      "id": 2,
+      "verbatim": 0,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 1
+    },
+    {
+     "device": "philips-everflo",
+     "input": [
+      "everflo-red-solid"
+     ],
+     "citations": "4/4",
+     "tiers": {
+      "id": 4,
+      "verbatim": 0,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 3
+    },
+    {
+     "device": "devilbiss-525",
+     "input": [
+      "dv525-yellow"
+     ],
+     "citations": "5/5",
+     "tiers": {
+      "id": 5,
+      "verbatim": 0,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 4
+    },
+    {
+     "device": "devilbiss-525",
+     "input": [
+      "dv525-red-beep"
+     ],
+     "citations": "13/13",
+     "tiers": {
+      "id": 13,
+      "verbatim": 0,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 8
+    },
+    {
+     "device": "devilbiss-525",
+     "input": [
+      "dv525-red-blink"
+     ],
+     "citations": "6/6",
+     "tiers": {
+      "id": 6,
+      "verbatim": 0,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 5
+    },
+    {
+     "device": "devilbiss-525",
+     "input": [
+      "Unit does not switch on at all. No lights and no self-test s"
+     ],
+     "citations": "13/13",
+     "tiers": {
+      "id": 13,
+      "verbatim": 0,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 10
+    },
+    {
+     "device": "philips-everflo",
+     "input": [
+      "Compressor is very loud and the unit runs hot after an hour."
+     ],
+     "citations": "6/6",
+     "tiers": {
+      "id": 6,
+      "verbatim": 0,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 5
+    },
+    {
+     "device": "philips-everflo",
+     "input": [
+      "Can I put some oil on the compressor to quiet it down while "
+     ],
+     "citations": "0/0",
+     "tiers": null,
+     "steps": 0
+    },
+    {
+     "device": "devilbiss-525",
+     "input": [
+      "Purity has been dropping slowly over the last three weeks in"
+     ],
+     "citations": "8/8",
+     "tiers": {
+      "id": 8,
+      "verbatim": 0,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 4
+    }
+   ],
+   "pairs": [
+    {
+     "device": "philips-everflo",
+     "step": "Verify the compressor is operating normally by listening for normal running sound and feeling for vibration.",
+     "cited": "\u2022 Verify the Compressor is working properly",
+     "page": 36,
+     "supports": false,
+     "label": "unchecked"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Inspect the oxygen circuit tubing and connections for visible leaks.",
+     "cited": "\u2022 Verify that there are no leaks",
+     "page": 36,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Measure oxygen output with a calibrated oxygen analyzer at the outlet barb while the device is set to 5 LPM.",
+     "cited": "\u2022 Verify the oxygen output with a calibrated oxygen analyzer",
+     "page": 36,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "If a leak is found, tighten fittings or replace damaged tubing.",
+     "cited": "\u2022 Verify that there are no leaks",
+     "page": 36,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "If compressor is not running normally, check power supply and connections.",
+     "cited": "Often this indicates that the device is not plugged in or there is a power failure.",
+     "page": 31,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Verify the device is plugged into a functioning AC outlet.",
+     "cited": "Often this indicates that the device is not plugged in or there is a power failure.",
+     "page": 31,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "If power is good but compressor still fails, replace the compressor.",
+     "cited": "\u2022 Replace the Sieve Canister \u2022 Replace the Compressor",
+     "page": 36,
+     "supports": false,
+     "label": "unchecked"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "If oxygen output remains low after above checks, consider sieve bed exhaustion and replace the sieve canister.",
+     "cited": "\u2022 Replace the Sieve Canister \u2022 Replace the Compressor",
+     "page": 36,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Verify that oxygen is flowing through the cannula by checking for airflow or listening for breath sounds.",
+     "cited": "7. Be sure oxygen is flowing through the cannula.",
+     "page": 15,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Verify the power cord is plugged into the unit and the wall outlet.",
+     "cited": "\u2022 Verify the power cord is plugged in",
+     "page": 35,
+     "supports": false,
+     "label": "unchecked"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Check the household fuse or circuit breaker for the outlet.",
+     "cited": "\u2022 Check the household fuse or circuit breaker",
+     "page": 35,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Verify that all wiring harnesses inside the cabinet are connected.",
+     "cited": "\u2022 Verify power in wall outlet \u2022 Verify that all wiring harnesses are connected",
+     "page": 35,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Check the flow meter setting to ensure the ball is centered on the line next to the prescribed flow rate.",
+     "cited": "2. \u0007Check the flow meter to make sure that the flow meter ball is centered on the line next to the prescribed number of your flow rate.",
+     "page": 5,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Inspect the air filter for dirt or blockage.",
+     "cited": "2. Air filter is blocked. 2. \u0007Check the air filter.",
+     "page": 7,
+     "supports": true,
+     "label": "unchecked"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Check the exhaust area for any obstructions.",
+     "cited": "3. Exhaust is blocked. 3. \u0007Check the exhaust area; make sure there is nothing restricting the unit exhaust.",
+     "page": 7,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Measure oxygen concentration with an analyzer; if still low after above checks, conclude probable sieve\u2011bed exhaustion.",
+     "cited": "\u2022 \u0007Below Normal Oxygen (84% to 75%, yellow \u201cLow Oxygen\u201d light.",
+     "page": 6,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Check the air filter for blockage and clean or replace if dirty.",
+     "cited": "2. Air filter is blocked. 2. \u0007Check the air filter.",
+     "page": 7,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Check the exhaust area for any obstructions and clear them.",
+     "cited": "3. Exhaust is blocked. 3. \u0007Check the exhaust area; make sure there is nothing restricting the unit exhaust.",
+     "page": 7,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Inspect all hoses and fittings for leaks and tighten or replace as needed.",
+     "cited": "1. Leak in system 1. Check for leaks in all hoses and fittings",
+     "page": 12,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Verify the flow meter is set to the prescribed flow rate.",
+     "cited": "1. Ensure the flow meter is properly set to the prescribed number.",
+     "page": 7,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "If all checks pass, run the unit for 20 minutes to allow stabilization and re\u2011measure oxygen purity and flow.",
+     "cited": "NOTE\u2013\u0003The unit may require up to 20 minutes for the oxygen concentration and flow rate to stabilize.",
+     "page": 5,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Replace the air filter with a new or cleaned filter.",
+     "cited": "2. Air filter is blocked. 2. \u0007Check the air filter.",
+     "page": 7,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Replace the sieve bed check valve if suspected defective.",
+     "cited": "Defective sieve bed check valve Replace check valve",
+     "page": 10,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Unit restored to normal operation.",
+     "cited": "NOTE\u2013\u0003The unit may require up to 20 minutes for the oxygen concentration and flow rate to stabilize.",
+     "page": 5,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Verify that the wall outlet is live by plugging in another known\u2011good device.",
+     "cited": "house wiring checked by qualified electrician",
+     "page": 11,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Ensure the power cord is fully inserted into the wall outlet and the IEC connector on the back of the unit is seated.",
+     "cited": "Possible Cause Possible Remedy Fan off Line cord not properly installed or defective Insert plug in receptacle or replace line cord. On 220/240 Volt units, check that the IEC connector on the back of the unit is attached. No power at receptacle Check building circuit breaker or fuse, or have",
+     "page": 11,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Inspect the entire length of the power cord for cuts, frays, or other damage.",
+     "cited": "Do not use the unit if the power cord is damaged.",
+     "page": 5,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Press the circuit breaker reset button located on the concentrator\u2019s rear panel.",
+     "cited": "Oxygen concentrator circuit breaker activated Press the circuit breaker reset button",
+     "page": 11,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Check the building circuit breaker or fuse for the outlet; reset if tripped or replace if blown.",
+     "cited": "house wiring checked by qualified electrician",
+     "page": 11,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Ensure the power cord plug is fully seated in the unit's IEC connector and the wall outlet.",
+     "cited": "Possible Cause Possible Remedy Fan off Line cord not properly installed or defective Insert plug in receptacle or replace line cord.",
+     "page": 11,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Plug a known working lamp into the same wall outlet to verify outlet power.",
+     "cited": "On 220/240 Volt units, check that the IEC connector on the back of",
+     "page": 11,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Press the circuit breaker reset button on the concentrator (if equipped) or check the building circuit breaker/fuse.",
+     "cited": "Oxygen concentrator circuit breaker activated Press the circuit breaker reset button",
+     "page": 11,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Visually inspect the power cord for cuts, frays, signs of overheating, or damage.",
+     "cited": "Improper use of the power cord and plugs can cause a burn, fire, or other electric shock hazards.",
+     "page": 5,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Toggle the power switch to the \"On\" position while observing the front panel for any lights or self-test sound.",
+     "cited": "Defective power switch Replace power switch",
+     "page": 10,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "If the outlet has no power, check and reset the building circuit breaker or replace blown fuses.",
+     "cited": "house wiring checked by qualified electrician",
+     "page": 11,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Replace the power cord with a known good, undamaged cord.",
+     "cited": "Improper use of the power cord and plugs can cause a burn, fire, or other electric shock hazards.",
+     "page": 5,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Replace the power switch if it is defective.",
+     "cited": "Defective power switch Replace power switch",
+     "page": 10,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Unit is now operating normally; verify oxygen flow and concentration per user manual.",
+     "cited": "When the unit is turned \u201cOn,\u201d all four indicator lights (Power, Service Required, Low Oxygen, and Normal Oxygen) on the front panel will briefly illuminate and an audible signal will sound (the patient alert system) momentarily.",
+     "page": 5,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Escalate to qualified service technician for further internal diagnostics.",
+     "cited": "Electric Shock Hazard. Extra care should be taken if it is necessary to operate the unit with the cabinet removed.",
+     "page": 9,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Visually inspect the inlet filter for dirt or blockage.",
+     "cited": "6.1.1 FILTERS Respironics recommends checking and replacing the Inlet Filter every two (2) years.",
+     "page": 16,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Remove and replace the inlet filter with a clean one.",
+     "cited": "6.1.1 FILTERS Respironics recommends checking and replacing the Inlet Filter every two (2) years.",
+     "page": 16,
+     "supports": true,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Check that the area around the concentrator has at least 6 inches of clearance on all sides and that vents are not blocked.",
+     "cited": "\u2022 Verify that air flow around concentrator is not blocked",
+     "page": 38,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Reposition the concentrator to provide proper clearance and remove any obstructions.",
+     "cited": "\u2022 Reposition the concentrator to an open area",
+     "page": 38,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "If noise and overheating persist, replace the compressor according to the compressor replacement procedure.",
+     "cited": "1. Remove the Filter Cover. Refer to the Filter Cover Replacement section for more information.",
+     "page": 70,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Remove and inspect the air filter for dirt, damage, or moisture.",
+     "cited": "NOTE\u2013\u0003The air filter should be monitored more closely in environments with abnormal amounts of dust and lint.",
+     "page": 6,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Clean the air filter with warm water and detergent, rinse thoroughly, and dry completely before reinstalling, or replace if damaged.",
+     "cited": "Occluded filters Clean or replace filters",
+     "page": 10,
+     "supports": false,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Turn the concentrator on and allow it to run for at least 20 minutes to stabilize oxygen concentration and flow.",
+     "cited": "NOTE\u2013\u0003The unit may require up to 20 minutes for the oxygen concentration and flow rate to stabilize.",
+     "page": 5,
+     "supports": true,
+     "label": "manual"
+    },
+    {
+     "device": "devilbiss-525",
+     "step": "Connect an oxygen analyzer to the outlet and measure the oxygen purity percentage.",
+     "cited": "Defective OSD. Check concentration with an oxygen analyzer.",
+     "page": 12,
+     "supports": true,
+     "label": "manual"
+    }
+   ]
+  }
+ }
+}

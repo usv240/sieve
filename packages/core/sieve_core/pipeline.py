@@ -15,6 +15,7 @@ from typing import Any
 
 from sieve_llm import Tier, TokenFactoryClient, call_structured
 from sieve_retrieval import Hit, PageStore, Searcher
+from sieve_retrieval.sentences import SentenceIndex, pack_numbered
 from sieve_rules import RuleHit, RulesEngine, load_rules
 
 from .citations import verify_quote
@@ -44,9 +45,15 @@ class AnalyzeResult:
     notes: list[str] = field(default_factory=list)
 
 
+QUOTE_RULE = """1. Use ONLY the manual pages provided. Every hypothesis and every step must carry a cite with the exact doc_id, page number and a VERBATIM quote copied from that page. Never paraphrase inside quote."""
+
+SID_RULE = """1. Use ONLY the manual pages provided. Every sentence on those pages is numbered [S1], [S2] and so on. Every hypothesis and every step must carry cite.sid: the id of the one numbered sentence that itself states that action, check or fact, plus its doc_id and page. Read the sentence before you choose it; a neighbouring sentence or a heading is not support. Leave quote empty; code copies the exact sentence from its id. If no numbered sentence states a step, leave the step out."""
+
+SUPPORT_SYSTEM = """You check one step of a repair guide against the manual text cited for it. Answer YES if the manual text states this action or check, or the step is a direct, faithful restatement of it. Answer NO if the step adds an action the text does not mention. Reply with one word: YES or NO."""
+
 SYNTH_SYSTEM = """You are a senior biomedical equipment engineer writing a troubleshooting tree for a technician in a district hospital.
 Rules you must follow:
-1. Use ONLY the manual pages provided. Every hypothesis and every step must carry a cite with the exact doc_id, page number and a VERBATIM quote copied from that page. Never paraphrase inside quote.
+{rule1}
 2. Steps are concrete, one action each, ordered from cheapest and safest to most invasive. Start with checks that need no tools.
 3. Mark any step that opens the cabinet, touches mains, capacitors, or the oxygen path as safety_class "caution"; mark anything the manual says only qualified personnel may do as "stop".
 4. If the pages do not support a step, do not write it. Prefer fewer, well-cited steps.
@@ -57,7 +64,8 @@ For each step decide: approve (the cited quote supports the action and nothing i
 
 
 class SievePipeline:
-    def __init__(self, client: TokenFactoryClient | None, store: PageStore, registry: Registry | None = None, rules: RulesEngine | None = None):
+    def __init__(self, client: TokenFactoryClient | None, store: PageStore, registry: Registry | None = None, rules: RulesEngine | None = None, cite_mode: str | None = None):
+        self.cite_mode = cite_mode or os.environ.get("SIEVE_CITE_MODE", "sid")
         self.client = client
         self.store = store
         self.search = Searcher(store)
@@ -120,7 +128,10 @@ class SievePipeline:
             return res
 
         # synthesise
-        context = self.search.pack_context(hits)
+        if self.cite_mode == "sid":
+            context, sidx = pack_numbered(hits, 24_000)
+        else:
+            context, sidx = self.search.pack_context(hits), None
         fault_ids = ", ".join(dev.get("common_faults", [])) if dev else ", ".join(sorted(self.registry.faults))
         user = (
             f"Allowed fault_id values (use only these): {fault_ids}.\n"
@@ -137,13 +148,14 @@ class SievePipeline:
             )
         tree = call_structured(
             self.client, Tier.MID, FaultTree,
-            [{"role": "system", "content": SYNTH_SYSTEM}, {"role": "user", "content": user}],
+            [{"role": "system", "content": SYNTH_SYSTEM.replace("{rule1}", SID_RULE if self.cite_mode == "sid" else QUOTE_RULE)}, {"role": "user", "content": user}],
             purpose="synthesise.fault_tree", trace_id=trace_id, max_tokens=3000,
         )
         tree.device_id = device_id or tree.device_id
 
         # citation verification (deterministic)
-        cit = self._verify_tree(tree)
+        cit = self._verify_tree(tree, sidx)
+        cit["support"] = self._support_check(tree, trace_id)
 
         # output gate
         out_text = "\n".join(f"{s.action}. {s.expected}." for s in tree.steps)
@@ -184,12 +196,50 @@ class SievePipeline:
         return out
 
     # ---------- helpers ----------
-    def _verify_tree(self, tree: FaultTree) -> dict[str, Any]:
+    def _support_check(self, tree: FaultTree, trace_id: str) -> dict[str, Any]:
+        """Label each step: does its cited manual text state it ("manual"), or is it general practice ("general")?
+
+        A fast Nemotron 3 Nano call per step, run in parallel. It only labels; the step text is never changed here,
+        so the technician sees exactly which steps the manual itself states.
+        """
+        from concurrent.futures import ThreadPoolExecutor
+
+        todo = [s for s in tree.steps if s.cite.quote and not s.action.startswith(("See ", "STOP", "ESCALATE"))]
+        if not self.client or not todo or os.environ.get("SIEVE_SUPPORT_CHECK", "1") != "1":
+            return {"checked": 0}
+
+        def one(s: Step) -> None:
+            try:
+                r = self.client.chat(Tier.FAST, [
+                    {"role": "system", "content": SUPPORT_SYSTEM},
+                    {"role": "user", "content": f"STEP: {s.action}\nEXPECTED: {s.expected}\n\nMANUAL TEXT: {s.cite.quote}"},
+                ], purpose="check.step_support", trace_id=trace_id, max_tokens=4, temperature=0.0)
+                txt = (r.choices[0].message.content or "").strip().upper()
+                s.support = "manual" if txt.startswith("YES") else "general"
+            except Exception:  # noqa: BLE001
+                s.support = "unchecked"
+
+        with ThreadPoolExecutor(max_workers=8) as ex:
+            list(ex.map(one, todo))
+        n_manual = sum(s.support == "manual" for s in todo)
+        return {"checked": len(todo), "manual": n_manual, "general": sum(s.support == "general" for s in todo)}
+
+    def _verify_tree(self, tree: FaultTree, sidx: SentenceIndex | None = None) -> dict[str, Any]:
         total, ok, failures = 0, 0, []
-        tiers: dict[str, int] = {"verbatim": 0, "normalised": 0, "fuzzy": 0}
+        tiers: dict[str, int] = {"id": 0, "verbatim": 0, "normalised": 0, "fuzzy": 0}
         for item in [*tree.hypotheses, *tree.steps, *[p for p in tree.parts_candidates if p.cite]]:
             c = item.cite
             total += 1
+            sents = sidx.resolve_many(c.sid) if sidx else []
+            if sents:
+                c.doc, c.page = sents[0].doc, sents[0].page
+                c.quote, c.sid = " ".join(s.text for s in sents), ", ".join(s.sid for s in sents)
+                ok += 1
+                tiers["id"] += 1
+                continue
+            if sidx and c.sid:
+                failures.append({"doc": c.doc, "page": c.page, "quote": c.quote[:120], "reason": f"sentence id {c.sid} does not exist"})
+                continue
             v = verify_quote(c.quote, self.store.page_text(c.doc, c.page))
             if v.ok:
                 ok += 1
