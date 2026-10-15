@@ -1,0 +1,581 @@
+{
+ "annotator": "project team, by eye, before any model run",
+ "scoring": "in registry: correct if the top match is acceptable and auto-selected (confidence at least 0.6), or offered in the top 3 for the user to pick; wrong if a different device is auto-selected. Not in registry: correct if nothing is auto-selected.",
+ "items": [
+  {
+   "index": 0,
+   "file": "10248c8a5a53.jpg",
+   "url": "https://medbidding.com/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-16-at-17.17.03-scaled.jpeg",
+   "acceptable": [
+    "philips-everflo"
+   ],
+   "legible_model_text": true,
+   "note": "serial label reads EverFlo"
+  },
+  {
+   "index": 1,
+   "file": "5f2403f6b0f0.jpg",
+   "url": "https://medbidding.com/wp-content/uploads/2025/08/20250826_173856-scaled.jpg",
+   "acceptable": [
+    "philips-everflo"
+   ],
+   "legible_model_text": true,
+   "note": "serial label reads EverFlo"
+  },
+  {
+   "index": 2,
+   "file": "390b49383d4f.jpg",
+   "url": "https://medbidding.com/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-26-at-10.44.55-1-scaled.jpeg",
+   "acceptable": [
+    "philips-everflo"
+   ],
+   "legible_model_text": true,
+   "note": "serial label reads EverFlo"
+  },
+  {
+   "index": 3,
+   "file": "0371c391b611.jpg",
+   "url": "https://medbidding.com/wp-content/uploads/2025/04/20250403_104820-scaled.jpg",
+   "acceptable": [
+    "philips-everflo"
+   ],
+   "legible_model_text": true,
+   "note": "serial label reads EverFlo"
+  },
+  {
+   "index": 4,
+   "file": "cf622ad2cea5.jpg",
+   "url": "https://medbidding.com/wp-content/uploads/2025/09/916507442575952.jpg",
+   "acceptable": [
+    "philips-everflo"
+   ],
+   "legible_model_text": false,
+   "note": "whole unit, model text too small"
+  },
+  {
+   "index": 5,
+   "file": "593a5e1adca8.jpg",
+   "url": "https://directhomemedical.com/cdn/shop/files/everflo-concentrator-controls.jpg?v=1737134772&width=3840",
+   "acceptable": [
+    "philips-everflo"
+   ],
+   "legible_model_text": true,
+   "note": "EverFlo badge"
+  },
+  {
+   "index": 6,
+   "file": "9e4f5f9ac8ef.jpg",
+   "url": "https://www.oxygenconcentratorstore.com/media/catalog/product/e/v/everflo-used_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=505&width=762&canvas=762:505",
+   "acceptable": [
+    "philips-everflo"
+   ],
+   "legible_model_text": false,
+   "note": "whole unit, model text too small"
+  },
+  {
+   "index": 7,
+   "file": "e9d11931fff9.jpg",
+   "url": "https://helpmedicalsupplies.com/cdn/shop/products/Philips-Respironics-EverFlo-Oxygen-Concentrator-without-OPI-control-panel_2048x_crop_center.jpg?v=1740077237",
+   "acceptable": [
+    "philips-everflo"
+   ],
+   "legible_model_text": true,
+   "note": "EverFlo badge"
+  },
+  {
+   "index": 8,
+   "file": "d367808b8eb5.jpg",
+   "url": "https://i.ebayimg.com/images/g/d8sAAOSwibZgA2vL/s-l400.jpg",
+   "excluded": "filter, not a device"
+  },
+  {
+   "index": 9,
+   "file": "0a8f9b4d720a.jpg",
+   "url": "https://oxygen-equipment.com/wp-content/uploads/2026/08/drive5-certified-pre-owned.png",
+   "acceptable": [
+    "devilbiss-525"
+   ],
+   "legible_model_text": false,
+   "note": "Drive DeVilbiss 5 L compact; brand visible, model number not printed on the front"
+  },
+  {
+   "index": 10,
+   "file": "67de13b51bcc.jpg",
+   "url": "https://www.oxygenconcentratorstore.com/media/catalog/product/5/2/525-main-used_1_1_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=505&width=762&canvas=762:505",
+   "acceptable": [
+    "devilbiss-525"
+   ],
+   "legible_model_text": false,
+   "note": "Drive DeVilbiss 5 L compact; brand visible, model number not printed on the front"
+  },
+  {
+   "index": 11,
+   "file": "371a5e429459.jpg",
+   "url": "https://directhomemedical.com/cdn/shop/files/525ds-devilbiss-home-oxygen-concentrator-with-optional-humidifier-bottle.jpg?v=1770133960&width=1024",
+   "acceptable": [
+    "devilbiss-525"
+   ],
+   "legible_model_text": false,
+   "note": "Drive DeVilbiss 5 L compact; brand visible, model number not printed on the front"
+  },
+  {
+   "index": 12,
+   "file": "34d1875f718c.jpg",
+   "url": "https://oxygen-equipment.com/wp-content/uploads/2026/08/drive-devilbiss-525ds-oxygen-concentrator-4.png",
+   "acceptable": [
+    "devilbiss-525"
+   ],
+   "legible_model_text": false,
+   "note": "Drive DeVilbiss 5 L compact; brand visible, model number not printed on the front"
+  },
+  {
+   "index": 13,
+   "file": "db3ce5a26380.jpg",
+   "url": "https://oxygenium.gr/wp-content/uploads/2022/08/001_Devilbiss_515_Oxygenium_Medical.jpg",
+   "acceptable": [
+    "devilbiss-515"
+   ],
+   "legible_model_text": false,
+   "note": "older beige DeVilbiss 5 L; no legible model text"
+  },
+  {
+   "index": 14,
+   "file": "7fcaf45ce835.jpg",
+   "url": "https://www.oxygenplusconcentrators.com/cdn/shop/products/Screenshot_2018-12-10_Devilbiss_Solaris_515AD_515DZ_515ADS_525_and_Sequal_Oxygen_Concentrator_Main_Intake_Filter_1_78fedc33-76a5-4f57-af91-1c2ddc377b6d_300x.png?v=1574800831",
+   "acceptable": [
+    "devilbiss-515"
+   ],
+   "legible_model_text": false,
+   "note": "DeVilbiss wordmark only"
+  },
+  {
+   "index": 15,
+   "file": "0fdd9980ed6b.jpg",
+   "url": "https://secure.hmepowerweb.com/Resources/Uploads/819f2e52-cb71-4213-a16d-3e33ed7b87c4.jpg",
+   "acceptable": [
+    "devilbiss-515"
+   ],
+   "legible_model_text": false,
+   "note": "older beige DeVilbiss 5 L; no legible model text"
+  },
+  {
+   "index": 16,
+   "file": "fddb1367b62c.jpg",
+   "url": "https://selfimed.com/cdn/shop/files/Drive_DeVilbiss_515AKS_Compact_Oxygen_Concentrator_1200x1600.jpg?v=1765989800",
+   "acceptable": [
+    "devilbiss-515"
+   ],
+   "legible_model_text": false,
+   "note": "DeVilbiss wordmark only"
+  },
+  {
+   "index": 17,
+   "file": "c74fac11eccd.jpg",
+   "url": "https://lptmedical.com/cdn/shop/products/DeVilbiss_5_Liter.jpg?v=1679908169&width=1445",
+   "acceptable": [
+    "devilbiss-525",
+    "devilbiss-515"
+   ],
+   "legible_model_text": false,
+   "note": "returned for a 515 query but looks like the newer 5 L; either DeVilbiss 5 L accepted"
+  },
+  {
+   "index": 18,
+   "file": "dc06e816db6b.jpg",
+   "url": "https://www.oxygenplusmedical.com/cdn/shop/products/airsep-elite_49b488bd-f65a-46c4-b3b2-da6cd38320ed_600x.jpg?v=1596762191",
+   "acceptable": [
+    "airsep-newlife"
+   ],
+   "legible_model_text": true,
+   "note": "NewLife Elite wordmark"
+  },
+  {
+   "index": 19,
+   "file": "250d24c547d9.jpg",
+   "url": "https://www.graylinemedical.com/cdn/shop/products/7930883_01_FRONT_S_600x600_2df11c85-d8fc-4e9f-a471-887df9dcdfe6_600x600.jpg?v=1575940469",
+   "acceptable": [
+    "airsep-newlife"
+   ],
+   "legible_model_text": true,
+   "note": "NewLife Elite wordmark"
+  },
+  {
+   "index": 20,
+   "file": "4611c65864b8.jpg",
+   "url": "https://images.dotmed.com/cgi-bin/size.pl?i=4309996_4.jpg&s=640&t=2",
+   "acceptable": [
+    "airsep-newlife"
+   ],
+   "legible_model_text": true,
+   "note": "rating label: Model NewLife"
+  },
+  {
+   "index": 21,
+   "file": "89dc5c8a092e.jpg",
+   "url": "https://www.vitalitymedical.com/media/catalog/product/cache/5a44b864f5b938cc2756756850957102/n/e/newlife-intensity-controls_1_1.png",
+   "excluded": "manual page, not a photo"
+  },
+  {
+   "index": 22,
+   "file": "0a9f3d55d528.jpg",
+   "url": "https://www.oxygenplusconcentrators.com/cdn/shop/products/eliteo2_e4711947-78c5-4faa-ade6-02a22b593e61_600x.jpg?v=1547925540",
+   "acceptable": [
+    "airsep-newlife"
+   ],
+   "legible_model_text": true,
+   "note": "NewLife Elite wordmark"
+  },
+  {
+   "index": 23,
+   "file": "54f8df81ed26.jpg",
+   "url": "https://helpmedicalsupplies.com/cdn/shop/products/airsep-visionaire-5-home-oxygen-concentrator_d9071309-1c82-4f68-91ae-97514b271313_grande.jpg?v=1708978859",
+   "acceptable": [
+    "airsep-visionaire"
+   ],
+   "legible_model_text": true,
+   "note": "VisionAire 5 wordmark"
+  },
+  {
+   "index": 24,
+   "file": "712ad3a39735.jpg",
+   "url": "https://images.dotmed.com/images/listingpics2/5/2/2/4/5224996.jpg",
+   "acceptable": [
+    "airsep-visionaire"
+   ],
+   "legible_model_text": true,
+   "note": "VisionAire 5 wordmark"
+  },
+  {
+   "index": 25,
+   "file": "97a795889784.jpg",
+   "url": "https://images.dotmed.com/cgi-bin/size.pl?i=5088009.jpg&s=640&t=2",
+   "acceptable": [
+    "airsep-visionaire"
+   ],
+   "legible_model_text": true,
+   "note": "VisionAire 5 wordmark"
+  },
+  {
+   "index": 26,
+   "file": "1f37940a918b.jpg",
+   "url": "https://lptmedical.com/cdn/shop/products/airsepvisionaire_43d5391b-fc1c-4943-9dd5-4d55bad6d398.jpg?v=1613429139&width=600",
+   "acceptable": [
+    "airsep-visionaire"
+   ],
+   "legible_model_text": true,
+   "note": "VisionAire 5 wordmark"
+  },
+  {
+   "index": 27,
+   "file": "6f929d875f2f.jpg",
+   "url": "https://images.dotmed.com/images/listingpics2/4/4/7/9/4479219.jpg",
+   "acceptable": [
+    "airsep-visionaire"
+   ],
+   "legible_model_text": true,
+   "note": "VisionAire 5 wordmark"
+  },
+  {
+   "index": 28,
+   "file": "e9fd10963773.jpg",
+   "url": "https://cpapx.com/cdn/shop/files/react-platinum-10-high-flow-oxygen-concentrator-no-smoking.jpg?v=1733241947&width=3840",
+   "acceptable": [
+    "invacare-platinum"
+   ],
+   "legible_model_text": true,
+   "note": "Platinum 10 badge"
+  },
+  {
+   "index": 29,
+   "file": "7962e1c6897a.jpg",
+   "url": "https://peoplescaremedicalsupply.shop/cdn/shop/products/invacare-platinum-10l-oxygen-concentrator-diagram2.jpg?v=1663481210&width=1445",
+   "excluded": "line diagram"
+  },
+  {
+   "index": 30,
+   "file": "f207a61ea082.jpg",
+   "url": "https://www.vitalitymedical.com/media/catalog/product/cache/0c5e3a168239f6bfcba855c2876c1575/i/n/invacare_platinum_10_liter_home_oxygen_concentrator22.jpg",
+   "acceptable": [
+    "invacare-platinum"
+   ],
+   "legible_model_text": false,
+   "note": "Invacare badge, model text small"
+  },
+  {
+   "index": 31,
+   "file": "03c7df3b6a85.jpg",
+   "url": "https://www.oxygenconcentratorstore.com/media/cms/help-center/dimensions/plat-dimensions.jpg",
+   "excluded": "marketing graphic"
+  },
+  {
+   "index": 32,
+   "file": "05cb1f031de9.jpg",
+   "url": "https://mainclinicsupply.com/cdn/shop/files/Plat103.jpg?v=1723151884",
+   "acceptable": [
+    "invacare-platinum"
+   ],
+   "legible_model_text": true,
+   "note": "Platinum 10 badge"
+  },
+  {
+   "index": 33,
+   "file": "430ff2e1baea.jpg",
+   "url": "https://www.vitalitymedical.com/media/catalog/product/cache/5a44b864f5b938cc2756756850957102/n/u/nuvo_lite_mark_5_liter_oxygen_concentrator-removebg-preview.png",
+   "acceptable": [
+    "nidek-nuvo"
+   ],
+   "legible_model_text": true,
+   "note": "Nidek Nuvo badge"
+  },
+  {
+   "index": 34,
+   "file": "5af9709bdc48.jpg",
+   "url": "https://westprimehealthcare.com/cdn/shop/files/Nuvo-Lite-Mark-5-Home-Oxygen-Concentrator_westprime_healthcare.webp?v=1699657192&width=416",
+   "acceptable": [
+    "nidek-nuvo"
+   ],
+   "legible_model_text": true,
+   "note": "Nidek Nuvo badge"
+  },
+  {
+   "index": 35,
+   "file": "2b29d3316344.jpg",
+   "url": "https://i.healthproductsforyou.com/fullimage/1000-X-1000/1/l/10320174142nuvo-lite-mark-5-liter-oxygen-concentrator-ig3-rear-panel-P.png",
+   "excluded": "manual diagram"
+  },
+  {
+   "index": 36,
+   "file": "d3821a52ee61.jpg",
+   "url": "https://www.rehabmart.com/imagesfromrd/01~42.jpg",
+   "acceptable": [
+    "nidek-nuvo"
+   ],
+   "legible_model_text": true,
+   "note": "Nidek Nuvo badge"
+  },
+  {
+   "index": 37,
+   "file": "ff59b1d1b71d.jpg",
+   "url": "https://www.rainbowcare.com.sg/image/cache/catalog/products/oxygen/Nuvo%20lite%20OMSQ/Nidek%20Nuvo%20Lite%20OMSQ%20main-910x1155.jpg",
+   "acceptable": [
+    "nidek-nuvo"
+   ],
+   "legible_model_text": true,
+   "note": "Nidek Nuvo badge"
+  },
+  {
+   "index": 38,
+   "file": "7bed609244fb.jpg",
+   "url": "https://www.vitalitymedical.com/media/catalog/product/cache/5a44b864f5b938cc2756756850957102/n/u/nuvo-lite-rear-panel-2013_1.png",
+   "excluded": "manual diagram"
+  },
+  {
+   "index": 39,
+   "file": "4cf032b49093.jpg",
+   "url": "https://www.vitalitymedical.com/media/catalog/product/cache/0c5e3a168239f6bfcba855c2876c1575/n/u/nuvo_lite_mark_5_liter_oxygen_concentrator-removebg-preview.png",
+   "acceptable": [
+    "nidek-nuvo"
+   ],
+   "legible_model_text": true,
+   "note": "Nidek Nuvo badge"
+  },
+  {
+   "index": 40,
+   "file": "90e8577fe6fe.jpg",
+   "url": "https://i.healthproductsforyou.com/fullimage/1000-X-1000/9/r/9320174154nuvo-lite-mark-5-liter-oxygen-concentrator-P.png",
+   "acceptable": [
+    "nidek-nuvo"
+   ],
+   "legible_model_text": true,
+   "note": "Nidek Nuvo badge"
+  },
+  {
+   "index": 41,
+   "file": "33420c29910d.jpg",
+   "url": "https://www.vitalitymedical.com/media/catalog/product/cache/f0486a80047dcb9112ac3f70ec55dda9/n/u/nuvo_lite_mark_5_liter_oxygen_concentrator-removebg-preview.png",
+   "acceptable": [
+    "nidek-nuvo"
+   ],
+   "legible_model_text": true,
+   "note": "Nidek Nuvo badge"
+  },
+  {
+   "index": 42,
+   "file": "0df5fb38b4df.jpg",
+   "url": "https://megmedius.com/wp-content/uploads/2019/10/jay-05.jpg",
+   "acceptable": [
+    "longfian-jay"
+   ],
+   "legible_model_text": false,
+   "note": "no legible brand"
+  },
+  {
+   "index": 43,
+   "file": "b6b0173954f7.jpg",
+   "url": "https://www.oxygentimes.com/storage/productlargeimages/Screenshot%202021-12-03%20at%2021638525057.jpg",
+   "acceptable": [
+    "yuwell-7f5"
+   ],
+   "legible_model_text": false,
+   "note": "Yuwell-style 5 L, no legible model"
+  },
+  {
+   "index": 44,
+   "file": "d744518828cc.jpg",
+   "url": "https://iirorwxhjmlklj5p.leadongcdn.com/cloud/loBplKjklnSRoljiqlrjko/7F-300-300.png",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "LongMed clone, not in registry"
+  },
+  {
+   "index": 45,
+   "file": "92544b3cd448.jpg",
+   "url": "https://cdn.salla.sa/ePrVda/9myPzGBAgYU36pWaieokoqBMgzXZQGXYJuLwoZ4W.png",
+   "acceptable": [
+    "yuwell-7f5"
+   ],
+   "legible_model_text": false,
+   "note": "Yuwell-style 5 L, no legible model"
+  },
+  {
+   "index": 46,
+   "file": "547947b1d663.jpg",
+   "url": "https://image.made-in-china.com/2f0j00OCAiNlvEypce/Yuwell-7f-5b-Oxygen-Concentrator-5L-10L-Portable-Oxygen-Concentrator-Portable-Oxygen-Generator.webp",
+   "acceptable": [
+    "yuwell-7f5"
+   ],
+   "legible_model_text": true,
+   "note": "yuwell wordmark; exact model unclear"
+  },
+  {
+   "index": 47,
+   "file": "d013bb756774.jpg",
+   "url": "https://cdn.shopify.com/s/files/1/0103/4669/2666/files/Yuwell_7F-5_Oxygen_Concentrator_features_2.png?v=1637137766",
+   "acceptable": [
+    "yuwell-7f5"
+   ],
+   "legible_model_text": true,
+   "note": "panel reads yuwell 7F-5"
+  },
+  {
+   "index": 48,
+   "file": "102642a93e95.jpg",
+   "url": "https://cdn.inogen.com/wp-content/themes/inogen/assets/images/concentrators/G3HF-513px.png",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "Inogen One G3 portable, not in registry"
+  },
+  {
+   "index": 49,
+   "file": "d98afb64cf67.jpg",
+   "url": "https://www.oxygenconcentratorstore.com/media/catalog/product/g/3/g3-ocs-main-v2.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=505&width=762&canvas=762:505",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "Inogen One G3 portable, not in registry"
+  },
+  {
+   "index": 50,
+   "file": "59916ef1e147.jpg",
+   "url": "https://majorcpap.com/cdn/shop/products/inogen-g3-pricing_bf4456ea-fcd7-4d3b-b10b-a9fdf9f5e3f2.jpg?v=1642546049&width=900",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "Inogen One G3 portable, not in registry"
+  },
+  {
+   "index": 51,
+   "file": "7852ad0734ee.jpg",
+   "url": "https://respirationnation.com/cdn/shop/files/InogenG3withsingleanddoublebatteries_1.jpg?v=1790974250&width=1445",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "Inogen One G3 portable, not in registry"
+  },
+  {
+   "index": 52,
+   "file": "05fc759f66f5.jpg",
+   "url": "https://helpmedicalsupplies.com/cdn/shop/products/Inogen-One-G3-Portable-Oxygen-Concentrator_1200x630.jpg?v=1735334435",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "Inogen One G3 portable, not in registry"
+  },
+  {
+   "index": 53,
+   "file": "7d07344242cc.jpg",
+   "url": "https://www.oxygenplusmedical.com/cdn/shop/files/1025ds_2c521bf3-1a60-4b80-9d1a-8120abbd68b8_600x.jpg?v=1711150169",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "Drive DeVilbiss 10 L (1025), not in registry; a 525 match would be the wrong manual"
+  },
+  {
+   "index": 54,
+   "file": "546737f4d2c0.jpg",
+   "url": "https://cdn11.bigcommerce.com/s-xav554o/images/stencil/1280x1280/products/1378/13630/13630__95109.1716852263.jpg?c=2",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "Drive DeVilbiss 10 L (1025), not in registry; a 525 match would be the wrong manual"
+  },
+  {
+   "index": 55,
+   "file": "21b4d16d129d.jpg",
+   "url": "https://i.healthproductsforyou.com/fullimage/1000-X-1000/1/r/14920175018devilbiss-ten-litre-oxygen-concentrator-P.png",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "Drive DeVilbiss 10 L (1025), not in registry; a 525 match would be the wrong manual"
+  },
+  {
+   "index": 56,
+   "file": "1f31cb381bcc.jpg",
+   "url": "https://i.healthproductsforyou.com/fullimage/1000-X-1000/2/r/269201744devilbiss-ten-litre-oxygen-concentrator-ig-devilbiss-ten-litre-oxygen-concentrator-P.png",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "Drive DeVilbiss 10 L (1025), not in registry; a 525 match would be the wrong manual"
+  },
+  {
+   "index": 57,
+   "file": "529ea819ad19.jpg",
+   "url": "https://i.healthproductsforyou.com/fullimage/1000-X-1000/2/r/2692017441devilbiss-ten-litre-oxygen-concentrator-ig-devilbiss-ten-litre-oxygen-concentrator-P.png",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "Drive DeVilbiss 10 L (1025), not in registry; a 525 match would be the wrong manual"
+  },
+  {
+   "index": 58,
+   "file": "2d068bf7c5e0.jpg",
+   "url": "https://www.oxygenconcentratorstore.com/media/catalog/product/c/o/companion-main-v2.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=&width=&canvas=:",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "CAIRE Companion 5, not in registry; an AirSep match would be the wrong manual"
+  },
+  {
+   "index": 59,
+   "file": "5531f9b88746.jpg",
+   "url": "https://lptmedical.com/cdn/shop/products/companion-5-humification-1f5_900x_af509717-b988-47cd-9041-90dc5b90c840.jpg?v=1652895503&width=600",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "CAIRE Companion 5, not in registry; an AirSep match would be the wrong manual"
+  },
+  {
+   "index": 60,
+   "file": "921343468426.jpg",
+   "url": "https://sprylyfe.com/cdn/shop/products/caire-companion-5-oxygen-concentrator_690x1000.jpg?v=1585171438",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "CAIRE Companion 5, not in registry; an AirSep match would be the wrong manual"
+  },
+  {
+   "index": 61,
+   "file": "47883b75e58a.jpg",
+   "url": "https://eadn-wc02-8525791.nxedge.io/cdn/media/92/68/8d/1678125980/Caire_Companion_5.png",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "CAIRE Companion 5, not in registry; an AirSep match would be the wrong manual"
+  },
+  {
+   "index": 62,
+   "file": "07f59589f2c6.jpg",
+   "url": "https://www.lincare.com/-/media/Project/Lincare/Images/Oxygen/concentrators/Caire/companion-5-eco-oxygen-concentrator-caire-1300x1100.jpg",
+   "acceptable": [],
+   "legible_model_text": true,
+   "note": "CAIRE Companion 5, not in registry; an AirSep match would be the wrong manual"
+  }
+ ]
+}
