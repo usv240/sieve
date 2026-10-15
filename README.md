@@ -1,5 +1,7 @@
 # Sieve
 
+[![ci](https://github.com/usv240/sieve/actions/workflows/ci.yml/badge.svg)](https://github.com/usv240/sieve/actions/workflows/ci.yml) [![licence](https://img.shields.io/badge/licence-Apache--2.0-blue)](LICENSE)
+
 **Photographs a dead oxygen concentrator, finds the manual page, walks the fix with safety stops, checks recalls, and files the work order. Offline-capable.**
 
 Built for the Nebius x NVIDIA Global AI Hackathon on **Nebius Token Factory** with **NVIDIA Nemotron 3 Nano, Super and Ultra**. Apache-2.0.

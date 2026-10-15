@@ -197,7 +197,7 @@ def run(out: Path = typer.Option(ROOT / "eval/results"), n_b: int = typer.Option
     }
     (out / "latest.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
     md = [f"# Sieve eval report ({report['generated_at']})", ""]
-    for k, v in summary.items():
+    for v in summary.values():
         md.append(f"- **{v['label']}**: {v['value']}{v.get('unit', '')}  ({v.get('note', '')})")
     (out / "REPORT.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     typer.echo(json.dumps(summary, indent=1))

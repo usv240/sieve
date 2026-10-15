@@ -24,7 +24,9 @@ for _env in (ROOT / ".env", ROOT.parent / ".env"):
                 os.environ.setdefault(k.strip(), v.strip())
 
 from sieve_core import Registry
+from sieve_core.fleet_brief import build_fleet_brief
 from sieve_core.pipeline import SievePipeline
+from sieve_core.twin import twin_reply
 from sieve_llm import Ledger, TokenFactoryClient
 from sieve_retrieval import PageStore
 from sieve_vision import describe

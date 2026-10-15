@@ -29,6 +29,6 @@ def test_input_gate_blocks_hazard_before_any_model(pipe):
 
 
 def test_fda_enrichment_finds_devilbiss_reports(pipe):
-    recalls, maude = pipe.enrich_fda(pipe.registry.get("devilbiss-525"))
+    _recalls, maude = pipe.enrich_fda(pipe.registry.get("devilbiss-525"))
     assert maude["reports"] > 0
     assert maude["source"].startswith("openFDA")
