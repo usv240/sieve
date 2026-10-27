@@ -61,3 +61,12 @@ def test_sentence_split_handles_footnotes_and_never_cuts_words():
     assert parts[0].endswith("toxicity.")
     assert all(not p.endswith("synthas") for p in parts)
     assert all(p.split()[-1] in {"alpha", "synthase.", "poisoning."} or p.endswith(".") for p in parts)
+
+
+def test_inline_citations_are_removed_from_step_text():
+    from sieve_core.pipeline import strip_inline_cites
+
+    assert strip_inline_cites("Measure purity at 5 LPM. (Ref: Section 6.3.5, page 37)") == "Measure purity at 5 LPM."
+    assert strip_inline_cites("Unplug the unit. (Cite: page 6 WARNING: 'Do not clean while plugged in (mains).')") == "Unplug the unit."
+    assert strip_inline_cites("Check the filter (see page 12).") == "Check the filter."
+    assert strip_inline_cites("Set flow to 2 (two) LPM.") == "Set flow to 2 (two) LPM."

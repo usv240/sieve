@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import uuid
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -54,13 +55,21 @@ SUPPORT_SYSTEM = """You check one step of a repair guide against the manual text
 SYNTH_SYSTEM = """You are a senior biomedical equipment engineer writing a troubleshooting tree for a technician in a district hospital.
 Rules you must follow:
 {rule1}
-2. Steps are concrete, one action each, ordered from cheapest and safest to most invasive. Start with checks that need no tools.
+2. Steps are concrete, one action each, ordered from cheapest and safest to most invasive. Start with checks that need no tools. Never write page numbers, section numbers or quotations inside action or expected; the citation goes only in cite.
 3. Mark any step that opens the cabinet, touches mains, capacitors, or the oxygen path as safety_class "caution"; mark anything the manual says only qualified personnel may do as "stop".
 4. If the pages do not support a step, do not write it. Prefer fewer, well-cited steps.
 5. Write the summary in two plain sentences a nurse could understand."""
 
 AUDIT_SYSTEM = """You are an independent auditor. You receive the complete service manual text and a proposed troubleshooting tree.
 For each step decide: approve (the cited quote supports the action and nothing in the manual contradicts it), repair (the action is right but wording or precondition must change; give repaired_action), or reject (unsupported or contradicted). Be strict about safety preconditions (switch off and unplug before opening; patient on backup supply). Return the tool call."""
+
+
+_INLINE_CITE = re.compile(r"\s*\((?:cite|ref|reference|see|source|per)\b[^()]*(?:\([^()]*\)[^()]*)*\)|\s*\b(?:cite|ref)[:.]\s*page\s*\d+[^.]*\.?", re.IGNORECASE)
+
+
+def strip_inline_cites(text: str) -> str:
+    """Steps state the action; the citation lives in cite. Remove '(Cite: page 6 ...)' and '(Ref: page 37)' from step text."""
+    return _INLINE_CITE.sub("", text or "").strip()
 
 
 class SievePipeline:
@@ -152,6 +161,8 @@ class SievePipeline:
             purpose="synthesise.fault_tree", trace_id=trace_id, max_tokens=3000,
         )
         tree.device_id = device_id or tree.device_id
+        for s in tree.steps:
+            s.action, s.expected = strip_inline_cites(s.action), strip_inline_cites(s.expected)
 
         # citation verification (deterministic)
         cit = self._verify_tree(tree, sidx)

@@ -190,7 +190,7 @@ export function TryFlow() {
                   <div className={`rounded-[16px] border-2 p-4 ${current.safety_class === "stop" ? "border-stop" : current.safety_class === "caution" ? "border-caution" : "border-border"}`}>
                     <p className="eyebrow">Step {current.id} of {steps.length}</p>
                     <p className="mt-1 flex items-start gap-2 text-lg font-medium">
-                      {current.safety_class === "stop" ? <ShieldAlert className="mt-1 h-5 w-5 text-stop" /> : current.safety_class === "caution" ? <AlertTriangle className="mt-1 h-5 w-5 text-caution" /> : <CheckCircle2 className="mt-1 h-5 w-5 text-ok" />}
+                      {current.safety_class === "stop" ? <ShieldAlert className="mt-1 h-5 w-5 shrink-0 text-stop" /> : current.safety_class === "caution" ? <AlertTriangle className="mt-1 h-5 w-5 shrink-0 text-caution" /> : <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-ok" />}
                       {current.action}
                     </p>
                     <p className="mt-2 text-fg-muted">Expect: {current.expected}</p>
