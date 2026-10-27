@@ -110,6 +110,30 @@
    "unit": "%",
    "label": "Offline citation integrity",
    "note": "Nemotron 3 Nano 9B v2 Q4_K_M via llama.cpp on the laptop GPU (no Ultra audit, no Tavily); cloud pipeline on the same ten cases: 89.6%"
+  },
+  "photo_identified": {
+   "value": 82.9,
+   "unit": "%",
+   "label": "Real-world photos: device identified",
+   "note": "41 photos of covered concentrators found by Tavily image search and annotated by eye before any run; 96.2% when the model name is legible (26 photos)"
+  },
+  "photo_lookalikes": {
+   "value": "100.0%",
+   "unit": "",
+   "label": "Look-alike devices refused",
+   "note": "16 photos of devices Sieve has no manual for (Inogen portables, DeVilbiss 10 L, CAIRE Companion); wrong device auto-selected 0 times across all 57 photos"
+  },
+  "cite_ab_resolve": {
+   "value": 100.0,
+   "unit": "%",
+   "label": "Citations that resolve to the manual",
+   "note": "pointing at numbered sentences; copying quotes scored 88.8% on the same ten cases"
+  },
+  "cite_ab_label": {
+   "value": 62.5,
+   "unit": "%",
+   "label": "Steps labelled 'manual states this' that an independent judge confirms",
+   "note": "versus 5.0% for steps labelled general practice; the label is shown on every step"
   }
  },
  "sections": [
@@ -1063,7 +1087,7 @@
     },
     {
      "id": 2390,
-     "question": "Explain the significance of the \"High Q \u00ae Automatic Doppler Results Display\" in the context of Color and Tissue Doppler Imaging as described",
+     "question": "Explain the significance of the \"High Q ® Automatic Doppler Results Display\" in the context of Color and Tissue Doppler Imaging as described",
      "sieve": "correct",
      "chunk-rag": "correct",
      "nano-zero-shot": "correct",
@@ -4026,6 +4050,622 @@
      "citation_integrity": 89.6,
      "seconds": 275,
      "model": "Nemotron 3 Super + Ultra audit via Nebius Token Factory"
+    }
+   ]
+  },
+  {
+   "name": "Photo identification on real-world photos",
+   "description": "Resale listings, refurbishers and product pages, not our own photos. Vision describes; the registry decides. A device is correct if auto-selected or offered among three for the technician to pick.",
+   "columns": [
+    "index",
+    "acceptable",
+    "legible_model_text",
+    "read_manufacturer",
+    "read_model",
+    "top_match",
+    "top_confidence",
+    "outcome"
+   ],
+   "rows": [
+    {
+     "index": 0,
+     "acceptable": "philips-everflo",
+     "legible_model_text": true,
+     "read_manufacturer": "EverFlo | OPI",
+     "read_model": "1020113 R05",
+     "top_match": "philips-everflo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 1,
+     "acceptable": "philips-everflo",
+     "legible_model_text": true,
+     "read_manufacturer": "Intertek",
+     "read_model": "EverFlo I OPI",
+     "top_match": "philips-everflo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 2,
+     "acceptable": "philips-everflo",
+     "legible_model_text": true,
+     "read_manufacturer": "Respironics Inc.",
+     "read_model": "EverFlo I OPI",
+     "top_match": "philips-everflo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 3,
+     "acceptable": "philips-everflo",
+     "legible_model_text": true,
+     "read_manufacturer": "Respironics Inc.",
+     "read_model": "EverFlo I OPI",
+     "top_match": "philips-everflo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 4,
+     "acceptable": "philips-everflo",
+     "legible_model_text": false,
+     "read_manufacturer": "Millennium",
+     "read_model": "EverFlo OP1",
+     "top_match": "philips-everflo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 5,
+     "acceptable": "philips-everflo",
+     "legible_model_text": true,
+     "read_manufacturer": null,
+     "read_model": null,
+     "top_match": "philips-everflo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 6,
+     "acceptable": "philips-everflo",
+     "legible_model_text": false,
+     "read_manufacturer": "Inogen",
+     "read_model": "One",
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "not_identified"
+    },
+    {
+     "index": 7,
+     "acceptable": "philips-everflo",
+     "legible_model_text": true,
+     "read_manufacturer": null,
+     "read_model": null,
+     "top_match": "philips-everflo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 9,
+     "acceptable": "devilbiss-525",
+     "legible_model_text": false,
+     "read_manufacturer": "DeVilbiss HEALTHCARE",
+     "read_model": "drive",
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.55,
+     "outcome": "correct_offered"
+    },
+    {
+     "index": 10,
+     "acceptable": "devilbiss-525",
+     "legible_model_text": false,
+     "read_manufacturer": "Devilbiss",
+     "read_model": null,
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.55,
+     "outcome": "correct_offered"
+    },
+    {
+     "index": 11,
+     "acceptable": "devilbiss-525",
+     "legible_model_text": false,
+     "read_manufacturer": null,
+     "read_model": null,
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "not_identified"
+    },
+    {
+     "index": 12,
+     "acceptable": "devilbiss-525",
+     "legible_model_text": false,
+     "read_manufacturer": "Devilbiss",
+     "read_model": "550",
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.55,
+     "outcome": "correct_offered"
+    },
+    {
+     "index": 13,
+     "acceptable": "devilbiss-515",
+     "legible_model_text": false,
+     "read_manufacturer": "DEVILBISS",
+     "read_model": null,
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.55,
+     "outcome": "correct_offered"
+    },
+    {
+     "index": 14,
+     "acceptable": "devilbiss-515",
+     "legible_model_text": false,
+     "read_manufacturer": "DEVILBSS",
+     "read_model": null,
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.35,
+     "outcome": "correct_offered"
+    },
+    {
+     "index": 15,
+     "acceptable": "devilbiss-515",
+     "legible_model_text": false,
+     "read_manufacturer": null,
+     "read_model": null,
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "not_identified"
+    },
+    {
+     "index": 16,
+     "acceptable": "devilbiss-515",
+     "legible_model_text": false,
+     "read_manufacturer": "DEVILBISS",
+     "read_model": "Dolby Vivamedic",
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.55,
+     "outcome": "correct_offered"
+    },
+    {
+     "index": 17,
+     "acceptable": "devilbiss-525, devilbiss-515",
+     "legible_model_text": false,
+     "read_manufacturer": "DeVilbiss HEALTHCARE",
+     "read_model": "drive",
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.55,
+     "outcome": "correct_offered"
+    },
+    {
+     "index": 18,
+     "acceptable": "airsep-newlife",
+     "legible_model_text": true,
+     "read_manufacturer": "AirSep",
+     "read_model": "Silver Elite",
+     "top_match": "airsep-newlife",
+     "top_confidence": 0.55,
+     "outcome": "correct_offered"
+    },
+    {
+     "index": 19,
+     "acceptable": "airsep-newlife",
+     "legible_model_text": true,
+     "read_manufacturer": "NEWLIFE",
+     "read_model": "AirEP elite",
+     "top_match": "airsep-newlife",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 20,
+     "acceptable": "airsep-newlife",
+     "legible_model_text": true,
+     "read_manufacturer": "AIRSEP CORPORATION",
+     "read_model": "NEWLIFE",
+     "top_match": "airsep-newlife",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 22,
+     "acceptable": "airsep-newlife",
+     "legible_model_text": true,
+     "read_manufacturer": "AirLite",
+     "read_model": "Surgilite",
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "not_identified"
+    },
+    {
+     "index": 23,
+     "acceptable": "airsep-visionaire",
+     "legible_model_text": true,
+     "read_manufacturer": "AirSep",
+     "read_model": "VisionAire 5",
+     "top_match": "airsep-visionaire",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 24,
+     "acceptable": "airsep-visionaire",
+     "legible_model_text": true,
+     "read_manufacturer": "AIRFER",
+     "read_model": "VisionAire 5",
+     "top_match": "airsep-visionaire",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 25,
+     "acceptable": "airsep-visionaire",
+     "legible_model_text": true,
+     "read_manufacturer": "Airox",
+     "read_model": "Visionaire 6",
+     "top_match": "airsep-visionaire",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 26,
+     "acceptable": "airsep-visionaire",
+     "legible_model_text": true,
+     "read_manufacturer": "AirEep",
+     "read_model": "VisionAire 6",
+     "top_match": "airsep-visionaire",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 27,
+     "acceptable": "airsep-visionaire",
+     "legible_model_text": true,
+     "read_manufacturer": "AirLife Corporation",
+     "read_model": "VisionAire 5",
+     "top_match": "airsep-visionaire",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 28,
+     "acceptable": "invacare-platinum",
+     "legible_model_text": true,
+     "read_manufacturer": "SensO",
+     "read_model": "Platinum 10",
+     "top_match": "invacare-platinum",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 30,
+     "acceptable": "invacare-platinum",
+     "legible_model_text": false,
+     "read_manufacturer": "Invacare",
+     "read_model": "Oxygenator 2000",
+     "top_match": "invacare-platinum",
+     "top_confidence": 0.55,
+     "outcome": "correct_offered"
+    },
+    {
+     "index": 32,
+     "acceptable": "invacare-platinum",
+     "legible_model_text": true,
+     "read_manufacturer": "INACARE",
+     "read_model": "Platinum 10",
+     "top_match": "invacare-platinum",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 33,
+     "acceptable": "nidek-nuvo",
+     "legible_model_text": true,
+     "read_manufacturer": "NIDEK",
+     "read_model": "Nuvo Lite Mark 5",
+     "top_match": "nidek-nuvo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 34,
+     "acceptable": "nidek-nuvo",
+     "legible_model_text": true,
+     "read_manufacturer": "NIDEX",
+     "read_model": "Nuvo",
+     "top_match": "nidek-nuvo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 36,
+     "acceptable": "nidek-nuvo",
+     "legible_model_text": true,
+     "read_manufacturer": "NIDEX",
+     "read_model": "Nuvo",
+     "top_match": "nidek-nuvo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 37,
+     "acceptable": "nidek-nuvo",
+     "legible_model_text": true,
+     "read_manufacturer": "Nidek Medical",
+     "read_model": "Nuvo LiveQ Mark 5",
+     "top_match": "nidek-nuvo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 39,
+     "acceptable": "nidek-nuvo",
+     "legible_model_text": true,
+     "read_manufacturer": "NIDEK",
+     "read_model": "Nuvo Lite",
+     "top_match": "nidek-nuvo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 40,
+     "acceptable": "nidek-nuvo",
+     "legible_model_text": true,
+     "read_manufacturer": "NIDEK",
+     "read_model": "Nuvo Lite",
+     "top_match": "nidek-nuvo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 41,
+     "acceptable": "nidek-nuvo",
+     "legible_model_text": true,
+     "read_manufacturer": "NIDEK",
+     "read_model": "Nuvo Lite",
+     "top_match": "nidek-nuvo",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 42,
+     "acceptable": "longfian-jay",
+     "legible_model_text": false,
+     "read_manufacturer": null,
+     "read_model": null,
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "not_identified"
+    },
+    {
+     "index": 43,
+     "acceptable": "yuwell-7f5",
+     "legible_model_text": false,
+     "read_manufacturer": null,
+     "read_model": null,
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "not_identified"
+    },
+    {
+     "index": 44,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "LongMedtech",
+     "read_model": null,
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 45,
+     "acceptable": "yuwell-7f5",
+     "legible_model_text": false,
+     "read_manufacturer": null,
+     "read_model": null,
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "not_identified"
+    },
+    {
+     "index": 46,
+     "acceptable": "yuwell-7f5",
+     "legible_model_text": true,
+     "read_manufacturer": "yuwell",
+     "read_model": "79-10B",
+     "top_match": "yuwell-7f5",
+     "top_confidence": 0.55,
+     "outcome": "correct_offered"
+    },
+    {
+     "index": 47,
+     "acceptable": "yuwell-7f5",
+     "legible_model_text": true,
+     "read_manufacturer": "yuwell",
+     "read_model": "7F-5 Oxygen Concentrator",
+     "top_match": "yuwell-7f5",
+     "top_confidence": 0.99,
+     "outcome": "correct_auto"
+    },
+    {
+     "index": 48,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "Inogen",
+     "read_model": "ONE",
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 49,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "INGENION",
+     "read_model": null,
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 50,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "Inogen",
+     "read_model": null,
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 51,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "INOGENONE",
+     "read_model": null,
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 52,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "Inogen",
+     "read_model": "ONE",
+     "top_match": null,
+     "top_confidence": null,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 53,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "DeVilbiss Healthcare",
+     "read_model": null,
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.55,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 54,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "DeVilbiss HEALTHCARE",
+     "read_model": "drive",
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.55,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 55,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "DeVilbiss HEALTHCARE",
+     "read_model": null,
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.55,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 56,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "Devilbiss Medical",
+     "read_model": "drve",
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.55,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 57,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "DeVilbiss Healthcare",
+     "read_model": "drive",
+     "top_match": "devilbiss-525",
+     "top_confidence": 0.55,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 58,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "CAIRE",
+     "read_model": "Companion eco",
+     "top_match": "airsep-newlife",
+     "top_confidence": 0.55,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 59,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "CAIRE",
+     "read_model": "Companion eco",
+     "top_match": "airsep-newlife",
+     "top_confidence": 0.55,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 60,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "CAIRE",
+     "read_model": "Companion5 eco",
+     "top_match": "airsep-newlife",
+     "top_confidence": 0.55,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 61,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "CAIRE",
+     "read_model": "Companion eco",
+     "top_match": "airsep-newlife",
+     "top_confidence": 0.55,
+     "outcome": "correct_refusal"
+    },
+    {
+     "index": 62,
+     "acceptable": "(not in registry)",
+     "legible_model_text": true,
+     "read_manufacturer": "CAIRE",
+     "read_model": "Companion5 eco",
+     "top_match": "airsep-newlife",
+     "top_confidence": 0.55,
+     "outcome": "correct_refusal"
+    }
+   ]
+  },
+  {
+   "name": "Citations: copy the quote, or point at a sentence",
+   "description": "Same ten cases, same model, same blind Nemotron 3 Super judge. Resolve is deterministic: does the citation land on real text on its page. Support is judged: does that text state the step.",
+   "columns": [
+    "model",
+    "citation",
+    "citations_resolve",
+    "step_supported_by_its_citation",
+    "judge_agrees_when_labelled_manual",
+    "judge_agrees_when_labelled_general"
+   ],
+   "rows": [
+    {
+     "model": "Nemotron 3 Super via Token Factory",
+     "citation": "model copies the quote",
+     "citations_resolve": 88.8,
+     "step_supported_by_its_citation": 24.6,
+     "judge_agrees_when_labelled_manual": 56.2,
+     "judge_agrees_when_labelled_general": 6.5
+    },
+    {
+     "model": "Nemotron 3 Super via Token Factory",
+     "citation": "model points at a sentence id",
+     "citations_resolve": 100.0,
+     "step_supported_by_its_citation": 35.4,
+     "judge_agrees_when_labelled_manual": 62.5,
+     "judge_agrees_when_labelled_general": 5.0
     }
    ]
   }

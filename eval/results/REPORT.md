@@ -15,3 +15,7 @@
 - **Benchmark B: root cause matches manufacturer**: 20.3%  (pre-registered, n=74. Nano zero-shot baseline 24.3%. Second judge: Sieve 19.4%, baseline 22.1%; kappa 0.951. Post hoc, on the 35 records whose narrative names a finding: Sieve 40.0%, baseline 48.6%)
 - **Benchmark B citation integrity**: 94.7%  (quotes found on the cited manual page across all 74 pre-registered records)
 - **Offline citation integrity**: 53.8%  (Nemotron 3 Nano 9B v2 Q4_K_M via llama.cpp on the laptop GPU (no Ultra audit, no Tavily); cloud pipeline on the same ten cases: 89.6%)
+- **Real-world photos: device identified**: 82.9%  (41 photos of covered concentrators found by Tavily image search and annotated by eye before any run; 96.2% when the model name is legible (26 photos))
+- **Look-alike devices refused**: 100.0%  (16 photos of devices Sieve has no manual for (Inogen portables, DeVilbiss 10 L, CAIRE Companion); wrong device auto-selected 0 times across all 57 photos)
+- **Citations that resolve to the manual**: 100.0%  (pointing at numbered sentences; copying quotes scored 88.8% on the same ten cases)
+- **Steps labelled 'manual states this' that an independent judge confirms**: 62.5%  (versus 5.0% for steps labelled general practice; the label is shown on every step)
