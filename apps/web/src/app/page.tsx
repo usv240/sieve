@@ -9,22 +9,36 @@ export default function Landing() {
   return (
     <div className="space-y-20 pt-10">
       {/* 1. Hero */}
-      <section className="space-y-6">
-        <p className="eyebrow">Repair copilot for hospital equipment technicians</p>
-        <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-          The manual is in a drawer. The engineer is 500 km away. The oxygen machine is dead.
-        </h1>
-        <p className="max-w-2xl text-lg text-fg-muted">
-          Sieve reads the machine&apos;s nameplate and alarm light, finds the right page of the service manual, and walks a technician through the fix with safety stops. Offline if needed.
-        </p>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Stat n="72%" text="of broken hospital equipment in low-income countries was fixed without any imported parts" k="bmet" href="https://link.springer.com/article/10.1007/s11517-010-0630-1" src="Malkin and Keane, 2010, 2,849 repairs, 60 hospitals" />
-          <Stat n="1 per million" text="biomedical engineers, at most, in two-thirds of sub-Saharan countries" k="bmet" href="https://link.springer.com/article/10.1007/s10439-017-1897-2" src="WHO Human Resources for Medical Devices, 2017" />
+      <section className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
+        <div className="space-y-6">
+          <h1 className="max-w-3xl text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+            The manual is in a drawer. The engineer is 500 km away. The oxygen machine is dead.
+          </h1>
+          <p className="max-w-xl text-lg text-fg">
+            At Chintheche Health Center in Malawi, four oxygen concentrators sat broken for four years. A repair team had all four running again in a few hours.{" "}
+            <a className="text-sm text-accent underline underline-offset-2" href="https://www.openo2.org/concentrator-graveyard" target="_blank" rel="noreferrer">OpenO2</a>
+          </p>
+          <p className="max-w-xl text-fg-muted">
+            Sieve puts that team&apos;s knowledge in the technician&apos;s phone. It reads the machine from a photo, opens the right page of the service manual, and leads the repair one check at a time, waiting for each answer. Smoke, oil near oxygen and live mains work stop it before any model replies. A cited repair plan in under 40 seconds, and it still works without internet.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/try?sample=everflo-yellow" className="btn-primary">Try it on a sample photo</Link>
+            {process.env.NEXT_PUBLIC_VIDEO_URL ? <a href={process.env.NEXT_PUBLIC_VIDEO_URL} className="btn-ghost" target="_blank" rel="noreferrer">Watch the 3-minute video</a> : null}
+          </div>
         </div>
-        <div className="flex flex-wrap gap-3">
-          <Link href="/try?sample=everflo-yellow" className="btn-primary">Try it on a sample photo</Link>
-          {process.env.NEXT_PUBLIC_VIDEO_URL ? <a href={process.env.NEXT_PUBLIC_VIDEO_URL} className="btn-ghost" target="_blank" rel="noreferrer">Watch the 3-minute video</a> : null}
-        </div>
+        <figure className="card space-y-4 lg:mt-2">
+          <p className="text-lg font-semibold leading-snug">Step 1 of 3: observe the lights on the front panel.</p>
+          <p className="text-sm text-fg-muted">Expected: yellow light on, red light off, alarm silent.</p>
+          <blockquote className="quote text-sm">
+            &ldquo;Yellow LED illuminates continuously. The Red LED is off and the Audible Alarm is silent. The device has detected a low oxygen condition. (For OPI units only.)&rdquo;
+            <footer className="mt-1 text-xs text-fg-muted">Philips EverFlo service manual, page 31</footer>
+          </blockquote>
+          <p className="inline-flex rounded-full border border-ok px-2.5 py-0.5 text-xs font-medium text-ok">The manual states this step</p>
+          <figcaption className="border-t border-border pt-3 text-xs text-fg-muted">
+            From a live run on the EverFlo sample: every quote checked against its page, and the whole plan audited by Nemotron 3 Ultra against the full manual.{" "}
+            <Link href="/try?sample=everflo-yellow" className="text-accent underline underline-offset-2">Run it yourself</Link>
+          </figcaption>
+        </figure>
       </section>
 
       {/* 2. What / Why / How */}
@@ -76,7 +90,7 @@ export default function Landing() {
               <Row n="68%" t="of sub-Saharan countries have at most one biomedical engineer per million people." s="WHO HRMD, 2017" u="https://link.springer.com/article/10.1007/s10439-017-1897-2" />
               <Row n="5 billion" t="people lack access to safe, affordable medical oxygen." s="Lancet Global Health Commission, 2025" u="https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(24)00496-0/fulltext" />
               <Row n="66.7%" t="of primary facilities in a 39-country survey had a working oxygen concentrator." s="Lancet Global Health, 2025" u="https://pmc.ncbi.nlm.nih.gov/articles/PMC11954661/" />
-              <Row n="2x" t="Malawi doubled its working concentrator fleet by repairing 649 machines; most faults were trivial." s="OpenO2, 2022" u="https://www.openo2.org/concentrator-graveyard" />
+              <Row n="850" t="oxygen concentrators in Malawi were estimated to need repair in January 2021; at one health centre, four broken for four years were back in service after a few hours of maintenance." s="OpenO2" u="https://www.openo2.org/concentrator-graveyard" />
             </tbody>
           </table>
         </div>
@@ -138,16 +152,6 @@ export default function Landing() {
         <p className="max-w-2xl text-fg-muted">We publish limits as measurements, not promises: offline accuracy versus cloud, photo identification on worn nameplates, and the device classes covered today (oxygen concentrators first; suction pumps and pulse oximeters indexed). Sieve is equipment-maintenance guidance for trained staff, not medical advice, and it is not a replacement for an engineer.</p>
         <Link href="/limits" className="btn-ghost">Read the limits page</Link>
       </section>
-    </div>
-  );
-}
-
-function Stat({ n, text, k, href, src }: { n: string; text: string; k: "bmet"; href: string; src: string }) {
-  return (
-    <div className="card">
-      <p className="text-4xl font-semibold tracking-tight">{n} <Info k={k} /></p>
-      <p className="mt-2 text-fg">{text}</p>
-      <a className="mt-2 inline-block text-sm text-accent underline-offset-2 hover:underline" href={href} target="_blank" rel="noreferrer">{src}</a>
     </div>
   );
 }
