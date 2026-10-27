@@ -14,7 +14,7 @@ export default function About() {
         <ul className="list-disc space-y-1 pl-5 text-sm text-fg-muted">
           <li>Nebius Token Factory: Nemotron 3 Nano and 3.5 Lightning (fast tier), Nemotron 3 Super (synthesis), Nemotron 3 Ultra (audit with the whole manual in a one-million-token context).</li>
           <li>Nebius Token Factory: image models for nameplate and panel reading (the NVIDIA Nemotron Nano VL endpoint is prepared but needs AI Cloud billing), and Qwen3-Embedding-8B for hybrid retrieval over 2,994 concentrator pages.</li>
-          <li>Laptop: manual ingestion (33 seconds for the first 9,458 pages) and the offline mode on a 4-bit Nemotron 3 Nano via llama.cpp. The Serverless Job and Endpoint manifests are in the repo, ready for AI Cloud.</li>
+          <li>Laptop: manual ingestion (33 seconds for the first 9,458 pages) and the offline mode on a 4-bit Nemotron 3 Nano via llama.cpp. Nebius Serverless: a Job verified both entries from a clean machine (PASS), and an Endpoint served Nemotron Nano 12B VL for a photo benchmark. Both were stopped after use.</li>
           <li>Tavily: manual discovery, extraction and parts lookup. openFDA: recalls and malfunction reports. Hermes Agent: chat and cron surface. NVIDIA OpenShell: sandboxed run with brokered credentials, demonstrated.</li>
         </ul>
       </section>

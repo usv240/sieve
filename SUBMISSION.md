@@ -41,7 +41,7 @@ Benchmark A, INGENZI 300 held-out, blind Nemotron 3 Super judge: Sieve 69.7, chu
 INGENZI Tech (arXiv 2601.16967) and Jua (Devpost 2023) built text chatbots over manuals. Sieve adds photo-first identification, a cited indicator registry, deterministic safety gates, an independent whole-manual audit, recall checks, the work order and fleet brief, the digital twin, offline mode, MCP, Hermes, OpenShell, and an external evaluation on the prior work's own data.
 
 ## Challenges
-The manual corpus is copyright-grey, so it is indexed locally and never redistributed. PDF text artefacts broke exact quote matching until a tiered verifier was built. Vision Nemotron is not on Token Factory's shared endpoints; the local GPU path proved it. Nebius AI Cloud needs a card, so the Serverless manifests are prepared but the run was done on a laptop. OpenShell on WSL2 plus Docker Desktop needed an undocumented endpoint override.
+The manual corpus is copyright-grey, so it is indexed locally and never redistributed. PDF text artefacts broke exact quote matching until a tiered verifier was built. One vision model alone sometimes misreads a nameplate, so Sieve reads every photo twice with two different models and opens a manual on its own only when they agree. Nebius AI Cloud has no CPU-only quota on a new account, so the Serverless verification Job ran on an L40S GPU instead; it passed, and the Nemotron Nano 12B VL endpoint was benchmarked on the same photos and stopped after use (about $1). OpenShell on WSL2 plus Docker Desktop needed an undocumented endpoint override.
 
 ## What we learned
 Models read and draft; tables, rules and verifiers decide. That rule is what let us put numbers on refusals instead of describing an architecture.
