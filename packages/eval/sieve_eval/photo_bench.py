@@ -16,7 +16,7 @@ from typing import Any
 import typer
 from sieve_core import Registry
 from sieve_core.identify import cross_checked_match
-from sieve_vision import describe_pair
+from sieve_vision import describe, describe_pair
 
 ROOT = Path(__file__).resolve().parents[3]
 AUTO = 0.6  # the Try page auto-selects at or above this confidence and asks the user to pick below it
@@ -36,7 +36,7 @@ def score(acceptable: list[str], matches: list) -> str:
     return "not_identified"
 
 
-def main(out: Path = typer.Option(ROOT / "eval/results/photo_bench.json")) -> None:
+def main(out: Path = typer.Option(ROOT / "eval/results/photo_bench.json"), single: bool = typer.Option(False, "--single", help="One reader only (VISION_ENDPOINT_URL if set), no cross-check")) -> None:
     truth = json.loads((ROOT / "data/external/photo_truth.json").read_text(encoding="utf-8"))
     reg = Registry()
     rows: list[dict[str, Any]] = []
@@ -47,9 +47,15 @@ def main(out: Path = typer.Option(ROOT / "eval/results/photo_bench.json")) -> No
         path = ROOT / "data/corpus/photos" / it["file"]
         if not path.exists():
             continue
-        vr, second = describe_pair(path.read_bytes())
-        f = vr.fields
-        matches, check = cross_checked_match(reg, f, second.fields if second else None)
+        if single:
+            vr = describe(path.read_bytes())
+            f = vr.fields
+            matches = reg.match(manufacturer=f.manufacturer, model=f.model, ref=f.ref, visible_text=f.visible_text or [])
+            check: dict = {}
+        else:
+            vr, second = describe_pair(path.read_bytes())
+            f = vr.fields
+            matches, check = cross_checked_match(reg, f, second.fields if second else None)
         outcome = score(it["acceptable"], matches)
         rows.append({
             "index": it["index"], "acceptable": ", ".join(it["acceptable"]) or "(not in registry)", "legible_model_text": it["legible_model_text"],
