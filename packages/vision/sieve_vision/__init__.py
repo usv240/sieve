@@ -82,7 +82,7 @@ def _parse(raw: str) -> NameplateFields:
     return NameplateFields(confidence=0.0, visible_text=["parse_error"] if raw else [])
 
 
-def _openai_vision_call(base_url: str, api_key: str, model: str, image_bytes: bytes, timeout: float = 60) -> str:
+def _openai_vision_call(base_url: str, api_key: str, model: str, image_bytes: bytes, timeout: float = 90) -> str:
     payload: dict[str, Any] = {
         "model": model,
         "max_tokens": 1500,
@@ -97,31 +97,44 @@ def _openai_vision_call(base_url: str, api_key: str, model: str, image_bytes: by
             }
         ],
     }
-    r = httpx.post(f"{base_url.rstrip('/')}/chat/completions", json=payload, headers={"Authorization": f"Bearer {api_key}"}, timeout=timeout)
-    r.raise_for_status()
-    return r.json()["choices"][0]["message"]["content"] or ""
+    if "nemotron" in model.lower():
+        payload["chat_template_kwargs"] = {"enable_thinking": False}  # read, do not deliberate
+    last: Exception | None = None
+    for attempt in range(3):  # rate limits and transient 5xx are retried with backoff
+        try:
+            r = httpx.post(f"{base_url.rstrip('/')}/chat/completions", json=payload, headers={"Authorization": f"Bearer {api_key}"}, timeout=timeout)
+            if r.status_code in (429, 500, 502, 503, 504) and attempt < 2:
+                import time
+
+                time.sleep(1.5 * (attempt + 1))
+                continue
+            r.raise_for_status()
+            return r.json()["choices"][0]["message"]["content"] or ""
+        except httpx.TransportError as e:
+            last = e
+    raise last or RuntimeError("vision call failed")
 
 
-def _tf_image_model(api_key: str, base_url: str) -> str | None:
-    """Pick an image-capable model from Token Factory's live catalog. Cached for the process."""
-    cache = os.environ.get("_TF_IMG_MODEL")
+# NVIDIA Nemotron 3.5 Super VL first: on real Indian pesticide labels it read Gramoxone as paraquat where MiniCPM-V
+# invented organophosphates from the small print (2026-10-27). Others are fallbacks if it is missing or fails.
+IMAGE_MODELS = ["nvidia/Nemotron-3.5-Super-VL", "openbmb/MiniCPM-V-4_5", "Qwen/Qwen3.8-27B"]
+
+
+def _tf_image_models(api_key: str, base_url: str) -> list[str]:
+    """Image-capable models from Token Factory's live catalog, in preference order. Cached for the process."""
+    cache = os.environ.get("_TF_IMG_MODELS")
     if cache:
-        return cache
+        return cache.split(",")
     try:
         r = httpx.get(f"{base_url.rstrip('/')}/models", headers={"Authorization": f"Bearer {api_key}"}, timeout=20)
         r.raise_for_status()
         ids = [m["id"] for m in r.json().get("data", [])]
-        # Preference order: fast, cheap, vision-tagged models first (verified in the live catalog on 2026-10-14).
-        order = ["openbmb/MiniCPM-V-4_5", "Qwen/Qwen3.8-27B", "deepseek-ai/DeepSeek-V4.1-Flash", "zai-org/GLM-5.3-Flash"]
-        pick = next((m for m in order if m in ids), None)
-        if not pick:
-            preferred = [i for i in ids if any(k in i.lower() for k in ("vl", "vision", "minicpm-v", "kimi", "glm", "qwen3.8"))]
-            pick = preferred[0] if preferred else None
-        if pick:
-            os.environ["_TF_IMG_MODEL"] = pick
-        return pick
+        picks = [m for m in IMAGE_MODELS if m in ids] or [i for i in ids if any(k in i.lower() for k in ("-vl", "vision", "minicpm-v"))][:2]
+        if picks:
+            os.environ["_TF_IMG_MODELS"] = ",".join(picks)
+        return picks
     except Exception:  # noqa: BLE001
-        return None
+        return []
 
 
 def describe(image_bytes: bytes) -> VisionResult:
@@ -136,16 +149,17 @@ def describe(image_bytes: bytes) -> VisionResult:
     key = os.environ.get("NEBIUS_API_KEY")
     base = "https://api.tokenfactory.nebius.com/v1/"
     if key:
-        model = _tf_image_model(key, base)
-        if model:
+        models = _tf_image_models(key, base)
+        for model in models:
             try:
                 raw = _openai_vision_call(base, key, model, image_bytes)
-                notes.append(f"fallback image2text model: {model}")
-                return VisionResult("tf-image2text", _parse(raw), raw, notes)
+                notes.append(f"image model: {model}")
+                mode = "nemotron-vl" if "nemotron" in model.lower() else "tf-image2text"
+                return VisionResult(mode, _parse(raw), raw, notes)
             except Exception as e:  # noqa: BLE001
-                notes.append(f"tf image2text failed: {type(e).__name__}")
-        else:
-            notes.append("no image2text model found in Token Factory catalog")
+                notes.append(f"{model} failed: {type(e).__name__}")
+        if not models:
+            notes.append("no image model found in Token Factory catalog")
     else:
         notes.append("NEBIUS_API_KEY not set")
     notes.append("manual entry required")

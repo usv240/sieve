@@ -74,7 +74,8 @@ def main() -> None:
                     img.save(OUT / name, "JPEG", quality=88)
                     manifest["items"].append({"file": name, "url": url, "query": q, "size": list(img.size)})
                     got += 1
-                except Exception:  # noqa: BLE001
+                except Exception as e:  # noqa: BLE001 - one bad image never stops the collection
+                    print("  skipped", url[:80], type(e).__name__)
                     continue
             print(f"{q[:60]:60s} +{got}", flush=True)
     MANIFEST.write_text(json.dumps(manifest, indent=1), encoding="utf-8")
