@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ShieldAlert, AlertTriangle, CheckCircle2, ChevronRight, FileText } from "lucide-react";
 import { apiUrl } from "@/lib/api";
+import { downscaleImage } from "@/lib/image";
 import { SAMPLES } from "@/lib/samples";
 import { Info } from "@/components/info";
 import { TrainingPanel } from "@/components/training-panel";
@@ -48,6 +49,7 @@ export function TryFlow() {
   const [outcome, setOutcome] = useState<string>("open");
   const [saved, setSaved] = useState<string | null>(null);
   const [showSim, setShowSim] = useState(false);
+  const [photoNote, setPhotoNote] = useState<string | null>(null);
 
   useEffect(() => { fetch(apiUrl("/v1/devices")).then((r) => r.json()).then(setDevices).catch(() => {}); }, []);
 
@@ -71,6 +73,25 @@ export function TryFlow() {
     const top = j.matches[0];
     const id = top && top.confidence >= 0.6 ? top.device_id : null;
     setDeviceId(id);
+    const q = await fetch(apiUrl(`/v1/questions?device_id=${id ?? ""}&indicator_ids=${indicators.join(",")}`)).then((x) => x.json());
+    setQuestions(q);
+    setBusy(null);
+  }
+
+  async function identifyPhoto(file: File) {
+    setBusy("Reading the photo with two models…"); setPhotoNote(null);
+    const fd = new FormData(); fd.append("image", await downscaleImage(file), "nameplate.jpg");
+    const r = await fetch(apiUrl("/v1/identify/image"), { method: "POST", body: fd });
+    if (!r.ok) { setPhotoNote(r.status === 413 ? "That photo is too large for the hosted demo. Type the nameplate text instead." : `The photo reader is unavailable right now (${r.status}). Type the nameplate text instead.`); setBusy(null); return; }
+    const j = await r.json();
+    const f = j.fields ?? {};
+    setFields({ manufacturer: f.manufacturer ?? "", model: f.model ?? "", ref: f.ref ?? "", visible_text: (f.visible_text ?? []).join(", ") });
+    setMatches(j.matches ?? []);
+    const top = (j.matches ?? [])[0];
+    const id = top && top.confidence >= 0.6 ? top.device_id : null;
+    setDeviceId(id);
+    const cc = j.cross_check ?? {};
+    setPhotoNote(cc.agreed === false ? "Two independent reads of this photo disagreed, so Sieve will not pick a manual on its own. Choose the right model below, or check the nameplate." : cc.agreed ? "Two independent reads agree on this device." : null);
     const q = await fetch(apiUrl(`/v1/questions?device_id=${id ?? ""}&indicator_ids=${indicators.join(",")}`)).then((x) => x.json());
     setQuestions(q);
     setBusy(null);
@@ -101,7 +122,7 @@ export function TryFlow() {
         {/* Screen 1: Identify */}
         <section className="card space-y-3">
           <h1 className="text-2xl font-semibold">1. Identify the device <Info k="service_manual" /></h1>
-          <p className="text-sm text-fg-muted">Type what the nameplate says, use a sample, or photograph the Training Mode panel <Info k="training_mode" />. Vision describes; the registry decides.</p>
+          <p className="text-sm text-fg-muted">Photograph the nameplate, type what it says, or use a sample. Two vision models read the photo; the registry decides the device <Info term="Two reads must agree" text="NVIDIA Nemotron 3.5 Super VL and a second, different model each read the photo. Sieve picks a device and opens its manual on its own only when both reads point to the same model. Otherwise it shows the candidates for you to choose, because a vision model can invent small print." />. You can also practise on the Training Mode panel <Info k="training_mode" />.</p>
           <div className="grid gap-3 sm:grid-cols-2">
             <L label="Manufacturer"><input className="inp" value={fields.manufacturer} onChange={(e) => setFields({ ...fields, manufacturer: e.target.value })} /></L>
             <L label="Model"><input className="inp" value={fields.model} onChange={(e) => setFields({ ...fields, model: e.target.value })} /></L>
@@ -110,8 +131,11 @@ export function TryFlow() {
           </div>
           <div className="flex flex-wrap gap-2">
             <button className="btn-primary" onClick={identify} disabled={!!busy}>Identify</button>
+            <label className="btn-ghost cursor-pointer">Upload a nameplate photo<input type="file" accept="image/*" className="sr-only" onChange={(e) => e.target.files?.[0] && identifyPhoto(e.target.files[0])} /></label>
+            <a className="self-center text-xs text-accent underline underline-offset-2" href="/samples/everflo-nameplate-synthetic.jpg" download>No machine nearby? Download a sample nameplate photo</a>
             <button className="btn-ghost" onClick={() => setShowSim((v) => !v)}>{showSim ? "Hide" : "Open"} Training Mode simulator</button>
           </div>
+          {photoNote && <p role="status" className="rounded-xl border border-caution p-2 text-sm">{photoNote}</p>}
           {showSim && <TrainingPanel onPick={(devId, indId) => { setDeviceId(devId); setIndicators([indId]); const d = devices.find((x) => x.id === devId); if (d) setFields({ manufacturer: d.manufacturer, model: d.model, ref: "", visible_text: "" }); }} />}
           {matches.length > 0 && (
             <div className="space-y-2">
@@ -185,6 +209,7 @@ export function TryFlow() {
                   <span>Citations verified {result.citations.verified}/{result.citations.total}</span>
                   {result.audit && <span>Auditor: {result.audit.overall}</span>}
                   <span>{result.latency_ms} ms</span>
+                  <a className="ml-auto text-accent underline underline-offset-2" download={`sieve-result.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(result, null, 2))}`}>Download result as JSON</a>
                 </div>
                 {current && (
                   <div className={`rounded-[16px] border-2 p-4 ${current.safety_class === "stop" ? "border-stop" : current.safety_class === "caution" ? "border-caution" : "border-border"}`}>

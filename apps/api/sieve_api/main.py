@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import time
 import uuid
 from pathlib import Path
@@ -31,7 +32,7 @@ for _env in (ROOT / ".env", ROOT.parent / ".env"):  # repo root, then workspace 
                 os.environ.setdefault(k.strip(), v.strip())
 
 app = FastAPI(title="Sieve API", version="0.1.0", description="Photograph a dead oxygen concentrator; get a manual-grounded, safety-gated troubleshooting tree and a filed work order.")
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"], expose_headers=["X-RateLimit-Limit", "X-RateLimit-Remaining", "Retry-After"])
 
 # --- API keys and rate limiting (simple, file-backed; enough for a hosted demo) ---
 import hashlib
@@ -41,35 +42,56 @@ from collections import defaultdict, deque
 from fastapi import Request
 from fastapi.responses import JSONResponse
 
-KEYS_FILE = DATA / "api_keys.json"
 REQUIRE_KEY = os.environ.get("SIEVE_REQUIRE_KEY", "0") == "1"
 RATE_LIMIT_PER_MIN = int(os.environ.get("SIEVE_RATE_LIMIT_PER_MIN", "30"))
 _hits: dict[str, deque] = defaultdict(deque)
 
 
-def _key_hashes() -> set[str]:
-    if not KEYS_FILE.exists():
-        return set()
-    return {k["hash"] for k in json.loads(KEYS_FILE.read_text(encoding="utf-8"))}
-
-
 @app.middleware("http")
 async def keys_and_limits(request: Request, call_next):
     path = request.url.path
-    if path.startswith("/v1/"):
-        ident = request.headers.get("x-api-key") or (request.client.host if request.client else "anon")
-        if REQUIRE_KEY and path not in ("/v1/keys",):
-            key = request.headers.get("x-api-key", "")
-            if hashlib.sha256(key.encode()).hexdigest() not in _key_hashes():
-                return JSONResponse({"error": "API key required: POST /v1/keys to create one, then send X-API-Key"}, status_code=401)
+    if path.startswith("/v1/") and request.method != "OPTIONS":
+        key = request.headers.get("x-api-key", "")
+        if key and not _key_valid(key):
+            return JSONResponse({"error": "invalid API key: create one with POST /v1/keys"}, status_code=401)
+        if REQUIRE_KEY and not key and path != "/v1/keys":
+            return JSONResponse({"error": "API key required: POST /v1/keys to create one, then send X-API-Key"}, status_code=401)
+        ident = key or (request.client.host if request.client else "anon")
         now = time.time()
         q = _hits[ident]
         while q and q[0] < now - 60:
             q.popleft()
         if len(q) >= RATE_LIMIT_PER_MIN:
-            return JSONResponse({"error": f"rate limit: {RATE_LIMIT_PER_MIN} requests per minute"}, status_code=429)
+            return JSONResponse({"error": f"rate limit: {RATE_LIMIT_PER_MIN} requests per minute"}, status_code=429, headers={"Retry-After": "60"})
         q.append(now)
+        response = await call_next(request)
+        response.headers["X-RateLimit-Limit"] = str(RATE_LIMIT_PER_MIN)
+        response.headers["X-RateLimit-Remaining"] = str(max(0, RATE_LIMIT_PER_MIN - len(q)))
+        return response
     return await call_next(request)
+
+
+def _key_secret() -> bytes:
+    """Signing secret for API keys. KEY_SIGNING_SECRET if set, else derived from the model key so it is stable across
+    serverless instances and never stored or shown."""
+    s = os.environ.get("KEY_SIGNING_SECRET") or ("keys:" + os.environ.get("NEBIUS_API_KEY", "local-dev"))
+    return hashlib.sha256(s.encode()).digest()
+
+
+def _sign(token: str) -> str:
+    import hmac
+
+    return hmac.new(_key_secret(), token.encode(), hashlib.sha256).hexdigest()[:24]
+
+
+def _key_valid(key: str) -> bool:
+    """Keys are signed, not stored: any instance can verify one without a database."""
+    import hmac
+
+    if not key.startswith("sieve_") or "." not in key:
+        return False
+    token, sig = key.rsplit(".", 1)
+    return hmac.compare_digest(_sign(token), sig)
 
 
 class KeyBody(BaseModel):
@@ -78,12 +100,20 @@ class KeyBody(BaseModel):
 
 @app.post("/v1/keys")
 def create_key(body: KeyBody) -> dict[str, Any]:
-    """Issue an API key. Only the SHA-256 hash is stored; the key is shown once."""
-    key = "sieve_" + secrets.token_urlsafe(24)
-    keys = json.loads(KEYS_FILE.read_text(encoding="utf-8")) if KEYS_FILE.exists() else []
-    keys.append({"label": body.label, "hash": hashlib.sha256(key.encode()).hexdigest(), "created_at": time.time()})
-    KEYS_FILE.write_text(json.dumps(keys, indent=1), encoding="utf-8")
-    return {"key": key, "label": body.label, "note": "Shown once. Send as X-API-Key. Required when SIEVE_REQUIRE_KEY=1 on the server."}
+    """Issue an API key. It is signed by the server, so nothing about it is stored; it is shown once."""
+    label = re.sub(r"[^A-Za-z0-9-]", "", body.label)[:24] or "key"
+    token = f"sieve_{label}_{secrets.token_urlsafe(12)}"
+    return {"key": f"{token}.{_sign(token)}", "label": label, "rate_limit_per_min": RATE_LIMIT_PER_MIN,
+            "note": "Shown once. Send it as the X-API-Key header. Any key you send is verified; invalid keys get 401."}
+
+
+@app.get("/v1/keys/verify")
+def verify_key(request: Request) -> dict[str, Any]:
+    """Check the X-API-Key header and report its usage in the current minute."""
+    key = request.headers.get("x-api-key", "")
+    used = len(_hits.get(key, ())) if key else 0
+    return {"valid": bool(key) and _key_valid(key), "label": key.split("_")[1] if key.count("_") >= 2 else None,
+            "requests_last_minute": used, "rate_limit_per_min": RATE_LIMIT_PER_MIN, "required_by_server": REQUIRE_KEY}
 
 
 LEDGER = Ledger(DATA / "ledger.db")

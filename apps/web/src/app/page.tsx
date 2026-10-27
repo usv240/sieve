@@ -3,6 +3,7 @@ import { Info } from "@/components/info";
 import { Explain } from "@/components/explain-mode";
 import { EvalTiles } from "@/components/eval-tiles";
 import { SampleGallery } from "@/components/sample-gallery";
+import { StackStrip } from "@/components/stack-strip";
 import { ShieldAlert, Camera, Search, ClipboardCheck, FileText, Wifi, WifiOff } from "lucide-react";
 
 export default function Landing() {
@@ -146,6 +147,8 @@ export default function Landing() {
           <div className="mt-3"><Link href="/about" className="btn-ghost">Our feedback on these tools</Link></div>
         </Card>
       </section>
+
+      <StackStrip />
 
       <section aria-labelledby="limits" className="space-y-3">
         <h2 id="limits" className="text-2xl font-semibold">Limits, honestly</h2>

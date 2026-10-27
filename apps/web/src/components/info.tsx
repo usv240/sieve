@@ -9,8 +9,8 @@ import { useExplain } from "@/components/explain-mode";
  * The "i" button. One plain sentence on hover or tap; "Learn more" opens a drawer with the full entry,
  * the technical note (shown by default in Technical explain mode) and references. All copy comes from glossary.ts.
  */
-export function Info({ k, label }: { k: GlossaryKey; label?: string }) {
-  const g: GlossaryEntry = GLOSSARY[k];
+export function Info({ k, label, term, text, technical }: { k?: GlossaryKey; label?: string; term?: string; text?: string; technical?: string }) {
+  const g: GlossaryEntry = k ? GLOSSARY[k] : { term: term ?? "", plain: text ?? "", technical };
   const [open, setOpen] = useState(false);
   const [drawer, setDrawer] = useState(false);
   const id = useId();
