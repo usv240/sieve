@@ -1,0 +1,253 @@
+{
+ "sample_id": "everflo-impeded",
+ "recorded_at": "2026-10-27T20:02:33.942Z",
+ "request": {
+  "device_id": "philips-everflo",
+  "indicator_ids": [
+   "everflo-yellow-solid-red-blink"
+  ],
+  "answers": {
+   "in_use": "yes",
+   "cannula_connected": "yes"
+  },
+  "free_text": "",
+  "audit": true
+ },
+ "response": {
+  "trace_id": "20dbb0a9-9abe-474e-915f-27165e8f6b48",
+  "device_id": "philips-everflo",
+  "device_label": "Philips Respironics EverFlo",
+  "blocked": false,
+  "tree": {
+   "device_id": "philips-everflo",
+   "summary": "The EverFlo has detected an impeded oxygen flow condition, most likely due to kinked tubing, a blocked cannula, or a closed outlet. First, verify that oxygen is actually flowing through the cannula.",
+   "hypotheses": [
+    {
+     "fault_id": "impeded-flow",
+     "likelihood": "high",
+     "why": "The device shows the Yellow LED continuously illuminated, Red LED off, and audible alarm beeping periodically, which the manual identifies as an impeded oxygen flow condition.",
+     "cite": {
+      "sid": "S16",
+      "doc": "philips-everflo-oxygen-concentrator-service-manual",
+      "page": 31,
+      "quote": "The device has detected an impeded oxygen flow condition."
+     }
+    }
+   ],
+   "steps": [
+    {
+     "id": 1,
+     "action": "Ensure oxygen is flowing through the cannula.",
+     "expected": "Oxygen flow is felt or observed at the cannula.",
+     "if_yes": 2,
+     "if_no": null,
+     "tools_needed": [],
+     "duration_min": 1,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S29",
+      "doc": "philips-everflo-oxygen-concentrator-service-manual",
+      "page": 15,
+      "quote": "7. Be sure oxygen is flowing through the cannula."
+     },
+     "support": "manual"
+    },
+    {
+     "id": 2,
+     "action": "If no flow is felt, refer to the Troubleshooting section of this manual.",
+     "expected": "Technician consults the troubleshooting section for further checks.",
+     "if_yes": null,
+     "if_no": null,
+     "tools_needed": [],
+     "duration_min": 2,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S30",
+      "doc": "philips-everflo-oxygen-concentrator-service-manual",
+      "page": 15,
+      "quote": "If it is not, refer to the Troubleshooting section of this manual."
+     },
+     "support": "manual"
+    }
+   ],
+   "parts_candidates": [],
+   "escalate_if": []
+  },
+  "audit": {
+   "verdicts": [
+    {
+     "step_id": 1,
+     "verdict": "approve",
+     "reason": "The cited quote from manual page 15 (setup step 7) directly supports the action to verify oxygen flow at the cannula. No contradiction in the manual.",
+     "repaired_action": null
+    },
+    {
+     "step_id": 2,
+     "verdict": "approve",
+     "reason": "The cited quote from manual page 15 (setup step 7) supports referring to the Troubleshooting section if no flow is detected. This aligns with the manual's guidance.",
+     "repaired_action": null
+    }
+   ],
+   "overall": "approve",
+   "notes": "Both steps are supported by the manual's setup procedure (page 15). The hypothesis citation (page 31) correctly identifies the impeded oxygen flow alarm. Safety preconditions (patient on backup supply) are not explicitly required by the manual for these external checks, but general medical device safety practices should be observed."
+  },
+  "rule_hits": [],
+  "citations": {
+   "total": 3,
+   "verified": 3,
+   "integrity": 1,
+   "tiers": {
+    "id": 3,
+    "verbatim": 0,
+    "normalised": 0,
+    "fuzzy": 0
+   },
+   "failures": [],
+   "support": {
+    "checked": 2,
+    "manual": 2,
+    "general": 0
+   }
+  },
+  "retrieved": [
+   {
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 31,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 15,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 91,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 18,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 24,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 103,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 36,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 93,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   }
+  ],
+  "recalls": [
+   {
+    "recall_number": "Z-0481-2026",
+    "reason": "Certain serial numbers of the SimplyGo Mini standard battery kit contain a defective chip which can lead the battery to either fail to charge or lose voltage output when in use in the device.  If the fault occurs while the device is running",
+    "date": "2025-10-07"
+   }
+  ],
+  "maude": {
+   "reports": 36,
+   "top_problems": [
+    [
+     "Overheating of Device",
+     14
+    ],
+    [
+     "Temperature Problem",
+     11
+    ],
+    [
+     "Thermal Decomposition of Device",
+     10
+    ],
+    [
+     "Fire",
+     7
+    ],
+    [
+     "Power Problem",
+     6
+    ]
+   ],
+   "source": "openFDA MAUDE, CC0"
+  },
+  "tavily": {},
+  "notes": [],
+  "latency_ms": 24693,
+  "trace": [
+   {
+    "ts": 1793131340.9624808,
+    "tier": "mid",
+    "model": "Nemotron 3 Super",
+    "model_id": "nvidia/nemotron-3-super-120b-a12b",
+    "purpose": "synthesise.fault_tree",
+    "tokens_in": 6202,
+    "tokens_out": 1144,
+    "usd": 0.0028902,
+    "latency_ms": 10746
+   },
+   {
+    "ts": 1793131341.6568375,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 125,
+    "tokens_out": 2,
+    "usd": 0.00000798,
+    "latency_ms": 693
+   },
+   {
+    "ts": 1793131341.7833066,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 137,
+    "tokens_out": 2,
+    "usd": 0.0000087,
+    "latency_ms": 817
+   },
+   {
+    "ts": 1793131354.181125,
+    "tier": "deep",
+    "model": "Nemotron 3 Ultra",
+    "model_id": "nvidia/Nemotron-3-Ultra-550b-a55b",
+    "purpose": "audit.fault_tree",
+    "tokens_in": 41789,
+    "tokens_out": 3889,
+    "usd": 0.053456,
+    "latency_ms": 12394
+   }
+  ]
+ }
+}

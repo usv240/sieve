@@ -187,6 +187,7 @@ export function TryFlow() {
         {result && (
           <section className="card space-y-4">
             <h2 className="text-xl font-semibold">3. Fix: {result.device_label}</h2>
+            {result && (result as { mode?: string }).mode === "replay" && <p role="status" className="rounded-xl border border-caution p-3 text-sm">The live model service did not answer, so this is the result this sample produced when it was recorded from the live pipeline on {String(((result as { replay?: { recorded_at?: string } }).replay?.recorded_at ?? "").slice(0, 10))}. Everything else on the page works as normal.</p>}
             {result.rule_hits.filter((h) => h.severity === "stop").map((h) => (
               <div key={h.rule_id} role="alert" className="rounded-[16px] border-2 border-stop p-4">
                 <p className="flex items-center gap-2 font-semibold text-stop"><ShieldAlert className="h-5 w-5" /> Stop</p>

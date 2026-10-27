@@ -1,0 +1,286 @@
+{
+ "sample_id": "kettle",
+ "recorded_at": "2026-10-27T20:04:02.533Z",
+ "request": {
+  "device_id": null,
+  "indicator_ids": [],
+  "answers": {},
+  "free_text": "",
+  "audit": true
+ },
+ "response": {
+  "trace_id": "8b148fe4-da31-4ad3-969d-02b0ac32d2c1",
+  "device_id": null,
+  "device_label": "Unknown device",
+  "blocked": false,
+  "tree": {
+   "device_id": "None",
+   "summary": "Low oxygen purity is most likely caused by a blocked inlet filter restricting airflow. First, visually inspect the inlet filter for dirt or obstruction.",
+   "hypotheses": [
+    {
+     "fault_id": "inlet-filter-blocked",
+     "likelihood": "high",
+     "why": "A dirty inlet filter reduces feed air pressure, lowering oxygen purity.",
+     "cite": {
+      "sid": "S86",
+      "doc": "invacare-3-6-concentrator-service-manual",
+      "page": 17,
+      "quote": "2. Inlet Filter Dirty. 4. Heat Exchanger. a."
+     }
+    }
+   ],
+   "steps": [
+    {
+     "id": 1,
+     "action": "Visually inspect the inlet filter for dirt or blockage.",
+     "expected": "Filter appears clean or shows visible dirt/debris.",
+     "if_yes": 2,
+     "if_no": 3,
+     "tools_needed": [],
+     "duration_min": 2,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S86",
+      "doc": "invacare-3-6-concentrator-service-manual",
+      "page": 17,
+      "quote": "2. Inlet Filter Dirty. 4. Heat Exchanger. a."
+     },
+     "support": "general"
+    },
+    {
+     "id": 2,
+     "action": "If filter is dirty, replace or clean the inlet filter according to manufacturer procedure.",
+     "expected": "Filter is replaced/cleaned and securely installed.",
+     "if_yes": 4,
+     "if_no": 4,
+     "tools_needed": [
+      "screwdriver"
+     ],
+     "duration_min": 5,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S86",
+      "doc": "invacare-3-6-concentrator-service-manual",
+      "page": 17,
+      "quote": "2. Inlet Filter Dirty. 4. Heat Exchanger. a."
+     },
+     "support": "general"
+    },
+    {
+     "id": 3,
+     "action": "If filter appears clean, check the feed air pressure gauge for normal reading.",
+     "expected": "Feed air pressure gauge reads within normal range (as indicated on gauge).",
+     "if_yes": 5,
+     "if_no": 5,
+     "tools_needed": [],
+     "duration_min": 3,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S5",
+      "doc": "airsep-centrox-psa-concentrator-technical-manual",
+      "page": 19,
+      "quote": "FEED AIR PRESSURE Gauge The FEED AIR PRESSURE gauge indicates the pressure of the feed air before it enters the PSA enclosure (See Figure 4.2)."
+     },
+     "support": "manual"
+    },
+    {
+     "id": 4,
+     "action": "After filter maintenance, restart the concentrator and observe oxygen purity indicators.",
+     "expected": "Green purity light illuminates indicating normal oxygen concentration.",
+     "if_yes": null,
+     "if_no": null,
+     "tools_needed": [],
+     "duration_min": 10,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S32",
+      "doc": "invacare-3-6-concentrator-service-manual",
+      "page": 58,
+      "quote": "Indicator Lights (FIGURE 1) GREEN LIGHT - Normal Operation."
+     },
+     "support": "manual"
+    },
+    {
+     "id": 5,
+     "action": "If feed air pressure is low, inspect for leaks in hoses and fittings.",
+     "expected": "No audible hissing or visible signs of leakage.",
+     "if_yes": null,
+     "if_no": null,
+     "tools_needed": [],
+     "duration_min": 5,
+     "safety_class": "caution",
+     "cite": {
+      "sid": "S68",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 12,
+      "quote": "1. Leak in system 1. Check for leaks in all hoses and fittings"
+     },
+     "support": "manual"
+    }
+   ],
+   "parts_candidates": [
+    {
+     "name": "Inlet filter",
+     "part_number": null,
+     "cite": {
+      "sid": "S86",
+      "doc": "invacare-3-6-concentrator-service-manual",
+      "page": 17,
+      "quote": "2. Inlet Filter Dirty. 4. Heat Exchanger. a."
+     }
+    }
+   ],
+   "escalate_if": []
+  },
+  "audit": null,
+  "rule_hits": [],
+  "citations": {
+   "total": 7,
+   "verified": 7,
+   "integrity": 1,
+   "tiers": {
+    "id": 7,
+    "verbatim": 0,
+    "normalised": 0,
+    "fuzzy": 0
+   },
+   "failures": [],
+   "support": {
+    "checked": 5,
+    "manual": 3,
+    "general": 2
+   }
+  },
+  "retrieved": [
+   {
+    "doc": "airsep-centrox-psa-concentrator-technical-manual",
+    "title": "AirSep Centrox PSA Concentrator - Technical manual",
+    "page": 19,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "on-site-pogs33c-psa-service-manual",
+    "title": "On Site POGS33C PSA - Service manual",
+    "page": 32,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "invacare-3-6-concentrator-service-manual",
+    "title": "Invacare 3-6 Concentrator - Service manual",
+    "page": 58,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 12,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "invacare-3-6-concentrator-service-manual",
+    "title": "Invacare 3-6 Concentrator - Service manual",
+    "page": 17,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-515a-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 515A Oxygen Concentrator - Service manual",
+    "page": 13,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "invacare-platinum-5-10-concentrator-service-manual",
+    "title": "Invacare Platinum 5 + 10 Concentrator - Service manual",
+    "page": 83,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "nidek-mark-5-plus-concentrator-service-manual",
+    "title": "Nidek Mark 5 Plus Concentrator - Service manual",
+    "page": 12,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   }
+  ],
+  "recalls": [],
+  "maude": {},
+  "tavily": {},
+  "notes": [],
+  "latency_ms": 13276,
+  "trace": [
+   {
+    "ts": 1793131441.63152,
+    "tier": "mid",
+    "model": "Nemotron 3 Super",
+    "model_id": "nvidia/nemotron-3-super-120b-a12b",
+    "purpose": "synthesise.fault_tree",
+    "tokens_in": 6103,
+    "tokens_out": 998,
+    "usd": 0.0027291,
+    "latency_ms": 6462
+   },
+   {
+    "ts": 1793131442.2658494,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 132,
+    "tokens_out": 2,
+    "usd": 0.000008400000000000001,
+    "latency_ms": 632
+   },
+   {
+    "ts": 1793131442.3626788,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 141,
+    "tokens_out": 2,
+    "usd": 0.000008939999999999999,
+    "latency_ms": 721
+   },
+   {
+    "ts": 1793131442.4176693,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 160,
+    "tokens_out": 2,
+    "usd": 0.00001008,
+    "latency_ms": 780
+   },
+   {
+    "ts": 1793131442.4953008,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 133,
+    "tokens_out": 2,
+    "usd": 0.000008459999999999999,
+    "latency_ms": 855
+   },
+   {
+    "ts": 1793131442.8363318,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 136,
+    "tokens_out": 2,
+    "usd": 0.00000864,
+    "latency_ms": 1200
+   }
+  ]
+ }
+}

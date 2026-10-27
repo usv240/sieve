@@ -46,6 +46,15 @@ Working scaffold with a real index and a real evaluation. Model-dependent stages
 
 Every call is written to a ledger (tier, model, tokens, USD, latency) and shown in the app's Trace panel.
 
+## Where Token Factory accelerated our workflow
+
+- **Five NVIDIA models behind one key and one API shape.** Nemotron 3 Nano, 3.5 Lightning, 3 Super, 3 Ultra and 3.5 Super VL all answer the same OpenAI-compatible call. Moving a pipeline stage to a different tier is a one-line change in the router, which is how we tuned cost and speed per stage instead of picking one model for everything.
+- **A one-million-token auditor without a GPU.** Nemotron 3 Ultra reads an entire service manual in a single call. Running a 550B model ourselves was out of reach for a laptop team.
+- **Long context as a feature, not a workaround.** The weekly fleet brief sends 140,000 tokens (the whole fleet log, 647 FDA reports and 34 recalls) to Nemotron 3.5 Lightning in one call, at about one cent.
+- **Evaluation at a scale we could afford.** Benchmark A graded 300 questions across three systems with two judges for $0.65. Every benchmark in this repo was rerun several times during development because each run cost cents.
+- **A vision model appeared mid-hackathon and we switched in a day.** Nemotron 3.5 Super VL arrived in the catalog; adopting it was a model id and one request flag, and it became our first photo reader.
+- **Embeddings from the same account.** Qwen3-Embedding-8B on Token Factory embeds the 9,498 indexed manual pages, so retrieval, generation and audit share one bill and one ledger.
+
 ## Screenshots
 
 Light and dark, same page: `docs/screenshots/landing-light.jpg`, `docs/screenshots/landing-dark.jpg`. Live fix with citations and Trace: `docs/screenshots/try-fix-dark.jpg`. Evals page: `docs/screenshots/evals-light.jpg`.

@@ -1,0 +1,530 @@
+{
+ "sample_id": "dv525-no-power",
+ "recorded_at": "2026-10-27T20:03:48.952Z",
+ "request": {
+  "device_id": "devilbiss-525",
+  "indicator_ids": [],
+  "answers": {
+   "in_use": "no",
+   "power_socket": "unknown"
+  },
+  "free_text": "Unit does not switch on at all. No lights and no self-test sound.",
+  "audit": true
+ },
+ "response": {
+  "trace_id": "dc61775e-6a4a-4a9f-8f79-80930090df96",
+  "device_id": "devilbiss-525",
+  "device_label": "DeVilbiss Healthcare 525 series (525DS, 525KS)",
+  "blocked": false,
+  "tree": {
+   "device_id": "devilbiss-525",
+   "summary": "The most likely cause is that the unit is not receiving power from the outlet or the power cord is faulty. First, verify that the power cord is firmly plugged into a working receptacle and reset the unit's circuit breaker.",
+   "hypotheses": [
+    {
+     "fault_id": "no-power",
+     "likelihood": "high",
+     "why": "Unit shows no lights or self-test sound, indicating no power reaching the circuitry.",
+     "cite": {
+      "sid": "S43",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 11,
+      "quote": "Possible Cause Possible Remedy Fan off Line cord not properly installed or defective Insert plug in receptacle or replace line cord."
+     }
+    },
+    {
+     "fault_id": "power-cord-thermal",
+     "likelihood": "medium",
+     "why": "A damaged or overheated power cord can prevent power from reaching the unit.",
+     "cite": {
+      "sid": "S52",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 11,
+      "quote": "internal wiring Line cord quick-connect terminal inside Reconnect quick-connect terminal"
+     }
+    },
+    {
+     "fault_id": "power-switch-fault",
+     "likelihood": "medium",
+     "why": "If the power switch is defective, the unit will not energize even with proper cord and outlet.",
+     "cite": {
+      "sid": "S53",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 11,
+      "quote": "unit is disconnected Defective power switch Replace power switch"
+     }
+    },
+    {
+     "fault_id": "control-board-fault",
+     "likelihood": "low",
+     "why": "A failed PC board or blown fuse/capacitor can stop the unit from powering on.",
+     "cite": {
+      "sid": "S37",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 10,
+      "quote": "Defective PC board Replace PC board"
+     }
+    }
+   ],
+   "steps": [
+    {
+     "id": 1,
+     "action": "Ensure the power cord plug is fully inserted into the wall outlet.",
+     "expected": "The plug is seated firmly and the outlet shows signs of power (e.g., other device works).",
+     "if_yes": null,
+     "if_no": 2,
+     "tools_needed": [],
+     "duration_min": 1,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S43",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 11,
+      "quote": "Possible Cause Possible Remedy Fan off Line cord not properly installed or defective Insert plug in receptacle or replace line cord."
+     },
+     "support": "manual"
+    },
+    {
+     "id": 2,
+     "action": "Check the building circuit breaker or fuse for the outlet and reset if tripped.",
+     "expected": "Breaker is on/fuse intact; outlet now powers a test lamp.",
+     "if_yes": null,
+     "if_no": 3,
+     "tools_needed": [],
+     "duration_min": 2,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S44",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 11,
+      "quote": "On 220/240 Volt units, check that the IEC connector on the back of"
+     },
+     "support": "general"
+    },
+    {
+     "id": 3,
+     "action": "Press the circuit breaker reset button on the concentrator (if equipped).",
+     "expected": "Button clicks and resets; unit may power on.",
+     "if_yes": null,
+     "if_no": 4,
+     "tools_needed": [],
+     "duration_min": 1,
+     "safety_class": "caution",
+     "cite": {
+      "sid": "S50",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 11,
+      "quote": "Oxygen concentrator circuit breaker activated Press the circuit breaker reset button"
+     },
+     "support": "manual"
+    },
+    {
+     "id": 4,
+     "action": "Make sure the unit is unplugged from the wall outlet. Remove the back cabinet (qualified provider only). Then inspect the power cord for visible damage and reconnect the internal quick‑connect terminal if disconnected.",
+     "expected": "Cord is intact and the quick‑connect terminal inside the unit is securely attached.",
+     "if_yes": null,
+     "if_no": 5,
+     "tools_needed": [
+      "screwdriver"
+     ],
+     "duration_min": 3,
+     "safety_class": "caution",
+     "cite": {
+      "sid": "S52",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 11,
+      "quote": "internal wiring Line cord quick-connect terminal inside Reconnect quick-connect terminal"
+     },
+     "support": "manual"
+    },
+    {
+     "id": 5,
+     "action": "Make sure the unit is unplugged from the wall outlet. Remove the front and back cabinets and loosen the bib (qualified provider only). Then verify the power switch operates; listen for a click and check for continuity if possible.",
+     "expected": "Switch toggles smoothly and the unit attempts to start.",
+     "if_yes": null,
+     "if_no": 6,
+     "tools_needed": [
+      "multimeter"
+     ],
+     "duration_min": 2,
+     "safety_class": "caution",
+     "cite": {
+      "sid": "S53",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 11,
+      "quote": "unit is disconnected Defective power switch Replace power switch"
+     },
+     "support": "general"
+    },
+    {
+     "id": 6,
+     "action": "Make sure the unit is unplugged from the wall outlet. Remove the front and back cabinets (qualified provider only). Then examine the main wiring harness for loose or disconnected connectors and reseat or replace as needed.",
+     "expected": "All harness connectors are firmly seated.",
+     "if_yes": null,
+     "if_no": 7,
+     "tools_needed": [
+      "screwdriver"
+     ],
+     "duration_min": 3,
+     "safety_class": "caution",
+     "cite": {
+      "sid": "S58",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 11,
+      "quote": "Main wiring harness disconnected/defective Reconnect/replace wiring harness"
+     },
+     "support": "general"
+    },
+    {
+     "id": 7,
+     "action": "ESCALATE: Compressor capacitors can hold a lethal charge after power-off. Discharge procedures are for trained staff only. Escalate. Original step: Test the start‑run capacitor on the PC board; replace if out of tolerance.",
+     "expected": "Capacitance reads within spec; unit powers on after replacement.",
+     "if_yes": null,
+     "if_no": 8,
+     "tools_needed": [
+      "multimeter",
+      "capacitance meter"
+     ],
+     "duration_min": 5,
+     "safety_class": "stop",
+     "cite": {
+      "sid": "S60",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 11,
+      "quote": "Defective capacitor Replace capacitor"
+     },
+     "support": "general"
+    },
+    {
+     "id": 8,
+     "action": "Make sure the unit is unplugged from the wall outlet. Remove the front and back cabinets and loosen the bib (qualified provider only). Disconnect all wires, terminals, connectors, and tubing from the PC board. Replace the PC board (or check/replace fuse on board), reconnect all components, and reassemble.",
+     "expected": "New board installed; unit powers on and passes self‑test.",
+     "if_yes": null,
+     "if_no": null,
+     "tools_needed": [
+      "screwdriver"
+     ],
+     "duration_min": 10,
+     "safety_class": "stop",
+     "cite": {
+      "sid": "S37",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 10,
+      "quote": "Defective PC board Replace PC board"
+     },
+     "support": "manual"
+    }
+   ],
+   "parts_candidates": [],
+   "escalate_if": []
+  },
+  "audit": {
+   "verdicts": [
+    {
+     "step_id": 1,
+     "verdict": "approve",
+     "reason": "Manual Troubleshooting Chart B lists 'Line cord not properly installed or defective' with remedy 'Insert plug in receptacle or replace line cord.' Action is a simple external check, no safety conflict.",
+     "repaired_action": null
+    },
+    {
+     "step_id": 2,
+     "verdict": "approve",
+     "reason": "Manual Troubleshooting Chart B lists 'No power at receptacle' with remedy 'Check building circuit breaker or fuse, or have house wiring checked by qualified electrician.' Action is external and safe.",
+     "repaired_action": null
+    },
+    {
+     "step_id": 3,
+     "verdict": "approve",
+     "reason": "Manual Troubleshooting Chart B lists 'Oxygen concentrator circuit breaker activated' with remedy 'Press the circuit breaker reset button.' Action is a simple button press; safety class 'caution' is appropriate.",
+     "repaired_action": null
+    },
+    {
+     "step_id": 4,
+     "verdict": "repair",
+     "reason": "Reconnecting the internal quick‑connect terminal requires cabinet removal and unplugging. Manual warns: 'WARNING: Disconnect the power cord from the wall outlet before attempting repairs on the unit.' and 'WARNING: Electric shock hazard. Do not remove cabinet. The cabinet should only be removed by a qualified DeVilbiss homecare provider.' Step lacks these preconditions.",
+     "repaired_action": "Make sure the unit is unplugged from the wall outlet. Remove the back cabinet (qualified provider only). Then inspect the power cord for visible damage and reconnect the internal quick‑connect terminal if disconnected."
+    },
+    {
+     "step_id": 5,
+     "verdict": "repair",
+     "reason": "Checking power switch continuity requires cabinet removal and unplugging. Manual power switch replacement procedure starts with 'Make sure the unit is unplugged from the wall outlet. Remove the front and back cabinets and loosen the bib.' Step lacks these preconditions.",
+     "repaired_action": "Make sure the unit is unplugged from the wall outlet. Remove the front and back cabinets and loosen the bib (qualified provider only). Then verify the power switch operates; listen for a click and check for continuity if possible."
+    },
+    {
+     "step_id": 6,
+     "verdict": "repair",
+     "reason": "Examining the main wiring harness requires cabinet removal and unplugging. Manual warns to disconnect power cord before repairs. Step lacks these preconditions.",
+     "repaired_action": "Make sure the unit is unplugged from the wall outlet. Remove the front and back cabinets (qualified provider only). Then examine the main wiring harness for loose or disconnected connectors and reseat or replace as needed."
+    },
+    {
+     "step_id": 7,
+     "verdict": "approve",
+     "reason": "Manual warns: 'WARNING: Electric Shock Hazard. When replacing the capacitor, do not touch the terminals or allow metal objects to come in contact with the terminals on the capacitor. The capacitor may hold a charge for several days after the unit is turned off.' Escalation is correct; safety class 'stop' is appropriate.",
+     "repaired_action": null
+    },
+    {
+     "step_id": 8,
+     "verdict": "repair",
+     "reason": "Replacing the PC board requires unplugging, cabinet removal, and caution not to flex the board. Manual procedure: 'Make sure the unit is unplugged from the wall outlet. Remove the front and back cabinets and loosen the bib. Disconnect all wires, terminals and connectors. Remove the 1/8\" tubing attached to the sensor... CAUTION–Do not apply any force or flex the PC Board...' Step lacks these preconditions.",
+     "repaired_action": "Make sure the unit is unplugged from the wall outlet. Remove the front and back cabinets and loosen the bib (qualified provider only). Disconnect all wires, terminals, connectors, and tubing from the PC board. Replace the PC board (or check/replace fuse on board), reconnect all components, and reassemble."
+    }
+   ],
+   "overall": "approve_with_repairs",
+   "notes": "The troubleshooting tree correctly follows the manual's Troubleshooting Charts for a no‑power condition. However, steps 4, 5, 6, and 8 involve internal repairs that require explicit safety preconditions: unplug the unit, ensure cabinet removal is performed only by a qualified DeVilbiss homecare provider, and observe specific cautions (capacitor residual charge, PC board handling). Adding these preconditions will make the tree fully compliant with the manual's safety and procedural requirements."
+  },
+  "rule_hits": [
+   {
+    "rule_id": "capacitor-discharge",
+    "action": "escalate",
+    "severity": "stop",
+    "message": "Compressor capacitors can hold a lethal charge after power-off. Discharge procedures are for trained staff only. Escalate.",
+    "citation": "Manufacturer service manuals, compressor section warnings",
+    "matched": "Test the start‑run capacitor on the PC board; replace if out of tolerance..",
+    "stage": "output",
+    "rewrite_to": null
+   }
+  ],
+  "citations": {
+   "total": 12,
+   "verified": 12,
+   "integrity": 1,
+   "tiers": {
+    "id": 12,
+    "verbatim": 0,
+    "normalised": 0,
+    "fuzzy": 0
+   },
+   "failures": [],
+   "support": {
+    "checked": 8,
+    "manual": 4,
+    "general": 4
+   }
+  },
+  "retrieved": [
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 10,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 11,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 5,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 6,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 12,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-user-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - User manual",
+    "page": 7,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 20,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 9,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   }
+  ],
+  "recalls": [
+   {
+    "recall_number": "Z-0229-2023",
+    "reason": "An unapproved adhesive used to manufacture the accumulator tank sub assembly (a part of the patient gas pathway)",
+    "date": "2022-09-19"
+   },
+   {
+    "recall_number": "Z-0407-2018",
+    "reason": "Post-market surveillance for Pure Stationary Oxygen Concentrators model CHSOOO and CHSOOOS\ndemonstrate an aggregate complaint/service rate greater than 35% for low oxygen purity (output\noxygen below the published specification).",
+    "date": "2017-10-09"
+   },
+   {
+    "recall_number": "Z-0478-2025",
+    "reason": "Potential failure of affected units to recharge the battery of the oxygen concentrators.",
+    "date": "2024-10-04"
+   },
+   {
+    "recall_number": "Z-0514-2021",
+    "reason": "Breakdown of the sound abatement washer, and metal on metal wear inside the Pressure Equalization (P.E.) valve assembly in the concentrator may lead to failure that can result in self-extinguishing fires or cap explosions.",
+    "date": "2020-10-30"
+   },
+   {
+    "recall_number": "Z-0577-2015",
+    "reason": "It was determined that a defective sieve bed subassembly enabled zeolite sieve dust from the sieve beds to migrate into the valves of the manifold assembly and muffler causing a reduction in oxygen concentration.",
+    "date": "2014-09-23"
+   }
+  ],
+  "maude": {
+   "reports": 226,
+   "top_problems": [
+    [
+     "Low Readings",
+     186
+    ],
+    [
+     "No Audible Alarm",
+     90
+    ],
+    [
+     "Temperature Problem",
+     36
+    ],
+    [
+     "Material Deformation",
+     26
+    ],
+    [
+     "Overheating of Device",
+     23
+    ]
+   ],
+   "source": "openFDA MAUDE, CC0"
+  },
+  "tavily": {},
+  "notes": [],
+  "latency_ms": 35497,
+  "trace": [
+   {
+    "ts": 1793131413.1165872,
+    "tier": "mid",
+    "model": "Nemotron 3 Super",
+    "model_id": "nvidia/nemotron-3-super-120b-a12b",
+    "purpose": "synthesise.fault_tree",
+    "tokens_in": 8047,
+    "tokens_out": 2565,
+    "usd": 0.0047226,
+    "latency_ms": 17916
+   },
+   {
+    "ts": 1793131413.81589,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 129,
+    "tokens_out": 2,
+    "usd": 0.00000822,
+    "latency_ms": 694
+   },
+   {
+    "ts": 1793131413.8240454,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 144,
+    "tokens_out": 2,
+    "usd": 0.00000912,
+    "latency_ms": 703
+   },
+   {
+    "ts": 1793131413.8388307,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 148,
+    "tokens_out": 2,
+    "usd": 0.00000936,
+    "latency_ms": 720
+   },
+   {
+    "ts": 1793131413.8402662,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 130,
+    "tokens_out": 2,
+    "usd": 0.000008279999999999999,
+    "latency_ms": 715
+   },
+   {
+    "ts": 1793131413.8457882,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 127,
+    "tokens_out": 2,
+    "usd": 0.0000081,
+    "latency_ms": 715
+   },
+   {
+    "ts": 1793131413.8508396,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 143,
+    "tokens_out": 2,
+    "usd": 0.00000906,
+    "latency_ms": 727
+   },
+   {
+    "ts": 1793131414.0067286,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 131,
+    "tokens_out": 2,
+    "usd": 0.00000834,
+    "latency_ms": 879
+   },
+   {
+    "ts": 1793131414.0744812,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 130,
+    "tokens_out": 2,
+    "usd": 0.000008279999999999999,
+    "latency_ms": 942
+   },
+   {
+    "ts": 1793131429.234037,
+    "tier": "deep",
+    "model": "Nemotron 3 Ultra",
+    "model_id": "nvidia/Nemotron-3-Ultra-550b-a55b",
+    "purpose": "audit.fault_tree",
+    "tokens_in": 27277,
+    "tokens_out": 5662,
+    "usd": 0.044263,
+    "latency_ms": 15155
+   }
+  ]
+ }
+}

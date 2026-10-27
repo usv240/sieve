@@ -1,0 +1,444 @@
+{
+ "sample_id": "dv525-red",
+ "recorded_at": "2026-10-27T20:03:13.270Z",
+ "request": {
+  "device_id": "devilbiss-525",
+  "indicator_ids": [
+   "dv525-red-beep"
+  ],
+  "answers": {
+   "in_use": "no",
+   "warmup": "yes",
+   "noise": "no"
+  },
+  "free_text": "",
+  "audit": true
+ },
+ "response": {
+  "trace_id": "babb2296-c1c4-4193-ab78-57d7f3871141",
+  "device_id": "devilbiss-525",
+  "device_label": "DeVilbiss Healthcare 525 series (525DS, 525KS)",
+  "blocked": false,
+  "tree": {
+   "device_id": "devilbiss-525",
+   "summary": "Most likely causes are a blocked inlet filter or exhausted sieve beds reducing oxygen purity. First, inspect and clean the air filter and check the exhaust area for obstructions.",
+   "hypotheses": [
+    {
+     "fault_id": "sieve-bed-exhaustion",
+     "likelihood": "medium",
+     "why": "Contaminated sieve beds cause low oxygen concentration and require replacement.",
+     "cite": {
+      "sid": "S151",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 10,
+      "quote": "Contaminated sieve beds Replace sieve beds Audible alarm does not Unit has not been used for an extended Allow unit to run for 20 minutes and retry sound during power failure period of time."
+     }
+    },
+    {
+     "fault_id": "sieve-check-valve",
+     "likelihood": "medium",
+     "why": "A defective sieve bed check valve leads to low oxygen output.",
+     "cite": {
+      "sid": "S146",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 10,
+      "quote": "Defective sieve bed check valve Replace check valve"
+     }
+    },
+    {
+     "fault_id": "compressor-wear",
+     "likelihood": "high",
+     "why": "A defective compressor can cause both low pressure/flow and low oxygen concentration.",
+     "cite": {
+      "sid": "S148",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 10,
+      "quote": "Defective compressor Replace compressor"
+     }
+    },
+    {
+     "fault_id": "inlet-filter-blocked",
+     "likelihood": "medium",
+     "why": "Occluded filters restrict airflow, lowering oxygen output.",
+     "cite": {
+      "sid": "S150",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 10,
+      "quote": "Occluded filters Clean or replace filters"
+     }
+    },
+    {
+     "fault_id": "impeded-flow",
+     "likelihood": "low",
+     "why": "Leaks in the system drop pressure below 9 psi, causing low flow.",
+     "cite": {
+      "sid": "S24",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 12,
+      "quote": "1. Leak in system 1. Check for leaks in all hoses and fittings"
+     }
+    }
+   ],
+   "steps": [
+    {
+     "id": 1,
+     "action": "Turn off and unplug the unit. Open the filter door on the back of the unit. Inspect the air filter for dirt or blockage. If dirty, clean per manual: wash in warm water and dishwashing detergent, soak in vinegar solution (1 part vinegar to 3 parts hot water) for 30-45 minutes, rinse thoroughly, and dry completely before reinstalling. Do not operate the unit without the air filter or while the filter is still damp.",
+     "expected": "Filter appears clean and undamaged.",
+     "if_yes": 2,
+     "if_no": 2,
+     "tools_needed": [],
+     "duration_min": 2,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S63",
+      "doc": "devilbiss-525-oxygen-concentrator-user-manual",
+      "page": 7,
+      "quote": "2. Air filter is blocked. 2. \u0007Check the air filter."
+     },
+     "support": "general"
+    },
+    {
+     "id": 2,
+     "action": "Ensure the unit is positioned at least 6 inches (16 cm) from walls, draperies, or any other objects that might prevent proper airflow. Check the exhaust muffler area (connected to the rotary valve) for obstructions.",
+     "expected": "Exhaust area is clear.",
+     "if_yes": 3,
+     "if_no": 3,
+     "tools_needed": [],
+     "duration_min": 2,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S65",
+      "doc": "devilbiss-525-oxygen-concentrator-user-manual",
+      "page": 7,
+      "quote": "3. Exhaust is blocked. 3. \u0007Check the exhaust area; make sure there is nothing restricting the unit exhaust."
+     },
+     "support": "manual"
+    },
+    {
+     "id": 3,
+     "action": "Verify the flow meter is set to the prescribed flow rate.",
+     "expected": "Flow meter ball is on the line for the prescribed LPM.",
+     "if_yes": 4,
+     "if_no": 4,
+     "tools_needed": [],
+     "duration_min": 2,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S62",
+      "doc": "devilbiss-525-oxygen-concentrator-user-manual",
+      "page": 7,
+      "quote": "1. Ensure the flow meter is properly set to the prescribed number."
+     },
+     "support": "manual"
+    },
+    {
+     "id": 4,
+     "action": "Ensure the patient is on a backup oxygen supply. If cabinet removal is required to access fittings, turn off and unplug the unit, remove cabinets per the manual, then reconnect power with extra care. Apply a certified leak detection solution (must not contain ethylene glycol) to all hose fittings and connections with the unit running. Observe for bubbles indicating leaks. Repair all leaks before returning the unit to service. Do not apply solution to the rotary valve or the PC board assembly.",
+     "expected": "No signs of leakage (no hissing, no bubbles).",
+     "if_yes": 5,
+     "if_no": 5,
+     "tools_needed": [],
+     "duration_min": 5,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S24",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 12,
+      "quote": "1. Leak in system 1. Check for leaks in all hoses and fittings"
+     },
+     "support": "manual"
+    },
+    {
+     "id": 5,
+     "action": "Observe the front panel for visible and audible alerts after warm‑up.",
+     "expected": "Red ‘Service Required’ light illuminated with beeping audible alert (indicating <60% O2) or yellow Low Oxygen light with beeping (75‑60%).",
+     "if_yes": null,
+     "if_no": null,
+     "tools_needed": [],
+     "duration_min": 3,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S31, S32",
+      "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+      "page": 6,
+      "quote": "75% to 60%, yellow “Low Oxygen” light and beeping audible alert. Less than 60%, red “Service Required” light and beeping audible alert.) Refer to Specifications for specific alert settings."
+     },
+     "support": "manual"
+    }
+   ],
+   "parts_candidates": [],
+   "escalate_if": []
+  },
+  "audit": {
+   "verdicts": [
+    {
+     "step_id": 1,
+     "verdict": "repair",
+     "reason": "The cited quote is from the user manual, not the provided service manual. The service manual (page 6) supports inspecting the air filter but requires the unit to be off and the filter completely dry before reinstalling. The step lacks the safety precondition to turn off and unplug the unit before inspection.",
+     "repaired_action": "Turn off and unplug the unit. Open the filter door on the back of the unit. Inspect the air filter for dirt or blockage. If dirty, clean per manual: wash in warm water and dishwashing detergent, soak in vinegar solution (1 part vinegar to 3 parts hot water) for 30-45 minutes, rinse thoroughly, and dry completely before reinstalling. Do not operate the unit without the air filter or while the filter is still damp."
+    },
+    {
+     "step_id": 2,
+     "verdict": "repair",
+     "reason": "The cited quote is from the user manual, not the provided service manual. The service manual (page 4) recommends positioning the unit at least 6 inches (16 cm) from walls, draperies, or other objects that might restrict airflow. The step should reference the service manual and include checking the exhaust muffler area.",
+     "repaired_action": "Ensure the unit is positioned at least 6 inches (16 cm) from walls, draperies, or any other objects that might prevent proper airflow. Check the exhaust muffler area (connected to the rotary valve) for obstructions."
+    },
+    {
+     "step_id": 3,
+     "verdict": "approve",
+     "reason": "The service manual (page 5) supports verifying the flow meter setting: 'Slowly turn the flow meter knob until the flow meter ball is centered on the line next to the appropriate flow rate.' The action is correct and no contradiction exists.",
+     "repaired_action": null
+    },
+    {
+     "step_id": 4,
+     "verdict": "repair",
+     "reason": "The cited quote from the service manual (page 12) supports checking for leaks, but the manual specifies using a certified leak detection solution (e.g., Snoop®) with the unit running, and extra care when operating with the cabinet removed (page 13: 'Extra care should be taken if it is necessary to operate the unit with the cabinet removed'). The step omits these critical safety and procedural details.",
+     "repaired_action": "Ensure the patient is on a backup oxygen supply. If cabinet removal is required to access fittings, turn off and unplug the unit, remove cabinets per the manual, then reconnect power with extra care. Apply a certified leak detection solution (must not contain ethylene glycol) to all hose fittings and connections with the unit running. Observe for bubbles indicating leaks. Repair all leaks before returning the unit to service. Do not apply solution to the rotary valve or the PC board assembly."
+    },
+    {
+     "step_id": 5,
+     "verdict": "approve",
+     "reason": "The service manual (pages 5-6) describes the alert system and light patterns: after start-up, only 'Power' and 'Normal Oxygen' lights remain on; low oxygen triggers yellow 'Low Oxygen' light and beeping; service required triggers red light and beeping. The step is supported.",
+     "repaired_action": null
+    }
+   ],
+   "overall": "approve_with_repairs",
+   "notes": "The troubleshooting tree cites a user manual not provided; all citations should reference the service manual (LT-2023). Safety preconditions (patient on backup supply, power off and unplug before opening cabinet, extra care when operating with cabinet removed) must be explicit in steps involving cabinet removal or leak testing with the unit running."
+  },
+  "rule_hits": [],
+  "citations": {
+   "total": 10,
+   "verified": 10,
+   "integrity": 1,
+   "tiers": {
+    "id": 10,
+    "verbatim": 0,
+    "normalised": 0,
+    "fuzzy": 0
+   },
+   "failures": [],
+   "support": {
+    "checked": 5,
+    "manual": 4,
+    "general": 1
+   }
+  },
+  "retrieved": [
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 12,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 6,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-user-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - User manual",
+    "page": 7,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 5,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 10,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-user-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - User manual",
+    "page": 5,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-service-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - Service manual",
+    "page": 20,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   },
+   {
+    "doc": "devilbiss-525-oxygen-concentrator-user-manual",
+    "title": "DeVilbiss 525 Oxygen Concentrator - User manual",
+    "page": 22,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
+   }
+  ],
+  "recalls": [
+   {
+    "recall_number": "Z-0229-2023",
+    "reason": "An unapproved adhesive used to manufacture the accumulator tank sub assembly (a part of the patient gas pathway)",
+    "date": "2022-09-19"
+   },
+   {
+    "recall_number": "Z-0407-2018",
+    "reason": "Post-market surveillance for Pure Stationary Oxygen Concentrators model CHSOOO and CHSOOOS\ndemonstrate an aggregate complaint/service rate greater than 35% for low oxygen purity (output\noxygen below the published specification).",
+    "date": "2017-10-09"
+   },
+   {
+    "recall_number": "Z-0478-2025",
+    "reason": "Potential failure of affected units to recharge the battery of the oxygen concentrators.",
+    "date": "2024-10-04"
+   },
+   {
+    "recall_number": "Z-0514-2021",
+    "reason": "Breakdown of the sound abatement washer, and metal on metal wear inside the Pressure Equalization (P.E.) valve assembly in the concentrator may lead to failure that can result in self-extinguishing fires or cap explosions.",
+    "date": "2020-10-30"
+   },
+   {
+    "recall_number": "Z-0577-2015",
+    "reason": "It was determined that a defective sieve bed subassembly enabled zeolite sieve dust from the sieve beds to migrate into the valves of the manifold assembly and muffler causing a reduction in oxygen concentration.",
+    "date": "2014-09-23"
+   }
+  ],
+  "maude": {
+   "reports": 226,
+   "top_problems": [
+    [
+     "Low Readings",
+     186
+    ],
+    [
+     "No Audible Alarm",
+     90
+    ],
+    [
+     "Temperature Problem",
+     36
+    ],
+    [
+     "Material Deformation",
+     26
+    ],
+    [
+     "Overheating of Device",
+     23
+    ]
+   ],
+   "source": "openFDA MAUDE, CC0"
+  },
+  "tavily": {
+   "parts": {
+    "available": true,
+    "query": "\"sieve bed pair\" DeVilbiss Healthcare 525 series (525DS, 525KS) price",
+    "results": [
+     {
+      "title": "Troubleshooting DeVilbiss 525DS Concentrator Alarms ...",
+      "url": "https://www.vitalitymedical.com/blog/devilbiss-525ds-troubleshooting.html",
+      "snippet": "Oct 17, 2025 — The Drive DeVilbiss 525DS oxygen concentrator includes built-in visual and audible alerts to help identify and correct minor issues before they ...Read more"
+     }
+    ],
+    "for": "sieve bed pair (Molecular sieve bed exhaustion)"
+   }
+  },
+  "notes": [],
+  "latency_ms": 39138,
+  "trace": [
+   {
+    "ts": 1793131376.7615192,
+    "tier": "mid",
+    "model": "Nemotron 3 Super",
+    "model_id": "nvidia/nemotron-3-super-120b-a12b",
+    "purpose": "synthesise.fault_tree",
+    "tokens_in": 7995,
+    "tokens_out": 2758,
+    "usd": 0.004880700000000001,
+    "latency_ms": 17966
+   },
+   {
+    "ts": 1793131377.5297863,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 129,
+    "tokens_out": 2,
+    "usd": 0.00000822,
+    "latency_ms": 766
+   },
+   {
+    "ts": 1793131377.6306152,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 137,
+    "tokens_out": 2,
+    "usd": 0.0000087,
+    "latency_ms": 861
+   },
+   {
+    "ts": 1793131377.6311486,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 134,
+    "tokens_out": 2,
+    "usd": 0.00000852,
+    "latency_ms": 866
+   },
+   {
+    "ts": 1793131377.6327198,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 191,
+    "tokens_out": 2,
+    "usd": 0.00001194,
+    "latency_ms": 862
+   },
+   {
+    "ts": 1793131377.699823,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 132,
+    "tokens_out": 2,
+    "usd": 0.000008400000000000001,
+    "latency_ms": 933
+   },
+   {
+    "ts": 1793131392.633412,
+    "tier": "deep",
+    "model": "Nemotron 3 Ultra",
+    "model_id": "nvidia/Nemotron-3-Ultra-550b-a55b",
+    "purpose": "audit.fault_tree",
+    "tokens_in": 26853,
+    "tokens_out": 5364,
+    "usd": 0.042945,
+    "latency_ms": 14930
+   },
+   {
+    "ts": 1793131393.56908,
+    "tier": "tool",
+    "model": "Tavily",
+    "model_id": "tavily/search",
+    "purpose": "tavily.find_parts",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "usd": 0,
+    "latency_ms": 914
+   }
+  ]
+ }
+}

@@ -1,263 +1,433 @@
 {
- "summary": "The most likely cause of the low oxygen condition (82% purity) is a leak or a failing sieve bed/compressor. First, inspect the device for external leaks and then measure the oxygen output with a calibrated analyzer.",
- "steps": [
-  {
-   "id": 1,
-   "action": "Ensure patient is on backup oxygen supply. Then inspect all external tubing, connectors, and humidifier bottle for visible signs of leaks, loose fittings, or moisture.",
-   "expected": "No hissing sound, no moisture, and all connections are secure.",
-   "if_yes": 2,
-   "if_no": 10,
-   "tools_needed": [],
-   "duration_min": 2,
-   "safety_class": "none",
-   "cite": {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 36,
-    "quote": "\u2022 Verify that there are no leaks"
-   }
+ "sample_id": "everflo-yellow",
+ "recorded_at": "2026-10-27T20:02:09.014Z",
+ "request": {
+  "device_id": "philips-everflo",
+  "indicator_ids": [
+   "everflo-yellow-solid-silent"
+  ],
+  "answers": {
+   "in_use": "no",
+   "warmup": "yes",
+   "analyser": "yes"
   },
-  {
-   "id": 2,
-   "action": "Ensure patient is on backup oxygen supply. Allow the unit to warm up for at least 10 minutes, set flow to 5 LPM, and measure oxygen purity at the outlet with a calibrated oxygen analyzer. (For OPI units only when device is alarming.)",
-   "expected": "Oxygen reading is \u226590% (or \u226587% for models 1020007/1020008).",
-   "if_yes": 11,
-   "if_no": 3,
-   "tools_needed": [
-    "calibrated oxygen analyzer"
-   ],
-   "duration_min": 5,
-   "safety_class": "none",
-   "cite": {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 24,
-    "quote": "If the device is alarming and the oxygen concentration is measured at 82% or higher, check the device for leaks."
-   }
-  },
-  {
-   "id": 3,
-   "action": "See philips-everflo-oxygen-concentrator-service-manual page 36. (Auditor rejected the generated step: The action is vague ('See page 36') and the expected outcome (steady humming sound, warm compressor head) is not a documented verification method in the manual. The manual's compressor verification requires a flow test (Section 6.3.7) measuring LPM, not auditory/tactile checks.)",
-   "expected": "Steady humming sound and the compressor head is warm to the touch.",
-   "if_yes": 4,
-   "if_no": 9,
-   "tools_needed": [],
-   "duration_min": 3,
-   "safety_class": "caution",
-   "cite": {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 36,
-    "quote": "\u2022 Verify the Compressor is operating properly"
-   }
-  },
-  {
-   "id": 4,
-   "action": "See philips-everflo-oxygen-concentrator-service-manual page 36. (Auditor rejected the generated step: The cited quote is a corrective action ('Replace the Sieve Canister Assembly'), not a verification step. The manual does not describe visual inspection through an access panel; sieve canister inspection requires disassembly per Section 8.10.)",
-   "expected": "Sieve canister appears intact with no broken beads or contamination.",
-   "if_yes": 5,
-   "if_no": 8,
-   "tools_needed": [],
-   "duration_min": 4,
-   "safety_class": "caution",
-   "cite": {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 36,
-    "quote": "\u2022 Replace the Sieve Canister"
-   }
-  },
-  {
-   "id": 5,
-   "action": "Switch off and unplug the concentrator. Ensure patient is on backup oxygen supply. Remove the filter cover, inlet filter, and rear cabinet per the manual. Verify the cooling fan is unobstructed and spins freely. Reassemble and retest.",
-   "expected": "Fan blades move smoothly without obstruction and airflow is felt at the vents.",
-   "if_yes": 6,
-   "if_no": 7,
-   "tools_needed": [],
-   "duration_min": 3,
-   "safety_class": "caution",
-   "cite": {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 36,
-    "quote": "\u2022 Verify the Cooling Fan is not obstructed"
-   }
-  },
-  {
-   "id": 6,
-   "action": "See philips-everflo-oxygen-concentrator-service-manual page 18. (Auditor rejected the generated step: The manual does not list resetting the device (power cycling) as a corrective action for a low oxygen alarm. The low oxygen condition requires verification of oxygen output, leak checks, and compressor/sieve validation per the troubleshooting tables.)",
-   "expected": "Green LED stays on, no audible alarm, and oxygen purity reads normal on re\u2011check.",
-   "if_yes": 11,
-   "if_no": 9,
-   "tools_needed": [],
-   "duration_min": 5,
-   "safety_class": "caution",
-   "cite": {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 18,
-    "quote": "\u2022 All LEDs light up and the audible alarm sounds for two seconds. \u2022 The unit starts to run. \u2022 The red and yellow LED lights go off and the audible alarm stops. \u2022 The green LED stays on."
-   }
-  },
-  {
-   "id": 7,
-   "action": "Switch off and unplug the concentrator. Ensure patient is on backup oxygen supply. Remove the filter cover, inlet filter, and rear cabinet per the manual. Remove any debris or obstructions from the cooling fan. Reassemble and retest.",
-   "expected": "Fan runs normally and oxygen purity improves on re\u2011check.",
-   "if_yes": 6,
-   "if_no": 9,
-   "tools_needed": [],
-   "duration_min": 5,
-   "safety_class": "caution",
-   "cite": {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 36,
-    "quote": "\u2022 Remove the obstructions from the Cooling Fan"
-   }
-  },
-  {
-   "id": 8,
-   "action": "Switch off and unplug the concentrator. Ensure patient is on backup oxygen supply. Follow the Sieve Canister Assembly Replacement procedure in Section 8.10 of the manual, using a new approved part. Avoid handling molecular sieve material; return old canister to Respironics for disposal.",
-   "expected": "After replacement, oxygen purity reads \u226590% (or \u226587% for applicable models).",
-   "if_yes": 11,
-   "if_no": 9,
-   "tools_needed": [],
-   "duration_min": 15,
-   "safety_class": "stop",
-   "cite": {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 36,
-    "quote": "\u2022 Replace the Sieve Canister"
-   }
-  },
-  {
-   "id": 9,
-   "action": "Switch off and unplug the concentrator. Ensure patient is on backup oxygen supply. Identify the compressor type per Section 8.14. Follow the Compressor Replacement procedure in Section 8.14 using a new approved unit.",
-   "expected": "After replacement, oxygen purity reads \u226590% (or \u226587% for applicable models) and the unit runs without alarm.",
-   "if_yes": 11,
-   "if_no": 10,
-   "tools_needed": [],
-   "duration_min": 20,
-   "safety_class": "stop",
-   "cite": {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 36,
-    "quote": "\u2022 Replace the Compressor"
-   }
-  },
-  {
-   "id": 10,
-   "action": "Switch off and unplug the concentrator. Ensure patient is on backup oxygen supply. Follow the Main PCA Replacement procedure in Section 8.9 using the correct RP kit for the model/serial number. Observe ESD precautions.",
-   "expected": "After Main PCA replacement, oxygen purity reads \u226590% (or \u226587% for applicable models) and alarms clear.",
-   "if_yes": 11,
-   "if_no": 11,
-   "tools_needed": [],
-   "duration_min": 20,
-   "safety_class": "stop",
-   "cite": {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 24,
-    "quote": "If the device is alarming and the oxygen concentration is measured at 82% or higher, check the device for leaks. If no leaks are found then replace the Main PCA."
-   }
-  },
-  {
-   "id": 11,
-   "action": "Verify that the green LED illuminates continuously, the red and yellow LEDs are off, and the audible alarm is silent, indicating the device is operating normally.",
-   "expected": "Device operates within normal parameters; troubleshooting ends.",
-   "if_yes": null,
-   "if_no": null,
-   "tools_needed": [],
-   "duration_min": 2,
-   "safety_class": "caution",
-   "cite": {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 18,
-    "quote": "\u2022 Green LED stays on."
-   }
-  }
- ],
- "citations": {
-  "total": 18,
-  "verified": 16,
-  "integrity": 0.889,
-  "failures": [
-   {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 36,
-    "quote": "\u2022 Verify the Compressor is operating properly",
-    "reason": "quote not found on cited page"
-   },
-   {
-    "doc": "philips-everflo-oxygen-concentrator-service-manual",
-    "page": 18,
-    "quote": "\u2022 Green LED stays on.",
-    "reason": "quote not found on cited page"
-   }
-  ]
+  "free_text": "",
+  "audit": true
  },
- "audit": {
-  "verdicts": [
+ "response": {
+  "trace_id": "b4b76235-eb63-4e99-bc64-ecb18ad384fc",
+  "device_id": "philips-everflo",
+  "device_label": "Philips Respironics EverFlo",
+  "blocked": false,
+  "tree": {
+   "device_id": "philips-everflo",
+   "summary": "The most likely cause of the low oxygen condition (82% purity) is a sieve bed or compressor issue. First, verify the oxygen output with a calibrated analyzer and check for leaks.",
+   "hypotheses": [
+    {
+     "fault_id": "sieve-bed-exhaustion",
+     "likelihood": "high",
+     "why": "Low oxygen output is commonly caused by sieve bed failure according to the symptom‑cause table.",
+     "cite": {
+      "sid": "S98",
+      "doc": "philips-everflo-oxygen-concentrator-service-manual",
+      "page": 36,
+      "quote": "• Low oxygen output Sieve bed failure Compressor failure"
+     }
+    },
+    {
+     "fault_id": "compressor-wear",
+     "likelihood": "medium",
+     "why": "Compressor failure is also listed as a cause of low oxygen output.",
+     "cite": {
+      "sid": "S98",
+      "doc": "philips-everflo-oxygen-concentrator-service-manual",
+      "page": 36,
+      "quote": "• Low oxygen output Sieve bed failure Compressor failure"
+     }
+    },
+    {
+     "fault_id": "impeded-flow",
+     "likelihood": "low",
+     "why": "An impeded oxygen flow condition can reduce purity, though less directly indicated for this alarm.",
+     "cite": {
+      "sid": "S16",
+      "doc": "philips-everflo-oxygen-concentrator-service-manual",
+      "page": 31,
+      "quote": "The device has detected an impeded oxygen flow condition."
+     }
+    }
+   ],
+   "steps": [
+    {
+     "id": 1,
+     "action": "Ensure the device has been running for at least 15 minutes at the prescribed flow rate (5 LPM) before performing the oxygen output test with a calibrated oxygen analyzer.",
+     "expected": "The analyzer reads the oxygen concentration; note the value.",
+     "if_yes": 2,
+     "if_no": 2,
+     "tools_needed": [
+      "oxygen analyzer"
+     ],
+     "duration_min": 5,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S52",
+      "doc": "philips-everflo-oxygen-concentrator-service-manual",
+      "page": 24,
+      "quote": "3. If either the yellow or red LED illuminates after 10 minutes, perform the oxygen output test with a calibrated oxygen analyzer."
+     },
+     "support": "manual"
+    },
+    {
+     "id": 2,
+     "action": "Inspect the device for leaks in tubing, connections, and humidifier bottle.",
+     "expected": "No hissing sounds or visible moisture; pressure holds steady.",
+     "if_yes": 3,
+     "if_no": 3,
+     "tools_needed": [],
+     "duration_min": 5,
+     "safety_class": "none",
+     "cite": {
+      "sid": "S54",
+      "doc": "philips-everflo-oxygen-concentrator-service-manual",
+      "page": 24,
+      "quote": "If the device is alarming and the oxygen concentration is measured at 82% or higher, check the device for leaks."
+     },
+     "support": "general"
+    },
+    {
+     "id": 3,
+     "action": "Switch off and unplug the device, then replace the Main PCA following the procedure in Section 8.9 (including removal of filter cover, inlet filter, rear cabinet, and disconnection of wiring harnesses).",
+     "expected": "After replacement, the device powers on and the oxygen purity rises above the low‑O2 threshold.",
+     "if_yes": 4,
+     "if_no": 4,
+     "tools_needed": [
+      " screwdriver",
+      " antistatic wrist strap"
+     ],
+     "duration_min": 20,
+     "safety_class": "caution",
+     "cite": {
+      "sid": "S55",
+      "doc": "philips-everflo-oxygen-concentrator-service-manual",
+      "page": 24,
+      "quote": "If no leaks are found then replace the Main PCA."
+     },
+     "support": "manual"
+    },
+    {
+     "id": 4,
+     "action": "Verify the compressor is operating properly (e.g., perform compressor test per Section 8.14) and confirm no leaks remain; then replace the sieve canister assembly per Section 8.10.",
+     "expected": "Oxygen concentration increases to >90% (or >87% for applicable models).",
+     "if_yes": 5,
+     "if_no": 5,
+     "tools_needed": [
+      " wrench",
+      " gloves"
+     ],
+     "duration_min": 30,
+     "safety_class": "caution",
+     "cite": {
+      "sid": "S98",
+      "doc": "philips-everflo-oxygen-concentrator-service-manual",
+      "page": 36,
+      "quote": "• Low oxygen output Sieve bed failure Compressor failure"
+     },
+     "support": "general"
+    },
+    {
+     "id": 5,
+     "action": "Identify the compressor type per Section 8.14, switch off and unplug the device, then replace the compressor following the procedure in Section 8.14.",
+     "expected": "Oxygen concentration returns to normal levels (>90% or >87% as appropriate).",
+     "if_yes": null,
+     "if_no": null,
+     "tools_needed": [
+      " wrench",
+      " gloves"
+     ],
+     "duration_min": 30,
+     "safety_class": "caution",
+     "cite": {
+      "sid": "S98",
+      "doc": "philips-everflo-oxygen-concentrator-service-manual",
+      "page": 36,
+      "quote": "• Low oxygen output Sieve bed failure Compressor failure"
+     },
+     "support": "general"
+    }
+   ],
+   "parts_candidates": [],
+   "escalate_if": []
+  },
+  "audit": {
+   "verdicts": [
+    {
+     "step_id": 1,
+     "verdict": "repair",
+     "reason": "The manual requires the device to run for at least 15 minutes at 5 LPM before performing the oxygen output test (Section 6.3.5). The proposed step allows only 5 minutes and omits this critical precondition.",
+     "repaired_action": "Ensure the device has been running for at least 15 minutes at the prescribed flow rate (5 LPM) before performing the oxygen output test with a calibrated oxygen analyzer."
+    },
+    {
+     "step_id": 2,
+     "verdict": "approve",
+     "reason": "The manual explicitly states: 'If the device is alarming and the oxygen concentration is measured at 82% or higher, check the device for leaks' (Section 6.3.6). The action matches the cited quote.",
+     "repaired_action": null
+    },
+    {
+     "step_id": 3,
+     "verdict": "repair",
+     "reason": "The Main PCA replacement procedure (Section 8.9) requires the device to be switched off and unplugged before opening, and involves removal of the filter cover, inlet filter, rear cabinet, and disconnection of wiring harnesses. The proposed step omits these safety preconditions and procedural details.",
+     "repaired_action": "Switch off and unplug the device, then replace the Main PCA following the procedure in Section 8.9 (including removal of filter cover, inlet filter, rear cabinet, and disconnection of wiring harnesses)."
+    },
+    {
+     "step_id": 4,
+     "verdict": "repair",
+     "reason": "The manual's corrective action for low oxygen output (Page 36) includes verifying the compressor is working properly before replacing the sieve canister. The proposed step lacks this verification.",
+     "repaired_action": "Verify the compressor is operating properly (e.g., perform compressor test per Section 8.14) and confirm no leaks remain; then replace the sieve canister assembly per Section 8.10."
+    },
+    {
+     "step_id": 5,
+     "verdict": "repair",
+     "reason": "The compressor replacement procedure (Section 8.14) requires identification of the compressor type and safety precautions (power off, unplug). The proposed step omits these.",
+     "repaired_action": "Identify the compressor type per Section 8.14, switch off and unplug the device, then replace the compressor following the procedure in Section 8.14."
+    }
+   ],
+   "overall": "approve_with_repairs",
+   "notes": "The proposed tree combines the Main PCA verification procedure (for OPI low oxygen condition) with the low oxygen output troubleshooting path. The manual does not explicitly link these sequences; technicians should be aware that replacing the Main PCA may not resolve low oxygen output if the root cause is sieve or compressor failure. The tree should include a decision point after Main PCA replacement to re-test oxygen purity before proceeding. Safety preconditions (switch off/unplug, patient on backup supply) must be added to all steps that involve opening the device."
+  },
+  "rule_hits": [],
+  "citations": {
+   "total": 8,
+   "verified": 8,
+   "integrity": 1,
+   "tiers": {
+    "id": 8,
+    "verbatim": 0,
+    "normalised": 0,
+    "fuzzy": 0
+   },
+   "failures": [],
+   "support": {
+    "checked": 5,
+    "manual": 2,
+    "general": 3
+   }
+  },
+  "retrieved": [
    {
-    "step_id": 1,
-    "verdict": "repair",
-    "reason": "The cited quote supports verifying no leaks, but the step lacks the safety precondition that the patient must be on a backup oxygen supply during troubleshooting. The manual warns that oxygen therapy can be hazardous and the device is not life-supporting.",
-    "repaired_action": "Ensure patient is on backup oxygen supply. Then inspect all external tubing, connectors, and humidifier bottle for visible signs of leaks, loose fittings, or moisture."
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 31,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
    },
    {
-    "step_id": 2,
-    "verdict": "repair",
-    "reason": "The cited quote supports measuring oxygen concentration with a calibrated analyzer, but the step omits the safety precondition that the patient must be on backup supply while the device is running. Also, the manual specifies this verification is for OPI units only when the device is alarming.",
-    "repaired_action": "Ensure patient is on backup oxygen supply. Allow the unit to warm up for at least 10 minutes, set flow to 5 LPM, and measure oxygen purity at the outlet with a calibrated oxygen analyzer. (For OPI units only when device is alarming.)"
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 103,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
    },
    {
-    "step_id": 3,
-    "verdict": "reject",
-    "reason": "The action is vague ('See page 36') and the expected outcome (steady humming sound, warm compressor head) is not a documented verification method in the manual. The manual's compressor verification requires a flow test (Section 6.3.7) measuring LPM, not auditory/tactile checks.",
-    "repaired_action": null
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 24,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
    },
    {
-    "step_id": 4,
-    "verdict": "reject",
-    "reason": "The cited quote is a corrective action ('Replace the Sieve Canister Assembly'), not a verification step. The manual does not describe visual inspection through an access panel; sieve canister inspection requires disassembly per Section 8.10.",
-    "repaired_action": null
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 9,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
    },
    {
-    "step_id": 5,
-    "verdict": "repair",
-    "reason": "The cited quote supports verifying the cooling fan is not obstructed, but the step does not include the required safety preconditions: switch off and unplug the device before opening the cabinet to access the fan (per Section 8.12). Also, the patient must be on backup supply.",
-    "repaired_action": "Switch off and unplug the concentrator. Ensure patient is on backup oxygen supply. Remove the filter cover, inlet filter, and rear cabinet per the manual. Verify the cooling fan is unobstructed and spins freely. Reassemble and retest."
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 91,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
    },
    {
-    "step_id": 6,
-    "verdict": "reject",
-    "reason": "The manual does not list resetting the device (power cycling) as a corrective action for a low oxygen alarm. The low oxygen condition requires verification of oxygen output, leak checks, and compressor/sieve validation per the troubleshooting tables.",
-    "repaired_action": null
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 36,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
    },
    {
-    "step_id": 7,
-    "verdict": "repair",
-    "reason": "The cited quote supports removing obstructions from the cooling fan, but the step omits the mandatory safety preconditions: switch off and unplug before opening the device, and patient on backup supply. The manual's cooling fan replacement procedure (Section 8.12) requires disassembly.",
-    "repaired_action": "Switch off and unplug the concentrator. Ensure patient is on backup oxygen supply. Remove the filter cover, inlet filter, and rear cabinet per the manual. Remove any debris or obstructions from the cooling fan. Reassemble and retest."
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 93,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
    },
    {
-    "step_id": 8,
-    "verdict": "repair",
-    "reason": "The cited quote supports replacing the sieve canister assembly, but the step does not reference the full replacement procedure (Section 8.10) or the safety preconditions: switch off and unplug before opening, patient on backup supply, and proper handling of molecular sieve material (Warning: avoid handling sieve material).",
-    "repaired_action": "Switch off and unplug the concentrator. Ensure patient is on backup oxygen supply. Follow the Sieve Canister Assembly Replacement procedure in Section 8.10 of the manual, using a new approved part. Avoid handling molecular sieve material; return old canister to Respironics for disposal."
-   },
-   {
-    "step_id": 9,
-    "verdict": "repair",
-    "reason": "The cited quote supports replacing the compressor, but the step lacks the safety preconditions (switch off and unplug, patient on backup supply) and does not reference the compressor replacement procedure (Section 8.14) which includes identifying compressor type, cutting cable ties, and installing mounting rods.",
-    "repaired_action": "Switch off and unplug the concentrator. Ensure patient is on backup oxygen supply. Identify the compressor type per Section 8.14. Follow the Compressor Replacement procedure in Section 8.14 using a new approved unit."
-   },
-   {
-    "step_id": 10,
-    "verdict": "repair",
-    "reason": "The cited quote directly supports this action, but the step omits the safety preconditions for replacing the Main PCA (Section 8.9): switch off and unplug before opening, patient on backup supply, and ESD protection. The manual also notes that LCD PCA kits are replacements for older PCAs.",
-    "repaired_action": "Switch off and unplug the concentrator. Ensure patient is on backup oxygen supply. Follow the Main PCA Replacement procedure in Section 8.9 using the correct RP kit for the model/serial number. Observe ESD precautions."
-   },
-   {
-    "step_id": 11,
-    "verdict": "repair",
-    "reason": "The action is vague ('See page 18'). The cited quote ('Green LED stays on') is part of the startup self-test. The step should be a clear verification that the green LED remains illuminated continuously, indicating normal operation, after all repairs are complete.",
-    "repaired_action": "Verify that the green LED illuminates continuously, the red and yellow LEDs are off, and the audible alarm is silent, indicating the device is operating normally."
+    "doc": "philips-everflo-oxygen-concentrator-service-manual",
+    "title": "Philips EverFlo Oxygen Concentrator - Service manual",
+    "page": 15,
+    "score": 0.03,
+    "source_url": "http://www.frankshospitalworkshop.com/equipment/oxygen_concentrators_service_manuals.html"
    }
   ],
-  "overall": "approve_with_repairs",
-  "notes": "The troubleshooting tree correctly identifies the major components (leaks, sieve, compressor, PCA) but multiple steps lack mandatory safety preconditions (switch off/unplug before opening, patient on backup oxygen supply, ESD protection). Steps 3, 4, and 6 are unsupported by the manual and must be replaced with proper verification procedures (compressor flow test, sieve leak verification, and low-oxygen corrective actions per Chapter 7). With the repaired actions provided, the tree can be made compliant."
+  "recalls": [
+   {
+    "recall_number": "Z-0481-2026",
+    "reason": "Certain serial numbers of the SimplyGo Mini standard battery kit contain a defective chip which can lead the battery to either fail to charge or lose voltage output when in use in the device.  If the fault occurs while the device is running",
+    "date": "2025-10-07"
+   }
+  ],
+  "maude": {
+   "reports": 36,
+   "top_problems": [
+    [
+     "Overheating of Device",
+     14
+    ],
+    [
+     "Temperature Problem",
+     11
+    ],
+    [
+     "Thermal Decomposition of Device",
+     10
+    ],
+    [
+     "Fire",
+     7
+    ],
+    [
+     "Power Problem",
+     6
+    ]
+   ],
+   "source": "openFDA MAUDE, CC0"
+  },
+  "tavily": {
+   "parts": {
+    "available": true,
+    "query": "\"sieve bed pair\" Philips Respironics EverFlo price",
+    "results": [
+     {
+      "title": "Oxygen simplified",
+      "url": "https://www.documents.philips.com/doclib/enc/9801469/EverFlo_brochure.pdf",
+      "snippet": "Oxygen simplified EverFlo concentrators reduce the cost of oxygen therapy Ideal oxygen concentrators for you and your patients.\nPhilips Respironics recognizes the growing need for cost-effective and r"
+     },
+     {
+      "title": "Maintenance and Servicing of Home Oxygen Concentrators",
+      "url": "https://www.oxygenconcentratorstore.com/blog/home-oxygen-concentrator-maintenance",
+      "snippet": "Reply\n\n     Hi Ruth, they need to be replaced when the alarm goes off in the unit. These two canisters are sieve beds which filter out the air to supply medical grade oxygen. If you haven’t replaced t"
+     },
+     {
+      "title": "Respironics Millennium M10 With OPI Home Concentrator - M10605",
+      "url": "https://www.oxygenconcentratorstore.com/respironics-millennium-m10-opi",
+      "snippet": "Your Price $39.00     List Price $39.00\n3. Respironics Millennium Gross Particle Filter - CF1030 \n\n   Respironics Millennium Gross Particle Filter \n\n    Protect from Harmful Particles\n    Extends Unit"
+     },
+     {
+      "title": "Oxygen Troubleshooting – Why Would a Concentrator Stop Working",
+      "url": "https://www.oxygenconcentratorstore.com/blog/why-would-an-oxygen-concentrator-stop-working",
+      "snippet": "The retailer performed steps very similar to what is described on this website. Still the issue was not resolved. The POC still would not function. The customer rep said a sieve bed needed to be purch"
+     },
+     {
+      "title": "GCE Zen-O Portable Oxygen Concentrator: RS-00502-G-S",
+      "url": "https://www.oxygenconcentratorstore.com/gce-zen-o",
+      "snippet": "The Zen-O operates with advanced Oxygen on Demand technology that adjusts the oxygen delivered in response to breath rate and automatically increases oxygen when the user requires it most. It also fea"
+     }
+    ],
+    "for": "sieve bed pair (Molecular sieve bed exhaustion)"
+   }
+  },
+  "notes": [],
+  "latency_ms": 41402,
+  "trace": [
+   {
+    "ts": 1793131304.1489816,
+    "tier": "mid",
+    "model": "Nemotron 3 Super",
+    "model_id": "nvidia/nemotron-3-super-120b-a12b",
+    "purpose": "synthesise.fault_tree",
+    "tokens_in": 6329,
+    "tokens_out": 1661,
+    "usd": 0.0033936,
+    "latency_ms": 15093
+   },
+   {
+    "ts": 1793131304.8898444,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 134,
+    "tokens_out": 2,
+    "usd": 0.00000852,
+    "latency_ms": 732
+   },
+   {
+    "ts": 1793131304.9156458,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 132,
+    "tokens_out": 2,
+    "usd": 0.000008400000000000001,
+    "latency_ms": 751
+   },
+   {
+    "ts": 1793131304.9186575,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 143,
+    "tokens_out": 2,
+    "usd": 0.00000906,
+    "latency_ms": 765
+   },
+   {
+    "ts": 1793131304.9683318,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 146,
+    "tokens_out": 2,
+    "usd": 0.00000924,
+    "latency_ms": 813
+   },
+   {
+    "ts": 1793131305.0920272,
+    "tier": "fast",
+    "model": "Nemotron 3 Nano",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "purpose": "check.step_support",
+    "tokens_in": 133,
+    "tokens_out": 2,
+    "usd": 0.000008459999999999999,
+    "latency_ms": 933
+   },
+   {
+    "ts": 1793131326.95563,
+    "tier": "deep",
+    "model": "Nemotron 3 Ultra",
+    "model_id": "nvidia/Nemotron-3-Ultra-550b-a55b",
+    "purpose": "audit.fault_tree",
+    "tokens_in": 42543,
+    "tokens_out": 7303,
+    "usd": 0.064452,
+    "latency_ms": 21859
+   },
+   {
+    "ts": 1793131329.2988162,
+    "tier": "tool",
+    "model": "Tavily",
+    "model_id": "tavily/search",
+    "purpose": "tavily.find_parts",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "usd": 0,
+    "latency_ms": 2144
+   }
+  ]
  }
 }

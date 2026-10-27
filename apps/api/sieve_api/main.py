@@ -22,6 +22,8 @@ from sieve_core.twin import twin_reply
 from sieve_llm import Ledger, TokenFactoryClient
 from sieve_retrieval import PageStore
 
+from sieve_api.replay import ReplayBook, sieve_signature
+
 ROOT = Path(__file__).resolve().parents[3]
 DATA = data_dir()
 for _env in (ROOT / ".env", ROOT.parent / ".env"):  # repo root, then workspace root
@@ -132,6 +134,7 @@ try:
 except RuntimeError:
     CLIENT = None
 PIPE = SievePipeline(CLIENT, STORE, REGISTRY)
+REPLAYS = ReplayBook(DATA / "samples/replay", sieve_signature)
 RECORDS = DATA / "records.jsonl"
 
 
@@ -203,7 +206,13 @@ def questions(device_id: str | None = None, indicator_ids: str = "") -> list[dic
 @app.post("/v1/analyze")
 def analyze(body: AnalyzeBody) -> dict[str, Any]:
     t0 = time.perf_counter()
-    res = PIPE.analyze(device_id=body.device_id, indicator_ids=body.indicator_ids, answers=body.answers, free_text=body.free_text, audit=body.audit)
+    try:
+        res = PIPE.analyze(device_id=body.device_id, indicator_ids=body.indicator_ids, answers=body.answers, free_text=body.free_text, audit=body.audit)
+    except Exception as e:
+        served = REPLAYS.serve(body.model_dump(), f"{type(e).__name__}")
+        if served:
+            return served
+        raise HTTPException(503, f"The model service is unavailable right now ({type(e).__name__}). The sample presets still work from recorded results; please try one of them.") from e
     out = {
         "trace_id": res.trace_id,
         "device_id": res.device_id,
