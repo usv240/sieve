@@ -294,3 +294,37 @@ async def upload_manual(file: UploadFile = File(...), device_id: str | None = No
     STORE.add_doc(doc_id=doc_id, title=f"{safe} (uploaded, workspace {workspace})", path=str(path), device_class=device_class, device_ids=[device_id] if device_id else [], licence="Uploaded by the workspace owner; indexed locally only", source_url="", sha256=_h.sha256(raw).hexdigest(), pages=pages, ingested_at=time.time())
     low = sum(1 for _, t in pages if len(t) < 40)
     return {"doc_id": doc_id, "pages": len(pages), "low_text_pages": low, "device_id": device_id, "workspace": workspace, "note": "Indexed for lexical retrieval now; run `make embed` to add vectors." if low < len(pages) else "This PDF has no extractable text (scanned); OCR enrichment is needed before it can be cited."}
+
+
+# --- Telegram front door (set TELEGRAM_BOT_TOKEN and TELEGRAM_WEBHOOK_SECRET to enable) ---
+@app.post("/v1/telegram/webhook", include_in_schema=False)
+async def telegram_webhook(request: Request) -> dict[str, Any]:
+    import httpx
+
+    from sieve_api.telegram import handle_update
+
+    token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    secret = os.environ.get("TELEGRAM_WEBHOOK_SECRET")
+    if not token or not secret:
+        raise HTTPException(404, "telegram not configured")
+    if request.headers.get("x-telegram-bot-api-secret-token") != secret:
+        raise HTTPException(403, "bad secret")
+    update = await request.json()
+    api = f"https://api.telegram.org/bot{token}"
+
+    def send(chat: int, text: str) -> None:
+        httpx.post(f"{api}/sendMessage", json={"chat_id": chat, "text": text[:4000]}, timeout=20)
+
+    def identify(file_id: str) -> str | None:
+        info = httpx.get(f"{api}/getFile", params={"file_id": file_id}, timeout=20).json()
+        path = (info.get("result") or {}).get("file_path")
+        if not path:
+            return None
+        f = describe(httpx.get(f"https://api.telegram.org/file/bot{token}/{path}", timeout=30).content).fields
+        m = REGISTRY.match(manufacturer=f.manufacturer, model=f.model, ref=f.ref, visible_text=f.visible_text or [])
+        return m[0].device_id if m and m[0].confidence >= 0.6 else None
+
+    def analyze_device(device_id: str | None, free_text: str):
+        return PIPE.analyze(device_id=device_id, indicator_ids=[], answers={}, free_text=free_text, audit=False)
+
+    return {"ok": True, "did": handle_update(update, identify=identify, analyze=analyze_device, send=send)}
