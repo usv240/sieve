@@ -12,7 +12,11 @@ import re
 from dataclasses import dataclass
 
 # Split at sentence ends, blank lines, bullets and numbered list items; a single PDF line break is not a boundary.
-_SPLIT = re.compile(r"(?<=[.!?;])\s+(?=[A-Z0-9(\"'•])|\s*\n\s*\n\s*|\s*(?=•)|\n(?=\s*(?:\d{1,2}[.)]|[-*])\s)")
+_SPLIT = re.compile(
+    r"(?<=[.!?;])\s+(?=[A-Z0-9(\"'•])"  # sentence end
+    r"|(?<=[a-z][.!?])\d{1,3}\s+(?=[A-Z])"  # sentence end followed by a footnote number: "toxicity.4 Paraquat"
+    r"|\s*\n\s*\n\s*|\s*(?=•)|\n(?=\s*(?:\d{1,2}[.)]|[-*])\s)"
+)
 _SID = re.compile(r"\bS?(\d{1,4})\b")
 
 
@@ -34,8 +38,11 @@ def split_sentences(text: str, min_len: int = 30, max_len: int = 360) -> list[st
         buf = f"{buf} {s}".strip() if buf else s
         if len(buf) >= min_len:
             while len(buf) > max_len:
-                cut = buf.rfind(", ", 0, max_len)
-                cut = cut + 1 if cut > min_len else max_len
+                # cut at the last clause or word boundary before max_len; never inside a word
+                cut = max(buf.rfind("; ", 0, max_len), buf.rfind(", ", 0, max_len))
+                cut = cut + 1 if cut > min_len else buf.rfind(" ", 0, max_len)
+                if cut <= min_len:
+                    cut = max_len
                 out.append(buf[:cut].strip())
                 buf = buf[cut:].strip()
             if buf:

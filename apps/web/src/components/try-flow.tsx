@@ -195,8 +195,8 @@ export function TryFlow() {
                     </p>
                     <p className="mt-2 text-fg-muted">Expect: {current.expected}</p>
                     <p className="mt-2 text-xs text-fg-muted">Tools: {current.tools_needed.join(", ") || "none"} · about {current.duration_min} min</p>
-                    {current.support === "manual" && <p className="mt-3 inline-flex rounded-full border border-ok px-2 py-0.5 text-xs font-medium text-ok">The manual states this step <Info k="support_label" /></p>}
-                    {current.support === "general" && <p className="mt-3 inline-flex rounded-full border border-caution px-2 py-0.5 text-xs font-medium text-caution">General practice, not stated on the cited page <Info k="support_label" /></p>}
+                    {current.support === "manual" && <p className="mt-3 inline-flex items-center gap-1 rounded-full border border-ok py-0.5 pl-2.5 pr-1 text-xs font-medium text-ok">The manual states this step <Info k="support_label" /></p>}
+                    {current.support === "general" && <p className="mt-3 inline-flex items-center gap-1 rounded-full border border-caution py-0.5 pl-2.5 pr-1 text-xs font-medium text-caution">General practice, not stated on the cited page <Info k="support_label" /></p>}
                     <blockquote className="quote mt-3 text-sm">“{current.cite.quote}”<footer className="mt-1 text-xs text-fg-muted">{current.cite.doc}, page {current.cite.page} · <a className="text-accent" href={apiUrl(`/v1/page/${current.cite.doc}/${current.cite.page}`)} target="_blank" rel="noreferrer">Show page</a></footer></blockquote>
                     <div className="mt-3 flex gap-2">
                       <button className="btn-primary" onClick={() => go(current.if_yes)}>Yes, as expected <ChevronRight className="h-4 w-4" /></button>

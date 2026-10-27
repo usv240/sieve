@@ -53,7 +53,8 @@ body { font-feature-settings: "tnum" 1, "cv11" 1; }
 }
 
 /* Minimum tap target for gloved hands */
-button, [role="button"], a.btn, input, select { min-height: 44px; }
+/* In the base layer so a component can opt out with min-h-0 (small info buttons inside text). */
+@layer base { button, [role="button"], a.btn, input, select { min-height: 44px; } }
 
 .card { border-radius: 16px; border: 1px solid var(--border); background: var(--bg-elev); padding: 1.25rem; box-shadow: 0 1px 2px rgb(0 0 0 / 0.05); }
 .btn, .btn-primary, .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; border-radius: 0.75rem; padding: 0.625rem 1rem; font-size: 0.875rem; font-weight: 500; transition: background-color 150ms, opacity 150ms; }

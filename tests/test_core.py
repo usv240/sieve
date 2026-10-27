@@ -52,3 +52,12 @@ def test_verify_quote_tolerates_pdf_artefacts():
     v = verify_quote("3. Exhaust is blocked. 3. Check the exhaust area", page)
     assert v.ok and v.tier in ("normalised", "fuzzy")
     assert not verify_quote("Replace the compressor with part number 999-123 immediately", page).ok
+
+
+def test_sentence_split_handles_footnotes_and_never_cuts_words():
+    from sieve_retrieval.sentences import split_sentences
+
+    parts = split_sentences("Excess oxygen should be avoided in paraquat poisoning because it may worsen its toxicity.4 Paraquat intoxication is a common cause of lethal poisoning. " + "Alpha " + "alpha " * 100 + "synthase.")
+    assert parts[0].endswith("toxicity.")
+    assert all(not p.endswith("synthas") for p in parts)
+    assert all(p.split()[-1] in {"alpha", "synthase.", "poisoning."} or p.endswith(".") for p in parts)
