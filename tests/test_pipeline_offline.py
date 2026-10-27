@@ -8,7 +8,7 @@ from sieve_core.pipeline import SievePipeline
 from sieve_retrieval import PageStore
 
 INDEX = Path(__file__).resolve().parents[1] / "data/index/sieve.db"
-pytestmark = pytest.mark.skipif(not INDEX.exists(), reason="run `make fetch-corpus && make ingest` first")
+pytestmark = pytest.mark.skipif(not (INDEX.exists() and INDEX.stat().st_size > 1_000_000), reason="run `make fetch-corpus && make ingest` first")
 
 
 @pytest.fixture(scope="module")

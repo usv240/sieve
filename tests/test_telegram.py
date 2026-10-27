@@ -15,7 +15,7 @@ INDEX = Path(__file__).resolve().parents[1] / "data/index/sieve.db"
 
 
 def test_smoke_in_caption_stops_before_any_step():
-    if not INDEX.exists():
+    if not (INDEX.exists() and INDEX.stat().st_size > 1_000_000):
         pytest.skip("index not built")
     pipe = SievePipeline(None, PageStore(INDEX), Registry())
     sent: list[str] = []
