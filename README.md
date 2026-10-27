@@ -12,6 +12,8 @@ Built for the Nebius x NVIDIA Global AI Hackathon on **Nebius Token Factory** wi
 
 ## Live
 
+Entered in the Physical AI track: an edge agent that reads a physical machine through the camera, runs on the device without internet, and directs the technician's hands one check at a time.
+
 Web: https://sieve-kappa.vercel.app. API: https://sieve-api.vercel.app (OpenAPI docs at `/docs`). Both run on Vercel's free plan; the API is a Python function with a 300 second budget, enough for the Nemotron 3 Ultra audit.
 
 ## Status
