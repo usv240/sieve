@@ -297,7 +297,7 @@ class SievePipeline:
         for s in tree.steps:
             v = by_id.get(s.id)
             if v and v.verdict == "reject":
-                s.action = f"See {s.cite.doc} page {s.cite.page}. (Auditor rejected the generated step: {v.reason})"
+                s.action = f"See {s.cite.doc} page {s.cite.page}. (Removed by the independent auditor; its reason is in the trace.)"
                 s.safety_class = "caution" if s.safety_class == "none" else s.safety_class
             elif v and v.verdict == "repair" and v.repaired_action:
                 s.action = v.repaired_action
