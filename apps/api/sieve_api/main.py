@@ -47,22 +47,29 @@ RATE_LIMIT_PER_MIN = int(os.environ.get("SIEVE_RATE_LIMIT_PER_MIN", "30"))
 _hits: dict[str, deque] = defaultdict(deque)
 
 
+def _deny(body: dict[str, Any], status: int, extra: dict[str, str] | None = None) -> JSONResponse:
+    """Errors returned by this middleware run outside the CORS layer, so they carry CORS headers themselves;
+    otherwise a browser hides the 401 or 429 and reports a network error."""
+    headers = {"Access-Control-Allow-Origin": "*", "Access-Control-Expose-Headers": "X-RateLimit-Limit, X-RateLimit-Remaining, Retry-After", **(extra or {})}
+    return JSONResponse(body, status_code=status, headers=headers)
+
+
 @app.middleware("http")
 async def keys_and_limits(request: Request, call_next):
     path = request.url.path
     if path.startswith("/v1/") and request.method != "OPTIONS":
         key = request.headers.get("x-api-key", "")
         if key and not _key_valid(key):
-            return JSONResponse({"error": "invalid API key: create one with POST /v1/keys"}, status_code=401)
+            return _deny({"error": "invalid API key: create one with POST /v1/keys"}, 401)
         if REQUIRE_KEY and not key and path != "/v1/keys":
-            return JSONResponse({"error": "API key required: POST /v1/keys to create one, then send X-API-Key"}, status_code=401)
+            return _deny({"error": "API key required: POST /v1/keys to create one, then send X-API-Key"}, 401)
         ident = key or (request.client.host if request.client else "anon")
         now = time.time()
         q = _hits[ident]
         while q and q[0] < now - 60:
             q.popleft()
         if len(q) >= RATE_LIMIT_PER_MIN:
-            return JSONResponse({"error": f"rate limit: {RATE_LIMIT_PER_MIN} requests per minute"}, status_code=429, headers={"Retry-After": "60"})
+            return _deny({"error": f"rate limit: {RATE_LIMIT_PER_MIN} requests per minute"}, 429, {"Retry-After": "60"})
         q.append(now)
         response = await call_next(request)
         response.headers["X-RateLimit-Limit"] = str(RATE_LIMIT_PER_MIN)

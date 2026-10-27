@@ -23,3 +23,8 @@ def test_issued_key_verifies_and_forged_key_is_rejected():
 def test_rate_limit_headers_are_sent():
     r = client.get("/v1/keys/verify")
     assert "X-RateLimit-Remaining" in r.headers
+
+
+def test_rejections_carry_cors_headers_so_browsers_can_read_them():
+    r = client.get("/v1/keys/verify", headers={"X-API-Key": "forged_x.y", "Origin": "https://example.com"})
+    assert r.status_code == 401 and r.headers.get("access-control-allow-origin") == "*"
