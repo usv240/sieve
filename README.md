@@ -35,7 +35,7 @@ Working scaffold with a real index and a real evaluation. Model-dependent stages
 | Extraction, intake, drafting | `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B`, `nvidia/Nemotron-3_5-Lightning` | Nebius Token Factory (EU) |
 | Fault-tree synthesis | `nvidia/nemotron-3-super-120b-a12b` | Nebius Token Factory (US) |
 | Whole-manual audit | `nvidia/Nemotron-3-Ultra-550b-a55b` (1M context) | Nebius Token Factory (US) |
-| Nameplate and panel reading | Token Factory image models, `openbmb/MiniCPM-V-4_5` first (2.6 s measured on a nameplate) | Nebius Token Factory. The NVIDIA Nemotron Nano VL endpoint (`infra/endpoint-vl`) is ready but needs AI Cloud billing, so it is not used in the demo. |
+| Nameplate and panel reading | `nvidia/Nemotron-3.5-Super-VL`, cross-checked by an independent second read (`openbmb/MiniCPM-V-4_5`); a device is auto-selected only when both agree. Offline: `NVIDIA-Nemotron-Nano-12B-v2-VL` via llama.cpp | Nebius Token Factory; laptop GPU offline |
 | Hybrid retrieval | `Qwen/Qwen3-Embedding-8B` embeddings over 2,994 concentrator pages, fused with BM25 | Nebius Token Factory; embedded in 352 s |
 | Corpus ingestion | PyMuPDF plus Tavily extract for web-sourced manuals | Laptop (33 s). Serverless Job manifest in `infra/job-ingest` ready for AI Cloud |
 | Live lookups and manual discovery | Tavily search, extract, map | Tavily API. When a known device has no manual, Sieve finds one, extracts it, indexes it and retrieves from it in the same request |
