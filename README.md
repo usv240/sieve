@@ -46,6 +46,11 @@ Working scaffold with a real index and a real evaluation. Model-dependent stages
 
 Every call is written to a ledger (tier, model, tokens, USD, latency) and shown in the app's Trace panel.
 
+## Nebius Serverless, run and stopped
+
+- **Job: verify both entries from a clean machine.** A Serverless Job cloned both public repositories, ran every test and the published safety checks, and called both live APIs. Result PASS in about 3 minutes (`sieve/infra/job-verify/RUN.md`).
+- **Endpoint: an open NVIDIA vision model on our own GPU.** A Serverless Endpoint served NVIDIA Nemotron Nano 12B v2 VL with vLLM on one L40S, and both photo benchmarks were rerun with it as the only reader. On its own it made one unsafe Antidote card out of 68 labels, which the production two-read and brand checks catch (`sieve/infra/endpoint-vl/RUN.md`). Stopped after the run; about $1 in total.
+
 ## Where Token Factory accelerated our workflow
 
 - **Five NVIDIA models behind one key and one API shape.** Nemotron 3 Nano, 3.5 Lightning, 3 Super, 3 Ultra and 3.5 Super VL all answer the same OpenAI-compatible call. Moving a pipeline stage to a different tier is a one-line change in the router, which is how we tuned cost and speed per stage instead of picking one model for everything.

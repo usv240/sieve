@@ -1,8 +1,8 @@
 import { Info } from "@/components/info";
 import { STACK } from "@/lib/stack";
 
-const DOT = { live: "bg-ok", laptop: "bg-info", prepared: "bg-border" } as const;
-const WORD = { live: "runs live in this app", laptop: "verified on our laptop", prepared: "prepared, not run" } as const;
+const DOT = { live: "bg-ok", laptop: "bg-info", nebius: "bg-caution", prepared: "bg-border" } as const;
+const WORD = { live: "runs live in this app", laptop: "verified on our laptop", nebius: "ran on Nebius, stopped after use", prepared: "prepared, not run" } as const;
 
 /** The sponsor stack, on every page. Hover or tap the i on any item to see what it does here. */
 export function StackStrip({ compact = false }: { compact?: boolean }) {

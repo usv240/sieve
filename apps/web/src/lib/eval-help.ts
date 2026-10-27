@@ -18,5 +18,6 @@ export const EVAL_HELP: Record<string, string> = {
   photo_lookalikes: "Photos of machines Sieve has no manual for. It must not pretend to know them. It refused all of them and never opened the wrong manual.",
   cite_ab_resolve: "Instead of letting the model copy quotes, Sieve has it point at numbered manual sentences, and code copies the exact text. Every citation then lands on real text.",
   cite_ab_label: "Each step says whether the manual itself states it. An independent model agreed far more often with steps labelled as stated by the manual than with those labelled general practice.",
+  photo_nano_vl: "The same 57 photos read by NVIDIA's open Nemotron Nano 12B VL alone, served on our own Nebius Serverless Endpoint. Good, but lower than two models cross-checking each other, which is why Sieve uses two.",
   offline_citation: "The same pipeline on a laptop GPU with no internet, using a small NVIDIA model. Lower than the cloud, and we publish the gap.",
 };

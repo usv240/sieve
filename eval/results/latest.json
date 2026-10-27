@@ -123,6 +123,12 @@
    "label": "Look-alike devices refused",
    "note": "16 photos of devices Sieve has no manual for (Inogen portables, DeVilbiss 10 L, CAIRE Companion); wrong device auto-selected 0 times across all 57 photos"
   },
+  "photo_nano_vl": {
+   "value": 73.2,
+   "unit": "%",
+   "label": "Same photos, NVIDIA Nemotron Nano 12B VL alone on a Nebius Serverless Endpoint",
+   "note": "88.5% when the model name is legible; 100.0% of look-alikes refused; wrong device auto-selected 0 times. Open-weight model on one L40S, stopped after the run"
+  },
   "cite_ab_resolve": {
    "value": 100.0,
    "unit": "%",

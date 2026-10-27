@@ -14,7 +14,7 @@ OUT = ROOT / "eval/results"
 
 
 def fold(summary: dict[str, Any], sections: list[dict[str, Any]]) -> None:
-    for k in [k for k in summary if k.startswith(("photo_", "cite_ab_"))]:
+    for k in [k for k in summary if k.startswith(("photo_", "cite_ab_"))]:  # includes photo_nano_vl
         del summary[k]
     sections[:] = [s for s in sections if not s["name"].startswith(("Photo identification", "Citations: copy"))]
     pb = OUT / "photo_bench.json"
@@ -26,6 +26,11 @@ def fold(summary: dict[str, Any], sections: list[dict[str, Any]]) -> None:
                                        "note": f"{p['out_of_registry']} photos of devices Sieve has no manual for (Inogen portables, DeVilbiss 10 L, CAIRE Companion); wrong device auto-selected {p['wrong_device_auto_selected']} times across all {p['n']} photos"}
         sections.append({"name": "Photo identification on real-world photos", "description": "Resale listings, refurbishers and product pages, not our own photos. Vision describes; the registry decides. A device is correct if auto-selected or offered among three for the technician to pick.",
                          "columns": ["index", "acceptable", "legible_model_text", "read_manufacturer", "read_model", "top_match", "top_confidence", "outcome"], "rows": [{k: r.get(k) for k in ("index", "acceptable", "legible_model_text", "read_manufacturer", "read_model", "top_match", "top_confidence", "outcome")} for r in p["rows"]]})
+    nv = OUT / "photo_bench_nano_vl.json"
+    if nv.exists():
+        n = json.loads(nv.read_text(encoding="utf-8"))
+        summary["photo_nano_vl"] = {"value": n["identified"], "unit": "%", "label": "Same photos, NVIDIA Nemotron Nano 12B VL alone on a Nebius Serverless Endpoint",
+                                    "note": f"{n['identified_when_model_text_legible']}% when the model name is legible; {n['refused_correctly']}% of look-alikes refused; wrong device auto-selected {n['wrong_device_auto_selected']} times. Open-weight model on one L40S, stopped after the run"}
     ab = OUT / "cite_ab.json"
     if ab.exists():
         a = json.loads(ab.read_text(encoding="utf-8"))

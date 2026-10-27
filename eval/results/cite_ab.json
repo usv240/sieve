@@ -1151,5 +1151,189 @@
     }
    ]
   }
+ },
+ "offline": {
+  "model": "Nemotron Nano 9B v2 Q4_K_M via llama.cpp",
+  "cases": 10,
+  "judge": "nvidia/nemotron-3-super-120b-a12b",
+  "quote": {
+   "labelled_manual": {
+    "n": 0,
+    "judge_support": null
+   },
+   "labelled_general": {
+    "n": 4,
+    "judge_support": 25.0
+   },
+   "citation_integrity": 36.4,
+   "citations": 11,
+   "support": 25.0,
+   "steps_judged": 4,
+   "seconds": 271,
+   "rows": [
+    {
+     "device": "philips-everflo",
+     "input": [
+      "everflo-yellow-solid-silent"
+     ],
+     "citations": "1/5",
+     "tiers": {
+      "id": 0,
+      "verbatim": 1,
+      "normalised": 0,
+      "fuzzy": 0
+     },
+     "steps": 2
+    },
+    {
+     "device": "philips-everflo",
+     "input": [
+      "everflo-yellow-solid-red-blink"
+     ],
+     "citations": "3/6",
+     "tiers": {
+      "id": 0,
+      "verbatim": 1,
+      "normalised": 2,
+      "fuzzy": 0
+     },
+     "steps": 5
+    },
+    {
+     "device": "philips-everflo",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "devilbiss-525",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "devilbiss-525",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "devilbiss-525",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "devilbiss-525",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "philips-everflo",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "philips-everflo",
+     "input": [
+      "Can I put some oil on the compressor to quiet it down while "
+     ],
+     "citations": "0/0",
+     "tiers": null,
+     "steps": 0
+    },
+    {
+     "device": "devilbiss-525",
+     "error": "APIConnectionError"
+    }
+   ],
+   "pairs": [
+    {
+     "device": "philips-everflo",
+     "step": "Check for leaks in oxygen tubing and connections",
+     "cited": "Verify that there are no leaks",
+     "page": 36,
+     "supports": true,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Visually inspect tubing for kinks or obstructions.",
+     "cited": "The device has detected a high oxygen flow condition.",
+     "page": 31,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Check outlet cannula for blockage or disconnection.",
+     "cited": "Be sure oxygen is flowing through the cannula. If it is not, refer to the Troubleshooting section.",
+     "page": 15,
+     "supports": false,
+     "label": "general"
+    },
+    {
+     "device": "philips-everflo",
+     "step": "Verify flow rate setting matches prescription (5 LPM or pediatric setting).",
+     "cited": "Adjust the flow to the proper setting by turning the knob on the top of the flow meter.",
+     "page": 15,
+     "supports": false,
+     "label": "general"
+    }
+   ]
+  },
+  "sid": {
+   "labelled_manual": {
+    "n": 0,
+    "judge_support": null
+   },
+   "labelled_general": {
+    "n": 0,
+    "judge_support": null
+   },
+   "citation_integrity": null,
+   "citations": 0,
+   "support": null,
+   "steps_judged": 0,
+   "seconds": 109,
+   "rows": [
+    {
+     "device": "philips-everflo",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "philips-everflo",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "philips-everflo",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "devilbiss-525",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "devilbiss-525",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "devilbiss-525",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "devilbiss-525",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "philips-everflo",
+     "error": "APIConnectionError"
+    },
+    {
+     "device": "philips-everflo",
+     "input": [
+      "Can I put some oil on the compressor to quiet it down while "
+     ],
+     "citations": "0/0",
+     "tiers": null,
+     "steps": 0
+    },
+    {
+     "device": "devilbiss-525",
+     "error": "APIConnectionError"
+    }
+   ],
+   "pairs": []
+  }
  }
 }

@@ -1,5 +1,5 @@
 /** Every sponsor tool and model Sieve uses, what it does here, and where it runs. Status is what we verified, not what we plan. */
-export type StackItem = { name: string; role: string; status: "live" | "laptop" | "prepared"; href: string };
+export type StackItem = { name: string; role: string; status: "live" | "laptop" | "nebius" | "prepared"; href: string };
 
 export const STACK: StackItem[] = [
   { name: "Nebius Token Factory", role: "Serves every cloud model call: reading photos, writing the repair plan, auditing it, labelling each step. Tokens and cost of every call are shown in the Trace panel.", status: "live", href: "https://tokenfactory.nebius.com" },
@@ -13,5 +13,5 @@ export const STACK: StackItem[] = [
   { name: "Hermes Agent", role: "Runs Sieve as tools for an agent, and runs a scheduled watch that matches new FDA recalls to the fleet.", status: "laptop", href: "https://github.com/usv240/sieve/tree/main/infra/hermes" },
   { name: "NVIDIA OpenShell", role: "Ran the Sieve agent in a sandbox with brokered credentials, so the agent never sees the API key.", status: "laptop", href: "https://github.com/usv240/sieve/tree/main/infra/openshell" },
   { name: "MCP", role: "Eight Sieve tools any agent can call: identify, analyze, page lookup, recalls, training panel and more.", status: "laptop", href: "/api" },
-  { name: "Nebius Serverless", role: "Endpoint and Job manifests for the vision model and manual ingestion are in the repo; not run, because AI Cloud needs a payment card.", status: "prepared", href: "https://github.com/usv240/sieve/tree/main/infra" },
+  { name: "Nebius Serverless", role: "A Serverless Job on a clean Nebius machine cloned both public repos, ran every test and published safety check, and called both live APIs: PASS. A Serverless Endpoint served NVIDIA's open Nemotron Nano 12B v2 VL with vLLM, and both photo benchmarks were rerun with it as the only reader. Both were stopped after use to save credits; the scripts to start them again are in the repo.", status: "nebius", href: "https://github.com/usv240/sieve/tree/main/infra" },
 ];

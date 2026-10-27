@@ -17,5 +17,6 @@
 - **Offline citation integrity**: 53.8%  (Nemotron 3 Nano 9B v2 Q4_K_M via llama.cpp on the laptop GPU (no Ultra audit, no Tavily); cloud pipeline on the same ten cases: 89.6%)
 - **Real-world photos: device identified**: 82.9%  (41 photos of covered concentrators found by Tavily image search and annotated by eye before any run; 100.0% when the model name is legible (26 photos))
 - **Look-alike devices refused**: 100.0%  (16 photos of devices Sieve has no manual for (Inogen portables, DeVilbiss 10 L, CAIRE Companion); wrong device auto-selected 0 times across all 57 photos)
+- **Same photos, NVIDIA Nemotron Nano 12B VL alone on a Nebius Serverless Endpoint**: 73.2%  (88.5% when the model name is legible; 100.0% of look-alikes refused; wrong device auto-selected 0 times. Open-weight model on one L40S, stopped after the run)
 - **Citations that resolve to the manual**: 100.0%  (pointing at numbered sentences; copying quotes scored 88.8% on the same ten cases)
 - **Steps labelled 'manual states this' that an independent judge confirms**: 62.5%  (versus 5.0% for steps labelled general practice; the label is shown on every step)
