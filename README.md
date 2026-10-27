@@ -69,6 +69,7 @@ Light and dark, same page: `docs/screenshots/landing-light.jpg`, `docs/screensho
 - **MCP**: `apps/mcp/sieve_mcp.py` exposes list_devices, identify_device, identify_from_photo, analyze_fault, read_manual_page, file_work_order. Any MCP client can drive a full diagnosis.
 - **Hermes Agent**: with the config in `infra/hermes`, `hermes -z "DeVilbiss 525, red light beeping. Use the sieve tools."` makes Nemotron 3 Super on Nebius call identify_device and analyze_fault and answer with the cited page. Hermes also bridges WhatsApp and Telegram, which is how field staff actually communicate.
 - **OpenShell**: demonstrated on WSL2 plus Docker Desktop. Deny-by-default proven (EACCES at the kernel), four hosts allowed by policy, Nebius and Tavily credentials brokered so the sandbox only ever sees placeholders, and a full diagnosis run inside. Transcript and lessons in `infra/openshell/DEMONSTRATED.md`; reproduce with `infra/openshell/run.sh`.
+- **NemoClaw**: installed with the Hermes agent and onboarded onto Nemotron 3 Super through Token Factory. The sandboxed agent sees only a placeholder key and cannot reach the open web. Record in `infra/nemoclaw/DEMONSTRATED.md`.
 - **Tavily**: search, extract and map are runtime calls, logged in the Trace next to the model calls.
 
 ## Quick start

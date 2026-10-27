@@ -47,6 +47,11 @@ Yes. Token Factory was the fastest path from idea to a measured result we have u
 - The docs moved from `openshell inference set` to provider profiles between the hackathon brief and today; the brief still names the old flow.
 - Later the same day, with Docker WSL integration on, the full run worked. What cost time: the gateway ships with an empty profile catalog (a profile for any OpenAI-compatible endpoint would help every hackathon team); the Docker driver needs `grpc_endpoint` plus a cert SAN on Docker Desktop, which is undocumented for WSL2; policy `binaries` silently never match a symlink path. What impressed: kernel-level EACCES denials, live policy reload with no restart, and credential placeholders that let the pipeline run unchanged with real keys never entering the sandbox.
 
+## NVIDIA NemoClaw with Hermes (2026-10-27)
+- The installer with `NEMOCLAW_AGENT=hermes` and `--defer-onboarding` worked first time on WSL2 with Docker Desktop, about two minutes.
+- Onboarding a custom OpenAI-compatible endpoint (Nebius Token Factory) failed with "requested custom route lacks durable endpoint or API-family metadata" when `NEMOCLAW_PREFERRED_API=completions`. The value must be `openai-completions`; the usage text should say so, or accept the short form.
+- Once onboarded, credential placeholders and default-deny egress worked as documented. The managed gateway takes port 8080, which collides with llama.cpp's default; a note would help anyone running local models too.
+
 ## Nemotron 3.5 Super VL on Token Factory (2026-10-27)
 - It appeared in the Token Factory catalog during the hackathon. It is the first NVIDIA vision model we could call there, and it replaced a third-party image model as our first reader.
 - With reasoning on, a 600 or 1,500 token budget returned empty content: the budget went to thinking. `chat_template_kwargs: {"enable_thinking": false}` fixed it. A note on the model card would save others an hour.
