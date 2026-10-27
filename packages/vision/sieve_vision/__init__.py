@@ -164,3 +164,32 @@ def describe(image_bytes: bytes) -> VisionResult:
         notes.append("NEBIUS_API_KEY not set")
     notes.append("manual entry required")
     return VisionResult("manual", NameplateFields(), "", notes)
+
+
+def describe_second(image_bytes: bytes, first_mode_model: str | None = None) -> VisionResult | None:
+    """An independent second read by a different model, for cross-checking. None if no second model is available."""
+    key = os.environ.get("NEBIUS_API_KEY")
+    if not key:
+        return None
+    base = "https://api.tokenfactory.nebius.com/v1/"
+    models = _tf_image_models(key, base)
+    others = [m for m in models if m != first_mode_model][:1]
+    for model in others:
+        try:
+            raw = _openai_vision_call(base, key, model, image_bytes)
+            return VisionResult("second-read", _parse(raw), raw, [f"second read: {model}"])
+        except Exception:  # noqa: BLE001
+            return None
+    return None
+
+
+def describe_pair(image_bytes: bytes) -> tuple[VisionResult, VisionResult | None]:
+    """Primary read and an independent second read, in parallel. Callers act on their own only if both agree."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    key = os.environ.get("NEBIUS_API_KEY")
+    models = _tf_image_models(key, "https://api.tokenfactory.nebius.com/v1/") if key else []
+    with ThreadPoolExecutor(max_workers=2) as ex:
+        f1 = ex.submit(describe, image_bytes)
+        f2 = ex.submit(describe_second, image_bytes, models[0] if models else None)
+        return f1.result(), f2.result()

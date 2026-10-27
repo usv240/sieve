@@ -20,7 +20,6 @@ from sieve_core.schemas import WorkOrder
 from sieve_core.twin import twin_reply
 from sieve_llm import Ledger, TokenFactoryClient
 from sieve_retrieval import PageStore
-from sieve_vision import describe
 
 ROOT = Path(__file__).resolve().parents[3]
 DATA = data_dir()
@@ -151,10 +150,12 @@ def identify(body: IdentifyBody) -> dict[str, Any]:
 @app.post("/v1/identify/image")
 async def identify_image(image: UploadFile = File(...)) -> dict[str, Any]:
     """Identify from a photo: vision describes, the registry decides. Falls back to manual mode, never errors."""
-    vr = describe(await image.read())
-    fields = vr.fields.model_dump()
-    matches = REGISTRY.match(manufacturer=fields.get("manufacturer"), model=fields.get("model"), ref=fields.get("ref"), visible_text=fields.get("visible_text") or [])
-    return {"mode": vr.mode, "fields": fields, "matches": [m.__dict__ for m in matches], "notes": vr.notes}
+    from sieve_core.identify import cross_checked_match
+    from sieve_vision import describe_pair
+
+    vr, second = describe_pair(await image.read())
+    matches, check = cross_checked_match(REGISTRY, vr.fields, second.fields if second else None)
+    return {"mode": vr.mode, "fields": vr.fields.model_dump(), "matches": [m.__dict__ for m in matches], "cross_check": check, "notes": vr.notes + (second.notes if second else ["no second read"])}
 
 
 @app.get("/v1/questions")
@@ -320,8 +321,11 @@ async def telegram_webhook(request: Request) -> dict[str, Any]:
         path = (info.get("result") or {}).get("file_path")
         if not path:
             return None
-        f = describe(httpx.get(f"https://api.telegram.org/file/bot{token}/{path}", timeout=30).content).fields
-        m = REGISTRY.match(manufacturer=f.manufacturer, model=f.model, ref=f.ref, visible_text=f.visible_text or [])
+        from sieve_core.identify import cross_checked_match
+        from sieve_vision import describe_pair
+
+        vr, second = describe_pair(httpx.get(f"https://api.telegram.org/file/bot{token}/{path}", timeout=30).content)
+        m, _check = cross_checked_match(REGISTRY, vr.fields, second.fields if second else None)
         return m[0].device_id if m and m[0].confidence >= 0.6 else None
 
     def analyze_device(device_id: str | None, free_text: str):

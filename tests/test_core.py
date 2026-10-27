@@ -70,3 +70,19 @@ def test_inline_citations_are_removed_from_step_text():
     assert strip_inline_cites("Unplug the unit. (Cite: page 6 WARNING: 'Do not clean while plugged in (mains).')") == "Unplug the unit."
     assert strip_inline_cites("Check the filter (see page 12).") == "Check the filter."
     assert strip_inline_cites("Set flow to 2 (two) LPM.") == "Set flow to 2 (two) LPM."
+
+
+def test_two_reads_must_agree_before_auto_select():
+    from sieve_core import Registry
+    from sieve_core.identify import cross_checked_match
+    from sieve_vision import NameplateFields
+
+    reg = Registry()
+    invented = NameplateFields(manufacturer="drive DeVilbiss", ref="525DS", visible_text=["REF", "525DS"])
+    honest = NameplateFields(manufacturer="drive DeVilbiss", ref="1025DS", visible_text=["REF", "1025DS"])
+    m, rep = cross_checked_match(reg, invented, honest)
+    assert rep["agreed"] is False and all(x.confidence < 0.6 for x in m)
+    m, rep = cross_checked_match(reg, invented, invented)
+    assert rep["agreed"] is True and m[0].device_id == "devilbiss-525" and m[0].confidence >= 0.6
+    m, rep = cross_checked_match(reg, invented, None)
+    assert all(x.confidence < 0.6 for x in m)

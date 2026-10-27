@@ -15,7 +15,8 @@ from typing import Any
 
 import typer
 from sieve_core import Registry
-from sieve_vision import describe
+from sieve_core.identify import cross_checked_match
+from sieve_vision import describe_pair
 
 ROOT = Path(__file__).resolve().parents[3]
 AUTO = 0.6  # the Try page auto-selects at or above this confidence and asks the user to pick below it
@@ -46,15 +47,15 @@ def main(out: Path = typer.Option(ROOT / "eval/results/photo_bench.json")) -> No
         path = ROOT / "data/corpus/photos" / it["file"]
         if not path.exists():
             continue
-        vr = describe(path.read_bytes())
+        vr, second = describe_pair(path.read_bytes())
         f = vr.fields
-        matches = reg.match(manufacturer=f.manufacturer, model=f.model, ref=f.ref, visible_text=f.visible_text or [])
+        matches, check = cross_checked_match(reg, f, second.fields if second else None)
         outcome = score(it["acceptable"], matches)
         rows.append({
             "index": it["index"], "acceptable": ", ".join(it["acceptable"]) or "(not in registry)", "legible_model_text": it["legible_model_text"],
             "read_manufacturer": f.manufacturer, "read_model": f.model, "mode": vr.mode,
             "top_match": matches[0].device_id if matches else None, "top_confidence": round(matches[0].confidence, 2) if matches else None,
-            "outcome": outcome, "url": it["url"],
+            "outcome": outcome, "second_read_top": check.get("second"), "agreed": check.get("agreed"), "url": it["url"],
         })
         print(f"  #{it['index']:>2} {outcome:16s} read={f.manufacturer!s:.20} / {f.model!s:.24}  top={rows[-1]['top_match']} {rows[-1]['top_confidence']}", flush=True)
     c = Counter(r["outcome"] for r in rows)
