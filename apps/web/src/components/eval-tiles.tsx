@@ -1,5 +1,7 @@
 import { cacheLife } from "next/cache";
 import { API_BASE } from "@/lib/api";
+import { EVAL_HELP } from "@/lib/eval-help";
+import { Info } from "@/components/info";
 
 type Evals = { status?: string; generated_at?: string; summary?: Record<string, { value: number | string | null; unit?: string; label: string; note?: string }> };
 
@@ -23,7 +25,7 @@ export async function EvalTiles() {
       {Object.entries(e.summary).map(([k, v]) => (
         <div key={k} className="card">
           <p className="text-3xl font-semibold tracking-tight">{v.value === null ? "n/a" : v.value}{v.unit ?? ""}</p>
-          <p className="mt-1 text-sm font-medium">{v.label}</p>
+          <p className="mt-1 text-sm font-medium">{v.label} <Info term={v.label} text={EVAL_HELP[k] ?? v.note ?? ""} /></p>
           {v.note && <p className="mt-1 text-xs text-fg-muted">{v.note}</p>}
         </div>
       ))}

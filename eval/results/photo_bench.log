@@ -1,0 +1,58 @@
+  # 0 correct_auto     read=EverFlo / OPI  top=philips-everflo 0.99
+  # 1 correct_auto     read=Intertek / EverFlo | OPI  top=philips-everflo 0.99
+  # 2 correct_auto     read=Respirronics Inc / EverFlo | OPI  top=philips-everflo 0.99
+  # 3 correct_auto     read=Resprionics / EverFlo | OPI  top=philips-everflo 0.99
+  # 4 correct_auto     read=RESPIRONICS / EverFlo  top=philips-everflo 0.99
+  # 5 correct_auto     read=None / EverFlo  top=philips-everflo 0.99
+  # 6 not_identified   read=None / None  top=None None
+  # 7 correct_auto     read=None / None  top=philips-everflo 0.99
+  # 9 correct_offered  read=drive DeVilbiss HEAL / None  top=devilbiss-525 0.55
+  #10 correct_offered  read=DeVilbiss / None  top=devilbiss-525 0.55
+  #11 not_identified   read=None / None  top=None None
+  #12 correct_offered  read=DeVilbiss / None  top=devilbiss-525 0.55
+  #13 correct_offered  read=DEVILBISS / None  top=devilbiss-525 0.55
+  #14 correct_offered  read=DEVILBISS / None  top=devilbiss-525 0.55
+  #15 not_identified   read=None / None  top=None None
+  #16 correct_offered  read=DEVILBISS / None  top=devilbiss-525 0.55
+  #17 correct_offered  read=drive DeVilbiss HEAL / None  top=devilbiss-525 0.55
+  #18 correct_offered  read=AirSep / Elite  top=airsep-newlife 0.55
+  #19 correct_auto     read=AirSep / elite  top=airsep-newlife 0.6
+  #20 correct_auto     read=AirSep Corporation / NEWLIFE  top=airsep-newlife 0.99
+  #22 correct_offered  read=AirSep / SeQual lite  top=airsep-newlife 0.55
+  #23 correct_auto     read=AirSep / VisionAire 5  top=airsep-visionaire 0.99
+  #24 correct_auto     read=AirSep / VisionAire 5  top=airsep-visionaire 0.99
+  #25 correct_auto     read=AirSep / VisionAire  top=airsep-visionaire 0.99
+  #26 correct_auto     read=AirSep / VisionAire 5  top=airsep-visionaire 0.99
+  #27 correct_auto     read=AirSep / VisionAire 5  top=airsep-visionaire 0.99
+  #28 correct_auto     read=None / Platinum 10  top=invacare-platinum 0.99
+  #30 not_identified   read=DeVilbiss / None  top=devilbiss-525 0.55
+  #32 correct_auto     read=INVACARE / Platinum 10  top=invacare-platinum 0.99
+  #33 correct_auto     read=NIDEK / Nuvo Lite  top=nidek-nuvo 0.99
+  #34 correct_auto     read=NIDEK / Nuvo  top=nidek-nuvo 0.99
+  #36 correct_auto     read=NIDEK / Nuvo Lite  top=nidek-nuvo 0.99
+  #37 correct_auto     read=NidekMedical / Nuvo Lite  top=nidek-nuvo 0.99
+  #39 correct_auto     read=NIDEK / Nuvo Lite  top=nidek-nuvo 0.99
+  #40 correct_auto     read=NIDEK / Nuvo Lite  top=nidek-nuvo 0.99
+  #41 correct_auto     read=NIDEK / Nuvo  top=nidek-nuvo 0.99
+  #42 not_identified   read=None / None  top=None None
+  #43 not_identified   read=None / None  top=None None
+  #44 correct_refusal  read=LongfianMedtech / None  top=longfian-jay 0.5
+  #45 not_identified   read=None / None  top=None None
+  #46 correct_offered  read=yuwell / None  top=yuwell-7f5 0.55
+  #47 correct_auto     read=yuwell / 7F-5 Oxygen Concentrator  top=yuwell-7f5 0.99
+  #48 correct_refusal  read=None / None  top=None None
+  #49 correct_refusal  read=INGEN / None  top=None None
+  #50 correct_refusal  read=INOGEN / None  top=None None
+  #51 correct_refusal  read=INOGEN / None  top=None None
+  #52 correct_refusal  read=INOGEN / ONE  top=None None
+  #53 correct_refusal  read=DeVilbiss Healthcare / None  top=devilbiss-525 0.55
+  #54 correct_refusal  read=drive DeVilbiss HEAL / None  top=devilbiss-525 0.55
+  #55 correct_refusal  read=drive DeVilbiss HEAL / None  top=devilbiss-525 0.55
+  #56 correct_refusal  read=drive DeVilbiss / None  top=devilbiss-525 0.55
+  #57 correct_refusal  read=drive DeVilbiss HEAL / None  top=devilbiss-525 0.55
+  #58 correct_refusal  read=Companion / eco  top=airsep-newlife 0.5
+  #59 correct_refusal  read=Companion / eco  top=airsep-newlife 0.5
+  #60 correct_refusal  read=CAIRE / Companion 5  top=airsep-newlife 0.55
+  #61 correct_refusal  read=CAIRE / Companion  top=airsep-newlife 0.55
+  #62 correct_refusal  read=CAIRE / Companion 5  top=airsep-newlife 0.55
+FINAL {'n': 57, 'outcomes': {'correct_auto': 24, 'not_identified': 7, 'correct_offered': 10, 'correct_refusal': 16}, 'in_registry': 41, 'identified': 82.9, 'identified_when_model_text_legible': 100.0, 'legible_n': 26, 'out_of_registry': 16, 'refused_correctly': 100.0, 'wrong_device_auto_selected': 0, 'vision_mode': 'nemotron-vl', 'seconds': 253}
