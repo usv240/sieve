@@ -47,8 +47,20 @@ PROMPT = (
 )
 
 
-def _data_url(image_bytes: bytes, mime: str = "image/jpeg") -> str:
-    return f"data:{mime};base64,{base64.b64encode(image_bytes).decode()}"
+def _sniff_mime(image_bytes: bytes) -> str:
+    """The real image type from its first bytes. Token Factory rejects a PNG declared as JPEG."""
+    head = image_bytes[:12]
+    if head.startswith(bytes([0x89]) + b"PNG"):
+        return "image/png"
+    if head[:4] == b"RIFF" and head[8:12] == b"WEBP":
+        return "image/webp"
+    if head[:3] == b"GIF":
+        return "image/gif"
+    return "image/jpeg"
+
+
+def _data_url(image_bytes: bytes, mime: str | None = None) -> str:
+    return f"data:{mime or _sniff_mime(image_bytes)};base64,{base64.b64encode(image_bytes).decode()}"
 
 
 def _salvage(raw: str) -> dict[str, Any]:
