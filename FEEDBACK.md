@@ -46,3 +46,14 @@ Yes. Token Factory was the fastest path from idea to a measured result we have u
 - Needs Linux, macOS or WSL2 with Docker. Docker Desktop was running but WSL integration for the Ubuntu distro was off, so the sandbox could not reach a Docker socket from WSL. Policy file and run script were written against the current docs (network_policies with endpoints and binaries; `openshell policy update --add-endpoint host:port:access:protocol:enforcement`; `openshell sandbox exec`).
 - The docs moved from `openshell inference set` to provider profiles between the hackathon brief and today; the brief still names the old flow.
 - Later the same day, with Docker WSL integration on, the full run worked. What cost time: the gateway ships with an empty profile catalog (a profile for any OpenAI-compatible endpoint would help every hackathon team); the Docker driver needs `grpc_endpoint` plus a cert SAN on Docker Desktop, which is undocumented for WSL2; policy `binaries` silently never match a symlink path. What impressed: kernel-level EACCES denials, live policy reload with no restart, and credential placeholders that let the pipeline run unchanged with real keys never entering the sandbox.
+
+## Nemotron 3.5 Super VL on Token Factory (2026-10-27)
+- It appeared in the Token Factory catalog during the hackathon. It is the first NVIDIA vision model we could call there, and it replaced a third-party image model as our first reader.
+- With reasoning on, a 600 or 1,500 token budget returned empty content: the budget went to thinking. `chat_template_kwargs: {"enable_thinking": false}` fixed it. A note on the model card would save others an hour.
+- On 68 real Indian pesticide labels it read the chemical better than MiniCPM-V; on a Gramoxone bottle it read paraquat where MiniCPM-V invented two organophosphates.
+- It can still invent plausible small print. On a real DeVilbiss 1025DS rating label it returned "REF 525DS" with a made-up serial number and current rating. A per-field confidence, or a flag when text is reconstructed rather than read, would let applications decide when to ask a person.
+- It returns `null` for fields it cannot see, which is right, but a client expecting strings fails validation; worth one line in the docs.
+- Under bursts, image calls returned 429 or 5xx without a Retry-After header. We added backoff; a documented per-model rate limit would help.
+
+## Local inference on an 8 GB laptop GPU (2026-10-27)
+- Nemotron Nano 9B v2 at Q4_K_M through llama.cpp b11617 ran well on 2026-10-14. On 2026-10-27 the server stopped three times with "ggml-cuda.cu:109: CUDA error" a few minutes into generation, with GPU memory at about 7.6 of 8 GB. A smaller context and flash attention did not prevent it. A recommended configuration for 8 GB cards would help the offline story Nemotron Nano is well suited to.
