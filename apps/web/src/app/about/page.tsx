@@ -3,7 +3,7 @@ export const metadata = { title: "About" };
 export default function About() {
   return (
     <div className="space-y-6 pt-8">
-      <h1 className="text-3xl font-semibold">About Sieve</h1>
+      <h1 className="text-[1.625rem] font-semibold sm:text-3xl">About Sieve</h1>
       <p className="max-w-2xl text-fg-muted">Built for the Nebius x NVIDIA Global AI Hackathon, October 2026, by a one-person code team. Apache-2.0. Source at <a className="text-accent underline underline-offset-2" href="https://github.com/usv240/sieve">github.com/usv240/sieve</a>.</p>
       <section className="card space-y-2">
         <h2 className="font-semibold">Prior art, named</h2>

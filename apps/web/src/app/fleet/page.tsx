@@ -21,7 +21,7 @@ export default function FleetPage() {
   }, []);
   return (
     <div className="space-y-6 pt-8">
-      <h1 className="text-3xl font-semibold">Fleet <Info k="work_order" /></h1>
+      <h1 className="text-[1.625rem] font-semibold sm:text-3xl">Fleet <Info k="work_order" /></h1>
       {fleet && (
         <div className="grid gap-4 sm:grid-cols-4">
           <T n={fleet.total} l="work orders" /><T n={fleet.open} l="open" /><T n={fleet.by_outcome.fixed ?? 0} l="fixed" /><T n={fleet.by_outcome.needs_part ?? 0} l="waiting for a part" />

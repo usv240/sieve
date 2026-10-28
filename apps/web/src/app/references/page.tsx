@@ -28,7 +28,7 @@ const refs = [
 export default function References() {
   return (
     <div className="space-y-6 pt-8">
-      <h1 className="text-3xl font-semibold">References</h1>
+      <h1 className="text-[1.625rem] font-semibold sm:text-3xl">References</h1>
       <p className="max-w-2xl text-fg-muted">Every statistic on this site links here. Figures we chose not to use, such as the often-repeated claim that 70 percent of donated equipment never works, are excluded because they are anecdotal.</p>
       <ol className="list-decimal space-y-2 pl-6">
         {refs.map(([t, u]) => <li key={u}><a className="text-accent underline-offset-2 hover:underline" href={u} target="_blank" rel="noreferrer">{t}</a></li>)}

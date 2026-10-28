@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Info } from "@/components/info";
 import { Reveal } from "@/components/reveal";
 import { SampleGallery } from "@/components/sample-gallery";
+import { PanelDemo } from "@/components/panel-demo";
 import { ShieldAlert } from "lucide-react";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
@@ -43,27 +44,7 @@ export default function Landing() {
           </p>
         </div>
 
-        <figure data-ui className="rise rounded-[24px] bg-surface p-6 sm:p-8" style={d(200)}>
-          <p className="text-[0.9375rem] text-fg-muted">Philips EverFlo, yellow light on, alarm silent</p>
-          <p className="mt-3 text-2xl font-semibold leading-snug tracking-[-0.01em]">Step 1 of 3: observe the lights on the front panel.</p>
-          <p className="mt-2 text-base text-fg-muted">Expected: yellow light on, red light off, alarm silent.</p>
-          <blockquote className="quote mt-5 text-base leading-relaxed">
-            &ldquo;Yellow LED illuminates continuously. The Red LED is off and the Audible Alarm is silent. The device has detected a low oxygen condition. (For OPI units only.)&rdquo;
-            <footer className="mt-2 text-[0.9375rem] text-fg-muted">Philips EverFlo service manual, page 31</footer>
-          </blockquote>
-          <div className="mt-5 flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-ok/15 px-3 py-1 text-[0.9375rem] font-medium text-ok">The manual states this step</span>
-           <Info k="support_label" />
-          </div>
-          <div className="mt-6 flex flex-wrap gap-2">
-            <span className="rounded-full bg-accent px-4 py-2 text-[0.9375rem] font-semibold text-accent-fg">Yes, as expected</span>
-            <span className="rounded-full bg-bg-elev px-4 py-2 text-[0.9375rem] font-semibold">No</span>
-          </div>
-          <figcaption className="mt-6 text-[0.9375rem] leading-relaxed text-fg-muted">
-            From a live run: every quote is checked against its page, and Nemotron 3 Ultra audits the whole plan against the full manual.{" "}
-            <Link href="/try?sample=everflo-yellow" className="text-accent underline underline-offset-2">Run it yourself</Link>
-          </figcaption>
-        </figure>
+        <PanelDemo />
       </section>
 
       <nav aria-label="On this page" className="rise mt-14 flex flex-wrap gap-2" style={d(340)}>
@@ -186,15 +167,17 @@ export default function Landing() {
 
       {/* Results */}
       <section id="results" aria-labelledby="results-h" className="scroll-mt-32 pt-36">
+        <div className="on-accent rounded-[28px] bg-accent px-6 py-12 text-accent-fg sm:px-12 sm:py-16">
         <h2 id="results-h" data-reveal className="text-3xl font-semibold tracking-[-0.02em] sm:text-4xl">Results<Info k="benchmark" /></h2>
-        <p data-reveal style={d(60)} className="mt-4 max-w-2xl text-lg leading-relaxed">Measured on data nobody on the team wrote: the closest prior work&apos;s own questions, FDA reports and real photos.</p>
+        <p data-reveal style={d(60)} className="mt-4 max-w-2xl text-lg leading-relaxed opacity-90">Measured on data nobody on the team wrote: the closest prior work&apos;s own questions, FDA reports and real photos.</p>
         <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <Result i={0} n="69.7%" t="on the closest prior work's own 300 repair questions, against 62.0% for plain retrieval and 17.0% for the model alone." info="Benchmark A on the INGENZI dataset, graded by a blind Nemotron 3 Super judge; a second judge from another company agreed (kappa 0.94)." />
           <Result i={1} n="62 of 62" t="real FDA reports of concentrators that smoked or caught fire: Sieve took the machine out of service before any repair step." info="Benchmark B, 74 openFDA malfunction reports selected and scored by rules committed before the run." />
           <Result i={2} n="0" t="wrong machines chosen across 57 real photos, and all 16 look-alike devices refused." info="Photos from resale listings and product pages, annotated by eye before any run. Sieve picks a device on its own only when two vision models agree." />
           <Result i={3} n="100%" t="of citations land on real manual text, because code, not the model, copies each cited sentence." info="Sieve points at numbered manual sentences instead of copying quotes; on the same cases, copied quotes resolved 88.8% of the time." />
         </div>
-        <Link href="/evals" className="btn-ghost mt-10">All results and how to reproduce them</Link>
+        <Link href="/evals" className="btn mt-10 bg-accent-fg text-accent">All results and how to reproduce them</Link>
+        </div>
       </section>
 
       {/* Who */}
@@ -264,7 +247,7 @@ function Stop({ i, title, why }: { i: number; title: string; why: string }) {
 function Result({ i, n, t, info }: { i: number; n: string; t: string; info: string }) {
   return (
     <div data-reveal style={d(i * 80)}>
-      <p className="text-5xl font-semibold tracking-[-0.035em] text-accent">{n}</p>
+      <p className="text-5xl font-semibold tracking-[-0.035em]">{n}</p>
       <p className="mt-3 text-base leading-relaxed">{t}<Info term={n} text={info} /></p>
     </div>
   );

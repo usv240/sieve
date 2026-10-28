@@ -24,7 +24,7 @@ export default async function EvalsPage() {
   return (
     <div className="space-y-8 pt-8">
       <div>
-        <h1 className="text-3xl font-semibold">Evaluation <Info k="benchmark" /></h1>
+        <h1 className="text-[1.625rem] font-semibold sm:text-3xl">Evaluation <Info k="benchmark" /></h1>
         <p className="mt-2 max-w-2xl text-fg-muted">Two external benchmarks nobody on the team authored: the closest prior work's own question set and real openFDA malfunction reports, both scored by two independent judges against named baselines. Also negative controls, citation integrity, the offline comparison and cost. Everything on this page is read from <code>eval/results/latest.json</code> in the repository.</p>
       </div>
       {!e.summary && <div className="card text-fg-muted">No published run yet. Status: {e.status}. Reproduce with <code>make eval</code>.</div>}
@@ -39,8 +39,8 @@ export default async function EvalsPage() {
             <section key={s.name} className="space-y-2">
               <h2 className="text-xl font-semibold">{s.name}</h2>
               <p className="text-fg-muted">{s.description}</p>
-              <div className="card overflow-x-auto p-0"><table className="w-full text-sm"><thead className="text-left text-fg-muted"><tr>{s.columns.map((c) => <th key={c} className="p-3">{c}</th>)}</tr></thead>
-                <tbody>{s.rows.slice(0, 20).map((r, i) => <tr key={i} className="border-t border-border">{s.columns.map((c) => <td key={c} className="p-3">{String(r[c] ?? "")}</td>)}</tr>)}</tbody></table></div>
+              <div className="card overflow-x-auto p-0"><table className="w-full text-sm"><thead className="text-left text-fg-muted"><tr>{s.columns.map((c) => <th key={c} className={`p-3 ${numCol(s, c) ? "text-right" : ""}`}>{c.replaceAll("_", " ")}</th>)}</tr></thead>
+                <tbody>{s.rows.slice(0, 20).map((r, i) => <tr key={i} className="border-t border-border">{s.columns.map((c) => <td key={c} className={`p-3 ${numCol(s, c) ? "text-right tabular-nums" : ""}`}>{String(r[c] ?? "")}</td>)}</tr>)}</tbody></table></div>
               {s.rows.length > 20 && <p className="text-sm text-fg-muted">Showing 20 of {s.rows.length} rows. Every row is in <a className="text-accent underline underline-offset-2" href="https://github.com/usv240/sieve/blob/main/eval/results/latest.json">eval/results/latest.json</a> and at <a className="text-accent underline underline-offset-2" href={`${API_BASE}/v1/evals/latest`}>/v1/evals/latest</a>.</p>}
             </section>
           ))}
@@ -49,4 +49,10 @@ export default async function EvalsPage() {
       )}
     </div>
   );
+}
+
+/** A column whose every filled cell is a number (or a percentage) is right-aligned so the digits line up. */
+function numCol(s: Section, c: string): boolean {
+  const vals = s.rows.map((r) => r[c]).filter((v) => v !== null && v !== undefined && v !== "");
+  return vals.length > 0 && vals.every((v) => typeof v === "number" || /^-?[\d.,]+%?$/.test(String(v)));
 }

@@ -20,7 +20,7 @@ export default function HowItWorks() {
   return (
     <div className="space-y-8 pt-8">
       <div>
-        <h1 className="text-3xl font-semibold">How Sieve works <Info k="tier_routing" /></h1>
+        <h1 className="text-[1.625rem] font-semibold sm:text-3xl">How Sieve works <Info k="tier_routing" /></h1>
         <p className="mt-2 max-w-2xl text-fg-muted">Switch Explain mode in the header to see the same ten stages in plain or technical wording. Every number here is measured on the Evals page.</p>
       </div>
       <ol className="space-y-3">

@@ -39,7 +39,7 @@ export function Info({ k, label, term, text, technical }: { k?: GlossaryKey; lab
         <InfoIcon className="h-4 w-4" aria-hidden />
       </button>
       {open && (
-        <span role="tooltip" id={id} className="absolute left-1/2 top-full z-40 mt-2 w-72 -translate-x-1/2 rounded-xl border border-border bg-bg-elev p-3 text-left text-sm shadow-lg">
+        <span role="tooltip" id={id} className="tip absolute left-1/2 top-full z-40 mt-2 w-72 -translate-x-1/2 rounded-xl border border-border bg-bg-elev p-3 text-left text-sm shadow-lg">
           <span className="block font-semibold">{g.term}</span>
           <span className="mt-1 block text-fg-muted">{mode === "technical" && g.technical ? g.technical : g.plain}</span>
           <button type="button" className="mt-2 text-sm font-medium text-accent underline-offset-2 hover:underline" onClick={() => { setDrawer(true); setOpen(false); }}>
@@ -48,8 +48,8 @@ export function Info({ k, label, term, text, technical }: { k?: GlossaryKey; lab
         </span>
       )}
       {drawer && (
-        <div role="dialog" aria-modal="true" aria-labelledby={`${id}-title`} className="fixed inset-0 z-50 flex justify-end bg-black/40" onClick={() => setDrawer(false)}>
-          <div className="h-full w-full max-w-md overflow-y-auto bg-bg-elev p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        <div role="dialog" aria-modal="true" aria-labelledby={`${id}-title`} className="scrim fixed inset-0 z-50 flex justify-end bg-black/40" onClick={() => setDrawer(false)}>
+          <div className="drawer h-full w-full max-w-md overflow-y-auto bg-bg-elev p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-start justify-between gap-4">
               <h2 id={`${id}-title`} className="text-xl font-semibold">{g.term}</h2>
               <button type="button" aria-label="Close" className="btn-ghost h-10 w-10 min-h-0 px-0" onClick={() => setDrawer(false)}><X className="h-5 w-5" /></button>

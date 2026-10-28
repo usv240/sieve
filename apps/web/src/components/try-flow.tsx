@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ShieldAlert, AlertTriangle, CheckCircle2, ChevronRight, FileText } from "lucide-react";
 import { apiUrl } from "@/lib/api";
@@ -9,6 +9,15 @@ import { SAMPLES } from "@/lib/samples";
 import { Info } from "@/components/info";
 import { TrainingPanel } from "@/components/training-panel";
 import { MachineSticker, type StickerRecord } from "@/components/machine-sticker";
+import { Progress } from "@/components/progress";
+
+const FIX_STAGES = [
+  { at: 0, text: "Finding this machine's pages in the service manual" },
+  { at: 3, text: "NVIDIA Nemotron 3 Super writes the plan, one check per manual sentence" },
+  { at: 13, text: "Checking every quote against its page, and whether the manual states each step" },
+  { at: 18, text: "NVIDIA Nemotron 3 Ultra audits the plan against the whole manual" },
+  { at: 45, text: "Long manuals take Ultra up to a minute; almost there" },
+];
 
 type Match = { device_id: string; confidence: number; reason: string };
 type Indicator = { id: string; state: string; meaning: string; cite: { doc: string; page: number } };
@@ -118,6 +127,15 @@ export function TryFlow() {
     setResult(j); setStep(0); setVisited([]); setBusy(null);
   }
 
+  // When the plan arrives, take the technician to it and move focus there for keyboard and screen-reader users.
+  const resultRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!result || !resultRef.current) return;
+    resultRef.current.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    resultRef.current.focus({ preventScroll: true });
+  }, [result]);
+  const docName = (id: string) => result?.retrieved.find((r) => r.doc === id)?.title ?? id.replace(/[-_]+/g, " ");
+
   async function save() {
     if (!result) return;
     const wo = { device_id: result.device_id ?? "unknown", model_label: result.device_label, reported_fault: result.tree?.summary ?? freeText ?? "n/a", indicators, steps_performed: visited.map((i) => result.tree?.steps[i]?.action ?? ""), outcome, ai_trace_id: result.trace_id, notes: "" };
@@ -188,20 +206,20 @@ export function TryFlow() {
                 <div key={q.id} className="flex flex-wrap items-center gap-2">
                   <span className="text-sm">{q.text} <Info k="grounded" label={q.why} /></span>
                   {(q.type === "yes_no" ? ["yes", "no"] : (q.options ?? [])).map((o) => (
-                    <button key={o} onClick={() => setAnswers({ ...answers, [q.id]: o })} className={`btn-ghost min-h-0 px-3 py-1.5 text-sm ${answers[q.id] === o ? "border-accent" : ""}`}>{o}</button>
+                    <button key={o} onClick={() => setAnswers({ ...answers, [q.id]: o })} aria-pressed={answers[q.id] === o} className={`btn-ghost min-h-0 px-3 py-1.5 text-sm ${answers[q.id] === o ? "bg-accent! text-accent-fg!" : ""}`}>{o}</button>
                   ))}
                 </div>
               ))}
             </div>
             <L label="Anything else (optional)"><textarea className="inp min-h-20" value={freeText} onChange={(e) => setFreeText(e.target.value)} /></L>
             <button className="btn-primary" onClick={analyze} disabled={!!busy}>Build the fix</button>
-            {busy && <p className="text-sm text-fg-muted" role="status">{busy}</p>}
+            {busy && (busy.startsWith("Reading the manual") ? <Progress title="Building the fix. Usually 30 to 80 seconds." stages={FIX_STAGES} /> : <p className="text-sm text-fg-muted" role="status">{busy}</p>)}
           </section>
         )}
 
         {/* Screen 3: Fix */}
         {result && (
-          <section className="card space-y-4">
+          <section ref={resultRef} tabIndex={-1} aria-label="The fix" className="card scroll-mt-32 space-y-4 outline-none">
             <h2 className="text-xl font-semibold">3. Fix: {result.device_label}</h2>
             {result && (result as { mode?: string }).mode === "replay" && <p role="status" className="rounded-xl border border-caution p-3 text-sm">The live model service did not answer, so this is the result this sample produced when it was recorded from the live pipeline on {String(((result as { replay?: { recorded_at?: string } }).replay?.recorded_at ?? "").slice(0, 10))}. Everything else on the page works as normal.</p>}
             {result.rule_hits.filter((h) => h.severity === "stop").map((h) => (
@@ -224,8 +242,8 @@ export function TryFlow() {
                 <p className="text-fg">{result.tree.summary}</p>
                 <div className="flex flex-wrap gap-2 text-xs text-fg-muted">
                   <span>Citations verified {result.citations.verified}/{result.citations.total}</span>
-                  {result.audit && <span>Auditor: {result.audit.overall}</span>}
-                  <span>{result.latency_ms} ms</span>
+                  {result.audit && <span>Nemotron 3 Ultra audit: {result.audit.overall.replaceAll("_", " ")}</span>}
+                  <span>{Math.round(result.latency_ms / 1000)} s</span>
                   <a className="ml-auto text-accent underline underline-offset-2" download={`sieve-result.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(result, null, 2))}`}>Download result as JSON</a>
                 </div>
                 {current && (
@@ -233,13 +251,13 @@ export function TryFlow() {
                     <p className="eyebrow">Step {current.id} of {steps.length}</p>
                     <p className="mt-1 flex items-start gap-2 text-lg font-medium">
                       {current.safety_class === "stop" ? <ShieldAlert className="mt-1 h-5 w-5 shrink-0 text-stop" /> : current.safety_class === "caution" ? <AlertTriangle className="mt-1 h-5 w-5 shrink-0 text-caution" /> : <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-ok" />}
-                      {current.action}
+                      {current.action.replace(/See ([a-z0-9_-]+) page (\d+)/g, (_m, id, pg) => `See ${docName(id)}, page ${pg}`)}
                     </p>
                     <p className="mt-2 text-fg-muted">Expect: {current.expected}</p>
                     <p className="mt-2 text-xs text-fg-muted">Tools: {current.tools_needed.join(", ") || "none"} · about {current.duration_min} min</p>
                     {current.support === "manual" && <p className="mt-3 inline-flex items-center gap-1 rounded-full border border-ok py-0.5 pl-2.5 pr-1 text-xs font-medium text-ok">The manual states this step <Info k="support_label" /></p>}
                     {current.support === "general" && <p className="mt-3 inline-flex items-center gap-1 rounded-full border border-caution py-0.5 pl-2.5 pr-1 text-xs font-medium text-caution">General practice, not stated on the cited page <Info k="support_label" /></p>}
-                    <blockquote className="quote mt-3 text-sm">“{current.cite.quote}”<footer className="mt-1 text-xs text-fg-muted">{current.cite.doc}, page {current.cite.page} · <a className="text-accent underline underline-offset-2" href={apiUrl(`/v1/page/${current.cite.doc}/${current.cite.page}`)} target="_blank" rel="noreferrer">Show page</a></footer></blockquote>
+                    <blockquote className="quote mt-3 text-sm">“{current.cite.quote}”<footer className="mt-1 text-xs text-fg-muted">{docName(current.cite.doc)}, page {current.cite.page} · <a className="text-accent underline underline-offset-2" href={apiUrl(`/v1/page/${current.cite.doc}/${current.cite.page}`)} target="_blank" rel="noreferrer">Show page</a></footer></blockquote>
                     <div className="mt-3 flex gap-2">
                       <button className="btn-primary" onClick={() => go(current.if_yes)}>Yes, as expected <ChevronRight className="h-4 w-4" /></button>
                       <button className="btn-ghost" onClick={() => go(current.if_no)}>No</button>
@@ -257,7 +275,7 @@ export function TryFlow() {
               <div className="rounded-[16px] border border-border p-4">
                 <h3 className="font-semibold">4. Record the work order <Info k="work_order" /></h3>
                 <div className="mt-2 flex flex-wrap gap-2">
-                  {["fixed", "needs_part", "escalated", "open"].map((o) => <button key={o} onClick={() => setOutcome(o)} className={`btn-ghost min-h-0 px-3 py-1.5 text-sm ${outcome === o ? "border-accent" : ""}`}>{o.replace("_", " ")}</button>)}
+                  {["fixed", "needs_part", "escalated", "open"].map((o) => <button key={o} onClick={() => setOutcome(o)} aria-pressed={outcome === o} className={`btn-ghost min-h-0 px-3 py-1.5 text-sm ${outcome === o ? "bg-accent! text-accent-fg!" : ""}`}>{o.replace("_", " ")}</button>)}
                 </div>
                 <button className="btn-primary mt-3" onClick={save}>Save to fleet log</button>
                 {saved && <p className="mt-2 text-sm text-ok">Saved. Work order {saved.slice(0, 8)}. <a className="text-accent underline underline-offset-2" href="/fleet">Open the fleet view</a>.</p>}
