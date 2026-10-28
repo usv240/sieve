@@ -17,7 +17,9 @@ export default function Landing() {
           </h1>
           <p className="max-w-xl text-lg text-fg">
             At Chintheche Health Center in Malawi, four oxygen concentrators sat broken for four years. A repair team had all four running again in a few hours.{" "}
-            <a className="text-sm text-accent underline underline-offset-2" href="https://www.openo2.org/concentrator-graveyard" target="_blank" rel="noreferrer">OpenO2</a>
+            <a className="text-sm text-accent underline underline-offset-2" href="https://www.openo2.org/concentrator-graveyard" target="_blank" rel="noreferrer">OpenO2</a>{" "}
+            Replacing them would have cost $2,000 to $6,400 before shipping.{" "}
+            <a className="text-sm text-accent underline underline-offset-2" href="https://www.unicef.org/supply/media/2916/file/_Oxygen-Concentrator-TPP-v1.pdf" target="_blank" rel="noreferrer">UNICEF</a>
           </p>
           <p className="max-w-xl text-fg-muted">
             Sieve puts that team&apos;s knowledge in the technician&apos;s phone. It reads the machine from a photo, opens the right page of the service manual, and leads the repair one check at a time, waiting for each answer. Smoke, oil near oxygen and live mains work stop it before any model replies. A cited repair plan in under 40 seconds, and it still works without internet.

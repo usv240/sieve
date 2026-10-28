@@ -8,6 +8,7 @@ import { downscaleImage } from "@/lib/image";
 import { SAMPLES } from "@/lib/samples";
 import { Info } from "@/components/info";
 import { TrainingPanel } from "@/components/training-panel";
+import { MachineSticker, type StickerRecord } from "@/components/machine-sticker";
 
 type Match = { device_id: string; confidence: number; reason: string };
 type Indicator = { id: string; state: string; meaning: string; cite: { doc: string; page: number } };
@@ -48,6 +49,7 @@ export function TryFlow() {
   const [visited, setVisited] = useState<number[]>([]);
   const [outcome, setOutcome] = useState<string>("open");
   const [saved, setSaved] = useState<string | null>(null);
+  const [sticker, setSticker] = useState<StickerRecord | null>(null);
   const [showSim, setShowSim] = useState(false);
   const [photoNote, setPhotoNote] = useState<string | null>(null);
 
@@ -62,6 +64,18 @@ export function TryFlow() {
     setFreeText(sample.free_text ?? "");
     setResult(null); setMatches([]); setDeviceId(null);
   }, [sample]);
+
+  // Scanned from a machine sticker: the device is already known, so skip identification.
+  const fromSticker = params.get("device");
+  useEffect(() => {
+    if (!fromSticker || sample) return;
+    setDeviceId(fromSticker);
+    fetch(apiUrl(`/v1/questions?device_id=${encodeURIComponent(fromSticker)}&indicator_ids=`)).then((x) => x.json()).then(setQuestions).catch(() => {});
+  }, [fromSticker, sample]);
+  useEffect(() => {
+    const d = fromSticker && !sample ? devices.find((x) => x.id === fromSticker) : undefined;
+    if (d) { setFields({ manufacturer: d.manufacturer, model: d.model, ref: "", visible_text: "" }); }
+  }, [fromSticker, sample, devices]);
 
   const device = devices.find((d) => d.id === deviceId);
 
@@ -110,6 +124,7 @@ export function TryFlow() {
     const r = await fetch(apiUrl("/v1/records"), { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(wo) });
     const j = await r.json();
     setSaved(j.id);
+    setSticker({ device_id: wo.device_id, label: wo.model_label, date: new Date().toISOString().slice(0, 10), outcome, fault: wo.reported_fault, steps: visited.length, wo: String(j.id).slice(0, 8) });
   }
 
   const steps = result?.tree?.steps ?? [];
@@ -135,6 +150,7 @@ export function TryFlow() {
             <a className="self-center text-xs text-accent underline underline-offset-2" href="/samples/everflo-nameplate-synthetic.jpg" download>No machine nearby? Download a sample nameplate photo</a>
             <button className="btn-ghost" onClick={() => setShowSim((v) => !v)}>{showSim ? "Hide" : "Open"} Training Mode simulator</button>
           </div>
+          {fromSticker && !sample && deviceId === fromSticker && <p role="status" className="rounded-xl border border-ok p-2 text-sm">Machine known from its sticker; no need to identify it again.</p>}
           {photoNote && <p role="status" className="rounded-xl border border-caution p-2 text-sm">{photoNote}</p>}
           {showSim && <TrainingPanel onPick={(devId, indId) => { setDeviceId(devId); setIndicators([indId]); const d = devices.find((x) => x.id === devId); if (d) setFields({ manufacturer: d.manufacturer, model: d.model, ref: "", visible_text: "" }); }} />}
           {matches.length > 0 && (
@@ -149,7 +165,7 @@ export function TryFlow() {
               {!deviceId && <p className="text-sm text-caution">Low confidence. Pick a match above, or continue as unknown: Sieve will show generic checks only and will not invent part numbers.</p>}
             </div>
           )}
-          {matches.length === 0 && fields.manufacturer && !busy && result === null && <p className="text-sm text-fg-muted">Press Identify.</p>}
+          {matches.length === 0 && !deviceId && fields.manufacturer && !busy && result === null && <p className="text-sm text-fg-muted">Press Identify.</p>}
         </section>
 
         {/* Screen 2: What do you see */}
@@ -245,6 +261,7 @@ export function TryFlow() {
                 </div>
                 <button className="btn-primary mt-3" onClick={save}>Save to fleet log</button>
                 {saved && <p className="mt-2 text-sm text-ok">Saved. Work order {saved.slice(0, 8)}. <a className="text-accent underline underline-offset-2" href="/fleet">Open the fleet view</a>.</p>}
+                {sticker && <MachineSticker record={sticker} />}
               </div>
             )}
           </section>

@@ -65,6 +65,11 @@ export const GLOSSARY = {
     plain: "The repair record: what was wrong, what was done, which parts, whether it is fixed. It goes into the hospital's equipment log.",
     technical: "Schema aligned to WHO CMMS core fields (asset, model, serial, fault, actions, parts, outcome, downtime, technician). Exportable as CSV and PDF; feeds the fleet dashboard.",
   },
+  sticker: {
+    term: "Machine sticker",
+    plain: "After a repair, print a QR sticker and put it on the machine. The next technician scans it to see the last repair and start the next one on the right manual.",
+    technical: "The QR encodes the work-order summary in its own link (device, date, outcome, fault, steps, work-order id), so a scan opens the record even when the hospital server or the internet is down. When the API is reachable the page also lists other repairs of that model from the fleet log.",
+  },
   byo: {
     term: "Bring your own manual",
     plain: "If we do not have the manual for your machine, upload it. It is indexed in your own workspace and nobody else sees it.",

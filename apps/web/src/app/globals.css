@@ -68,3 +68,10 @@ body { font-feature-settings: "tnum" 1, "cv11" 1; }
 .eyebrow { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--fg-muted); }
 
 .inp { width: 100%; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-elev); padding: 10px 12px; color: var(--fg); }
+
+/* Printing from the work order prints only the machine sticker. */
+@media print {
+  body * { visibility: hidden; }
+  .sticker, .sticker * { visibility: visible; }
+  .sticker { position: absolute; left: 0; top: 0; border-style: solid; }
+}
