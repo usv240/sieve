@@ -4,7 +4,7 @@
 
 **Photographs a dead oxygen concentrator, finds the manual page, walks the fix with safety stops, checks recalls, and files the work order. Offline-capable.**
 
-Built for the Nebius x NVIDIA Global AI Hackathon on **Nebius Token Factory** with **NVIDIA Nemotron 3 Nano, Super and Ultra**. Apache-2.0.
+Built for the Nebius x NVIDIA Global AI Hackathon on **Nebius Token Factory** with **NVIDIA Nemotron 3 Nano, Super, Ultra, 3.5 Lightning and 3.5 Super VL**. Apache-2.0.
 
 > Benchmark A: 69.7 percent on the closest prior work's own dataset, versus 62.0 percent for the obvious baseline and 17.0 percent zero-shot, two independent judges agreeing (kappa 0.94), with every Sieve answer cited and verified.
 >
