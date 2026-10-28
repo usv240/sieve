@@ -101,6 +101,8 @@ INGENZI Tech (arXiv 2601.16967) built a text chatbot over one ultrasound manual 
 
 ## Documents
 
+- [EVIDENCE.md](EVIDENCE.md): every published number, its raw output file, and the command that reruns it.
+
 `docs/IDEA.md`, `docs/PLAN.md`, `docs/TECHNICAL-DESIGN.md`, `docs/UX-DESIGN.md`, `FEEDBACK.md`.
 
 ## Licence and data
