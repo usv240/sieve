@@ -1,6 +1,6 @@
 import { cacheLife } from "next/cache";
 import { API_BASE } from "@/lib/api";
-import { EVAL_HELP } from "@/lib/eval-help";
+import { EVAL_HELP, featured } from "@/lib/eval-help";
 import { Info } from "@/components/info";
 
 type Evals = { status?: string; generated_at?: string; summary?: Record<string, { value: number | string | null; unit?: string; label: string; note?: string }> };
@@ -22,7 +22,7 @@ export async function EvalTiles() {
   if (!e.summary) return <p className="card text-fg-muted">No evaluation run has been published yet. Run <code>make eval</code> to produce one. Status: {e.status}</p>;
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {Object.entries(e.summary).map(([k, v]) => (
+      {featured(e.summary).map(([k, v]) => (
         <div key={k} className="card">
           <p className="text-3xl font-semibold tracking-tight">{v.value === null ? "n/a" : v.value}{v.unit ?? ""}</p>
           <p className="mt-1 text-sm font-medium">{v.label} <Info term={v.label} text={EVAL_HELP[k] ?? v.note ?? ""} /></p>

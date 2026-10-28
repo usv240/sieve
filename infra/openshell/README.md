@@ -35,4 +35,4 @@ curl -fsSL https://www.nvidia.com/nemoclaw.sh | NEMOCLAW_AGENT=hermes NEMOCLAW_S
 
 ## Status on 2026-10-14
 
-OpenShell needs Linux, macOS or WSL2 with Docker. This machine has WSL2 distributions but Docker Desktop was not running, so the sandboxed run has not been executed here yet. The policy file is complete and the agent it wraps (the Hermes plus Sieve MCP setup in `infra/hermes`) is verified outside the sandbox. We list this honestly as prepared, not demonstrated, until a run is recorded.
+Demonstrated: the full Sieve pipeline (Nemotron 3 Super, Ultra audit, Tavily) ran inside the sandbox with brokered credentials. The transcript is in `DEMONSTRATED.md`.

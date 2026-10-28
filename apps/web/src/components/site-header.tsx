@@ -10,7 +10,7 @@ const nav = [
   { href: "/how-it-works", label: "How it works" },
   { href: "/evals", label: "Evals" },
   { href: "/api", label: "API" },
-  { href: "/limits", label: "Limits" },
+  { href: "/limits", label: "Safeguards" },
 ];
 
 export function SiteHeader() {

@@ -88,6 +88,10 @@ export default function Landing() {
           <table className="w-full text-sm">
             <thead className="text-left text-fg-muted"><tr><th className="p-4">Number</th><th className="p-4">What it means</th><th className="p-4">Source</th></tr></thead>
             <tbody className="[&_td]:border-t [&_td]:border-border [&_td]:p-4 [&_td]:align-top">
+              <Row n="55%" t="lower odds that a hospital device is working when its service manual is missing (adjusted odds ratio 0.45, Amhara region public hospitals)." s="Sewagegn et al., Discover Health Systems 2025" u="https://link.springer.com/article/10.1007/s44250-025-00312-9" />
+              <Row n="2 of 57" t="oxygen concentrators tested in Nigerian secondary hospitals were fit for use; staff named missing maintenance knowledge and technician training among the causes." s="Bakare et al., International Health 2020" u="https://pmc.ncbi.nlm.nih.gov/articles/PMC6964224/" />
+              <Row n="2x" t="as many broken devices in rural Nepali hospitals without a biomedical technician as in those with one (14 versus 7 percent)." s="Thapa et al., Human Resources for Health 2022" u="https://pmc.ncbi.nlm.nih.gov/articles/PMC8895523/" />
+              <Row n="35%" t="lower risk of death for children with pneumonia once hospitals had working oxygen systems." s="Duke et al., Lancet 2008" u="https://pubmed.ncbi.nlm.nih.gov/18708248/" />
               <Row n="38.3%" t="of 112,040 hospital devices across 16 low- and middle-income countries were out of service." s="Perry and Malkin, 2011" u="https://pubmed.ncbi.nlm.nih.gov/21597999/" />
               <Row n="72%" t="of 2,849 repair requests in 60 hospitals were resolved without imported parts; 66 percent needed only basic skills." s="Malkin and Keane, 2010" u="https://link.springer.com/article/10.1007/s11517-010-0630-1" />
               <Row n="68%" t="of sub-Saharan countries have at most one biomedical engineer per million people." s="WHO HRMD, 2017" u="https://link.springer.com/article/10.1007/s10439-017-1897-2" />
@@ -153,9 +157,9 @@ export default function Landing() {
       <StackStrip />
 
       <section aria-labelledby="limits" className="space-y-3">
-        <h2 id="limits" className="text-2xl font-semibold">Limits, honestly</h2>
-        <p className="max-w-2xl text-fg-muted">We publish limits as measurements, not promises: offline accuracy versus cloud, photo identification on worn nameplates, and the device classes covered today (oxygen concentrators first; suction pumps and pulse oximeters indexed). Sieve is equipment-maintenance guidance for trained staff, not medical advice, and it is not a replacement for an engineer.</p>
-        <Link href="/limits" className="btn-ghost">Read the limits page</Link>
+        <h2 id="limits" className="text-2xl font-semibold">Scope and safeguards</h2>
+        <p className="max-w-2xl text-fg-muted">Equipment-maintenance guidance for trained staff, grounded in the manufacturer&apos;s own manual. Oxygen concentrators first, with suction pumps and pulse oximeters indexed. Hazards stop it before any model replies, and live mains or capacitor work is escalated to an engineer.</p>
+        <Link href="/limits" className="btn-ghost">Scope and safeguards</Link>
       </section>
     </div>
   );

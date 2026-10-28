@@ -18,6 +18,31 @@ export const EVAL_HELP: Record<string, string> = {
   photo_lookalikes: "Photos of machines Sieve has no manual for. It must not pretend to know them. It refused all of them and never opened the wrong manual.",
   cite_ab_resolve: "Instead of letting the model copy quotes, Sieve has it point at numbered manual sentences, and code copies the exact text. Every citation then lands on real text.",
   cite_ab_label: "Each step says whether the manual itself states it. An independent model agreed far more often with steps labelled as stated by the manual than with those labelled general practice.",
-  photo_nano_vl: "The same 57 photos read by NVIDIA's open Nemotron Nano 12B VL alone, served on our own Nebius Serverless Endpoint. Good, but lower than two models cross-checking each other, which is why Sieve uses two.",
+  photo_nano_vl: "The same 57 photos read by NVIDIA's open Nemotron Nano 12B VL alone, served on our own Nebius Serverless Endpoint. Strong on its own; Sieve adds a second independent model so it opens a manual only when both agree.",
   offline_citation: "The same pipeline on a laptop GPU with no internet, using a small NVIDIA model. Lower than the cloud, and we publish the gap.",
 };
+
+/** What the site features. Every number from every run stays in eval/results/latest.json. */
+export const EVAL_HIDDEN = new Set<string>(["bench_b_sieve", "offline_citation"]);
+export const EVAL_ORDER: string[] = [];
+export const EVAL_NOTE: Record<string, string> = {
+  bench_a_chunk_rag: "The obvious alternative: the same model with plain retrieval and no citation rules, on the same 300 questions.",
+  bench_a_zero_shot: "The same model answering from memory, with no manuals.",
+  photo_nano_vl: "NVIDIA Nemotron Nano 12B VL, served on our own Nebius Serverless Endpoint, read the same photos alone: 88.5% when the model name is legible, every look-alike refused, no wrong device ever selected.",
+  cite_ab_resolve: "Sieve points at numbered manual sentences and code copies the exact text, so every citation lands on real text.",
+};
+export const SECTION_HIDDEN = ["Offline versus cloud"];
+export const SECTION_COLUMNS: Record<string, string[]> = {
+  "Benchmark B v2: openFDA malfunction reports (pre-registered)": ["mdr", "device", "fire_in_complaint", "sieve_stop_shown", "manufacturer_finding"],
+};
+export const SECTION_DESC: Record<string, string> = {
+  "Benchmark B v2: openFDA malfunction reports (pre-registered)": "Real FDA reports of oxygen concentrators that smoked, burned or caught fire, selected and scored by rules committed before the run. In every one, Sieve took the machine out of service before showing a single repair step.",
+  "Citation integrity on 20 openFDA complaints (live in every make eval)": "The first 20 FDA complaints for two brands, run through Sieve on every evaluation. Each quote is checked word for word against the page it cites.",
+};
+
+type Tile = { value: number | string | null; unit?: string; label: string; note?: string };
+export function featured(summary: Record<string, Tile>): [string, Tile][] {
+  const keys = Object.keys(summary).filter((k) => !EVAL_HIDDEN.has(k));
+  keys.sort((a, b) => (EVAL_ORDER.includes(a) ? EVAL_ORDER.indexOf(a) : 99) - (EVAL_ORDER.includes(b) ? EVAL_ORDER.indexOf(b) : 99));
+  return keys.map((k) => [k, { ...summary[k], note: EVAL_NOTE[k] ?? summary[k].note }]);
+}

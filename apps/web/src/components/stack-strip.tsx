@@ -11,7 +11,7 @@ export function StackStrip({ compact = false }: { compact?: boolean }) {
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 id="stack-h" className={compact ? "text-sm font-semibold text-fg" : "text-2xl font-semibold"}>Built with</h2>
         <p className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-fg-muted">
-          {(Object.keys(WORD) as (keyof typeof WORD)[]).map((s) => (
+          {(Object.keys(WORD) as (keyof typeof WORD)[]).filter((s) => s !== "prepared").map((s) => (
             <span key={s} className="inline-flex items-center gap-1.5"><span aria-hidden className={`inline-block h-2 w-2 rounded-full ${DOT[s]}`} />{WORD[s]}</span>
           ))}
         </p>

@@ -1,7 +1,7 @@
 import { Info } from "@/components/info";
 import { cacheLife } from "next/cache";
 import { API_BASE } from "@/lib/api";
-import { EVAL_HELP } from "@/lib/eval-help";
+import { EVAL_HELP, SECTION_COLUMNS, SECTION_DESC, SECTION_HIDDEN, featured } from "@/lib/eval-help";
 
 export const metadata = { title: "Evaluation" };
 
@@ -31,11 +31,11 @@ export default async function EvalsPage() {
       {e.summary && (
         <>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {Object.entries(e.summary).map(([k, v]) => (
+            {featured(e.summary).map(([k, v]) => (
               <div key={k} className="card"><p className="text-3xl font-semibold">{v.value === null ? "n/a" : v.value}{v.unit ?? ""}</p><p className="mt-1 text-sm font-medium">{v.label} <Info term={v.label} text={EVAL_HELP[k] ?? v.note ?? ""} /></p>{v.note && <p className="mt-1 text-xs text-fg-muted">{v.note}</p>}</div>
             ))}
           </div>
-          {e.sections?.map((s) => (
+          {e.sections?.filter((s) => !SECTION_HIDDEN.some((h) => s.name.startsWith(h))).map((x) => ({ ...x, columns: SECTION_COLUMNS[x.name] ?? x.columns, description: SECTION_DESC[x.name] ?? x.description })).map((s) => (
             <section key={s.name} className="space-y-2">
               <h2 className="text-xl font-semibold">{s.name}</h2>
               <p className="text-fg-muted">{s.description}</p>

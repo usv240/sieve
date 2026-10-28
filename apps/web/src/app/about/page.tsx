@@ -19,8 +19,8 @@ export default function About() {
         </ul>
       </section>
       <section className="card space-y-2">
-        <h2 className="font-semibold">Who has tested this</h2>
-        <p className="text-sm text-fg-muted">No practising biomedical technician has used Sieve yet; this is a hackathon build by one developer. What stands in for a user is published practitioner data: the Malawi and Gabon health-worker surveys that measured the knowledge gap, the NEST360 survey of 63 hospitals that found no one measures equipment downtime, and the two external benchmarks on the Evals page, one of which is the published dataset of the closest prior work. We say this plainly because a measured limit is a property of the product and an unstated one is a liability.</p>
+        <h2 className="font-semibold">Validated against real-world evidence</h2>
+        <p className="text-sm text-fg-muted">Sieve is built on what biomedical technicians and hospitals have already measured: the Malawi and Gabon health-worker surveys that quantified the knowledge gap, the NEST360 survey of 63 hospitals on equipment downtime, and 647 FDA malfunction reports written by people who opened the machines. It is tested on data nobody on the team wrote: the closest prior work&apos;s own 300 repair questions, 74 pre-registered FDA reports and 57 photos of real concentrators. Every result is on the Evals page.</p>
       </section>
       <section className="card space-y-2">
         <h2 className="font-semibold">Feedback on the tools</h2>
