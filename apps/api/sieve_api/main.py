@@ -151,6 +151,7 @@ class AnalyzeBody(BaseModel):
     answers: dict[str, str] = {}
     free_text: str = ""
     audit: bool = True
+    doc_id: str | None = None  # answer from this document only, e.g. a manual from /v1/upload-manual
 
 
 @app.get("/", include_in_schema=False)
@@ -206,8 +207,10 @@ def questions(device_id: str | None = None, indicator_ids: str = "") -> list[dic
 @app.post("/v1/analyze")
 def analyze(body: AnalyzeBody) -> dict[str, Any]:
     t0 = time.perf_counter()
+    if body.doc_id and not STORE.doc_meta(body.doc_id):
+        raise HTTPException(404, "That document is not indexed here. Upload it again with /v1/upload-manual; hosted uploads last until the server restarts.")
     try:
-        res = PIPE.analyze(device_id=body.device_id, indicator_ids=body.indicator_ids, answers=body.answers, free_text=body.free_text, audit=body.audit)
+        res = PIPE.analyze(device_id=body.device_id, indicator_ids=body.indicator_ids, answers=body.answers, free_text=body.free_text, audit=body.audit, doc_id=body.doc_id)
     except Exception as e:
         served = REPLAYS.serve(body.model_dump(), f"{type(e).__name__}")
         if served:

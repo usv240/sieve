@@ -26,8 +26,9 @@ class Searcher:
     def __init__(self, store: PageStore):
         self.store = store
 
-    def search(self, query: str, *, device_id: str | None = None, device_class: str | None = None, k: int = 8) -> list[Hit]:
-        doc_ids = self.store.doc_ids_for(device_id, device_class) if (device_id or device_class) else None
+    def search(self, query: str, *, device_id: str | None = None, device_class: str | None = None, k: int = 8, doc_id: str | None = None) -> list[Hit]:
+        # doc_id: answer from one document only, such as a manual the user just uploaded.
+        doc_ids = [doc_id] if doc_id else (self.store.doc_ids_for(device_id, device_class) if (device_id or device_class) else None)
         if device_id and not doc_ids:
             # Known device but no manual indexed: fall back to the class, then to everything.
             doc_ids = self.store.doc_ids_for(None, device_class) or None
@@ -36,13 +37,13 @@ class Searcher:
         rows = self._fuse(lex, vec) if vec else lex
         hits: list[Hit] = []
         seen: set[tuple[str, int]] = set()
-        for doc_id, page, score in rows:
-            if (doc_id, page) in seen:
+        for did, page, _score in rows:
+            if (did, page) in seen:
                 continue
-            seen.add((doc_id, page))
-            meta = self.store.doc_meta(doc_id) or {}
-            text = self.store.page_text(doc_id, page) or ""
-            hits.append(Hit(doc_id, meta.get("title", doc_id), page, score, text, meta.get("source_url", ""), meta.get("licence", "")))
+            seen.add((did, page))
+            meta = self.store.doc_meta(did) or {}
+            text = self.store.page_text(did, page) or ""
+            hits.append(Hit(did, meta.get("title", did), page, _score, text, meta.get("source_url", ""), meta.get("licence", "")))
             if len(hits) >= k:
                 break
         return hits

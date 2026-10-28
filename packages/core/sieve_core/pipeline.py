@@ -97,11 +97,15 @@ class SievePipeline:
         free_text: str = "",
         trace_id: str | None = None,
         audit: bool = True,
+        doc_id: str | None = None,
     ) -> AnalyzeResult:
         trace_id = trace_id or str(uuid.uuid4())
         notes: list[str] = []
         dev = self.registry.get(device_id) if device_id else None
         label = f"{dev['manufacturer']} {dev['model']}" if dev else "Unknown device"
+        if doc_id and not dev:
+            # Bring your own manual: a device we do not cover, answered from the uploaded document alone.
+            label = (self.store.doc_meta(doc_id) or {}).get("title", doc_id)
         device_class = dev["device_class"] if dev else "oxygen_concentrator"
 
         # input gate
@@ -119,12 +123,12 @@ class SievePipeline:
         q_parts = states + meanings + [f"{k}: {v}" for k, v in answers.items()] + ([free_text] if free_text else [])
         query = " ".join(q_parts) or "troubleshooting alarms indicators low oxygen purity"
         manual_fetch: dict[str, Any] = {}
-        if dev and not self.store.doc_ids_for(dev["id"], None) and os.environ.get("TAVILY_API_KEY"):
+        if dev and not doc_id and not self.store.doc_ids_for(dev["id"], None) and os.environ.get("TAVILY_API_KEY"):
             # Closed loop: no manual indexed for a known device -> Tavily finds and extracts one -> ingest -> retrieve.
             manual_fetch = find_and_ingest_manual(self.store, manufacturer=dev["manufacturer"], model=dev["model"], device_id=dev["id"], device_class=device_class, ledger=self.client.ledger if self.client else None, trace_id=trace_id)
             if manual_fetch.get("ingested"):
                 notes.append(f"no manual was indexed; Tavily found and ingested {len(manual_fetch['ingested'])} web-sourced document(s)")
-        hits = self.search.search(query, device_id=device_id, device_class=device_class, k=8)
+        hits = self.search.search(query, device_id=device_id, device_class=device_class, k=8, doc_id=doc_id)
         retrieved = [{"doc": h.doc_id, "title": h.title, "page": h.page, "score": round(h.score, 2), "source_url": h.source_url} for h in hits]
         if not hits:
             notes.append("no manual pages retrieved; generic flowchart only")
@@ -175,8 +179,10 @@ class SievePipeline:
 
         # audit with the whole manual in context
         audit_report = None
-        if audit and dev and dev.get("manuals"):
-            audit_report = self._audit(tree, dev["manuals"][0], trace_id)
+        # Ultra audits against the uploaded manual when there is one, otherwise the device's own manual.
+        audit_doc = doc_id or ((dev.get("manuals") or [None])[0] if dev else None)
+        if audit and audit_doc:
+            audit_report = self._audit(tree, audit_doc, trace_id)
             tree = self._apply_audit(tree, audit_report)
 
         res = AnalyzeResult(trace_id, device_id, label, tree, audit_report, in_hits + out_hits, cit, retrieved, notes=notes)

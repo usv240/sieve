@@ -21,7 +21,7 @@ export default function DataPage() {
       </section>
       <section className="card space-y-3">
         <h2 className="font-semibold">Bring your own manual</h2>
-        <p className="text-sm text-fg-muted">Upload a PDF for a device we do not cover. It is indexed into your workspace through the same pipeline, tagged to the device you choose, and cited from the very next analysis. Workspace data is never merged into the shared index.</p>
+        <p className="text-sm text-fg-muted">Upload a PDF service manual for a device we do not cover, then ask it about a fault. Sieve answers from your document alone: every step points at one of its pages, the same safety rules apply, and Nemotron 3 Ultra audits the plan against your whole manual. On the hosted demo an upload lasts until the server restarts; running Sieve yourself keeps it.</p>
         <UploadManual />
       </section>
     </div>
