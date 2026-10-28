@@ -24,7 +24,7 @@ Working scaffold with a real index and a real evaluation. Model-dependent stages
 
 | Area | State |
 |---|---|
-| Corpus | 168 manuals, 9,498 pages indexed locally (oxygen concentrators 76, pulse oximeters 68, suction pumps 24). Manuals are not redistributed; `make fetch-corpus` rebuilds the index from `data/manifest.yaml`. |
+| Corpus | 167 manuals, 9,462 pages indexed locally (oxygen concentrators 75, pulse oximeters 68, suction pumps 24). Manuals are not redistributed; `make fetch-corpus` rebuilds the index from `data/manifest.yaml`. |
 | Registry | Philips EverFlo and DeVilbiss 525 indicator tables, every entry cited to a verified manual page. Six more concentrator models identified and retrievable. |
 | Safety rules | 8 deterministic rules (oil near oxygen, open while plugged in, purity-alarm bypass, patient first, live mains, capacitors, swollen battery, no-manual-no-guess). |
 | Pipeline | Identify, intake, device-scoped retrieval, Nemotron 3 Super synthesis with verbatim citations, deterministic citation verifier, rules gate, Nemotron 3 Ultra whole-manual audit, openFDA recalls, work order. |
@@ -61,7 +61,7 @@ Every call is written to a ledger (tier, model, tokens, USD, latency) and shown 
 - **Long context as a feature, not a workaround.** The weekly fleet brief sends 140,000 tokens (the whole fleet log, 647 FDA reports and 34 recalls) to Nemotron 3.5 Lightning in one call, at about one cent.
 - **Evaluation at a scale we could afford.** Benchmark A graded 300 questions across three systems with two judges for $0.65. Every benchmark in this repo was rerun several times during development because each run cost cents.
 - **A vision model appeared mid-hackathon and we switched in a day.** Nemotron 3.5 Super VL arrived in the catalog; adopting it was a model id and one request flag, and it became our first photo reader.
-- **Embeddings from the same account.** Qwen3-Embedding-8B on Token Factory embedded the 2,994 oxygen concentrator pages in 352 seconds; full-text search covers all 9,498, so retrieval, generation and audit share one bill and one ledger.
+- **Embeddings from the same account.** Qwen3-Embedding-8B on Token Factory embedded the 2,994 oxygen concentrator pages in 352 seconds; full-text search covers all 9,462, so retrieval, generation and audit share one bill and one ledger.
 
 ## Screenshots
 

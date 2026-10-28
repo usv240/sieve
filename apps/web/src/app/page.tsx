@@ -105,7 +105,7 @@ export default function Landing() {
         <div className="grid gap-3 md:grid-cols-5">
           <Step n={1} title="Look" plain="Reads the nameplate and the lights from your photo." technical="NVIDIA Nemotron 3.5 Super VL reads the nameplate fields and a second, different model reads them again; the registry picks a device on its own only when both agree." />
           <Step n={2} title="Ask" plain="Asks up to three questions that change the answer." technical="Nemotron 3 Nano, thinking off, picks from a finite question bank." />
-          <Step n={3} title="Find" plain="Finds the right pages of the real service manual." technical="Device-scoped hybrid retrieval over 9,498 indexed pages: SQLite FTS5 BM25 fused with Qwen3-Embedding-8B vectors from Token Factory for the 2,994 concentrator pages." />
+          <Step n={3} title="Find" plain="Finds the right pages of the real service manual." technical="Device-scoped hybrid retrieval over 9,462 indexed pages: SQLite FTS5 BM25 fused with Qwen3-Embedding-8B vectors from Token Factory for the 2,994 concentrator pages." />
           <Step n={4} title="Check" plain="A second, larger model verifies every step against the whole manual, and a rules engine stops dangerous steps." technical="Nemotron 3 Super drafts; a deterministic verifier confirms each quote exists on the cited page; Nemotron 3 Ultra audits with the full manual in its one-million-token context; YAML rules gate input and output." />
           <Step n={5} title="Record" plain="Writes the work order into the hospital's log." technical="WHO CMMS-aligned schema; openFDA recall and MAUDE enrichment; Tavily for manuals and parts." />
         </div>
