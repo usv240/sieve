@@ -2,7 +2,8 @@
 
 /* Design tokens (OKLCH). Light is the default; .dark overrides. Severity colours are never the only signal. */
 :root {
-  --bg: oklch(97.5% 0.006 85);
+  --bg: oklch(98.3% 0.002 250);
+  --surface: oklch(95.6% 0.005 250);
   --bg-elev: oklch(100% 0 0);
   --fg: oklch(20% 0.02 250);
   --fg-muted: oklch(45% 0.02 250);
@@ -15,9 +16,10 @@
   --info: oklch(55% 0.1 240);
 }
 .dark {
-  --bg: oklch(16% 0.015 250);
+  --bg: oklch(15.5% 0.012 250);
+  --surface: oklch(19.5% 0.014 250);
   --bg-elev: oklch(21% 0.016 250);
-  --fg: oklch(95% 0.01 85);
+  --fg: oklch(95.5% 0.004 250);
   --fg-muted: oklch(72% 0.015 250);
   --border: oklch(32% 0.015 250);
   --accent: oklch(72% 0.1 200);
@@ -31,6 +33,7 @@
 @theme inline {
   --color-bg: var(--bg);
   --color-bg-elev: var(--bg-elev);
+  --color-surface: var(--surface);
   --color-fg: var(--fg);
   --color-fg-muted: var(--fg-muted);
   --color-border: var(--border);
@@ -46,7 +49,8 @@
 html { color-scheme: light; }
 html.dark { color-scheme: dark; }
 
-body { font-feature-settings: "tnum" 1, "cv11" 1; }
+body { font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif; font-feature-settings: "tnum" 1; }
+:root { --ease-out: cubic-bezier(0.23, 1, 0.32, 1); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -56,14 +60,15 @@ body { font-feature-settings: "tnum" 1, "cv11" 1; }
 /* In the base layer so a component can opt out with min-h-0 (small info buttons inside text). */
 @layer base { button, [role="button"], a.btn, input, select { min-height: 44px; } }
 
-.card { border-radius: 16px; border: 1px solid var(--border); background: var(--bg-elev); padding: 1.25rem; box-shadow: 0 1px 2px rgb(0 0 0 / 0.05); }
-.btn, .btn-primary, .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; border-radius: 0.75rem; padding: 0.625rem 1rem; font-size: 0.875rem; font-weight: 500; transition: background-color 150ms, opacity 150ms; }
+.card { border-radius: 16px; border: 1px solid var(--border); background: var(--bg-elev); padding: 1.25rem; }
+.btn, .btn-primary, .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; border-radius: 999px; padding: 0.7rem 1.25rem; font-size: 0.9375rem; font-weight: 600; transition: transform 160ms var(--ease-out), background-color 150ms ease, opacity 150ms ease; }
+.btn:active, .btn-primary:active, .btn-ghost:active { transform: scale(0.97); }
 .btn:focus-visible, .btn-primary:focus-visible, .btn-ghost:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .btn-primary { background: var(--accent); color: var(--accent-fg); }
-.btn-primary:hover { opacity: 0.9; }
+@media (hover: hover) and (pointer: fine) { .btn-primary:hover { opacity: 0.92; } }
 .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-.btn-ghost { border: 1px solid var(--border); background: var(--bg-elev); color: var(--fg); }
-.btn-ghost:hover { background: var(--bg); }
+.btn-ghost { background: var(--surface); color: var(--fg); }
+@media (hover: hover) and (pointer: fine) { .btn-ghost:hover { background: color-mix(in oklch, var(--surface) 80%, var(--fg) 8%); } }
 .quote { border-left: 4px solid var(--accent); padding-left: 0.75rem; color: var(--fg); }
 .eyebrow { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--fg-muted); }
 
@@ -75,3 +80,14 @@ body { font-feature-settings: "tnum" 1, "cv11" 1; }
   .sticker, .sticker * { visibility: visible; }
   .sticker { position: absolute; left: 0; top: 0; border-style: solid; }
 }
+
+/* Landing entrance, driven by components/reveal.tsx. Nothing is hidden unless that script runs. */
+[data-reveal="hold"] { opacity: 0; transform: translateY(18px); }
+[data-reveal="show"] { opacity: 1; transform: none; transition: opacity 520ms var(--ease-out), transform 520ms var(--ease-out); transition-delay: var(--d, 0ms); }
+/* Hero parts arrive in order on load. */
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+.rise { animation: rise 640ms var(--ease-out) both; animation-delay: var(--d, 0ms); }
+@media (prefers-reduced-motion: reduce) { .rise { animation: none; } [data-reveal] { opacity: 1 !important; transform: none !important; } }
+.lift { transition: transform 200ms var(--ease-out), background-color 150ms ease; }
+@media (hover: hover) and (pointer: fine) { .lift:hover { transform: translateY(-2px); } }
+.lift:active { transform: scale(0.985); }

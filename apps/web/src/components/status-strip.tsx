@@ -14,7 +14,7 @@ export function StatusStrip() {
   }, []);
   const dot = (on: boolean) => <span aria-hidden className={`inline-block h-2 w-2 rounded-full ${on ? "bg-ok" : "bg-caution"}`} />;
   return (
-    <div className="border-t border-border bg-bg-elev/60 text-xs text-fg-muted">
+    <div className="bg-surface text-[0.8125rem] text-fg-muted">
       <div className="mx-auto flex min-h-[3.25rem] max-w-[1100px] flex-wrap items-center gap-x-4 gap-y-1 px-4 py-1.5 sm:min-h-[1.75rem] sm:px-6">
         {!h && !err && <span>Checking live services…</span>}
         {err && <span>API offline: showing replay samples only</span>}

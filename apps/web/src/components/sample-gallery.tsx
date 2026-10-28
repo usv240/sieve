@@ -3,21 +3,22 @@ import { SAMPLES } from "@/lib/samples";
 
 export function SampleGallery() {
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {SAMPLES.map((s) => (
-        <div key={s.id} className="card group flex flex-col gap-2 hover:border-accent">
-          <Link href={`/try?sample=${s.id}`} className="flex flex-col gap-2">
+        <li key={s.id} className="lift flex flex-col rounded-[20px] bg-surface">
+          <Link href={`/try?sample=${s.id}`} className="group flex flex-1 flex-col gap-2 p-5">
             <span className="flex items-center gap-3">
-              <span aria-hidden className={`inline-block h-3 w-3 rounded-full ${s.dot}`} />
-              <span className="font-semibold group-hover:text-accent">{s.title}</span>
+              <span aria-hidden className={`inline-block h-3 w-3 shrink-0 rounded-full ${s.dot}`} />
+              <span className="text-lg font-semibold leading-snug group-hover:text-accent">{s.title}</span>
             </span>
-            <span className="text-sm text-fg-muted">{s.blurb}</span>
-            <span className="text-xs text-fg-muted">{s.kind}</span>
+            <span className="text-base leading-relaxed">{s.blurb}</span>
+            <span className="text-[0.875rem] leading-relaxed text-fg-muted">{s.kind}</span>
+            <span className="mt-auto pt-2 text-[0.9375rem] font-semibold text-accent">Run this sample</span>
           </Link>
-          <a className="mt-auto inline-flex w-fit items-center gap-1 text-xs text-accent underline underline-offset-2" download={`${s.id}.json`}
-            href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(s, null, 2))}`}>Download this preset as JSON</a>
-        </div>
+          <a className="px-5 pb-4 text-[0.875rem] text-fg-muted underline underline-offset-2 hover:text-fg" download={`${s.id}.json`}
+            href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(s, null, 2))}`}>Download as JSON</a>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

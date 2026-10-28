@@ -23,3 +23,7 @@ Thumbs.db
 
 .vercel
 .env*
+
+# design tooling
+apps/web/.taste-skill/
+apps/web/assets/
