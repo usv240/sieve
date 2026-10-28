@@ -22,6 +22,12 @@ A technician photographs the nameplate and alarm light. Sieve identifies the mod
 ## How we built it
 Nebius Token Factory serves every language-model call: Nemotron 3 Nano and 3.5 Lightning for extraction, intake and the 140,000-token fleet brief; Nemotron 3 Super for synthesis; Nemotron 3 Ultra with the whole manual in a one-million-token context as auditor. Hybrid retrieval over 9,498 indexed pages: full-text search everywhere, fused with Qwen3-Embedding-8B vectors from Token Factory for the 2,994 oxygen concentrator pages. NVIDIA Nemotron 3.5 Super VL on Token Factory reads the nameplate, and a second, different model reads it again; Sieve opens a manual on its own only when both reads agree, because we caught Nemotron VL inventing a 525DS rating on a real 1025DS label. Offline, NVIDIA Nemotron Nano 12B v2 VL reads photos on a laptop RTX 4070. Tavily search, extract and map. A deterministic YAML rules engine and an exact-span citation verifier decide what reaches the technician. Sieve is also an MCP server, runs inside Hermes Agent, and was executed inside an NVIDIA OpenShell sandbox with brokered credentials; a Hermes agent also runs in an NVIDIA NemoClaw sandbox on Nemotron 3 Super through Token Factory. FastAPI, Next.js, SQLite FTS5.
 
+## How Sieve uses Tavily (Best Use of Tavily)
+- **Closes the gap when there is no manual, in the same request.** When a known device has no manual in the index, Tavily search finds one on manual sites, Tavily extract pulls its text, Sieve indexes it and retrieves from it before writing the plan. The technician gets cited steps instead of "not covered".
+- **Finds the part for the cited fault.** After the plan names a failed part, Tavily search over supplier sites returns where to buy it, scoped to that device.
+- **Built the corpus and the benchmark.** Tavily extract read the manual library's category pages to discover 25 more manuals, and Tavily image search found the 57 real-world photos for the photo benchmark, annotated by eye before any run.
+- Every Tavily call is logged in the same ledger as the model calls and shown in the Trace panel.
+
 ## Who has tested this
 We could not borrow a hospital's broken concentrator, so Sieve was tested on what other people recorded instead: 57 photos of real concentrators from resale listings, 74 FDA malfunction reports, and 300 questions from the closest prior work's own dataset. No technician has used Sieve yet; the next step is a pilot with a district hospital's biomedical department.
 
