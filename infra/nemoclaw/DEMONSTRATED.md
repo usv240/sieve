@@ -46,4 +46,4 @@ nemohermes sieve-nemohermes status
 openshell sandbox exec -n sieve-nemohermes -- hermes -z "your question"
 ```
 
-Note: the managed gateway listens on port 8080, which is also the default port of Sieve's offline llama.cpp server. Stop it with `systemctl --user stop nemoclaw-openshell-gateway` before starting offline mode, or start llama.cpp on another port.
+Note: the managed gateway listens on port 8080, which is also the default port of Sieve's offline llama.cpp server. Sieve's offline mode therefore uses port 8090.

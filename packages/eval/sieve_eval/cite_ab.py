@@ -2,7 +2,7 @@
 
 Integrity (does the citation resolve to text on its page) is deterministic. Support (does the cited sentence back the
 step it is attached to) is judged blind by Nemotron 3 Super. Run:
-  python -m sieve_eval.cite_ab --out eval/results/cite_ab.json [--offline-url http://127.0.0.1:8080/v1]
+  python -m sieve_eval.cite_ab --out eval/results/cite_ab.json [--offline-url http://127.0.0.1:8090/v1]
 """
 
 from __future__ import annotations
