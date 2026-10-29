@@ -5,6 +5,9 @@ Track: Physical AI. Bonus: Best Use of Tavily. (Antidote, our other entry, is in
 ## Tagline (one line, chain of verbs)
 Photographs a dead oxygen concentrator, finds the manual page, walks the fix with safety stops, checks recalls, files the work order. Offline-capable, open NVIDIA Nemotron models on Nebius Token Factory.
 
+## The result, in time and money
+Four oxygen concentrators at Chintheche Health Center in Malawi sat broken for four years. A repair team with the right knowledge had all four running again in a few hours (OpenO2), instead of $2,000 to $6,400 for replacements. Sieve puts that knowledge in every technician's phone: a repair plan from the manufacturer's own service manual, every step cited to its page and audited by Nemotron 3 Ultra, in under a minute for about 5 to 7 US cents.
+
 ## Judge it in two minutes (no sign-up, no key)
 - **Technological implementation:** run the EverFlo yellow-light case live (https://sieve-kappa.vercel.app/try?sample=everflo-yellow). In under a minute Nemotron 3 Super writes the plan, every step points at a numbered manual sentence that a verifier checks on its page, Nemotron 3 Ultra audits the plan against the whole manual, and the Trace panel lists every call with tokens, cost and seconds.
 - **Design:** on the landing page (https://sieve-kappa.vercel.app), pick what the front panel shows and watch the manual's meaning, the first check and its quoted page change. Then follow it from photo to work order to a QR sticker for the machine.

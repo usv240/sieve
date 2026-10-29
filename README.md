@@ -6,9 +6,9 @@
 
 Built for the Nebius x NVIDIA Global AI Hackathon on **Nebius Token Factory** with **NVIDIA Nemotron 3 Nano, Super, Ultra, 3.5 Lightning and 3.5 Super VL**. Apache-2.0.
 
-> Benchmark A: 69.7 percent on the closest prior work's own dataset, versus 62.0 percent for the obvious baseline and 17.0 percent zero-shot, two independent judges agreeing (kappa 0.94), with every Sieve answer cited and verified.
+> **Four years broken. A few hours to fix.** At Chintheche Health Center in Malawi, four oxygen concentrators sat broken for four years; a repair team had all four running again in a few hours (OpenO2). Replacing them would have cost $2,000 to $6,400 before shipping, at UNICEF's $500 to $1,600 per concentrator ex-works. Sieve gives every technician that repair knowledge: a cited, audited repair plan from the manufacturer's own manual in under a minute, for about 5 to 7 US cents of model calls.
 >
-> At Chintheche Health Center in Malawi, four oxygen concentrators sat broken for four years; a repair team had all four running again in a few hours (OpenO2). Replacing them would have cost $2,000 to $6,400 before shipping, at UNICEF's $500 to $1,600 per concentrator ex-works. Sieve is built to make that repair the default.
+> Benchmark A: 69.7 percent on the closest prior work's own dataset, versus 62.0 percent for the obvious baseline and 17.0 percent zero-shot, two independent judges agreeing (kappa 0.94), with every Sieve answer cited and verified.
 >
 > 72 percent of broken hospital equipment in low-income countries was fixed without any imported parts (Malkin and Keane, 2010). Two-thirds of sub-Saharan countries have at most one biomedical engineer per million people (WHO, 2017). The gap is knowledge. Sieve puts that knowledge, the manufacturer's own service manual, in the technician's phone.
 

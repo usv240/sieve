@@ -40,7 +40,7 @@ export default function Landing() {
           <p className="rise mt-8 max-w-xl text-base leading-relaxed text-fg-muted" style={d(260)}>
             At Chintheche Health Center in Malawi, four concentrators sat broken for four years. A repair team had all four running again in a few hours{" "}
             (<a className="text-accent underline underline-offset-2" href="https://www.openo2.org/concentrator-graveyard" target="_blank" rel="noreferrer">OpenO2</a>). Replacing them would have cost $2,000 to $6,400 before shipping{" "}
-            (<a className="text-accent underline underline-offset-2" href="https://www.unicef.org/supply/media/2916/file/_Oxygen-Concentrator-TPP-v1.pdf" target="_blank" rel="noreferrer">UNICEF</a>).
+            (<a className="text-accent underline underline-offset-2" href="https://www.unicef.org/supply/media/2916/file/_Oxygen-Concentrator-TPP-v1.pdf" target="_blank" rel="noreferrer">UNICEF</a>). Sieve gives every technician that knowledge: a cited repair plan in under a minute.
           </p>
         </div>
 
