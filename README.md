@@ -12,6 +12,18 @@ Built for the Nebius x NVIDIA Global AI Hackathon on **Nebius Token Factory** wi
 >
 > 72 percent of broken hospital equipment in low-income countries was fixed without any imported parts (Malkin and Keane, 2010). Two-thirds of sub-Saharan countries have at most one biomedical engineer per million people (WHO, 2017). The gap is knowledge. Sieve puts that knowledge, the manufacturer's own service manual, in the technician's phone.
 
+## Judge it in two minutes
+
+No sign-up and no key. Each row is one click.
+
+| Criterion | Click | What you will see |
+|---|---|---|
+| Technological implementation | [Run the EverFlo yellow-light case live](https://sieve-kappa.vercel.app/try?sample=everflo-yellow) | In under a minute: Nemotron 3 Super writes the repair plan, every step points at a numbered sentence of the real service manual, a verifier checks each one on its page, Nemotron 3 Ultra audits the plan against the whole manual, and the Trace panel lists every model call with tokens, cost and seconds. |
+| Design | [The landing page](https://sieve-kappa.vercel.app) | Pick what the front panel shows; the manual's meaning, the first check and its quoted page change with it. Then the full flow from photo to work order to a QR sticker for the machine, in light and dark, on a phone or a desktop. |
+| Potential impact | [Validated against real-world evidence](#validated-against-real-world-evidence) | Six published sources: equipment without a service manual is 55 percent less likely to work, and working oxygen cut child pneumonia deaths by 35 percent. Sieve puts the manual page in the technician's hand. |
+| Quality of the idea | [Ask to oil the compressor](https://sieve-kappa.vercel.app/try?sample=hazard-oil), then [the evals](https://sieve-kappa.vercel.app/evals) | A fixed rule stops the request before any model is asked. On the closest prior work's own 300 questions Sieve scores 69.7 percent against 62.0 for the obvious baseline, and took the unit out of service on 62 of 62 real FDA fire and smoke reports. |
+| Your own data | [Bring your own manual](https://sieve-kappa.vercel.app/data) | Upload any service manual PDF and ask it a question; the answer cites your pages. To call Sieve from your own system, create an API key on [the API page](https://sieve-kappa.vercel.app/api). |
+
 ## Live
 
 Entered in the Physical AI track: an edge agent that reads a physical machine through the camera, runs on the device without internet, and directs the technician's hands one check at a time.
@@ -20,7 +32,7 @@ Web: https://sieve-kappa.vercel.app. API: https://sieve-api.vercel.app (OpenAPI 
 
 ## Status
 
-Working scaffold with a real index and a real evaluation. Model-dependent stages run once a Token Factory key is present.
+Complete end to end: pipeline, API, MCP server, web app, offline mode, published evaluation.
 
 | Area | State |
 |---|---|

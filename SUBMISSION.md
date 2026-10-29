@@ -5,6 +5,13 @@ Track: Physical AI. Bonus: Best Use of Tavily. (Antidote, our other entry, is in
 ## Tagline (one line, chain of verbs)
 Photographs a dead oxygen concentrator, finds the manual page, walks the fix with safety stops, checks recalls, files the work order. Offline-capable, open NVIDIA Nemotron models on Nebius Token Factory.
 
+## Judge it in two minutes (no sign-up, no key)
+- **Technological implementation:** run the EverFlo yellow-light case live (https://sieve-kappa.vercel.app/try?sample=everflo-yellow). In under a minute Nemotron 3 Super writes the plan, every step points at a numbered manual sentence that a verifier checks on its page, Nemotron 3 Ultra audits the plan against the whole manual, and the Trace panel lists every call with tokens, cost and seconds.
+- **Design:** on the landing page (https://sieve-kappa.vercel.app), pick what the front panel shows and watch the manual's meaning, the first check and its quoted page change. Then follow it from photo to work order to a QR sticker for the machine.
+- **Potential impact:** six published sources, under "Validated against real-world evidence" below. Equipment without a service manual is 55 percent less likely to work, and working oxygen cut child pneumonia deaths by 35 percent.
+- **Quality of the idea:** ask to oil the compressor (https://sieve-kappa.vercel.app/try?sample=hazard-oil) and a fixed rule stops it before any model is asked. The evals page (https://sieve-kappa.vercel.app/evals) shows 69.7 percent on the closest prior work's own dataset against 62.0 for the baseline.
+- **Your own data:** upload any service manual on https://sieve-kappa.vercel.app/data and ask it a question. Create your own API key on https://sieve-kappa.vercel.app/api.
+
 ## Why Physical AI
 Sieve is an edge agent for physical machines. It senses through the phone camera: NVIDIA Nemotron 3.5 Super VL reads the nameplate and the alarm lights, and a second model must agree before Sieve opens a manual. It reasons on the device when there is no internet: NVIDIA Nemotron Nano 9B v2 on a laptop GPU through llama.cpp, with Nemotron Nano 12B v2 VL verified for photos offline. It acts in the real world through the technician's hands: it chooses the next physical check, waits for what the technician sees, and branches on the answer. Smoke, oil near oxygen and live mains work stop it before any model replies. Hermes Agent is the runtime that exposes Sieve as tools and runs a scheduled FDA recall watch over the fleet. On Nebius AI Cloud, a Serverless Endpoint served NVIDIA Nemotron Nano 12B v2 VL for real-time photo reading and was benchmarked on the same 57 real photos (73.2 percent alone, against 82.9 percent for the two-model check), and a Serverless Job evaluated both entries from a clean machine.
 
