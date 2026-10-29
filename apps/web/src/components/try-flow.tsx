@@ -71,7 +71,7 @@ export function TryFlow() {
     setIndicators(sample.indicator_ids);
     setAnswers(sample.answers);
     setFreeText(sample.free_text ?? "");
-    setResult(null); setMatches([]); setDeviceId(null);
+    setResult(null); setMatches([]); setDeviceId(null); setPhotoNote(null);
   }, [sample]);
 
   // Scanned from a machine sticker: the device is already known, so skip identification.
