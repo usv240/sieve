@@ -59,7 +59,7 @@ def _deny(body: dict[str, Any], status: int, extra: dict[str, str] | None = None
 @app.middleware("http")
 async def keys_and_limits(request: Request, call_next):
     path = request.url.path
-    if path.startswith("/v1/") and request.method != "OPTIONS":
+    if (path.startswith("/v1/") or path == "/mcp") and request.method != "OPTIONS":
         key = request.headers.get("x-api-key", "")
         if key and not _key_valid(key):
             return _deny({"error": "invalid API key: create one with POST /v1/keys"}, 401)
@@ -381,3 +381,11 @@ async def telegram_webhook(request: Request) -> dict[str, Any]:
         return PIPE.analyze(device_id=device_id, indicator_ids=[], answers={}, free_text=free_text, audit=False)
 
     return {"ok": True, "did": handle_update(update, identify=identify, analyze=analyze_device, send=send)}
+
+
+# --- Hosted MCP server: any agent adds https://sieve-api.vercel.app/mcp by URL ---
+from starlette.routing import Route
+
+from sieve_api.mcp_remote import MCPEndpoint
+
+app.router.routes.append(Route("/mcp", endpoint=MCPEndpoint(), methods=["GET", "POST", "DELETE"]))

@@ -23,6 +23,7 @@ No sign-up and no key. Each row is one click.
 | Potential impact | [Validated against real-world evidence](#validated-against-real-world-evidence) | Six published sources: equipment without a service manual is 55 percent less likely to work, and working oxygen cut child pneumonia deaths by 35 percent. Sieve puts the manual page in the technician's hand. |
 | Quality of the idea | [Ask to oil the compressor](https://sieve-kappa.vercel.app/try?sample=hazard-oil), then [the evals](https://sieve-kappa.vercel.app/evals) | A fixed rule stops the request before any model is asked. On the closest prior work's own 300 questions Sieve scores 69.7 percent against 62.0 for the obvious baseline, and took the unit out of service on 62 of 62 real FDA fire and smoke reports. |
 | Your own data | [Bring your own manual](https://sieve-kappa.vercel.app/data) | Upload any service manual PDF and ask it a question; the answer cites your pages. To call Sieve from your own system, create an API key on [the API page](https://sieve-kappa.vercel.app/api). |
+| Your own agent | Add `https://sieve-api.vercel.app/mcp` as a remote MCP server in Claude, Cursor, VS Code or any MCP client | Four tools, no install: `list_devices`, `identify_device`, `diagnose` (the same cited, rule-gated, Ultra-audited plan) and `read_manual_page` to check a citation. |
 
 ## Live
 

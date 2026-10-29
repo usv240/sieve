@@ -33,7 +33,7 @@ export default function ApiPage() {
     <div className="space-y-8 pt-8">
       <div>
         <h1 className="text-[1.625rem] font-semibold sm:text-3xl">Use Sieve as a service <Info k="api_key" /></h1>
-        <p className="mt-2 max-w-2xl text-fg-muted">The same pipeline the app uses, over HTTP. OpenAPI documentation is at <a className="text-accent underline underline-offset-2" href={`${API_BASE}/docs`} target="_blank" rel="noreferrer">{API_BASE}/docs</a>. Also exposed as an MCP server <Info k="mcp" /> so your own agent can call identify, analyze and records as tools.</p>
+        <p className="mt-2 max-w-2xl text-fg-muted">The same pipeline the app uses, over HTTP. OpenAPI documentation is at <a className="text-accent underline underline-offset-2" href={`${API_BASE}/docs`} target="_blank" rel="noreferrer">{API_BASE}/docs</a>. Also a hosted MCP server <Info k="mcp" />: add <code className="break-all font-mono text-fg">{API_BASE}/mcp</code> in Claude, Cursor or any MCP client and your own agent can call list_devices, identify_device, diagnose and read_manual_page, with no install.</p>
       </div>
       <ApiConsole presets={PRESETS} product="Sieve" />
       <div className="grid gap-4 md:grid-cols-2">
