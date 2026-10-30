@@ -43,10 +43,10 @@ After any deploy, check both hosts: `curl -I https://sieve-api.vercel.app/health
 
 Locally `apps/web/.env.local` keeps `NEXT_PUBLIC_API_BASE=http://localhost:8000`.
 
-## Keeping it warm during judging
+## Keeping it warm
 
 Vercel functions cold-start in one to two seconds and need no keep-alive. If the API ever moves to a host that sleeps, a Hermes cron job (`hermes cron create "*/10 * * * *" --no-agent --script ping_api.py`) or any uptime monitor pointed at `/health` keeps it awake.
 
-## Alternative: Docker on Render
+## Alternative: Docker
 
-`render.yaml` and `apps/api/Dockerfile` still describe the API as a Docker web service for Render's free tier (verified image build). Free Render services sleep after 15 minutes idle and cold-start in about 30 seconds.
+`apps/api/Dockerfile` also builds the API as a container for any Docker host (verified image build).
